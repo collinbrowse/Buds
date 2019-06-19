@@ -18,6 +18,8 @@
 		BE41467722BA917C0009A738 /* PersonFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41467622BA917C0009A738 /* PersonFunctions.swift */; };
 		BE41467922BA918A0009A738 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41467822BA918A0009A738 /* ActivityModel.swift */; };
 		BE41467B22BA91950009A738 /* ActivityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41467A22BA91950009A738 /* ActivityFunctions.swift */; };
+		BE41467D22BA9CE50009A738 /* Birthday.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41467C22BA9CE50009A738 /* Birthday.swift */; };
+		BE41467F22BA9E180009A738 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41467E22BA9E180009A738 /* Location.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		BE41467622BA917C0009A738 /* PersonFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonFunctions.swift; sourceTree = "<group>"; };
 		BE41467822BA918A0009A738 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		BE41467A22BA91950009A738 /* ActivityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFunctions.swift; sourceTree = "<group>"; };
+		BE41467C22BA9CE50009A738 /* Birthday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Birthday.swift; sourceTree = "<group>"; };
+		BE41467E22BA9E180009A738 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +152,8 @@
 			children = (
 				BE41467422BA91670009A738 /* PersonModel.swift */,
 				BE41467622BA917C0009A738 /* PersonFunctions.swift */,
+				BE41467C22BA9CE50009A738 /* Birthday.swift */,
+				BE41467E22BA9E180009A738 /* Location.swift */,
 			);
 			path = Person;
 			sourceTree = "<group>";
@@ -292,11 +298,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE41467F22BA9E180009A738 /* Location.swift in Sources */,
 				BE41467922BA918A0009A738 /* ActivityModel.swift in Sources */,
 				BE41467722BA917C0009A738 /* PersonFunctions.swift in Sources */,
 				BE41467522BA91670009A738 /* PersonModel.swift in Sources */,
 				BE41464622BA718C0009A738 /* ViewController.swift in Sources */,
 				BE41467B22BA91950009A738 /* ActivityFunctions.swift in Sources */,
+				BE41467D22BA9CE50009A738 /* Birthday.swift in Sources */,
 				BE41464422BA718C0009A738 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

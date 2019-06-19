@@ -12,10 +12,10 @@ class PersonModel {
     var id: UUID!
     var name: PersonNameComponents!
     var email: String!
-    var location: String!
-    var birthday: Date!
+    var location: Location!
+    var birthday: Birthday!
     
-    init(name: PersonNameComponents, email: String, location: String, birthday: Date) {
+    init(name: PersonNameComponents, email: String, location: Location, birthday: Birthday) {
         id = UUID()
         self.name = name
         self.email = email
