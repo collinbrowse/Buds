@@ -14,6 +14,10 @@
 		BE41464E22BA718D0009A738 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE41464C22BA718D0009A738 /* LaunchScreen.storyboard */; };
 		BE41465922BA718D0009A738 /* BudsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41465822BA718D0009A738 /* BudsTests.swift */; };
 		BE41466422BA718D0009A738 /* BudsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41466322BA718D0009A738 /* BudsUITests.swift */; };
+		BE41467522BA91670009A738 /* PersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41467422BA91670009A738 /* PersonModel.swift */; };
+		BE41467722BA917C0009A738 /* PersonFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41467622BA917C0009A738 /* PersonFunctions.swift */; };
+		BE41467922BA918A0009A738 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41467822BA918A0009A738 /* ActivityModel.swift */; };
+		BE41467B22BA91950009A738 /* ActivityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41467A22BA91950009A738 /* ActivityFunctions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		BE41465F22BA718D0009A738 /* BudsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE41466322BA718D0009A738 /* BudsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudsUITests.swift; sourceTree = "<group>"; };
 		BE41466522BA718D0009A738 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE41467422BA91670009A738 /* PersonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PersonModel.swift; path = Buds/Model/Person/PersonModel.swift; sourceTree = SOURCE_ROOT; };
+		BE41467622BA917C0009A738 /* PersonFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonFunctions.swift; sourceTree = "<group>"; };
+		BE41467822BA918A0009A738 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
+		BE41467A22BA91950009A738 /* ActivityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFunctions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +105,7 @@
 		BE41464222BA718C0009A738 /* Buds */ = {
 			isa = PBXGroup;
 			children = (
+				BE41467122BA8F5F0009A738 /* Model */,
 				BE41464322BA718C0009A738 /* AppDelegate.swift */,
 				BE41464522BA718C0009A738 /* ViewController.swift */,
 				BE41464722BA718C0009A738 /* Main.storyboard */,
@@ -123,6 +132,33 @@
 				BE41466522BA718D0009A738 /* Info.plist */,
 			);
 			path = BudsUITests;
+			sourceTree = "<group>";
+		};
+		BE41467122BA8F5F0009A738 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BE41467322BA8F8A0009A738 /* Activity */,
+				BE41467222BA8F700009A738 /* Person */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BE41467222BA8F700009A738 /* Person */ = {
+			isa = PBXGroup;
+			children = (
+				BE41467422BA91670009A738 /* PersonModel.swift */,
+				BE41467622BA917C0009A738 /* PersonFunctions.swift */,
+			);
+			path = Person;
+			sourceTree = "<group>";
+		};
+		BE41467322BA8F8A0009A738 /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				BE41467822BA918A0009A738 /* ActivityModel.swift */,
+				BE41467A22BA91950009A738 /* ActivityFunctions.swift */,
+			);
+			path = Activity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,7 +292,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE41467922BA918A0009A738 /* ActivityModel.swift in Sources */,
+				BE41467722BA917C0009A738 /* PersonFunctions.swift in Sources */,
+				BE41467522BA91670009A738 /* PersonModel.swift in Sources */,
 				BE41464622BA718C0009A738 /* ViewController.swift in Sources */,
+				BE41467B22BA91950009A738 /* ActivityFunctions.swift in Sources */,
 				BE41464422BA718C0009A738 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
