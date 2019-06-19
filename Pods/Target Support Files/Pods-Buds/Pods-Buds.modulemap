@@ -1,0 +1,6 @@
+framework module Pods_Buds {
+  umbrella header "Pods-Buds-umbrella.h"
+
+  export *
+  module * { export * }
+}
