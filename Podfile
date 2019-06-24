@@ -9,6 +9,7 @@ target 'Buds' do
 pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'SVProgressHUD'
-
+pod 'Firebase/Analytics'
+pod 'Firebase/Firestore'
 
 end
