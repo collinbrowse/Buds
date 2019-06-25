@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		615EA0B759715525BF920C86 /* Pods_Buds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D56AEDC140671046EE7C281 /* Pods_Buds.framework */; };
+		BE03D2A722C2676E0059B587 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03D2A622C2676E0059B587 /* WelcomeViewController.swift */; };
+		BE03D2A922C269060059B587 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03D2A822C269060059B587 /* LogInViewController.swift */; };
+		BE03D2AB22C269730059B587 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03D2AA22C269730059B587 /* RegisterViewController.swift */; };
 		BE41464422BA718C0009A738 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41464322BA718C0009A738 /* AppDelegate.swift */; };
 		BE41464622BA718C0009A738 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41464522BA718C0009A738 /* ViewController.swift */; };
 		BE41464922BA718C0009A738 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE41464722BA718C0009A738 /* Main.storyboard */; };
@@ -45,6 +48,9 @@
 
 /* Begin PBXFileReference section */
 		5D56AEDC140671046EE7C281 /* Pods_Buds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Buds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE03D2A622C2676E0059B587 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		BE03D2A822C269060059B587 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		BE03D2AA22C269730059B587 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		BE41464022BA718C0009A738 /* Buds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Buds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE41464322BA718C0009A738 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE41464522BA718C0009A738 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +126,17 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		BE03D2A522C267410059B587 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BE41464522BA718C0009A738 /* ViewController.swift */,
+				BE03D2A622C2676E0059B587 /* WelcomeViewController.swift */,
+				BE03D2A822C269060059B587 /* LogInViewController.swift */,
+				BE03D2AA22C269730059B587 /* RegisterViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		BE41463722BA718C0009A738 = {
 			isa = PBXGroup;
 			children = (
@@ -145,10 +162,10 @@
 		BE41464222BA718C0009A738 /* Buds */ = {
 			isa = PBXGroup;
 			children = (
+				BE03D2A522C267410059B587 /* Controller */,
 				BE03D2A422C124A70059B587 /* View */,
 				BE41467122BA8F5F0009A738 /* Model */,
 				BE41464322BA718C0009A738 /* AppDelegate.swift */,
-				BE41464522BA718C0009A738 /* ViewController.swift */,
 				BE41464A22BA718D0009A738 /* Assets.xcassets */,
 				BE41464C22BA718D0009A738 /* LaunchScreen.storyboard */,
 				BE41464F22BA718D0009A738 /* Info.plist */,
@@ -382,6 +399,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE03D2A722C2676E0059B587 /* WelcomeViewController.swift in Sources */,
+				BE03D2AB22C269730059B587 /* RegisterViewController.swift in Sources */,
 				BE41467F22BA9E180009A738 /* Location.swift in Sources */,
 				BE41467922BA918A0009A738 /* ActivityModel.swift in Sources */,
 				BE41467722BA917C0009A738 /* PersonFunctions.swift in Sources */,
@@ -389,6 +408,7 @@
 				BE41464622BA718C0009A738 /* ViewController.swift in Sources */,
 				BE41467B22BA91950009A738 /* ActivityFunctions.swift in Sources */,
 				BE41467D22BA9CE50009A738 /* Birthday.swift in Sources */,
+				BE03D2A922C269060059B587 /* LogInViewController.swift in Sources */,
 				BE41464422BA718C0009A738 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
