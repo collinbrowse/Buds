@@ -9,6 +9,7 @@
 import Foundation
 
 struct Birthday {
+    
     var month: String!
     var day: Int!
     var year: Int!

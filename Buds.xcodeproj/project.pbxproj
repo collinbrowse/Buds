@@ -112,6 +112,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		BE03D2A422C124A70059B587 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BE41464722BA718C0009A738 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		BE41463722BA718C0009A738 = {
 			isa = PBXGroup;
 			children = (
@@ -137,10 +145,10 @@
 		BE41464222BA718C0009A738 /* Buds */ = {
 			isa = PBXGroup;
 			children = (
+				BE03D2A422C124A70059B587 /* View */,
 				BE41467122BA8F5F0009A738 /* Model */,
 				BE41464322BA718C0009A738 /* AppDelegate.swift */,
 				BE41464522BA718C0009A738 /* ViewController.swift */,
-				BE41464722BA718C0009A738 /* Main.storyboard */,
 				BE41464A22BA718D0009A738 /* Assets.xcassets */,
 				BE41464C22BA718D0009A738 /* LaunchScreen.storyboard */,
 				BE41464F22BA718D0009A738 /* Info.plist */,
