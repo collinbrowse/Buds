@@ -6,13 +6,16 @@ target 'Buds' do
   use_frameworks!
 
   # Pods for Buds
-pod 'Alamofire'
-pod 'SwiftyJSON'
-pod 'SVProgressHUD'
-pod 'Firebase/Analytics'
-pod 'Firebase/Firestore'
-pod 'Firebase/Auth'
-pod 'Firebase/Database'
-pod 'Firebase/Storage'
+  pod 'Alamofire'
+  pod 'SwiftyJSON'
+  pod 'SVProgressHUD'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  
+  target 'BudsTests' do
+    inherit! :search_paths
+    pod 'Firebase'
+  end 
 
 end

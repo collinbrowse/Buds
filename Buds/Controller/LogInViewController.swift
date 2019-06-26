@@ -86,6 +86,9 @@ class LogInViewController: UIViewController {
     }
     
     
+    @IBAction func logOutPressed(_ sender: Any) {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
     
     
 }
