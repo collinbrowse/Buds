@@ -9,18 +9,23 @@
 import Foundation
 import UIKit
 import Firebase
+import Firebase
+import FirebaseDatabase
 import SVProgressHUD
 
 
 class LogInViewController: UIViewController {
     
     //Textfields pre-linked with IBOutlets
-    @IBOutlet var emailTextfield: UITextField!
+
     @IBOutlet var passwordTextfield: UITextField!
+    @IBOutlet var usernameTextfield: UITextField!
+    var ref: DatabaseReference!
+    var username: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        ref = Database.database().reference()
     }
     
     override func didReceiveMemoryWarning() {
@@ -31,20 +36,53 @@ class LogInViewController: UIViewController {
     @IBAction func logInPressed(_ sender: AnyObject) {
         
         SVProgressHUD.show()
-        self.performSegue(withIdentifier: "goToChat", sender: self)
+        let username = usernameTextfield.text
+        let password = passwordTextfield.text
         
-        //TODO: Log in the user
-//        Auth.auth().signIn(withEmail: emailTextfield.text!, password: passwordTextfield.text!) { (user, error) in
-//            if (error != nil) {
-//                print(error!)
-//            }
-//            else {
-//                SVProgressHUD.dismiss()
-//                self.performSegue(withIdentifier: "goToChat", sender: self)
-//            }
-//        }
+        if ( !password!.isEmpty && !username!.isEmpty) {
+            registerUser(username: username!, password: password!)
+        }
+        else {
+            SVProgressHUD.dismiss()
+            self.showAlert(alertMessage: "All Fields Must Be Filled Out")
+        }
         
-        
+    }
+    
+    func showAlert(alertMessage: String) {
+        let alert = UIAlertController(title: "Unable to Register", message: alertMessage, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        SVProgressHUD.dismiss()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToChat" {
+            if let destinationVC = segue.destination as? ViewController {
+                destinationVC.username = self.username
+            }
+        }
+    }
+    
+    func registerUser(username: String, password: String) {
+        ref.child("users").queryOrdered(byChild: "username").queryEqual(toValue: username).observeSingleEvent(of: .value) { (snapshot) in
+            print(snapshot)
+            if snapshot.exists() {
+                self.ref.child("users").queryOrdered(byChild: "password").queryEqual(toValue: password).observeSingleEvent(of: .value) { (snapshot) in
+                    if snapshot.exists() {
+                            self.username = username
+                            print("Logged In User Successfully")
+                            SVProgressHUD.dismiss()
+                            self.performSegue(withIdentifier: "goToChat", sender: self)
+                        }
+                    else {
+                        self.showAlert(alertMessage: "Your Username/Password are incorrect")
+                    }
+                }
+            } else {
+                self.showAlert(alertMessage: "Your Username/Password are incorrect")
+            }
+        }
     }
     
     

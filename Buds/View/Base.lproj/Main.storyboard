@@ -195,7 +195,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GOm-Nz-O3M">
                                 <rect key="frame" x="0.0" y="88" width="375" height="282"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YII-YP-CAp">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YII-YP-CAp" userLabel="Password Textfield">
                                         <rect key="frame" x="16" y="126" width="343" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -211,7 +211,7 @@
                                             <action selector="logInPressed:" destination="gGi-hr-saG" eventType="touchUpInside" id="hS6-dS-fTo"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UVY-hH-slZ">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UVY-hH-slZ" userLabel="Username Textfield">
                                         <rect key="frame" x="16" y="88" width="343" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -247,8 +247,8 @@
                     <navigationItem key="navigationItem" title="Log In" id="bLa-UU-NXl"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="emailTextfield" destination="UVY-hH-slZ" id="FwP-n2-NLH"/>
                         <outlet property="passwordTextfield" destination="YII-YP-CAp" id="QnX-0A-2C6"/>
+                        <outlet property="usernameTextfield" destination="UVY-hH-slZ" id="yGi-nR-zVp"/>
                         <segue destination="taf-2W-xcK" kind="show" identifier="goToChat" id="fB2-qh-Ud3"/>
                     </connections>
                 </viewController>
@@ -350,6 +350,6 @@
         <image name="background1" width="1200" height="795"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="msy-Dw-a0c"/>
+        <segue reference="fB2-qh-Ud3"/>
     </inferredMetricsTieBreakers>
 </document>

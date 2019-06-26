@@ -43,7 +43,7 @@ class RegisterViewController: UIViewController {
         let username = usernameTextfield.text
         
         //let isUnique = verifyUnique(email: email!, username: username!)
-        if (!email!.isEmpty || !password!.isEmpty || !username!.isEmpty) {
+        if (!email!.isEmpty && !password!.isEmpty && !username!.isEmpty) {
             registerUser(username: username!, email: email!, password: password!)
         }
         else {
