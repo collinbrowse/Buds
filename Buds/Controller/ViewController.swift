@@ -8,14 +8,12 @@
 
 import UIKit
 import FirebaseCore
-import FirebaseFirestore
 import Firebase
 import FirebaseDatabase
 import SVProgressHUD
 
 class ViewController: UIViewController {
 
-    var db: Firestore!
     var ref: DatabaseReference!
     
     @IBOutlet var profilePictureImageView: UIImageView!
@@ -34,7 +32,6 @@ class ViewController: UIViewController {
         //username+=number
         
         // Connect to Firebase
-        db = Firestore.firestore()
         ref = Database.database().reference()
 
         displayNewUser()
