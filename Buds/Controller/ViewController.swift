@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseCore
 import FirebaseFirestore
+import SVProgressHUD
 
 class ViewController: UIViewController {
 
@@ -24,13 +25,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var name = PersonNameComponents()
-        name.givenName = "Collin"
-        name.familyName = "Browse"
-        let birthday = Birthday(month: "January", day: 1, year: 1990)
-        let email = "mail@google.com"
-        let location = Location(city: "Steamboat Springs", state: "Colorado")
-        let person = PersonModel(name: name, email: email, location: location, birthday: birthday)
+//        var name = PersonNameComponents()
+//        name.givenName = "Collin"
+//        name.familyName = "Browse"
+//        let birthday = Birthday(month: "January", day: 1, year: 1990)
+//        let email = "mail@google.com"
+//        let location = Location(city: "Steamboat Springs", state: "Colorado")
+//        let person = PersonModel(name: name, email: email, location: location, birthday: birthday)
         var username = "username_"
         let number = String(Int.random(in: 0 ..< 100))
         username+=number
@@ -40,6 +41,7 @@ class ViewController: UIViewController {
         
         //addNewUser(username: username, name: name, email: email, location: location, birthday: birthday)
         displayNewUser(username: username)
+        
     }
     
     func displayNewUser(username: String) {
@@ -63,6 +65,7 @@ class ViewController: UIViewController {
                 self.birthdayTextView.text = ""
                 self.emailTextView.text = ""
                 print("Unable to find user")
+                SVProgressHUD.dismiss()
             }
         }
         

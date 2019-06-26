@@ -32,6 +32,7 @@ class LogInViewController: UIViewController {
         
         SVProgressHUD.show()
         self.performSegue(withIdentifier: "goToChat", sender: self)
+        
         //TODO: Log in the user
 //        Auth.auth().signIn(withEmail: emailTextfield.text!, password: passwordTextfield.text!) { (user, error) in
 //            if (error != nil) {
