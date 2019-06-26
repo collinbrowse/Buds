@@ -21,6 +21,8 @@ class RegisterViewController: UIViewController {
     @IBOutlet var emailTextfield: UITextField!
     @IBOutlet var passwordTextfield: UITextField!
     
+    var username: String!
+    
     var ref: DatabaseReference!
     
     override func viewDidLoad() {
@@ -58,6 +60,14 @@ class RegisterViewController: UIViewController {
         SVProgressHUD.dismiss()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToChat" {
+            if let destinationVC = segue.destination as? ViewController {
+                destinationVC.username = self.username
+            }
+        }
+    }
+    
     func registerUser(username: String, email: String, password: String) {
         ref.child("users").queryOrdered(byChild: "username").queryEqual(toValue: username).observeSingleEvent(of: .value) { (snapshot) in
             print(snapshot)
@@ -66,18 +76,18 @@ class RegisterViewController: UIViewController {
                     if !snapshot.exists() {
                         // email, password, and username have values and are unique
                         let usersRef = self.ref.child("users").child(username)
-                        let values = ["email": email, "username": username, "password": password]
+                        let values = ["username": username, "email": email, "password": password]
                         usersRef.setValue(values, withCompletionBlock:  { (error, dbRef) in
                             if error != nil {
                                 print("This is the error \(String(describing: error))")
                                 return
                             }
                             else {
-                                print("error was empty")
+                                self.username = username
+                                print("Saved user successfully")
+                                SVProgressHUD.dismiss()
+                                self.performSegue(withIdentifier: "goToChat", sender: self)
                             }
-                            print("Saved user successfully")
-                            SVProgressHUD.dismiss()
-                            self.performSegue(withIdentifier: "goToChat", sender: self)
                         })
                         
                     } else {

@@ -9,11 +9,14 @@
 import UIKit
 import FirebaseCore
 import FirebaseFirestore
+import Firebase
+import FirebaseDatabase
 import SVProgressHUD
 
 class ViewController: UIViewController {
 
     var db: Firestore!
+    var ref: DatabaseReference!
     
     @IBOutlet var profilePictureImageView: UIImageView!
     @IBOutlet var nameTextView: UITextView!
@@ -21,53 +24,56 @@ class ViewController: UIViewController {
     @IBOutlet var birthdayTextView: UITextView!
     @IBOutlet var emailTextView: UITextView!
     
+    var username: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        var name = PersonNameComponents()
-//        name.givenName = "Collin"
-//        name.familyName = "Browse"
-//        let birthday = Birthday(month: "January", day: 1, year: 1990)
-//        let email = "mail@google.com"
-//        let location = Location(city: "Steamboat Springs", state: "Colorado")
-//        let person = PersonModel(name: name, email: email, location: location, birthday: birthday)
         var username = "username_"
         let number = String(Int.random(in: 0 ..< 100))
         username+=number
         
         // Connect to Firebase
         db = Firestore.firestore()
-        
+        ref = Database.database().reference()
+
         //addNewUser(username: username, name: name, email: email, location: location, birthday: birthday)
-        displayNewUser(username: username)
+        displayNewUser()
         
     }
     
-    func displayNewUser(username: String) {
-        print(username)
-        let usersRef = db.collection("users").document(username)
-        
-        usersRef.getDocument{ (document, error) in
-            if let document = document, document.exists {
-                let city = document["location.city"] as! String
-                let state = document["location.state"] as! String
-                let month = document["birthday.month"] as! String
-                let day = document["birthday.day"] as? Int
-                let year = document["birthday.year"] as? Int
-                self.nameTextView.text = username
-                self.locationTextView.text = city + ", " + state
-                self.birthdayTextView.text = "\(month) \(day!)" + ", " + "\(year!)"
-                self.emailTextView.text = document["email"] as? String
-            } else {
-                self.nameTextView.text = "Unable to load user"
-                self.locationTextView.text = ""
-                self.birthdayTextView.text = ""
-                self.emailTextView.text = ""
-                print("Unable to find user")
-                SVProgressHUD.dismiss()
-            }
+    func displayNewUser() {
+        print(self.username!)
+        //let usersRef = db.collection("users").document(self.username!)
+        ref.child("users").child(self.username!).observeSingleEvent(of: .value) { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            //let username = value?["username"] as? String ?? "Unable to Load User"
+            let email = value?["email"] as? String ?? ""
+            self.nameTextView.text = self.username
+            self.locationTextView.text = email
         }
+        
+        
+//        usersRef.getDocument{ (document, error) in
+//            if let document = document, document.exists {
+//                let city = document["location.city"] as! String
+//                let state = document["location.state"] as! String
+//                let month = document["birthday.month"] as! String
+//                let day = document["birthday.day"] as? Int
+//                let year = document["birthday.year"] as? Int
+//                self.nameTextView.text = self.username
+//                self.locationTextView.text = city + ", " + state
+//                self.birthdayTextView.text = "\(month) \(day!)" + ", " + "\(year!)"
+//                self.emailTextView.text = document["email"] as? String
+//            } else {
+//                self.nameTextView.text = "Unable to load user"
+//                self.locationTextView.text = ""
+//                self.birthdayTextView.text = ""
+//                self.emailTextView.text = ""
+//                print("Unable to find user")
+//                SVProgressHUD.dismiss()
+//            }
+//        }
         
     }
     
