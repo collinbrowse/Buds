@@ -61,8 +61,8 @@ class RegisterViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToChat" {
-            if let destinationVC = segue.destination as? ViewController {
+        if segue.identifier == "goToHome" {
+            if let destinationVC = segue.destination as? ProfileViewController {
                 destinationVC.username = self.username
             }
         }
@@ -86,7 +86,7 @@ class RegisterViewController: UIViewController {
                                 self.username = username
                                 print("Saved user successfully")
                                 SVProgressHUD.dismiss()
-                                self.performSegue(withIdentifier: "goToChat", sender: self)
+                                self.performSegue(withIdentifier: "goToHome", sender: self)
                             }
                         })
                         

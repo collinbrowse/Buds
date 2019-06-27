@@ -14,7 +14,6 @@
 		BE03D2AB22C269730059B587 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03D2AA22C269730059B587 /* RegisterViewController.swift */; };
 		BE03D2AD22C548480059B587 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03D2AC22C548480059B587 /* ProfileViewController.swift */; };
 		BE41464422BA718C0009A738 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41464322BA718C0009A738 /* AppDelegate.swift */; };
-		BE41464622BA718C0009A738 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41464522BA718C0009A738 /* ViewController.swift */; };
 		BE41464922BA718C0009A738 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE41464722BA718C0009A738 /* Main.storyboard */; };
 		BE41464B22BA718D0009A738 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE41464A22BA718D0009A738 /* Assets.xcassets */; };
 		BE41464E22BA718D0009A738 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE41464C22BA718D0009A738 /* LaunchScreen.storyboard */; };
@@ -61,7 +60,6 @@
 		BE03D2AC22C548480059B587 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		BE41464022BA718C0009A738 /* Buds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Buds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE41464322BA718C0009A738 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BE41464522BA718C0009A738 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BE41464822BA718C0009A738 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BE41464A22BA718D0009A738 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE41464D22BA718D0009A738 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -143,7 +141,6 @@
 		BE03D2A522C267410059B587 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				BE41464522BA718C0009A738 /* ViewController.swift */,
 				BE03D2A622C2676E0059B587 /* WelcomeViewController.swift */,
 				BE03D2A822C269060059B587 /* LogInViewController.swift */,
 				BE03D2AA22C269730059B587 /* RegisterViewController.swift */,
@@ -462,7 +459,6 @@
 				BE41467722BA917C0009A738 /* PersonFunctions.swift in Sources */,
 				BE41467522BA91670009A738 /* PersonModel.swift in Sources */,
 				BE03D2AD22C548480059B587 /* ProfileViewController.swift in Sources */,
-				BE41464622BA718C0009A738 /* ViewController.swift in Sources */,
 				BE41467B22BA91950009A738 /* ActivityFunctions.swift in Sources */,
 				BE41467D22BA9CE50009A738 /* Birthday.swift in Sources */,
 				BE03D2A922C269060059B587 /* LogInViewController.swift in Sources */,

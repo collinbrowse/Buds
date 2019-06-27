@@ -245,71 +245,6 @@
             <point key="canvasLocation" x="1086" y="-392"/>
         </scene>
         <!--Profile-->
-        <scene sceneID="2DT-pX-0S9">
-            <objects>
-                <viewController storyboardIdentifier="profileVC" id="taf-2W-xcK" userLabel="Profile" customClass="ViewController" customModule="Buds" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="e45-gq-02c" userLabel="Background">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Birthday" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gyB-kZ-4Ib">
-                                <rect key="frame" x="20" y="286" width="240" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Email" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="wqG-tv-eY7">
-                                <rect key="frame" x="20" y="339" width="240" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Location" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="XR0-vO-n3w">
-                                <rect key="frame" x="20" y="233" width="240" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cZA-Yj-fcE">
-                                <rect key="frame" x="20" y="96" width="107" height="106"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="First, Last" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pKP-s8-glb">
-                                <rect key="frame" x="135" y="127" width="240" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="4Il-bw-0e5"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="LJ8-PB-rtP"/>
-                    <navigationItem key="navigationItem" title="Profile" id="4Ea-7I-nHf" userLabel="Profile">
-                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="Zyb-DO-Rvk">
-                            <connections>
-                                <action selector="logOutPressed:" destination="taf-2W-xcK" id="JGk-Em-Jft"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <connections>
-                        <outlet property="birthdayTextView" destination="gyB-kZ-4Ib" id="T41-7w-sV4"/>
-                        <outlet property="emailTextView" destination="wqG-tv-eY7" id="PM3-zA-rbZ"/>
-                        <outlet property="locationTextView" destination="XR0-vO-n3w" id="m6Z-03-ZUs"/>
-                        <outlet property="nameTextView" destination="pKP-s8-glb" id="diK-IT-vxy"/>
-                        <outlet property="profilePictureImageView" destination="cZA-Yj-fcE" id="ZHt-yz-84g"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9AB-P8-2Zi" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3252" y="-392"/>
-        </scene>
-        <!--Profile-->
         <scene sceneID="Ncu-O7-azU">
             <objects>
                 <viewController storyboardIdentifier="profileViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Rwf-Mg-OM1" userLabel="Profile" customClass="ProfileViewController" customModule="Buds" customModuleProvider="target" sceneMemberID="viewController">
@@ -333,7 +268,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="c5M-9h-o0x"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
@@ -356,7 +291,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="op3-a6-6zx"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Email" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mOn-xI-L9v" userLabel="Email Text View">
@@ -365,7 +300,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="SA0-gq-Ofw"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Location" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GMg-eM-dqA" userLabel="Location Text View">
@@ -374,7 +309,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="R4W-Sz-ucU"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
@@ -451,7 +386,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="Rwf-Mg-OM1" kind="relationship" relationship="viewControllers" id="nEZ-Nf-3i8"/>
-                        <segue destination="taf-2W-xcK" kind="relationship" relationship="viewControllers" id="nj0-qP-a5r"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RIr-gd-2tV" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -58,7 +58,7 @@ class LogInViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToHome" {
-            if let destinationVC = segue.destination as? ViewController {
+            if let destinationVC = segue.destination as? ProfileViewController {
                 destinationVC.username = self.username
             }
         }

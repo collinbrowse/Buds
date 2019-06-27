@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import SVProgressHUD
 
 
 class ProfileViewController: UIViewController {
@@ -30,16 +31,22 @@ class ProfileViewController: UIViewController {
         profilePhotoImageView.layer.cornerRadius = profilePhotoImageView.frame.size.width / 2
         print("Intrinsic Content Size  \(profilePhotoImageView.intrinsicContentSize.width / 2)")
         print("Frame.size.width   \(profilePhotoImageView.frame.size.width / 2)")
+        displayNewUser()
     }
     
     func displayNewUser() {
+        
+        if (username != nil) {
             print(self.username!)
-        ref.child("users").child(self.username!).observeSingleEvent(of: .value) { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            //let username = value?["username"] as? String ?? "Unable to Load User"
-            let email = value?["email"] as? String ?? ""
-            self.nameTextView.text = self.username
-            self.locationTextView.text = email
+            ref.child("users").child(self.username!).observeSingleEvent(of: .value) { (snapshot) in
+                let value = snapshot.value as? NSDictionary
+                let email = value?["email"] as? String ?? ""
+                self.nameTextView.text = self.username
+                self.locationTextView.text = email
+            }
+        } else {
+            username = "Unable to Load User"
+            self.nameTextView.text = username
         }
         
     }
