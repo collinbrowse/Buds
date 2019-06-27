@@ -1,44 +1,40 @@
 //
-//  ViewController.swift
+//  ProfileViewController.swift
 //  Buds
 //
-//  Created by Collin Browse on 6/19/19.
+//  Created by Collin Browse on 6/27/19.
 //  Copyright © 2019 Collin Browse. All rights reserved.
 //
 
 import UIKit
-import FirebaseCore
-import Firebase
 import FirebaseDatabase
-import SVProgressHUD
 
-class ViewController: UIViewController {
 
-    var ref: DatabaseReference!
+class ProfileViewController: UIViewController {
     
-    @IBOutlet var profilePictureImageView: UIImageView!
+    @IBOutlet var profilePhotoImageView: UIImageView!
     @IBOutlet var nameTextView: UITextView!
-    @IBOutlet var locationTextView: UITextView!
     @IBOutlet var birthdayTextView: UITextView!
+    @IBOutlet var locationTextView: UITextView!
     @IBOutlet var emailTextView: UITextView!
     
-    var username: String!
+    var username: String?
+    var ref: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Connect to Firebase
         ref = Database.database().reference()
-
-        
-        //displayNewUser()
-        
+        // Set Up View
+        profilePhotoImageView.layer.masksToBounds = true
+        profilePhotoImageView.layer.cornerRadius = profilePhotoImageView.frame.size.width / 2
+        print("Intrinsic Content Size  \(profilePhotoImageView.intrinsicContentSize.width / 2)")
+        print("Frame.size.width   \(profilePhotoImageView.frame.size.width / 2)")
     }
     
     func displayNewUser() {
-        print(self.username!)
-        //let usersRef = db.collection("users").document(self.username!)
-    ref.child("users").child(self.username!).observeSingleEvent(of: .value) { (snapshot) in
+            print(self.username!)
+        ref.child("users").child(self.username!).observeSingleEvent(of: .value) { (snapshot) in
             let value = snapshot.value as? NSDictionary
             //let username = value?["username"] as? String ?? "Unable to Load User"
             let email = value?["email"] as? String ?? ""
@@ -47,8 +43,8 @@ class ViewController: UIViewController {
         }
         
     }
-
-
+    
+    
     class NameTextView: UITextView {
         
         override init(frame: CGRect, textContainer: NSTextContainer?) {
@@ -76,9 +72,4 @@ class ViewController: UIViewController {
     }
     
     
-    @IBAction func logOutPressed(_ sender: Any) {
-        navigationController?.popToRootViewController(animated: true)
-    }
-    
 }
-

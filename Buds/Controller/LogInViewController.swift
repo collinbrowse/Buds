@@ -57,7 +57,7 @@ class LogInViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToChat" {
+        if segue.identifier == "goToHome" {
             if let destinationVC = segue.destination as? ViewController {
                 destinationVC.username = self.username
             }
@@ -73,7 +73,7 @@ class LogInViewController: UIViewController {
                             self.username = username
                             print("Logged In User Successfully")
                             SVProgressHUD.dismiss()
-                            self.performSegue(withIdentifier: "goToChat", sender: self)
+                            self.performSegue(withIdentifier: "goToHome", sender: self)
                         }
                     else {
                         self.showAlert(alertMessage: "Your Username/Password are incorrect")
@@ -83,11 +83,6 @@ class LogInViewController: UIViewController {
                 self.showAlert(alertMessage: "Your Username/Password are incorrect")
             }
         }
-    }
-    
-    
-    @IBAction func logOutPressed(_ sender: Any) {
-        self.navigationController?.popToRootViewController(animated: true)
     }
     
     
