@@ -9,15 +9,12 @@
 import Foundation
 import UIKit
 import Firebase
-import Firebase
 import FirebaseDatabase
 import SVProgressHUD
-
 
 class LogInViewController: UIViewController {
     
     //Textfields pre-linked with IBOutlets
-
     @IBOutlet var passwordTextfield: UITextField!
     @IBOutlet var usernameTextfield: UITextField!
     var ref: DatabaseReference!
@@ -30,6 +27,10 @@ class LogInViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    @IBAction func viewIconPressed(_ sender: Any) {
+        passwordTextfield.isSecureTextEntry.toggle()
     }
     
     

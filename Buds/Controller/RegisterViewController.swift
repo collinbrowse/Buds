@@ -35,7 +35,10 @@ class RegisterViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-
+    @IBAction func viewIconClicked(_ sender: Any) {
+        passwordTextfield.isSecureTextEntry.toggle()
+    }
+    
     @IBAction func registerPressed(_ sender: AnyObject) {
         SVProgressHUD.show()
         let email = emailTextfield.text
