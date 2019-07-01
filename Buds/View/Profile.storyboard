@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rwf-Mg-OM1">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Profile-->
+        <scene sceneID="Ncu-O7-azU">
+            <objects>
+                <viewController storyboardIdentifier="profileViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Rwf-Mg-OM1" userLabel="Profile" customClass="ProfileViewController" customModule="Buds" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NoI-0p-MPd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Suu-TU-HIw" userLabel="Name Wrapper View">
+                                <rect key="frame" x="0.0" y="44" width="414" height="175"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="voj-Qk-v4o">
+                                        <rect key="frame" x="30" y="37.5" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="52e-Cf-XSl"/>
+                                            <constraint firstAttribute="height" constant="100" id="je1-v7-8xY"/>
+                                        </constraints>
+                                    </imageView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Name" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="myJ-F3-Res" userLabel="Name Text View">
+                                        <rect key="frame" x="150" y="62.5" width="240" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="c5M-9h-o0x"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="voj-Qk-v4o" firstAttribute="leading" secondItem="Suu-TU-HIw" secondAttribute="leading" constant="30" id="Bqb-Tv-gd8"/>
+                                    <constraint firstAttribute="height" constant="175" id="FHV-Zf-kol"/>
+                                    <constraint firstItem="myJ-F3-Res" firstAttribute="leading" secondItem="voj-Qk-v4o" secondAttribute="trailing" constant="20" id="IB2-ZO-aJZ"/>
+                                    <constraint firstItem="voj-Qk-v4o" firstAttribute="centerY" secondItem="Suu-TU-HIw" secondAttribute="centerY" id="faf-Md-E8q"/>
+                                    <constraint firstAttribute="trailing" secondItem="myJ-F3-Res" secondAttribute="trailing" constant="24" id="uIF-If-zXU"/>
+                                    <constraint firstItem="myJ-F3-Res" firstAttribute="centerY" secondItem="Suu-TU-HIw" secondAttribute="centerY" id="y6Q-kV-eAE"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yR3-pQ-qxn" userLabel="Details Wrapper View">
+                                <rect key="frame" x="0.0" y="219" width="414" height="594"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Birthday" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="myv-Cv-2a5" userLabel="Birthday Text View">
+                                        <rect key="frame" x="30" y="20" width="354" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="op3-a6-6zx"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Email" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mOn-xI-L9v" userLabel="Email Text View">
+                                        <rect key="frame" x="30" y="132" width="354" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="SA0-gq-Ofw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Location" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GMg-eM-dqA" userLabel="Location Text View">
+                                        <rect key="frame" x="30" y="76" width="354" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="R4W-Sz-ucU"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Username" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UJ2-IC-dVi" userLabel="Username Text View">
+                                        <rect key="frame" x="30" y="188" width="354" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Bjx-gn-47K"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="UJ2-IC-dVi" firstAttribute="top" secondItem="mOn-xI-L9v" secondAttribute="bottom" constant="16" id="3q8-0k-Gef"/>
+                                    <constraint firstItem="myv-Cv-2a5" firstAttribute="leading" secondItem="yR3-pQ-qxn" secondAttribute="leading" constant="30" id="5zA-jb-bl0"/>
+                                    <constraint firstItem="myv-Cv-2a5" firstAttribute="top" secondItem="yR3-pQ-qxn" secondAttribute="top" constant="20" id="7tQ-eZ-6yc"/>
+                                    <constraint firstItem="GMg-eM-dqA" firstAttribute="top" secondItem="myv-Cv-2a5" secondAttribute="bottom" constant="16" id="A1e-6H-jKw"/>
+                                    <constraint firstItem="mOn-xI-L9v" firstAttribute="top" secondItem="GMg-eM-dqA" secondAttribute="bottom" constant="16" id="Eve-wv-jPx"/>
+                                    <constraint firstItem="UJ2-IC-dVi" firstAttribute="leading" secondItem="yR3-pQ-qxn" secondAttribute="leading" constant="30" id="GfY-2E-VsE"/>
+                                    <constraint firstAttribute="trailing" secondItem="mOn-xI-L9v" secondAttribute="trailing" constant="30" id="MrO-AF-mJM"/>
+                                    <constraint firstItem="GMg-eM-dqA" firstAttribute="leading" secondItem="yR3-pQ-qxn" secondAttribute="leading" constant="30" id="TOk-cB-SoG"/>
+                                    <constraint firstAttribute="trailing" secondItem="myv-Cv-2a5" secondAttribute="trailing" constant="30" id="UKS-qZ-nMm"/>
+                                    <constraint firstAttribute="trailing" secondItem="UJ2-IC-dVi" secondAttribute="trailing" constant="30" id="fGk-6q-tAV"/>
+                                    <constraint firstAttribute="trailing" secondItem="GMg-eM-dqA" secondAttribute="trailing" constant="30" id="sug-w2-rra"/>
+                                    <constraint firstItem="mOn-xI-L9v" firstAttribute="leading" secondItem="yR3-pQ-qxn" secondAttribute="leading" constant="30" id="vgW-WG-JsS"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Suu-TU-HIw" firstAttribute="top" secondItem="9UP-eq-d71" secondAttribute="top" id="34m-nw-hTn"/>
+                            <constraint firstItem="Suu-TU-HIw" firstAttribute="leading" secondItem="9UP-eq-d71" secondAttribute="leading" id="7zO-E3-oyO"/>
+                            <constraint firstItem="yR3-pQ-qxn" firstAttribute="leading" secondItem="9UP-eq-d71" secondAttribute="leading" id="Ile-6o-NKL"/>
+                            <constraint firstItem="Suu-TU-HIw" firstAttribute="centerX" secondItem="NoI-0p-MPd" secondAttribute="centerX" id="MVj-g4-sSP"/>
+                            <constraint firstItem="9UP-eq-d71" firstAttribute="trailing" secondItem="yR3-pQ-qxn" secondAttribute="trailing" id="SOW-v2-q57"/>
+                            <constraint firstItem="9UP-eq-d71" firstAttribute="bottom" secondItem="yR3-pQ-qxn" secondAttribute="bottom" id="cGj-np-JRn"/>
+                            <constraint firstItem="Suu-TU-HIw" firstAttribute="trailing" secondItem="9UP-eq-d71" secondAttribute="trailing" id="glJ-1y-Mw3"/>
+                            <constraint firstItem="yR3-pQ-qxn" firstAttribute="top" secondItem="Suu-TU-HIw" secondAttribute="bottom" id="iQ4-Te-fIj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9UP-eq-d71"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" id="FaD-bP-YfX"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="birthdayTextView" destination="myv-Cv-2a5" id="c7I-4S-3pB"/>
+                        <outlet property="emailTextView" destination="mOn-xI-L9v" id="4KK-Cf-Yx5"/>
+                        <outlet property="locationTextView" destination="GMg-eM-dqA" id="HaM-g0-XSg"/>
+                        <outlet property="nameTextView" destination="myJ-F3-Res" id="muW-Yo-vDg"/>
+                        <outlet property="profilePhotoImageView" destination="voj-Qk-v4o" id="zcC-eN-vlS"/>
+                        <outlet property="usernameTextView" destination="UJ2-IC-dVi" id="oE9-F8-Hif"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0BC-aj-Fgc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3252" y="366.50246305418722"/>
+        </scene>
+    </scenes>
+</document>

@@ -346,6 +346,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="K3w-IS-css" kind="relationship" relationship="viewControllers" id="nEZ-Nf-3i8"/>
+                        <segue destination="Zlw-nY-xMd" kind="relationship" relationship="viewControllers" id="q71-7r-4S8"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RIr-gd-2tV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -361,6 +362,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7mx-J6-JwP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2846" y="183"/>
+        </scene>
+        <!--Activity View Controller Reference-->
+        <scene sceneID="Yw4-SZ-gpJ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Activity" referencedIdentifier="newActivityStoryboard" id="Zlw-nY-xMd" userLabel="Activity View Controller Reference" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="slS-WX-6Hi"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ufu-vX-sfB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2842" y="-127"/>
         </scene>
     </scenes>
     <resources>
