@@ -11,7 +11,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import SVProgressHUD
-
+import CryptoSwift
 
 class RegisterViewController: UIViewController {
     
@@ -42,11 +42,12 @@ class RegisterViewController: UIViewController {
     @IBAction func registerPressed(_ sender: AnyObject) {
         SVProgressHUD.show()
         let email = emailTextfield.text
-        let password = passwordTextfield.text
+        var password = passwordTextfield.text
         let username = usernameTextfield.text
+        passwordTextfield.text = nil
         
-        //let isUnique = verifyUnique(email: email!, username: username!)
         if (!email!.isEmpty && !password!.isEmpty && !username!.isEmpty) {
+            password = passwordHash(username: username!, password: password!)
             registerUser(username: username!, email: email!, password: password!)
         }
         else {
@@ -101,6 +102,11 @@ class RegisterViewController: UIViewController {
                 self.showAlert(alertMessage: "That Username Already Exists")
             }
         }
+    }
+    
+    func passwordHash(username: String, password: String) -> String {
+        let salt = "x4vV8bGgqqmQwgCoyXFQj+(o.nUNQhVP7ND99"
+        return "\(password).\(username).\(salt)".sha256()
     }
     
     

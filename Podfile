@@ -12,6 +12,7 @@ target 'Buds' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'CryptoSwift'
   
   target 'BudsTests' do
     inherit! :search_paths

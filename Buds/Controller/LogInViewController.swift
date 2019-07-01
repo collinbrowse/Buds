@@ -33,15 +33,16 @@ class LogInViewController: UIViewController {
         passwordTextfield.isSecureTextEntry.toggle()
     }
     
-    
     @IBAction func logInPressed(_ sender: AnyObject) {
         
         SVProgressHUD.show()
         let username = usernameTextfield.text
-        let password = passwordTextfield.text
+        var password = passwordTextfield.text
+        passwordTextfield.text = nil
         
         if ( !password!.isEmpty && !username!.isEmpty) {
-            registerUser(username: username!, password: password!)
+            password = passwordHash(username: username!, password: password!)
+            logInUser(username: username!, password: password!)
         }
         else {
             SVProgressHUD.dismiss()
@@ -65,7 +66,7 @@ class LogInViewController: UIViewController {
         }
     }
     
-    func registerUser(username: String, password: String) {
+    func logInUser(username: String, password: String) {
         ref.child("users").queryOrdered(byChild: "username").queryEqual(toValue: username).observeSingleEvent(of: .value) { (snapshot) in
             print(snapshot)
             if snapshot.exists() {
@@ -84,6 +85,11 @@ class LogInViewController: UIViewController {
                 self.showAlert(alertMessage: "Your Username/Password are incorrect")
             }
         }
+    }
+    
+    func passwordHash(username: String, password: String) -> String {
+        let salt = "x4vV8bGgqqmQwgCoyXFQj+(o.nUNQhVP7ND99"
+        return "\(password).\(username).\(salt)".sha256()
     }
     
     
