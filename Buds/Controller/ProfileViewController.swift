@@ -13,11 +13,12 @@ import SVProgressHUD
 
 class ProfileViewController: UIViewController {
     
-    @IBOutlet var profilePhotoImageView: UIImageView!
-    @IBOutlet var nameTextView: UITextView!
-    @IBOutlet var birthdayTextView: UITextView!
-    @IBOutlet var locationTextView: UITextView!
-    @IBOutlet var emailTextView: UITextView!
+    @IBOutlet weak var profilePhotoImageView: UIImageView!
+    @IBOutlet weak var nameTextView: UITextView!
+    @IBOutlet weak var birthdayTextView: UITextView!
+    @IBOutlet weak var locationTextView: UITextView!
+    @IBOutlet weak var emailTextView: UITextView!
+    @IBOutlet weak var usernameTextView: UITextView!
     
     var username: String?
     var ref: DatabaseReference!
@@ -26,23 +27,30 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         // Connect to Firebase
         ref = Database.database().reference()
+        
         // Set Up View
         profilePhotoImageView.layer.masksToBounds = true
         profilePhotoImageView.layer.cornerRadius = profilePhotoImageView.frame.size.width / 2
-        print("Intrinsic Content Size  \(profilePhotoImageView.intrinsicContentSize.width / 2)")
-        print("Frame.size.width   \(profilePhotoImageView.frame.size.width / 2)")
+        //print("Intrinsic Content Size  \(profilePhotoImageView.intrinsicContentSize.width / 2)")
+        //print("Frame.size.width   \(profilePhotoImageView.frame.size.width / 2)")
         displayNewUser()
     }
     
     func displayNewUser() {
         
         if (username != nil) {
-            print(self.username!)
             ref.child("users").child(self.username!).observeSingleEvent(of: .value) { (snapshot) in
                 let value = snapshot.value as? NSDictionary
+                let name = value?["name"] as? String ?? ""
                 let email = value?["email"] as? String ?? ""
-                self.nameTextView.text = self.username
-                self.locationTextView.text = email
+                let birthday = value?["birthday"] as? String ?? ""
+                let location = value?["location"] as? String ?? ""
+                let username = value?["username"] as? String ?? ""
+                self.nameTextView.text = name
+                self.birthdayTextView.text = birthday
+                self.locationTextView.text = location
+                self.emailTextView.text = email
+                self.usernameTextView.text = username
             }
         } else {
             username = "Unable to Load User"

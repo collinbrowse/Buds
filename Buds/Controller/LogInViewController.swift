@@ -11,6 +11,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import SVProgressHUD
+import CryptoSwift
 
 class LogInViewController: UIViewController {
     
@@ -60,7 +61,8 @@ class LogInViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToHome" {
-            if let destinationVC = segue.destination as? ProfileViewController {
+            let tabBarViewController = segue.destination as? UITabBarController
+            if let destinationVC = tabBarViewController?.viewControllers![0] as? ProfileViewController {
                 destinationVC.username = self.username
             }
         }

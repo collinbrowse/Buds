@@ -17,9 +17,12 @@ class RegisterViewController: UIViewController {
     
     
     //Pre-linked IBOutlets
-    @IBOutlet var usernameTextfield: UITextField!
-    @IBOutlet var emailTextfield: UITextField!
-    @IBOutlet var passwordTextfield: UITextField!
+    @IBOutlet weak var usernameTextfield: UITextField!
+    @IBOutlet weak var emailTextfield: UITextField!
+    @IBOutlet weak var passwordTextfield: UITextField!
+    @IBOutlet weak var nameTextfield: UITextField!
+    @IBOutlet weak var locationTextField: UITextField!
+    @IBOutlet weak var birthdayTextfield: UITextField! // This will be converted to a date picked in the future
     
     var username: String!
     
@@ -28,11 +31,6 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
-        
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     @IBAction func viewIconClicked(_ sender: Any) {
@@ -44,11 +42,15 @@ class RegisterViewController: UIViewController {
         let email = emailTextfield.text
         var password = passwordTextfield.text
         let username = usernameTextfield.text
+        let name = nameTextfield.text
+        let location = locationTextField.text
+        let birthday = birthdayTextfield.text
         passwordTextfield.text = nil
         
-        if (!email!.isEmpty && !password!.isEmpty && !username!.isEmpty) {
+        if (!email!.isEmpty && !password!.isEmpty && !username!.isEmpty
+            && !name!.isEmpty && !location!.isEmpty && !birthday!.isEmpty) {
             password = passwordHash(username: username!, password: password!)
-            registerUser(username: username!, email: email!, password: password!)
+            registerUser(name: name!, location: location!, birthday: birthday!, username: username!, email: email!, password: password!)
         }
         else {
             SVProgressHUD.dismiss()
@@ -66,13 +68,14 @@ class RegisterViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToHome" {
-            if let destinationVC = segue.destination as? ProfileViewController {
+            let tabBarViewController = segue.destination as? UITabBarController
+            if let destinationVC = tabBarViewController?.viewControllers![0] as? ProfileViewController {
                 destinationVC.username = self.username
             }
-        }
+        } 
     }
     
-    func registerUser(username: String, email: String, password: String) {
+    func registerUser(name: String, location: String, birthday: String, username: String, email: String, password: String) {
         ref.child("users").queryOrdered(byChild: "username").queryEqual(toValue: username).observeSingleEvent(of: .value) { (snapshot) in
             print(snapshot)
             if !snapshot.exists() {
@@ -80,7 +83,7 @@ class RegisterViewController: UIViewController {
                     if !snapshot.exists() {
                         // email, password, and username have values and are unique
                         let usersRef = self.ref.child("users").child(username)
-                        let values = ["username": username, "email": email, "password": password]
+                        let values = ["name": name, "location": location, "birthday": birthday, "username": username, "email": email, "password": password]
                         usersRef.setValue(values, withCompletionBlock:  { (error, dbRef) in
                             if error != nil {
                                 print("This is the error \(String(describing: error))")
