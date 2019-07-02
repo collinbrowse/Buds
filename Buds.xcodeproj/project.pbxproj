@@ -30,6 +30,7 @@
 		BE41468322BAD6A00009A738 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE41468022BAD6A00009A738 /* GoogleService-Info.plist */; };
 		BE747FB722CA798300D071FD /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE747FB622CA798300D071FD /* Profile.storyboard */; };
 		BE747FB922CA7A5A00D071FD /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE747FB822CA7A5A00D071FD /* Activity.storyboard */; };
+		BE747FBB22CAAD9800D071FD /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE747FBA22CAAD9800D071FD /* ActivityViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		BE41468022BAD6A00009A738 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BE747FB622CA798300D071FD /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		BE747FB822CA7A5A00D071FD /* Activity.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Activity.storyboard; sourceTree = "<group>"; };
+		BE747FBA22CAAD9800D071FD /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		CE5601E64FE0FA1F69DE5776 /* Pods-Buds.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buds.debug.xcconfig"; path = "Target Support Files/Pods-Buds/Pods-Buds.debug.xcconfig"; sourceTree = "<group>"; };
 		F9E4C8A256D2C5A23E8D8B52 /* Pods-Buds.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buds.release.xcconfig"; path = "Target Support Files/Pods-Buds/Pods-Buds.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -151,6 +153,7 @@
 				BE03D2A822C269060059B587 /* LogInViewController.swift */,
 				BE03D2AA22C269730059B587 /* RegisterViewController.swift */,
 				BE03D2AC22C548480059B587 /* ProfileViewController.swift */,
+				BE747FBA22CAAD9800D071FD /* ActivityViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -467,6 +470,7 @@
 				BE41467722BA917C0009A738 /* PersonFunctions.swift in Sources */,
 				BE41467522BA91670009A738 /* PersonModel.swift in Sources */,
 				BE03D2AD22C548480059B587 /* ProfileViewController.swift in Sources */,
+				BE747FBB22CAAD9800D071FD /* ActivityViewController.swift in Sources */,
 				BE41467B22BA91950009A738 /* ActivityFunctions.swift in Sources */,
 				BE41467D22BA9CE50009A738 /* Birthday.swift in Sources */,
 				BE03D2A922C269060059B587 /* LogInViewController.swift in Sources */,
