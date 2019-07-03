@@ -79,7 +79,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAu-VG-3cI" userLabel="Wrapping Smoking Style View">
                                         <rect key="frame" x="0.0" y="8" width="374" height="44"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Smoking Style" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vtG-zB-7GT" userLabel="Smoking Style Text View">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Smoking Style" textAlignment="natural" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtG-zB-7GT" userLabel="Smoking Style Text View">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="44"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -100,6 +100,12 @@
                                                     <action selector="smokingStylePressed:" destination="oJC-zi-Pjq" eventType="touchUpInside" id="Pxd-fX-JCb"/>
                                                 </connections>
                                             </button>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LqC-Qa-ILQ" userLabel="Smoking Style Placeholder Text View">
+                                                <rect key="frame" x="158" y="6" width="184" height="32"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="vtG-zB-7GT" firstAttribute="leading" secondItem="hAu-VG-3cI" secondAttribute="leading" id="09Z-ae-iot"/>
@@ -107,14 +113,18 @@
                                             <constraint firstItem="8Je-7A-xfU" firstAttribute="top" secondItem="hAu-VG-3cI" secondAttribute="top" constant="10" id="Gt9-NH-5bZ"/>
                                             <constraint firstAttribute="trailing" secondItem="8Je-7A-xfU" secondAttribute="trailing" id="Hce-YF-oaE"/>
                                             <constraint firstItem="vtG-zB-7GT" firstAttribute="top" secondItem="hAu-VG-3cI" secondAttribute="top" id="Hr6-BL-sxC"/>
+                                            <constraint firstItem="LqC-Qa-ILQ" firstAttribute="top" secondItem="hAu-VG-3cI" secondAttribute="top" constant="6" id="iMP-ps-ZDy"/>
+                                            <constraint firstAttribute="bottom" secondItem="LqC-Qa-ILQ" secondAttribute="bottom" constant="6" id="jNX-uB-Zaw"/>
                                             <constraint firstAttribute="bottom" secondItem="vtG-zB-7GT" secondAttribute="bottom" id="mmi-1Z-tud"/>
+                                            <constraint firstItem="LqC-Qa-ILQ" firstAttribute="leading" secondItem="vtG-zB-7GT" secondAttribute="trailing" constant="8" id="qg8-O7-BE7"/>
                                             <constraint firstAttribute="height" constant="44" id="usc-0t-DBm"/>
+                                            <constraint firstItem="8Je-7A-xfU" firstAttribute="leading" secondItem="LqC-Qa-ILQ" secondAttribute="trailing" constant="8" id="zwO-PG-DNC"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qpq-DL-yXH" userLabel="Wrapping Location View">
                                         <rect key="frame" x="0.0" y="68" width="374" height="44"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Location" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Hw-BK-jlN" userLabel="Location Text View">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Location" textAlignment="natural" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Hw-BK-jlN" userLabel="Location Text View">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="44"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -135,9 +145,19 @@
                                                     <action selector="locationPressed:" destination="oJC-zi-Pjq" eventType="touchUpInside" id="rwJ-vF-K1m"/>
                                                 </connections>
                                             </button>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a3h-Yc-RCA" userLabel="Location Placeholder Text View">
+                                                <rect key="frame" x="158" y="6" width="184" height="32"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="MdF-d5-KxZ" firstAttribute="leading" secondItem="a3h-Yc-RCA" secondAttribute="trailing" constant="8" id="0kh-qx-uex"/>
+                                            <constraint firstItem="a3h-Yc-RCA" firstAttribute="top" secondItem="qpq-DL-yXH" secondAttribute="top" constant="6" id="GOy-Au-PZR"/>
                                             <constraint firstAttribute="trailing" secondItem="MdF-d5-KxZ" secondAttribute="trailing" id="GkF-nX-v3M"/>
+                                            <constraint firstItem="a3h-Yc-RCA" firstAttribute="leading" secondItem="7Hw-BK-jlN" secondAttribute="trailing" constant="8" id="ITz-uG-OVi"/>
+                                            <constraint firstAttribute="bottom" secondItem="a3h-Yc-RCA" secondAttribute="bottom" constant="6" id="M6W-E3-bl3"/>
                                             <constraint firstAttribute="bottom" secondItem="7Hw-BK-jlN" secondAttribute="bottom" id="OWP-Ib-nCM"/>
                                             <constraint firstAttribute="bottom" secondItem="MdF-d5-KxZ" secondAttribute="bottom" constant="10" id="OeE-3h-p4x"/>
                                             <constraint firstItem="7Hw-BK-jlN" firstAttribute="leading" secondItem="qpq-DL-yXH" secondAttribute="leading" id="QYJ-si-e9q"/>
@@ -149,7 +169,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4go-2Y-JYk" userLabel="Wrapping Rating View">
                                         <rect key="frame" x="0.0" y="128" width="374" height="44"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Rating" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zZ6-CT-58m" userLabel="Rating Text View">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Rating" textAlignment="natural" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZ6-CT-58m" userLabel="Rating Text View">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="44"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -170,21 +190,31 @@
                                                     <action selector="ratingPressed:" destination="oJC-zi-Pjq" eventType="touchUpInside" id="gVT-Sp-qtV"/>
                                                 </connections>
                                             </button>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5MM-WP-YIk" userLabel="Rating Placeholder Text View">
+                                                <rect key="frame" x="158" y="6" width="184" height="32"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="5MM-WP-YIk" firstAttribute="leading" secondItem="zZ6-CT-58m" secondAttribute="trailing" constant="8" id="FPW-Og-eRt"/>
                                             <constraint firstItem="zZ6-CT-58m" firstAttribute="leading" secondItem="4go-2Y-JYk" secondAttribute="leading" id="Gfj-nq-HOv"/>
                                             <constraint firstItem="E95-8e-av1" firstAttribute="top" secondItem="4go-2Y-JYk" secondAttribute="top" constant="10" id="GnP-k4-nTw"/>
                                             <constraint firstAttribute="trailing" secondItem="E95-8e-av1" secondAttribute="trailing" id="PEc-Qo-zpR"/>
                                             <constraint firstAttribute="bottom" secondItem="zZ6-CT-58m" secondAttribute="bottom" id="Uxm-4y-ONw"/>
+                                            <constraint firstAttribute="bottom" secondItem="5MM-WP-YIk" secondAttribute="bottom" constant="6" id="Y6d-kc-2Qg"/>
                                             <constraint firstAttribute="bottom" secondItem="E95-8e-av1" secondAttribute="bottom" constant="10" id="Ywv-dF-TaU"/>
+                                            <constraint firstItem="5MM-WP-YIk" firstAttribute="top" secondItem="4go-2Y-JYk" secondAttribute="top" constant="6" id="an9-Aq-2CJ"/>
                                             <constraint firstItem="zZ6-CT-58m" firstAttribute="top" secondItem="4go-2Y-JYk" secondAttribute="top" id="jQj-Zs-XEt"/>
                                             <constraint firstAttribute="height" constant="44" id="tTp-UW-kvI"/>
+                                            <constraint firstItem="E95-8e-av1" firstAttribute="leading" secondItem="5MM-WP-YIk" secondAttribute="trailing" constant="8" id="uqR-qe-gou"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8QW-bx-ckq" userLabel="Wrapping Strain View">
                                         <rect key="frame" x="0.0" y="188" width="374" height="44"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Strain" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tks-30-UiF" userLabel="Strain Text View">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Strain" textAlignment="natural" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tks-30-UiF" userLabel="Strain Text View">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="44"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -205,15 +235,25 @@
                                                     <action selector="strainPressed:" destination="oJC-zi-Pjq" eventType="touchUpInside" id="ek1-pC-U0f"/>
                                                 </connections>
                                             </button>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rbi-pb-EP3" userLabel="Strain Placeholder Text View">
+                                                <rect key="frame" x="158" y="6" width="184" height="32"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="6DY-F2-ERq"/>
                                             <constraint firstItem="sa8-bm-Klf" firstAttribute="top" secondItem="8QW-bx-ckq" secondAttribute="top" constant="10" id="9aa-GK-WHB"/>
+                                            <constraint firstAttribute="bottom" secondItem="Rbi-pb-EP3" secondAttribute="bottom" constant="6" id="FeF-lJ-qcK"/>
+                                            <constraint firstItem="sa8-bm-Klf" firstAttribute="leading" secondItem="Rbi-pb-EP3" secondAttribute="trailing" constant="8" id="FhF-DI-bwb"/>
                                             <constraint firstAttribute="trailing" secondItem="sa8-bm-Klf" secondAttribute="trailing" id="Sb0-PH-yyo"/>
                                             <constraint firstItem="Tks-30-UiF" firstAttribute="top" secondItem="8QW-bx-ckq" secondAttribute="top" id="TXb-Un-vBe"/>
                                             <constraint firstAttribute="bottom" secondItem="sa8-bm-Klf" secondAttribute="bottom" constant="10" id="cBY-DS-cTm"/>
+                                            <constraint firstItem="Rbi-pb-EP3" firstAttribute="leading" secondItem="Tks-30-UiF" secondAttribute="trailing" constant="8" id="is4-Yb-ArL"/>
                                             <constraint firstAttribute="bottom" secondItem="Tks-30-UiF" secondAttribute="bottom" id="nGE-98-QV2"/>
                                             <constraint firstItem="Tks-30-UiF" firstAttribute="leading" secondItem="8QW-bx-ckq" secondAttribute="leading" id="sta-Cd-KJp"/>
+                                            <constraint firstItem="Rbi-pb-EP3" firstAttribute="top" secondItem="8QW-bx-ckq" secondAttribute="top" constant="6" id="xgh-18-0IY"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -258,8 +298,12 @@
                         <outlet property="addBarButton" destination="LJQ-Nh-Xcc" id="VxD-8b-ICj"/>
                         <outlet property="currentLocationTextView" destination="GNQ-52-1gk" id="IlR-Mr-PfM"/>
                         <outlet property="currentNameTextView" destination="Z13-R7-w1u" id="pHe-ez-p9L"/>
+                        <outlet property="locationPlaceholderTextView" destination="a3h-Yc-RCA" id="gto-if-uca"/>
                         <outlet property="noteTextField" destination="DVi-3U-qMC" id="Vtl-iX-9FB"/>
+                        <outlet property="ratingPlaceholderTextView" destination="5MM-WP-YIk" id="HtJ-3c-UaU"/>
                         <outlet property="ratingTextView" destination="vtG-zB-7GT" id="AtI-kv-4cy"/>
+                        <outlet property="smokingStylePlaceholderTextView" destination="LqC-Qa-ILQ" id="XJx-ls-EHy"/>
+                        <outlet property="strainPlaceholderTextView" destination="Rbi-pb-EP3" id="o5o-2S-PtH"/>
                         <outletCollection property="collectionOfTextViews" destination="GNQ-52-1gk" collectionClass="NSMutableArray" id="7L8-tW-Js4"/>
                         <outletCollection property="collectionOfTextViews" destination="Z13-R7-w1u" collectionClass="NSMutableArray" id="97X-wH-WOi"/>
                         <outletCollection property="collectionOfTextViews" destination="vtG-zB-7GT" collectionClass="NSMutableArray" id="OdC-TA-hah"/>
@@ -271,18 +315,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pns-Am-w9e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1229" y="149"/>
+            <point key="canvasLocation" x="1228.985507246377" y="148.66071428571428"/>
         </scene>
         <!--Smoking Style-->
         <scene sceneID="AO6-b4-UFU">
             <objects>
-                <tableViewController title="Smoking Style" id="8DW-fj-FfQ" sceneMemberID="viewController">
+                <tableViewController title="Smoking Style" id="8DW-fj-FfQ" customClass="TableViewController" customModule="Buds" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="NWH-YB-t4q">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="vPn-B8-6bm">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelCell" id="vPn-B8-6bm">
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vPn-B8-6bm" id="c6n-zm-P8l">
@@ -305,13 +349,13 @@
         <!--Location-->
         <scene sceneID="dQy-Ug-cw6">
             <objects>
-                <tableViewController title="Location" id="pcG-so-Rzg" sceneMemberID="viewController">
+                <tableViewController title="Location" id="pcG-so-Rzg" customClass="TableViewController" customModule="Buds" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="aUE-1u-w7v">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Okh-Oe-bit">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelCell" id="Okh-Oe-bit">
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Okh-Oe-bit" id="R7E-3e-f7s">
@@ -334,13 +378,13 @@
         <!--Rating-->
         <scene sceneID="Tma-CR-n1d">
             <objects>
-                <tableViewController title="Rating" id="7Gg-xS-fGn" sceneMemberID="viewController">
+                <tableViewController title="Rating" id="7Gg-xS-fGn" customClass="TableViewController" customModule="Buds" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="iYj-El-6rC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="lfF-9w-7Zo">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelCell" id="lfF-9w-7Zo">
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lfF-9w-7Zo" id="rZC-Mp-XhU">
@@ -363,13 +407,13 @@
         <!--Strain-->
         <scene sceneID="hHO-ha-yq9">
             <objects>
-                <tableViewController title="Strain" id="LCH-p1-BSd" sceneMemberID="viewController">
+                <tableViewController title="Strain" id="LCH-p1-BSd" customClass="TableViewController" customModule="Buds" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Zo4-n8-EEi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="5cp-IC-aSt">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelCell" id="5cp-IC-aSt">
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5cp-IC-aSt" id="Dz3-fp-pKa">

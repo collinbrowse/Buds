@@ -31,6 +31,9 @@
 		BE747FB722CA798300D071FD /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE747FB622CA798300D071FD /* Profile.storyboard */; };
 		BE747FB922CA7A5A00D071FD /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE747FB822CA7A5A00D071FD /* Activity.storyboard */; };
 		BE747FBB22CAAD9800D071FD /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE747FBA22CAAD9800D071FD /* ActivityViewController.swift */; };
+		BE747FC322CBD54B00D071FD /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE747FC122CBD54B00D071FD /* TableViewController.swift */; };
+		BE747FC422CBD54B00D071FD /* TableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE747FC222CBD54B00D071FD /* TableViewController.xib */; };
+		BE747FC622CD1E9E00D071FD /* ActivityDetailsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE747FC522CD1E9E00D071FD /* ActivityDetailsDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +86,9 @@
 		BE747FB622CA798300D071FD /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		BE747FB822CA7A5A00D071FD /* Activity.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Activity.storyboard; sourceTree = "<group>"; };
 		BE747FBA22CAAD9800D071FD /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		BE747FC122CBD54B00D071FD /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		BE747FC222CBD54B00D071FD /* TableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewController.xib; sourceTree = "<group>"; };
+		BE747FC522CD1E9E00D071FD /* ActivityDetailsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailsDelegate.swift; sourceTree = "<group>"; };
 		CE5601E64FE0FA1F69DE5776 /* Pods-Buds.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buds.debug.xcconfig"; path = "Target Support Files/Pods-Buds/Pods-Buds.debug.xcconfig"; sourceTree = "<group>"; };
 		F9E4C8A256D2C5A23E8D8B52 /* Pods-Buds.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buds.release.xcconfig"; path = "Target Support Files/Pods-Buds/Pods-Buds.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -139,6 +145,7 @@
 		BE03D2A422C124A70059B587 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BE747FBC22CBD36000D071FD /* Custom Cell */,
 				BE747FB622CA798300D071FD /* Profile.storyboard */,
 				BE41464722BA718C0009A738 /* Main.storyboard */,
 				BE747FB822CA7A5A00D071FD /* Activity.storyboard */,
@@ -154,6 +161,9 @@
 				BE03D2AA22C269730059B587 /* RegisterViewController.swift */,
 				BE03D2AC22C548480059B587 /* ProfileViewController.swift */,
 				BE747FBA22CAAD9800D071FD /* ActivityViewController.swift */,
+				BE747FC122CBD54B00D071FD /* TableViewController.swift */,
+				BE747FC222CBD54B00D071FD /* TableViewController.xib */,
+				BE747FC522CD1E9E00D071FD /* ActivityDetailsDelegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -240,6 +250,13 @@
 				BE41467A22BA91950009A738 /* ActivityFunctions.swift */,
 			);
 			path = Activity;
+			sourceTree = "<group>";
+		};
+		BE747FBC22CBD36000D071FD /* Custom Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Custom Cell";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,6 +373,7 @@
 				BE41464B22BA718D0009A738 /* Assets.xcassets in Resources */,
 				BE747FB722CA798300D071FD /* Profile.storyboard in Resources */,
 				BE41464922BA718C0009A738 /* Main.storyboard in Resources */,
+				BE747FC422CBD54B00D071FD /* TableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,9 +483,11 @@
 			files = (
 				BE03D2A722C2676E0059B587 /* WelcomeViewController.swift in Sources */,
 				BE03D2AB22C269730059B587 /* RegisterViewController.swift in Sources */,
+				BE747FC322CBD54B00D071FD /* TableViewController.swift in Sources */,
 				BE41467F22BA9E180009A738 /* Location.swift in Sources */,
 				BE41467922BA918A0009A738 /* ActivityModel.swift in Sources */,
 				BE41467722BA917C0009A738 /* PersonFunctions.swift in Sources */,
+				BE747FC622CD1E9E00D071FD /* ActivityDetailsDelegate.swift in Sources */,
 				BE41467522BA91670009A738 /* PersonModel.swift in Sources */,
 				BE03D2AD22C548480059B587 /* ProfileViewController.swift in Sources */,
 				BE747FBB22CAAD9800D071FD /* ActivityViewController.swift in Sources */,

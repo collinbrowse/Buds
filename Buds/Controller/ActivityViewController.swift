@@ -17,28 +17,44 @@ class ActivityViewController: UIViewController {
     @IBOutlet weak var noteTextField: UITextField!
     @IBOutlet weak var ratingTextView: UITextView!
     
+    @IBOutlet weak var smokingStylePlaceholderTextView: UITextView!
+    @IBOutlet weak var locationPlaceholderTextView: UITextView!
+    @IBOutlet weak var ratingPlaceholderTextView: UITextView!
+    @IBOutlet weak var strainPlaceholderTextView: UITextView!
     
     @IBOutlet var collectionOfTextViews: Array<UITextView>! // = [UIView]
 
     @IBOutlet weak var addBarButton: UIBarButtonItem!
     
-    
+    var selectedDetail: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Make sure user can't see the cursor when touching these textViews
-        for view in collectionOfTextViews {
-            view.tintColor = .clear
-        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let nav = segue.destination as? TableViewController {
+            nav.delegate = self
+        }
         if segue.identifier == "goToSmokingStyle" {
-//            if let destinationVC = tabBarViewController?.viewControllers![0] as? ProfileViewController {
-//                destinationVC.username = self.username
-//            }
-            
+            if let destinationVC = segue.destination as? TableViewController {
+                destinationVC.dataToRetrieve = "smoking_styles"
+            }
+        }
+        else if segue.identifier == "goToRating" {
+            if let destinationVC = segue.destination as? TableViewController {
+                destinationVC.dataToRetrieve = "rating"
+            }
+        }
+        else if segue.identifier == "goToStrain" {
+            if let destinationVC = segue.destination as? TableViewController {
+                destinationVC.dataToRetrieve = "strain"
+            }
+        }
+        else if segue.identifier == "goToLocation" {
+            if let destinationVC = segue.destination as? TableViewController {
+                destinationVC.dataToRetrieve = "location"
+            }
         }
     }
     
@@ -61,6 +77,26 @@ class ActivityViewController: UIViewController {
     
     @IBAction func strainPressed(_ sender: Any) {
         performSegue(withIdentifier: "goToStrain", sender: Any?.self)
+    }
+    
+    
+}
+extension ActivityViewController: ActivityDetailsDelegate {
+    
+    func setSelectedDetail(detail: String, value: String) {
+        if detail == "smoking_styles" {
+            smokingStylePlaceholderTextView.text = value
+        }
+        else if detail == "rating" {
+            ratingPlaceholderTextView.text = value
+        }
+        else if detail == "strain" {
+            strainPlaceholderTextView.text = value
+        }
+        else if detail == "location" {
+            locationPlaceholderTextView.text = value
+        }
+        print(value)
     }
     
     
