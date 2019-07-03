@@ -23,7 +23,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var nameTextfield: UITextField!
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var birthdayTextfield: UITextField! // This will be converted to a date picked in the future
-    
+    private var datePicker: UIDatePicker?
     var username: String!
     
     var ref: DatabaseReference!
@@ -31,6 +31,25 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
+        datePicker = UIDatePicker()
+        datePicker?.datePickerMode = .date
+        datePicker?.addTarget(self,
+                              action: #selector(RegisterViewController.dateChanged(datePicker:)),
+                              for: .valueChanged)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(RegisterViewController.viewTapped(gestureRecognizer: )))
+        view.addGestureRecognizer(tapGesture)
+        birthdayTextfield.inputView = datePicker
+    }
+    
+    @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
+    @objc func dateChanged(datePicker: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        birthdayTextfield.text = dateFormatter.string(from: datePicker.date)
+        //view.endEditing(true)
     }
     
     @IBAction func viewIconClicked(_ sender: Any) {
