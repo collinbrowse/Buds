@@ -67,7 +67,8 @@ class RegisterViewController: UIViewController {
         passwordTextfield.text = nil
         
         if (!email!.isEmpty && !password!.isEmpty && !username!.isEmpty
-            && !name!.isEmpty && !location!.isEmpty && !birthday!.isEmpty) {
+            && !name!.isEmpty && !location!.isEmpty && !birthday!.isEmpty
+            && isValidEmail(emailID: email!)) {
             password = passwordHash(username: username!, password: password!)
             registerUser(name: name!, location: location!, birthday: birthday!, username: username!, email: email!, password: password!)
         }
@@ -129,6 +130,13 @@ class RegisterViewController: UIViewController {
     func passwordHash(username: String, password: String) -> String {
         let salt = "x4vV8bGgqqmQwgCoyXFQj+(o.nUNQhVP7ND99"
         return "\(password).\(username).\(salt)".sha256()
+    }
+    
+    
+    func isValidEmail(emailID:String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: emailID)
     }
     
     
