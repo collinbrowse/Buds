@@ -44,14 +44,14 @@ class LogInViewController: UIViewController {
     @IBAction func logInPressed(_ sender: AnyObject) {
         
         SVProgressHUD.show()
-        let username = emailTextfield.text
+        let email = emailTextfield.text
         let password = passwordTextfield.text
         passwordTextfield.text = nil
         
-        if ( !password!.isEmpty && !username!.isEmpty) {
+        if ( !password!.isEmpty && !email!.isEmpty) {
             //password = passwordHash(username: username!, password: password!)
             //logInUser(username: username!, password: password!)
-            Auth.auth().signIn(withEmail: username!, password: password!) { [weak self] user, error in
+            Auth.auth().signIn(withEmail: email!, password: password!) { [weak self] user, error in
                 SVProgressHUD.dismiss()
                 guard let strongSelf = self else { return }
                 strongSelf.performSegue(withIdentifier: "goToHome", sender: self)

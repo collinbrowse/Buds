@@ -76,10 +76,8 @@ class RegisterViewController: UIViewController {
             && !name!.isEmpty && !location!.isEmpty && !birthday!.isEmpty
             && isValidEmail(emailID: email!)) {
             //password = passwordHash(username: username!, password: password!)
-            //registerUser(name: name!, location: location!, birthday: birthday!, username: username!, email: email!, password: password!)
-            Auth.auth().createUser(withEmail: email!, password: password!) { (authResult, error) in
-                self.performSegue(withIdentifier: "goToHome", sender: self)
-            }
+            registerUser(name: name!, location: location!, birthday: birthday!, username: username!, email: email!, password: password!)
+            password = nil 
         }
         else {
             SVProgressHUD.dismiss()
@@ -88,12 +86,14 @@ class RegisterViewController: UIViewController {
        
     }
     
+    // Method to show a popup alert to the user if they are unable to register
     func showAlert(alertMessage: String) {
         let alert = UIAlertController(title: "Unable to Register", message: alertMessage, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
         SVProgressHUD.dismiss()
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToHome" {
@@ -104,37 +104,30 @@ class RegisterViewController: UIViewController {
         } 
     }
     
+    // This function registers a user with Firebase Authentication
+    // If sucessful we then log them in/authenticate them
+    // Then we send the rest of their data to Realtime Database
     func registerUser(name: String, location: String, birthday: String, username: String, email: String, password: String) {
-        ref.child("users").queryOrdered(byChild: "username").queryEqual(toValue: username).observeSingleEvent(of: .value) { (snapshot) in
-            print(snapshot)
-            if !snapshot.exists() {
-                self.ref.child("users").queryOrdered(byChild: "email").queryEqual(toValue: email).observeSingleEvent(of: .value) { (snapshot) in
-                    if !snapshot.exists() {
-                        // email, password, and username have values and are unique
-                        let usersRef = self.ref.child("users").child(username)
-                        let values = ["name": name, "location": location, "birthday": birthday, "username": username, "email": email, "password": password]
-                        usersRef.setValue(values, withCompletionBlock:  { (error, dbRef) in
-                            if error != nil {
-                                print("This is the error \(String(describing: error))")
-                                return
-                            }
-                            else {
-                                self.username = username
-                                print("Saved user successfully")
-                                SVProgressHUD.dismiss()
-                                self.performSegue(withIdentifier: "goToHome", sender: self)
-                            }
-                        })
-                        
+        
+        Auth.auth().createUser(withEmail: email, password: password) { (createUserAuthResult, createUserError) in
+            if createUserError == nil {
+                Auth.auth().signIn(withEmail: email, password: password, completion: { (signedInAuthResult, signedInError) in
+                    if signedInError == nil {
+                        let userData = ["name": name, "location": location, "birthday": birthday, "username": username, "email": email]
+                        self.ref.child("users").child((createUserAuthResult?.user.uid)!).setValue(userData)
+                        SVProgressHUD.dismiss()
+                        self.performSegue(withIdentifier: "goToHome", sender: self)
                     } else {
-                        self.showAlert(alertMessage: "That Email Already Exists")
+                        self.showAlert(alertMessage: signedInError!.localizedDescription)
                     }
-                }
-            } else {
-                self.showAlert(alertMessage: "That Username Already Exists")
+                })
+            }
+            else {
+                self.showAlert(alertMessage: createUserError!.localizedDescription)
             }
         }
     }
+    
     
     func passwordHash(username: String, password: String) -> String {
         let salt = "x4vV8bGgqqmQwgCoyXFQj+(o.nUNQhVP7ND99"

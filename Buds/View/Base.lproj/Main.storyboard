@@ -116,7 +116,7 @@
                                             <constraint firstAttribute="height" constant="44" id="COQ-Eo-i16"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="continue"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="continue"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ugu-6v-YA7">
                                         <rect key="frame" x="16" y="216" width="382" height="44"/>
@@ -379,6 +379,6 @@
         <image name="weed_background" width="556" height="791"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dlC-V7-xSn"/>
+        <segue reference="3jz-L0-6BJ"/>
     </inferredMetricsTieBreakers>
 </document>
