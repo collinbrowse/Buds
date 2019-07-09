@@ -41,6 +41,12 @@ class RegisterViewController: UIViewController {
         birthdayTextfield.inputView = datePicker
     }
     
+    func application(_ application: UIApplication,
+                              didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        FirebaseApp.configure()
+        return true
+    }
+    
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
         view.endEditing(true)
     }
@@ -69,8 +75,11 @@ class RegisterViewController: UIViewController {
         if (!email!.isEmpty && !password!.isEmpty && !username!.isEmpty
             && !name!.isEmpty && !location!.isEmpty && !birthday!.isEmpty
             && isValidEmail(emailID: email!)) {
-            password = passwordHash(username: username!, password: password!)
-            registerUser(name: name!, location: location!, birthday: birthday!, username: username!, email: email!, password: password!)
+            //password = passwordHash(username: username!, password: password!)
+            //registerUser(name: name!, location: location!, birthday: birthday!, username: username!, email: email!, password: password!)
+            Auth.auth().createUser(withEmail: email!, password: password!) { (authResult, error) in
+                self.performSegue(withIdentifier: "goToHome", sender: self)
+            }
         }
         else {
             SVProgressHUD.dismiss()

@@ -17,13 +17,20 @@ class LogInViewController: UIViewController {
     
     //Textfields pre-linked with IBOutlets
     @IBOutlet var passwordTextfield: UITextField!
-    @IBOutlet var usernameTextfield: UITextField!
+    @IBOutlet weak var emailTextfield: UITextField!
+    
     var ref: DatabaseReference!
     var username: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
+    }
+    
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        FirebaseApp.configure()
+        return true
     }
     
     override func didReceiveMemoryWarning() {
@@ -37,13 +44,19 @@ class LogInViewController: UIViewController {
     @IBAction func logInPressed(_ sender: AnyObject) {
         
         SVProgressHUD.show()
-        let username = usernameTextfield.text
-        var password = passwordTextfield.text
+        let username = emailTextfield.text
+        let password = passwordTextfield.text
         passwordTextfield.text = nil
         
         if ( !password!.isEmpty && !username!.isEmpty) {
-            password = passwordHash(username: username!, password: password!)
-            logInUser(username: username!, password: password!)
+            //password = passwordHash(username: username!, password: password!)
+            //logInUser(username: username!, password: password!)
+            Auth.auth().signIn(withEmail: username!, password: password!) { [weak self] user, error in
+                SVProgressHUD.dismiss()
+                guard let strongSelf = self else { return }
+                strongSelf.performSegue(withIdentifier: "goToHome", sender: self)
+
+            }
         }
         else {
             SVProgressHUD.dismiss()
