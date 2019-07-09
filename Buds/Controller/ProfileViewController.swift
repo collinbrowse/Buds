@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
 import SVProgressHUD
 
 
@@ -22,24 +23,41 @@ class ProfileViewController: UIViewController {
     
     var username: String?
     var ref: DatabaseReference!
+    var user: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Connect to Firebase
+        // Connect to Realtime Database
         ref = Database.database().reference()
-        
-        // Set Up View
-        profilePhotoImageView.layer.masksToBounds = true
-        profilePhotoImageView.layer.cornerRadius = profilePhotoImageView.frame.size.width / 2
-        //print("Intrinsic Content Size  \(profilePhotoImageView.intrinsicContentSize.width / 2)")
-        //print("Frame.size.width   \(profilePhotoImageView.frame.size.width / 2)")
-        displayNewUser()
+        // Connect to Auth
+        Auth.auth().addStateDidChangeListener() { auth, user in
+            if user != nil {
+                // Save the user
+                self.user = user
+                // Set Up View
+                self.profilePhotoImageView.layer.masksToBounds = true
+                self.profilePhotoImageView.layer.cornerRadius = self.profilePhotoImageView.frame.size.width / 2
+                //print("Intrinsic Content Size  \(profilePhotoImageView.intrinsicContentSize.width / 2)")
+                //print("Frame.size.width   \(profilePhotoImageView.frame.size.width / 2)")
+                self.displayNewUser()
+            }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+            // ...
+        //}
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        //Auth.auth().removeStateDidChangeListener(handle!)
     }
     
     func displayNewUser() {
-        
-        if (username != nil) {
-            ref.child("users").child(self.username!).observeSingleEvent(of: .value) { (snapshot) in
+
+        if (user?.email != nil) {
+            ref.child("users").child(user!.uid).observeSingleEvent(of: .value) { (snapshot) in
                 let value = snapshot.value as? NSDictionary
                 let name = value?["name"] as? String ?? ""
                 let email = value?["email"] as? String ?? ""
