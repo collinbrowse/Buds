@@ -20,6 +20,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set up Firebase App
         FirebaseApp.configure()
         //let db = Firestore.firestore()
+        let user = Auth.auth().currentUser
+        if let user = user {
+            // Access the storyboard and fetch an instance of the view controller
+            let storyboard = UIStoryboard(name: "Main", bundle: nil);
+            let viewController: UITabBarController = storyboard.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController;
+            
+            // Then push that view controller onto the navigation stack
+            let rootViewController = self.window!.rootViewController as! UINavigationController;
+            rootViewController.pushViewController(viewController, animated: true);
+            
+            //window?.rootViewController = viewController
+            //window?.makeKeyAndVisible()
+        }
         return true
     }
 
