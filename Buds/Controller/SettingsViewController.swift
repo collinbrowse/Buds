@@ -13,25 +13,32 @@ import Firebase
 class SettingsViewController: UIViewController {
 
     @IBOutlet weak var logoutButton: UIButton!
+    
+    var handle: AuthStateDidChangeListenerHandle?
+    var user: User?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        if let viewControllers = self.navigationController?.viewControllers {
-            for vc in viewControllers {
-                if vc.isKind(of: TableViewController.classForCoder()) {
-                    print("It is in stack")
-                    //Your Process
-                }
-                else {
-                    print("It is not in stack")
-                }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        handle = Auth.auth().addStateDidChangeListener { auth, user in
+            if let user = user {
+                self.user = user
+            } else {
+                // No User is signed in.
             }
         }
-        else {
-            print("Unable to find the view controllers")
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        if handle != nil {
+            Auth.auth().removeStateDidChangeListener(handle!)
         }
     }
+    
     
     @IBAction func logoutButtonPressed(_ sender: Any) {
         

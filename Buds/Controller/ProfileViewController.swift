@@ -21,6 +21,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var emailTextView: UITextView!
     @IBOutlet weak var usernameTextView: UITextView!
     
+    var handle: AuthStateDidChangeListenerHandle?
     var username: String?
     var ref: DatabaseReference!
     var user: User?
@@ -30,42 +31,39 @@ class ProfileViewController: UIViewController {
         // Connect to Realtime Database
         ref = Database.database().reference()
         // Connect to Auth
-        Auth.auth().addStateDidChangeListener() { auth, user in
-            if user != nil {
-                // Save the user
+//        Auth.auth().addStateDidChangeListener() { auth, user in
+//            if user != nil {
+//                // Save the user
+//                self.user = user
+//                // Set Up View
+//                self.profilePhotoImageView.layer.masksToBounds = true
+//                self.profilePhotoImageView.layer.cornerRadius = self.profilePhotoImageView.frame.size.width / 2
+//                //print("Intrinsic Content Size  \(profilePhotoImageView.intrinsicContentSize.width / 2)")
+//                //print("Frame.size.width   \(profilePhotoImageView.frame.size.width / 2)")
+//                self.displayNewUser()
+//            }
+//        }
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        handle = Auth.auth().addStateDidChangeListener { auth, user in
+            if let user = user {
                 self.user = user
-                // Set Up View
                 self.profilePhotoImageView.layer.masksToBounds = true
                 self.profilePhotoImageView.layer.cornerRadius = self.profilePhotoImageView.frame.size.width / 2
                 //print("Intrinsic Content Size  \(profilePhotoImageView.intrinsicContentSize.width / 2)")
                 //print("Frame.size.width   \(profilePhotoImageView.frame.size.width / 2)")
                 self.displayNewUser()
+            } else {
+                // No User is signed in.
             }
         }
-        if let viewControllers = self.navigationController?.viewControllers {
-            for vc in viewControllers {
-                if vc.isKind(of: SettingsViewController.classForCoder()) {
-                    print("It is in stack")
-                    //Your Process
-                }
-                else {
-                    print("It is not in stack")
-                }
-            }
-        }
-        else {
-            print("Unable to find the view controllers")
-        }
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        //handle = Auth.auth().addStateDidChangeListener { (auth, user) in
-            // ...
-        //}
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
-        //Auth.auth().removeStateDidChangeListener(handle!)
+        if handle != nil {
+            Auth.auth().removeStateDidChangeListener(handle!)
+        }
     }
     
     func displayNewUser() {

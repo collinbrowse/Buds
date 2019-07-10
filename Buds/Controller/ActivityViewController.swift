@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseAuth
+import Firebase
 import UIKit
 
 class ActivityViewController: UIViewController {
@@ -27,31 +28,27 @@ class ActivityViewController: UIViewController {
 
     @IBOutlet weak var addBarButton: UIBarButtonItem!
     
+    var handle: AuthStateDidChangeListenerHandle?
     var user: User?
     var selectedDetail: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        Auth.auth().addStateDidChangeListener { auth, user in
-//            if let user = user {
-//                self.user = user
-//            } else {
-//                // No User is signed in.
-//            }
-//        }
-        if let viewControllers = self.navigationController?.viewControllers {
-            for vc in viewControllers {
-                if vc.isKind(of: TableViewController.classForCoder()) {
-                    print("It is in stack")
-                    //Your Process
-                }
-                else {
-                    print("It is not in stack")
-                }
+        
+
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        handle = Auth.auth().addStateDidChangeListener { auth, user in
+            if let user = user {
+                self.user = user
+            } else {
+                // No User is signed in.
             }
         }
-        else {
-            print("Unable to find the view controllers")
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        if handle != nil {
+            Auth.auth().removeStateDidChangeListener(handle!)
         }
     }
 
@@ -81,9 +78,24 @@ class ActivityViewController: UIViewController {
         }
     }
     
-    
+    // send off to firebase
     @IBAction func addBarButtonPressed(_ sender: Any) {
-        // send off to firebase
+        
+        
+        // Add the Details of the Smoking Activity
+//        var activityDetailsDict = [String : Any]()
+//        activityDetailsDict["smoking_style"] = smokingStylePlaceholderTextView.text
+//        activityDetailsDict["rating"] = ratingPlaceholderTextView.text
+//        activityDetailsDict["strain"] = strainPlaceholderTextView.text
+//        activityDetailsDict["location"] = locationPlaceholderTextView.text
+//        activityDetailsDict["user"] = user?.uid
+//
+//        // Grab a connection to Realtime database
+//        let rootRef = Database.database().reference()
+//        let activityRef = rootRef.childByAutoId()
+//        //Set the Values using the Auto ID
+//        activityRef.setValuesForKeys(activityDetailsDict)
+//        tabBarController?.selectedIndex = 1
     }
     
     @IBAction func smokingStylePressed(_ sender: Any) {

@@ -79,7 +79,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAu-VG-3cI" userLabel="Wrapping Smoking Style View">
                                         <rect key="frame" x="0.0" y="8" width="374" height="44"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Smoking Style" textAlignment="natural" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtG-zB-7GT" userLabel="Smoking Style Text View">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Smoking Style" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtG-zB-7GT" userLabel="Smoking Style Text View">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="44"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -124,7 +124,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qpq-DL-yXH" userLabel="Wrapping Location View">
                                         <rect key="frame" x="0.0" y="68" width="374" height="44"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Location" textAlignment="natural" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Hw-BK-jlN" userLabel="Location Text View">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Location" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Hw-BK-jlN" userLabel="Location Text View">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="44"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -169,7 +169,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4go-2Y-JYk" userLabel="Wrapping Rating View">
                                         <rect key="frame" x="0.0" y="128" width="374" height="44"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Rating" textAlignment="natural" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZ6-CT-58m" userLabel="Rating Text View">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Rating" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZ6-CT-58m" userLabel="Rating Text View">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="44"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -214,7 +214,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8QW-bx-ckq" userLabel="Wrapping Strain View">
                                         <rect key="frame" x="0.0" y="188" width="374" height="44"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Strain" textAlignment="natural" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tks-30-UiF" userLabel="Strain Text View">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Strain" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tks-30-UiF" userLabel="Strain Text View">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="44"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
