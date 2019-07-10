@@ -209,7 +209,7 @@
                         <outlet property="nameTextfield" destination="HrQ-a3-QaK" id="hN1-XE-mDS"/>
                         <outlet property="passwordTextfield" destination="cBN-Td-wai" id="cLz-4h-yxS"/>
                         <outlet property="usernameTextfield" destination="Wy9-fR-b58" id="10T-ip-aK2"/>
-                        <segue destination="Msz-Cy-TPC" kind="show" identifier="goToHome" id="3jz-L0-6BJ"/>
+                        <segue destination="Msz-Cy-TPC" kind="showDetail" identifier="goToHome" id="3jz-L0-6BJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4nR-xh-ezQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -307,7 +307,7 @@
                     <connections>
                         <outlet property="emailTextfield" destination="UVY-hH-slZ" id="hDc-yX-ABk"/>
                         <outlet property="passwordTextfield" destination="YII-YP-CAp" id="QnX-0A-2C6"/>
-                        <segue destination="Msz-Cy-TPC" kind="show" identifier="goToHome" id="dlC-V7-xSn"/>
+                        <segue destination="Msz-Cy-TPC" kind="showDetail" identifier="goToHome" id="dlC-V7-xSn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O4i-8q-bXu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -347,6 +347,7 @@
                     <connections>
                         <segue destination="K3w-IS-css" kind="relationship" relationship="viewControllers" id="nEZ-Nf-3i8"/>
                         <segue destination="Zlw-nY-xMd" kind="relationship" relationship="viewControllers" id="q71-7r-4S8"/>
+                        <segue destination="iru-NF-Zh4" kind="relationship" relationship="viewControllers" id="PJk-mB-KoI"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RIr-gd-2tV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -361,7 +362,17 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7mx-J6-JwP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2783" y="183"/>
+            <point key="canvasLocation" x="2841" y="9"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="akm-AL-aL0">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="iru-NF-Zh4" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="i8G-7w-Rx8"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iZU-GG-5sM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2786" y="143"/>
         </scene>
         <!--Activity View Controller Reference-->
         <scene sceneID="Yw4-SZ-gpJ">

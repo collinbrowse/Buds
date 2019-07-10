@@ -22,5 +22,6 @@ class WelcomeViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    @IBAction func myUnwindAction(segue: UIStoryboardSegue) {}  
     
 }
