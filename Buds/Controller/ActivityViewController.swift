@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 import UIKit
 
 class ActivityViewController: UIViewController {
@@ -26,12 +27,34 @@ class ActivityViewController: UIViewController {
 
     @IBOutlet weak var addBarButton: UIBarButtonItem!
     
+    var user: User?
     var selectedDetail: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        Auth.auth().addStateDidChangeListener { auth, user in
+//            if let user = user {
+//                self.user = user
+//            } else {
+//                // No User is signed in.
+//            }
+//        }
+        if let viewControllers = self.navigationController?.viewControllers {
+            for vc in viewControllers {
+                if vc.isKind(of: TableViewController.classForCoder()) {
+                    print("It is in stack")
+                    //Your Process
+                }
+                else {
+                    print("It is not in stack")
+                }
+            }
+        }
+        else {
+            print("Unable to find the view controllers")
+        }
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nav = segue.destination as? TableViewController {
             nav.delegate = self

@@ -32,10 +32,9 @@ class TableViewController: UITableViewController {
             ref.child(dataToRetrieve!).observeSingleEvent(of: .value, with: { (snapshot) in
                 print(snapshot)
                 if snapshot.exists() {
-                    //let smokingStylesRef = self.ref.child("smoking_styles")
-                    //rlet bong = snapshot.value["bong"] as? String
+
                     for child in snapshot.children.allObjects as! [DataSnapshot] {
-    //                    let dict = child.value as? [String: String] ?? [:]
+
                         if self.dataToRetrieve == "strain" {
                             self.detailsListArray.append(child.key)
                         }
@@ -45,7 +44,6 @@ class TableViewController: UITableViewController {
                         
                         
                     }
-                    dump(self.detailsListArray)
                     self.tableView.reloadData()
                 } else {
                     self.showAlert(alertMessage: "Unable to access Smoking Styles")
@@ -84,9 +82,9 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selecteditem = detailsListArray[indexPath.row]
         delegate?.setSelectedDetail(detail: dataToRetrieve!, value: selecteditem)
-        print(indexPath.row)
         print(selecteditem)
         self.navigationController?.popViewController(animated: true)
+        
         
     }
 

@@ -42,6 +42,20 @@ class ProfileViewController: UIViewController {
                 self.displayNewUser()
             }
         }
+        if let viewControllers = self.navigationController?.viewControllers {
+            for vc in viewControllers {
+                if vc.isKind(of: SettingsViewController.classForCoder()) {
+                    print("It is in stack")
+                    //Your Process
+                }
+                else {
+                    print("It is not in stack")
+                }
+            }
+        }
+        else {
+            print("Unable to find the view controllers")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

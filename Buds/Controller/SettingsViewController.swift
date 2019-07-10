@@ -17,30 +17,28 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        if let viewControllers = self.navigationController?.viewControllers {
+            for vc in viewControllers {
+                if vc.isKind(of: TableViewController.classForCoder()) {
+                    print("It is in stack")
+                    //Your Process
+                }
+                else {
+                    print("It is not in stack")
+                }
+            }
+        }
+        else {
+            print("Unable to find the view controllers")
+        }
     }
     
     @IBAction func logoutButtonPressed(_ sender: Any) {
-        print("Logout Button Pressed")
-//        try! Auth.auth().signOut()
-//        print("Logout Button Pressed")
-//        self.dismiss(animated: true, completion: nil)
-//        do {
-//            try Auth.auth().signOut()
-//            self.dismiss(animated: true, completion: nil)
-//            print("logged out")
-//        } catch (let error) {
-//            print("Auth sign out failed: \(error)")
-//        }
         
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
             self.performSegue(withIdentifier: "unwind", sender: nil)
-//           self.presentingViewController?.dismiss(animated: true
-//            , completion: {
-//                self.performSegue(withIdentifier: "unwind", sender: nil)
-//           })
-            //self.dismiss(animated: true, completion: nil)
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }

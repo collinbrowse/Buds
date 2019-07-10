@@ -161,9 +161,9 @@
 		BE03D2A522C267410059B587 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				BE03D2A622C2676E0059B587 /* WelcomeViewController.swift */,
 				BE03D2A822C269060059B587 /* LogInViewController.swift */,
 				BE03D2AA22C269730059B587 /* RegisterViewController.swift */,
+				BE03D2A622C2676E0059B587 /* WelcomeViewController.swift */,
 				BE03D2AC22C548480059B587 /* ProfileViewController.swift */,
 				BE747FBA22CAAD9800D071FD /* ActivityViewController.swift */,
 				BE747FC122CBD54B00D071FD /* TableViewController.swift */,

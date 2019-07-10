@@ -26,10 +26,10 @@
             </objects>
             <point key="canvasLocation" x="-1080" y="92"/>
         </scene>
-        <!--Settings View Controller-->
+        <!--Settings-->
         <scene sceneID="9kc-jM-cYC">
             <objects>
-                <viewController id="2VM-Tc-p0R" customClass="SettingsViewController" customModule="Buds" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Settings" id="2VM-Tc-p0R" customClass="SettingsViewController" customModule="Buds" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6Zr-yj-0ZK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -54,7 +54,9 @@
                         <viewLayoutGuide key="safeArea" id="6Wt-zF-MhT"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="more" id="ib1-t4-xL7"/>
-                    <navigationItem key="navigationItem" id="IN5-ub-Jst"/>
+                    <navigationItem key="navigationItem" title="Settings" id="IN5-ub-Jst">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="QfL-mI-J7o"/>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="logoutButton" destination="yJb-N3-Vcd" id="bqV-ch-sTi"/>
