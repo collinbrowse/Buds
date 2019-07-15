@@ -83,19 +83,40 @@ class ActivityViewController: UIViewController {
         
         
         // Add the Details of the Smoking Activity
-//        var activityDetailsDict = [String : Any]()
-//        activityDetailsDict["smoking_style"] = smokingStylePlaceholderTextView.text
-//        activityDetailsDict["rating"] = ratingPlaceholderTextView.text
-//        activityDetailsDict["strain"] = strainPlaceholderTextView.text
-//        activityDetailsDict["location"] = locationPlaceholderTextView.text
-//        activityDetailsDict["user"] = user?.uid
-//
-//        // Grab a connection to Realtime database
-//        let rootRef = Database.database().reference()
-//        let activityRef = rootRef.childByAutoId()
-//        //Set the Values using the Auto ID
-//        activityRef.setValuesForKeys(activityDetailsDict)
-//        tabBarController?.selectedIndex = 1
+        var activityDetailsDict = [String : Any]()
+        activityDetailsDict["smoking_style"] = smokingStylePlaceholderTextView.text
+        activityDetailsDict["rating"] = ratingPlaceholderTextView.text
+        activityDetailsDict["strain"] = strainPlaceholderTextView.text
+        activityDetailsDict["location"] = locationPlaceholderTextView.text
+        let userID = user?.uid ?? ""
+        
+        // Submit the Activity
+        let didAddActivity = Network.addNewActivity(userID: userID, activityDetails: activityDetailsDict)
+        
+        // Show Alert With Success status
+        if (didAddActivity) {
+            showAlert(success: didAddActivity, alertMessage: "Your Smoking Activity has been saved in the database!")
+            smokingStylePlaceholderTextView.text = ""
+            ratingPlaceholderTextView.text = ""
+            strainPlaceholderTextView.text = ""
+            locationPlaceholderTextView.text = ""
+        }
+        else {
+            showAlert(success: didAddActivity, alertMessage: "Please Try Again")
+        }
+    }
+    // Method to show a popup alert to the user if they are unable to register
+    func showAlert(success: Bool, alertMessage: String) {
+        var title: String
+        if success {
+            title = "Added Activity"
+        }
+        else {
+            title = "Unable to Add Activity"
+        }
+        let alert = UIAlertController(title: title, message: alertMessage, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func smokingStylePressed(_ sender: Any) {

@@ -25,13 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Access the storyboard and fetch an instance of the view controller
             let storyboard = UIStoryboard(name: "Main", bundle: nil);
             let viewController: UITabBarController = storyboard.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController;
+            self.window!.rootViewController = viewController
+            self.window!.makeKeyAndVisible()
             
-            // Then push that view controller onto the navigation stack
-            let rootViewController = self.window!.rootViewController as! UINavigationController;
-            rootViewController.pushViewController(viewController, animated: true);
             
-            //window?.rootViewController = viewController
-            //window?.makeKeyAndVisible()
+            
         }
         return true
     }

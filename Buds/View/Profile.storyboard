@@ -136,7 +136,7 @@
         <!--Profile-->
         <scene sceneID="hFS-L6-ONE">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Hkw-aJ-lVh" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="profileNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Hkw-aJ-lVh" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" id="FaD-bP-YfX"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="k6g-BS-zea">
