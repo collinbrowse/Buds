@@ -14,16 +14,18 @@ import SVProgressHUD
 import CryptoSwift
 import MapKit
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
     //Pre-linked IBOutlets
-    @IBOutlet weak var usernameTextfield: UITextField!
-    @IBOutlet weak var emailTextfield: UITextField!
-    @IBOutlet weak var passwordTextfield: UITextField!
     @IBOutlet weak var nameTextfield: UITextField!
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var birthdayTextfield: UITextField! // This will be converted to a date picked in the future
+    @IBOutlet weak var usernameTextfield: UITextField!
+    @IBOutlet weak var emailTextfield: UITextField!
+    @IBOutlet weak var passwordTextfield: UITextField!
+    @IBOutlet weak var profilePictureImageView: UIImageView!
+    
     private var datePicker: UIDatePicker?
     var username: String!
     
@@ -49,10 +51,16 @@ class RegisterViewController: UIViewController {
                               action: #selector(RegisterViewController.dateChanged(datePicker:)),
                               for: .valueChanged)
         // Add a Tap Gesture Recognizer to close the date picker if the user touches away
-        let tapGesture = UITapGestureRecognizer(target: self,
+        let datePickerTapGesture = UITapGestureRecognizer(target: self,
                                                 action: #selector(RegisterViewController.viewTapped(gestureRecognizer: )))
-        view.addGestureRecognizer(tapGesture)
+        view.addGestureRecognizer(datePickerTapGesture)
         birthdayTextfield.inputView = datePicker
+        
+        
+        // Add a Tap Gesture to allow the user to select a profile image
+        let profilePictureTapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(profilePictureTapped))
+        profilePictureImageView.addGestureRecognizer(profilePictureTapGesture)
     }
     
     func application(_ application: UIApplication,
@@ -71,7 +79,36 @@ class RegisterViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
         birthdayTextfield.text = dateFormatter.string(from: datePicker.date)
-        //view.endEditing(true)
+    }
+    
+    // Selector: Action to perform when the profile image is clicked
+    @objc func profilePictureTapped() {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        present(picker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        var selectedImage: UIImage?
+        
+        if let editedImage = info[.editedImage] as? UIImage {
+            selectedImage = editedImage
+        }
+        if let originalImage = info[.originalImage] as? UIImage  {
+            selectedImage = originalImage
+        }
+        
+        if let image = selectedImage {
+            profilePictureImageView.image = image
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
     
     // Show/Hide the Password field
