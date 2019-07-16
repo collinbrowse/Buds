@@ -101,6 +101,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="continue" enablesReturnKeyAutomatically="YES" textContentType="location"/>
+                                        <connections>
+                                            <action selector="locatonFieldDidBeginEditing:" destination="uVt-mk-gDe" eventType="editingDidBegin" id="Vy1-0G-acL"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Birthday" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tkr-q9-V3W" userLabel="Birthday Textfield">
                                         <rect key="frame" x="16" y="112" width="382" height="44"/>
@@ -205,16 +208,58 @@
                     <connections>
                         <outlet property="birthdayTextfield" destination="Tkr-q9-V3W" id="cCW-mg-moO"/>
                         <outlet property="emailTextfield" destination="Ugu-6v-YA7" id="8xR-OR-cMQ"/>
-                        <outlet property="locationTextField" destination="DER-lB-LlY" id="mUi-eu-9l6"/>
+                        <outlet property="locationTextField" destination="DER-lB-LlY" id="gXm-cq-6fq"/>
                         <outlet property="nameTextfield" destination="HrQ-a3-QaK" id="hN1-XE-mDS"/>
                         <outlet property="passwordTextfield" destination="cBN-Td-wai" id="cLz-4h-yxS"/>
                         <outlet property="usernameTextfield" destination="Wy9-fR-b58" id="10T-ip-aK2"/>
                         <segue destination="Msz-Cy-TPC" kind="showDetail" identifier="goToHome" id="3jz-L0-6BJ"/>
+                        <segue destination="IIi-Fe-Pbg" kind="show" identifier="goToLocationSearch" id="fUm-dj-R7A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4nR-xh-ezQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1086.4000000000001" y="367.91604197901052"/>
+        </scene>
+        <!--Location Search Bar Controller-->
+        <scene sceneID="UDO-sU-4G8">
+            <objects>
+                <tableViewController id="IIi-Fe-Pbg" customClass="LocationSearchBarController" customModule="Buds" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="XwV-w3-Sjd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Location" id="5gs-MQ-3uP" userLabel="Location Search Bar">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="words" spellCheckingType="yes" returnKeyType="done" textContentType="address-level2"/>
+                            <scopeButtonTitles>
+                                <string>Title</string>
+                                <string>Title</string>
+                            </scopeButtonTitles>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="6TL-W4-dtb">
+                                <rect key="frame" x="0.0" y="84" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6TL-W4-dtb" id="GDb-8M-TBE">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="IIi-Fe-Pbg" id="Tue-l7-488"/>
+                            <outlet property="delegate" destination="IIi-Fe-Pbg" id="eo3-ZQ-s3F"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="searchBar" destination="5gs-MQ-3uP" id="4Ov-fT-Xt7"/>
+                        <outlet property="searchResultsTableView" destination="XwV-w3-Sjd" id="CPB-LP-UoK"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wfH-ko-6IS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1086" y="1089"/>
         </scene>
         <!--Log In-->
         <scene sceneID="ngb-3P-CYv">
@@ -314,10 +359,10 @@
             </objects>
             <point key="canvasLocation" x="1085.5999999999999" y="-392.36453201970443"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Welcome Navigation Controller-->
         <scene sceneID="kZe-ul-pdZ">
             <objects>
-                <navigationController storyboardIdentifier="navBar1" automaticallyAdjustsScrollViewInsets="NO" id="Iip-4m-mjt" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="welcomeNavigationController" title="Welcome Navigation Controller" automaticallyAdjustsScrollViewInsets="NO" id="Iip-4m-mjt" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>

@@ -28,25 +28,14 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Connect to Realtime Database
         ref = Database.database().reference()
-        // Connect to Auth
-//        Auth.auth().addStateDidChangeListener() { auth, user in
-//            if user != nil {
-//                // Save the user
-//                self.user = user
-//                // Set Up View
-//                self.profilePhotoImageView.layer.masksToBounds = true
-//                self.profilePhotoImageView.layer.cornerRadius = self.profilePhotoImageView.frame.size.width / 2
-//                //print("Intrinsic Content Size  \(profilePhotoImageView.intrinsicContentSize.width / 2)")
-//                //print("Frame.size.width   \(profilePhotoImageView.frame.size.width / 2)")
-//                self.displayNewUser()
-//            }
-//        }
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        // Create a handle to listen to the Current User's Logged in State
         handle = Auth.auth().addStateDidChangeListener { auth, user in
             if let user = user {
                 self.user = user
@@ -83,8 +72,7 @@ class ProfileViewController: UIViewController {
                 self.usernameTextView.text = username
             }
         } else {
-            username = "Unable to Load User"
-            self.nameTextView.text = username
+            self.nameTextView.text = "Unable to Load User"
         }
         
     }

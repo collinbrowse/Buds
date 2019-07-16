@@ -12,6 +12,7 @@ import Firebase
 import FirebaseDatabase
 import SVProgressHUD
 import CryptoSwift
+import MapKit
 
 class RegisterViewController: UIViewController {
     
@@ -28,29 +29,44 @@ class RegisterViewController: UIViewController {
     
     var ref: DatabaseReference!
     
+    //Location Search MapKit
+    var searchCompleter = MKLocalSearchCompleter()
+    var searchResults = [MKLocalSearchCompletion]()
+    // Location Search UI elements
+    @IBOutlet weak var searchResultsTableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Firebase Realtime Database
         ref = Database.database().reference()
+        
+        // Set up a DatePicker Field for the birthday
         datePicker = UIDatePicker()
         datePicker?.datePickerMode = .date
         datePicker?.addTarget(self,
                               action: #selector(RegisterViewController.dateChanged(datePicker:)),
                               for: .valueChanged)
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(RegisterViewController.viewTapped(gestureRecognizer: )))
+        // Add a Tap Gesture Recognizer to close the date picker if the user touches away
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(RegisterViewController.viewTapped(gestureRecognizer: )))
         view.addGestureRecognizer(tapGesture)
         birthdayTextfield.inputView = datePicker
     }
     
     func application(_ application: UIApplication,
-                              didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+                        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
         return true
     }
     
+    // Selector: Action to perform when user touches away from date picker
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
         view.endEditing(true)
     }
     
+    // Selector: Action to perform when the date changes
     @objc func dateChanged(datePicker: UIDatePicker) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
@@ -58,10 +74,12 @@ class RegisterViewController: UIViewController {
         //view.endEditing(true)
     }
     
+    // Show/Hide the Password field
     @IBAction func viewIconClicked(_ sender: Any) {
         passwordTextfield.isSecureTextEntry.toggle()
     }
     
+    // Respond to user pressing register button.
     @IBAction func registerPressed(_ sender: AnyObject) {
         SVProgressHUD.show()
         let email = emailTextfield.text
@@ -86,6 +104,12 @@ class RegisterViewController: UIViewController {
        
     }
     
+    // If user starts editing the location field, send them to Location Search Controller
+    @IBAction func locatonFieldDidBeginEditing(_ sender: Any) {
+        performSegue(withIdentifier: "goToLocationSearch", sender: self)
+        birthdayTextfield.becomeFirstResponder()
+    }
+    
     // Method to show a popup alert to the user if they are unable to register
     func showAlert(alertMessage: String) {
         let alert = UIAlertController(title: "Unable to Register", message: alertMessage, preferredStyle: .alert)
@@ -94,14 +118,24 @@ class RegisterViewController: UIViewController {
         SVProgressHUD.dismiss()
     }
     
-    
+    // Let's Handle some tasks before we perform the segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // If the user tried to log in....
         if segue.identifier == "goToHome" {
             let tabBarViewController = segue.destination as? UITabBarController
             if let destinationVC = tabBarViewController?.viewControllers![0] as? ProfileViewController {
                 destinationVC.username = self.username
             }
-        } 
+        }
+        // If the user wants to enter a locations...
+        else if segue.identifier == "goToLocationSearch" {
+            // Let LocationSearchBarController know that this class will handle any responses it has
+            if let destinationVC = segue.destination as? LocationSearchBarController {
+                destinationVC.locationDelegate = self
+            }
+        }
+        
     }
     
     // This function registers a user with Firebase Authentication
@@ -128,17 +162,22 @@ class RegisterViewController: UIViewController {
         }
     }
     
-    
-    func passwordHash(username: String, password: String) -> String {
-        let salt = "x4vV8bGgqqmQwgCoyXFQj+(o.nUNQhVP7ND99"
-        return "\(password).\(username).\(salt)".sha256()
-    }
-    
-    
+    // Regex to validate an email
     func isValidEmail(emailID:String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: emailID)
+    }
+    
+    
+}
+
+extension RegisterViewController: LocationSearchDelegate {
+    
+    // Will Set the Location Field to the response from
+    // LocationSearchController
+    func setSelectedLocation(location: String) {
+        locationTextField.text = location
     }
     
     

@@ -18,7 +18,6 @@ class ActivityViewController: UIViewController {
     @IBOutlet weak var currentLocationTextView: UITextView!
     @IBOutlet weak var noteTextField: UITextField!
     @IBOutlet weak var ratingTextView: UITextView!
-    
     @IBOutlet weak var smokingStylePlaceholderTextView: UITextView!
     @IBOutlet weak var locationPlaceholderTextView: UITextView!
     @IBOutlet weak var ratingPlaceholderTextView: UITextView!
@@ -53,26 +52,26 @@ class ActivityViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let nav = segue.destination as? TableViewController {
+        if let nav = segue.destination as? SmokingActivityTableViewController {
             nav.delegate = self
         }
         if segue.identifier == "goToSmokingStyle" {
-            if let destinationVC = segue.destination as? TableViewController {
+            if let destinationVC = segue.destination as? SmokingActivityTableViewController {
                 destinationVC.dataToRetrieve = "smoking_styles"
             }
         }
         else if segue.identifier == "goToRating" {
-            if let destinationVC = segue.destination as? TableViewController {
+            if let destinationVC = segue.destination as? SmokingActivityTableViewController {
                 destinationVC.dataToRetrieve = "rating"
             }
         }
         else if segue.identifier == "goToStrain" {
-            if let destinationVC = segue.destination as? TableViewController {
+            if let destinationVC = segue.destination as? SmokingActivityTableViewController {
                 destinationVC.dataToRetrieve = "strain"
             }
         }
         else if segue.identifier == "goToLocation" {
-            if let destinationVC = segue.destination as? TableViewController {
+            if let destinationVC = segue.destination as? SmokingActivityTableViewController {
                 destinationVC.dataToRetrieve = "location"
             }
         }

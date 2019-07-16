@@ -10,6 +10,8 @@
 		53D416800FE768643B2C240A /* Pods_BudsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E3F413ED1706E0EC4651069 /* Pods_BudsTests.framework */; };
 		615EA0B759715525BF920C86 /* Pods_Buds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D56AEDC140671046EE7C281 /* Pods_Buds.framework */; };
 		BE02A32322DCEF9A00431854 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02A32222DCEF9A00431854 /* Network.swift */; };
+		BE02A32522DE557200431854 /* LocationSearchBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02A32422DE557200431854 /* LocationSearchBarController.swift */; };
+		BE02A32722DE61AB00431854 /* LocationSearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02A32622DE61AB00431854 /* LocationSearchDelegate.swift */; };
 		BE03D2A722C2676E0059B587 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03D2A622C2676E0059B587 /* WelcomeViewController.swift */; };
 		BE03D2A922C269060059B587 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03D2A822C269060059B587 /* LogInViewController.swift */; };
 		BE03D2AB22C269730059B587 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03D2AA22C269730059B587 /* RegisterViewController.swift */; };
@@ -32,8 +34,7 @@
 		BE747FB722CA798300D071FD /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE747FB622CA798300D071FD /* Profile.storyboard */; };
 		BE747FB922CA7A5A00D071FD /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE747FB822CA7A5A00D071FD /* Activity.storyboard */; };
 		BE747FBB22CAAD9800D071FD /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE747FBA22CAAD9800D071FD /* ActivityViewController.swift */; };
-		BE747FC322CBD54B00D071FD /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE747FC122CBD54B00D071FD /* TableViewController.swift */; };
-		BE747FC422CBD54B00D071FD /* TableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE747FC222CBD54B00D071FD /* TableViewController.xib */; };
+		BE747FC322CBD54B00D071FD /* SmokingActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE747FC122CBD54B00D071FD /* SmokingActivityTableViewController.swift */; };
 		BE747FC622CD1E9E00D071FD /* ActivityDetailsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE747FC522CD1E9E00D071FD /* ActivityDetailsDelegate.swift */; };
 		BE747FC822D53BB300D071FD /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE747FC722D53BB300D071FD /* Settings.storyboard */; };
 		BE747FCA22D53C2600D071FD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE747FC922D53C2600D071FD /* SettingsViewController.swift */; };
@@ -64,6 +65,8 @@
 		A8E579078BF519A1B760863F /* Pods-Buds-BudsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buds-BudsTests.debug.xcconfig"; path = "Target Support Files/Pods-Buds-BudsTests/Pods-Buds-BudsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AE56D15873D576F07560AFA6 /* Pods-BudsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BudsTests.release.xcconfig"; path = "Target Support Files/Pods-BudsTests/Pods-BudsTests.release.xcconfig"; sourceTree = "<group>"; };
 		BE02A32222DCEF9A00431854 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		BE02A32422DE557200431854 /* LocationSearchBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchBarController.swift; sourceTree = "<group>"; };
+		BE02A32622DE61AB00431854 /* LocationSearchDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchDelegate.swift; sourceTree = "<group>"; };
 		BE03D2A622C2676E0059B587 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		BE03D2A822C269060059B587 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		BE03D2AA22C269730059B587 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -90,8 +93,7 @@
 		BE747FB622CA798300D071FD /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		BE747FB822CA7A5A00D071FD /* Activity.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Activity.storyboard; sourceTree = "<group>"; };
 		BE747FBA22CAAD9800D071FD /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
-		BE747FC122CBD54B00D071FD /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		BE747FC222CBD54B00D071FD /* TableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewController.xib; sourceTree = "<group>"; };
+		BE747FC122CBD54B00D071FD /* SmokingActivityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokingActivityTableViewController.swift; sourceTree = "<group>"; };
 		BE747FC522CD1E9E00D071FD /* ActivityDetailsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailsDelegate.swift; sourceTree = "<group>"; };
 		BE747FC722D53BB300D071FD /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		BE747FC922D53C2600D071FD /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -168,10 +170,11 @@
 				BE03D2A622C2676E0059B587 /* WelcomeViewController.swift */,
 				BE03D2AC22C548480059B587 /* ProfileViewController.swift */,
 				BE747FBA22CAAD9800D071FD /* ActivityViewController.swift */,
-				BE747FC122CBD54B00D071FD /* TableViewController.swift */,
-				BE747FC222CBD54B00D071FD /* TableViewController.xib */,
+				BE747FC122CBD54B00D071FD /* SmokingActivityTableViewController.swift */,
 				BE747FC522CD1E9E00D071FD /* ActivityDetailsDelegate.swift */,
 				BE747FC922D53C2600D071FD /* SettingsViewController.swift */,
+				BE02A32422DE557200431854 /* LocationSearchBarController.swift */,
+				BE02A32622DE61AB00431854 /* LocationSearchDelegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -383,7 +386,6 @@
 				BE41464B22BA718D0009A738 /* Assets.xcassets in Resources */,
 				BE747FB722CA798300D071FD /* Profile.storyboard in Resources */,
 				BE41464922BA718C0009A738 /* Main.storyboard in Resources */,
-				BE747FC422CBD54B00D071FD /* TableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,15 +496,17 @@
 				BE03D2A722C2676E0059B587 /* WelcomeViewController.swift in Sources */,
 				BE03D2AB22C269730059B587 /* RegisterViewController.swift in Sources */,
 				BE02A32322DCEF9A00431854 /* Network.swift in Sources */,
-				BE747FC322CBD54B00D071FD /* TableViewController.swift in Sources */,
+				BE747FC322CBD54B00D071FD /* SmokingActivityTableViewController.swift in Sources */,
 				BE41467F22BA9E180009A738 /* Location.swift in Sources */,
 				BE41467922BA918A0009A738 /* ActivityModel.swift in Sources */,
 				BE41467722BA917C0009A738 /* PersonFunctions.swift in Sources */,
 				BE747FC622CD1E9E00D071FD /* ActivityDetailsDelegate.swift in Sources */,
 				BE41467522BA91670009A738 /* PersonModel.swift in Sources */,
+				BE02A32722DE61AB00431854 /* LocationSearchDelegate.swift in Sources */,
 				BE747FCA22D53C2600D071FD /* SettingsViewController.swift in Sources */,
 				BE03D2AD22C548480059B587 /* ProfileViewController.swift in Sources */,
 				BE747FBB22CAAD9800D071FD /* ActivityViewController.swift in Sources */,
+				BE02A32522DE557200431854 /* LocationSearchBarController.swift in Sources */,
 				BE41467B22BA91950009A738 /* ActivityFunctions.swift in Sources */,
 				BE41467D22BA9CE50009A738 /* Birthday.swift in Sources */,
 				BE03D2A922C269060059B587 /* LogInViewController.swift in Sources */,

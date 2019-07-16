@@ -19,17 +19,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Set up Firebase App
         FirebaseApp.configure()
-        //let db = Firestore.firestore()
+        
+        // Check if the User is logged in
         let user = Auth.auth().currentUser
-        if let user = user {
+        
+        // If Logged in, bypass the Welcome View Controller
+        if user != nil {
             // Access the storyboard and fetch an instance of the view controller
             let storyboard = UIStoryboard(name: "Main", bundle: nil);
             let viewController: UITabBarController = storyboard.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController;
-            self.window!.rootViewController = viewController
+            self.window!.rootViewController?.show(viewController, sender: self)
             self.window!.makeKeyAndVisible()
-            
-            
-            
         }
         return true
     }

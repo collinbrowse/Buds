@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import FirebaseAuth
 
 class Network {
     
@@ -32,6 +33,13 @@ class Network {
         return true
     }
     
+    // Log In a User with Firebase Auth
+    static func logIn(email: String, password: String) {
+        
+    }
+    
+    
+    
     // Helper Function to get the current Date/Time as a String
     static func getTodayString() -> String{
         
@@ -51,6 +59,8 @@ class Network {
         return today_string
         
     }
+    
+
     
     
 }

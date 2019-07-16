@@ -42,20 +42,17 @@ class LogInViewController: UIViewController {
     }
     
     @IBAction func logInPressed(_ sender: AnyObject) {
-        
+    
         SVProgressHUD.show()
         let email = emailTextfield.text
-        let password = passwordTextfield.text
+        var password = passwordTextfield.text
         passwordTextfield.text = nil
         
         if ( !password!.isEmpty && !email!.isEmpty) {
-            //password = passwordHash(username: username!, password: password!)
-            //logInUser(username: username!, password: password!)
             Auth.auth().signIn(withEmail: email!, password: password!) { [weak self] user, error in
-                SVProgressHUD.dismiss()
+                password = nil
                 guard let strongSelf = self else { return }
                 strongSelf.performSegue(withIdentifier: "goToHome", sender: self)
-
             }
         }
         else {
@@ -73,38 +70,7 @@ class LogInViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToHome" {
-            let tabBarViewController = segue.destination as? UITabBarController
-            if let destinationVC = tabBarViewController?.viewControllers![0] as? ProfileViewController {
-                destinationVC.username = self.username
-            }
-        }
-    }
-    
-    func logInUser(username: String, password: String) {
-        ref.child("users").queryOrdered(byChild: "username").queryEqual(toValue: username).observeSingleEvent(of: .value) { (snapshot) in
-            print(snapshot)
-            if snapshot.exists() {
-                self.ref.child("users").queryOrdered(byChild: "password").queryEqual(toValue: password).observeSingleEvent(of: .value) { (snapshot) in
-                    if snapshot.exists() {
-                            self.username = username
-                            print("Logged In User Successfully")
-                            SVProgressHUD.dismiss()
-                            self.performSegue(withIdentifier: "goToHome", sender: self)
-                        }
-                    else {
-                        self.showAlert(alertMessage: "Your Username/Password are incorrect")
-                    }
-                }
-            } else {
-                self.showAlert(alertMessage: "Your Username/Password are incorrect")
-            }
-        }
-    }
-    
-    func passwordHash(username: String, password: String) -> String {
-        let salt = "x4vV8bGgqqmQwgCoyXFQj+(o.nUNQhVP7ND99"
-        return "\(password).\(username).\(salt)".sha256()
+        // Add Code if needed
     }
     
     
