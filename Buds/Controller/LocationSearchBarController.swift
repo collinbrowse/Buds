@@ -32,6 +32,8 @@ class LocationSearchBarController: UITableViewController {
         searchBar.delegate = self
         // Remove Points of interest from the search bar
         searchCompleter.filterType = .locationsOnly
+        // Make the search Bar in focus / first responder
+        searchBar.becomeFirstResponder()
         
     }
 }

@@ -50,6 +50,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         datePicker?.addTarget(self,
                               action: #selector(RegisterViewController.dateChanged(datePicker:)),
                               for: .valueChanged)
+        
         // Add a Tap Gesture Recognizer to close the date picker if the user touches away
         let datePickerTapGesture = UITapGestureRecognizer(target: self,
                                                 action: #selector(RegisterViewController.viewTapped(gestureRecognizer: )))
@@ -144,7 +145,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     // If user starts editing the location field, send them to Location Search Controller
     @IBAction func locatonFieldDidBeginEditing(_ sender: Any) {
         performSegue(withIdentifier: "goToLocationSearch", sender: self)
-        birthdayTextfield.becomeFirstResponder()
+        
     }
     
     // Method to show a popup alert to the user if they are unable to register
@@ -244,6 +245,7 @@ extension RegisterViewController: LocationSearchDelegate {
     // LocationSearchController
     func setSelectedLocation(location: String) {
         locationTextField.text = location
+        birthdayTextfield.becomeFirstResponder()
     }
     
     
