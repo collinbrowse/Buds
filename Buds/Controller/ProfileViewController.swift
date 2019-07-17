@@ -58,6 +58,7 @@ class ProfileViewController: UIViewController {
     
     func displayUser() {
 
+        SVProgressHUD.show()
         if (user?.email != nil) {
             
             // Get the Profile Information from Realtime Database
@@ -70,9 +71,9 @@ class ProfileViewController: UIViewController {
                 let birthday = value?["birthday"] as? String ?? ""
                 let location = value?["location"] as? String ?? ""
                 let username = value?["username"] as? String ?? ""
-                
+                let profilePictureURL = value?["profilePicture"] as? String ?? ""
                 // Get the Profile Picture from Firebase Storage
-                let storageRef = Storage.storage().reference(withPath: "/images/profile_pictures/\(username)/profile_picture.jpg")
+                let storageRef = Storage.storage().reference(forURL: profilePictureURL)
                 let taskReference = storageRef.getData(maxSize: 4*1024*1024, completion: { [weak self] (data, error) in
                     if let error = error {
                         print("There was an error getting the profile picture: \(error.localizedDescription)")
@@ -87,6 +88,7 @@ class ProfileViewController: UIViewController {
                         self?.emailTextView.text = email
                         self?.usernameTextView.text = username
                         self?.profilePhotoImageView.image = UIImage(data: data)
+                        SVProgressHUD.dismiss()
                     }
                 })
                 

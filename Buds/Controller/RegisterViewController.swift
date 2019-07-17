@@ -185,9 +185,6 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                 Auth.auth().signIn(withEmail: email, password: password, completion: { (signedInAuthResult, signedInError) in
                     if signedInError == nil {
                         
-                        // Send their data to Realtime Database
-                        let userData = ["name": name, "location": location, "birthday": birthday, "username": username, "email": email]
-                        self.ref.child("users").child((createUserAuthResult?.user.uid)!).setValue(userData)
                         
                         // Send their Picture to Firebase Storage
                         // Add each profile picture to the 'profile_pictures' folder wth a random ID as the filename
@@ -206,13 +203,20 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                                 print("There was an error uploading to Firebase Storage: \(error.localizedDescription)")
                             }
                             else {
-                                SVProgressHUD.dismiss()
-                                self.performSegue(withIdentifier: "goToHome", sender: self)
+                                // You can access the download URL after upload.
+                                storageRef.downloadURL { (url, error) in
+                                    guard let downloadURL = url else { return }
+                                    // Send their data to Realtime Database
+                                    let userData = ["name": name, "location": location, "birthday": birthday, "username": username, "email": email, "profilePicture": downloadURL.absoluteString]
+                                    self.ref.child("users").child((createUserAuthResult?.user.uid)!).setValue(userData)
+                                    
+                                    // If we are here all firebase storage is a success and we can move on
+                                    SVProgressHUD.dismiss()
+                                    self.performSegue(withIdentifier: "goToHome", sender: self)
+                                }
+                                
                             }
                         })
-                        
-                        
-                        
                     } else {
                         self.showAlert(alertMessage: signedInError!.localizedDescription)
                     }
