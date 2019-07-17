@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseStorage
 import SVProgressHUD
 
 
@@ -40,10 +41,10 @@ class ProfileViewController: UIViewController {
             if let user = user {
                 self.user = user
                 self.profilePhotoImageView.layer.masksToBounds = true
-                self.profilePhotoImageView.layer.cornerRadius = self.profilePhotoImageView.frame.size.width / 2
+                self.profilePhotoImageView.layer.cornerRadius = self.profilePhotoImageView.frame.size.width
                 //print("Intrinsic Content Size  \(profilePhotoImageView.intrinsicContentSize.width / 2)")
                 //print("Frame.size.width   \(profilePhotoImageView.frame.size.width / 2)")
-                self.displayNewUser()
+                self.displayUser()
             } else {
                 // No User is signed in.
             }
@@ -55,21 +56,40 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    func displayNewUser() {
+    func displayUser() {
 
         if (user?.email != nil) {
+            
+            // Get the Profile Information from Realtime Database
             ref.child("users").child(user!.uid).observeSingleEvent(of: .value) { (snapshot) in
+                
+                // Get all the information we can from Realtime Database
                 let value = snapshot.value as? NSDictionary
                 let name = value?["name"] as? String ?? ""
                 let email = value?["email"] as? String ?? ""
                 let birthday = value?["birthday"] as? String ?? ""
                 let location = value?["location"] as? String ?? ""
                 let username = value?["username"] as? String ?? ""
-                self.nameTextView.text = name
-                self.birthdayTextView.text = birthday
-                self.locationTextView.text = location
-                self.emailTextView.text = email
-                self.usernameTextView.text = username
+                
+                // Get the Profile Picture from Firebase Storage
+                let storageRef = Storage.storage().reference(withPath: "/images/profile_pictures/\(username)/profile_picture.jpg")
+                let taskReference = storageRef.getData(maxSize: 4*1024*1024, completion: { [weak self] (data, error) in
+                    if let error = error {
+                        print("There was an error getting the profile picture: \(error.localizedDescription)")
+                        return
+                    }
+                    if let data = data {
+                        
+                        // Now that we have our profile picture, we can set all of our information
+                        self?.nameTextView.text = name
+                        self?.birthdayTextView.text = birthday
+                        self?.locationTextView.text = location
+                        self?.emailTextView.text = email
+                        self?.usernameTextView.text = username
+                        self?.profilePhotoImageView.image = UIImage(data: data)
+                    }
+                })
+                
             }
         } else {
             self.nameTextView.text = "Unable to Load User"

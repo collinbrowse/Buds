@@ -190,11 +190,8 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                         self.ref.child("users").child((createUserAuthResult?.user.uid)!).setValue(userData)
                         
                         // Send their Picture to Firebase Storage
-                        
-                        let randomID = UUID.init().uuidString
-                        
                         // Add each profile picture to the 'profile_pictures' folder wth a random ID as the filename
-                        let storageRef = Storage.storage().reference(withPath: "/profile_pictures/\(randomID).jpg")
+                        let storageRef = Storage.storage().reference(withPath: "/images/profile_pictures/\(username)/profile_picture.jpg")
                         
                         // Create the binary data from the UIImageView
                         guard let imageData = self.profilePictureImageView.image?.jpegData(compressionQuality: 0.5) else { return }
@@ -209,7 +206,6 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                                 print("There was an error uploading to Firebase Storage: \(error.localizedDescription)")
                             }
                             else {
-                                print(storageMetaData)
                                 SVProgressHUD.dismiss()
                                 self.performSegue(withIdentifier: "goToHome", sender: self)
                             }
