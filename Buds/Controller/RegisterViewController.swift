@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import Firebase
-import FirebaseDatabase
+import FirebaseStorage
 import SVProgressHUD
 import CryptoSwift
 import MapKit
@@ -184,10 +184,39 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             if createUserError == nil {
                 Auth.auth().signIn(withEmail: email, password: password, completion: { (signedInAuthResult, signedInError) in
                     if signedInError == nil {
+                        
+                        // Send their data to Realtime Database
                         let userData = ["name": name, "location": location, "birthday": birthday, "username": username, "email": email]
                         self.ref.child("users").child((createUserAuthResult?.user.uid)!).setValue(userData)
-                        SVProgressHUD.dismiss()
-                        self.performSegue(withIdentifier: "goToHome", sender: self)
+                        
+                        // Send their Picture to Firebase Storage
+                        
+                        let randomID = UUID.init().uuidString
+                        
+                        // Add each profile picture to the 'profile_pictures' folder wth a random ID as the filename
+                        let storageRef = Storage.storage().reference(withPath: "/profile_pictures/\(randomID).jpg")
+                        
+                        // Create the binary data from the UIImageView
+                        guard let imageData = self.profilePictureImageView.image?.jpegData(compressionQuality: 0.5) else { return }
+                        
+                        // Add Some MetaData so that Firebase has more information that this is a picture
+                        let uploadMetaData = StorageMetadata.init()
+                        uploadMetaData.contentType = "image/jpeg"
+                        
+                        // Send off to Firebase Storage
+                        storageRef.putData(imageData, metadata: uploadMetaData, completion: { (storageMetaData, error) in
+                            if let error = error {
+                                print("There was an error uploading to Firebase Storage: \(error.localizedDescription)")
+                            }
+                            else {
+                                print(storageMetaData)
+                                SVProgressHUD.dismiss()
+                                self.performSegue(withIdentifier: "goToHome", sender: self)
+                            }
+                        })
+                        
+                        
+                        
                     } else {
                         self.showAlert(alertMessage: signedInError!.localizedDescription)
                     }
