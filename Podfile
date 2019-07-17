@@ -12,6 +12,7 @@ target 'Buds' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'Firebase/Storage'
   pod 'CryptoSwift'
   
   target 'BudsTests' do
