@@ -25,7 +25,7 @@ class ProfileViewController: UIViewController {
     var handle: AuthStateDidChangeListenerHandle?
     var username: String?
     var ref: DatabaseReference!
-    var user: User?
+    var user: User? 
     
     override func viewDidLoad() {
         super.viewDidLoad()

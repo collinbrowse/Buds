@@ -378,7 +378,7 @@
         <!--Rating-->
         <scene sceneID="Tma-CR-n1d">
             <objects>
-                <tableViewController title="Rating" id="7Gg-xS-fGn" customClass="SmokingActivtyTableViewController" customModule="Buds" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Rating" id="7Gg-xS-fGn" customClass="SmokingActivityTableViewController" customModule="Buds" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="iYj-El-6rC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -407,7 +407,7 @@
         <!--Strain-->
         <scene sceneID="hHO-ha-yq9">
             <objects>
-                <tableViewController title="Strain" id="LCH-p1-BSd" customClass="SmokingActivtyTableViewController" customModule="Buds" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Strain" id="LCH-p1-BSd" customClass="SmokingActivityTableViewController" customModule="Buds" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Zo4-n8-EEi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
