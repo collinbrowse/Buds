@@ -25,19 +25,13 @@ class ProfileViewController: UIViewController {
     var handle: AuthStateDidChangeListenerHandle?
     var username: String?
     var ref: DatabaseReference!
-    var user: User? {
-        didSet {
-            navigationItem.title = user?.displayName
-        }
-    }
+    var user: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Connect to Realtime Database
         ref = Database.database().reference()
-        
-        self.navigationItem.title = "Collin"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +40,7 @@ class ProfileViewController: UIViewController {
         handle = Auth.auth().addStateDidChangeListener { auth, user in
             if let user = user {
                 self.user = user
+                self.navigationItem.title = user.displayName
                 self.profilePhotoImageView.layer.masksToBounds = true
                 self.profilePhotoImageView.layer.cornerRadius = self.profilePhotoImageView.frame.size.width
                 //print("Intrinsic Content Size  \(profilePhotoImageView.intrinsicContentSize.width / 2)")

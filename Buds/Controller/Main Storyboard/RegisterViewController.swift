@@ -212,9 +212,23 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                                     let userData = ["name": name, "location": location, "birthday": birthday, "username": username, "email": email, "profilePicture": downloadURL.absoluteString]
                                     self.ref.child("users").child((createUserAuthResult?.user.uid)!).setValue(userData)
                                     
-                                    // If we are here all firebase storage is a success and we can move on
-                                    SVProgressHUD.dismiss()
-                                    self.performSegue(withIdentifier: "goToHome", sender: self)
+                                    // Once Data is in Realtime Database let's update the user profile in
+                                    // Firebase Auth
+                                    let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                                    changeRequest?.displayName = name
+                                    changeRequest?.photoURL = downloadURL.absoluteURL
+                                    changeRequest?.commitChanges { (error) in
+                                        if let error = error {
+                                            self.showAlert(alertMessage: "Unable to Register User: \(error.localizedDescription)")
+                                        }
+                                        else {
+                                            // If we are here all firebase storage is a success and we can move on
+                                            SVProgressHUD.dismiss()
+                                            self.performSegue(withIdentifier: "goToHome", sender: self)
+                                        }
+                                    }
+                                    
+                                    
                                 }
                                 
                             }

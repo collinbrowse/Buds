@@ -402,10 +402,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="dQU-QY-h3r" kind="relationship" relationship="viewControllers" id="vYD-TE-AYf"/>
                         <segue destination="N0T-a4-foq" kind="relationship" relationship="viewControllers" id="jdp-Vz-Uke"/>
                         <segue destination="Zlj-q1-AWQ" kind="relationship" relationship="viewControllers" id="HJ1-hd-bk8"/>
                         <segue destination="WLc-Xc-379" kind="relationship" relationship="viewControllers" id="iOX-bs-Gnc"/>
+                        <segue destination="dQU-QY-h3r" kind="relationship" relationship="viewControllers" id="qPS-xj-rlb"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RIr-gd-2tV" userLabel="First Responder" sceneMemberID="firstResponder"/>
