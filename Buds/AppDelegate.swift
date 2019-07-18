@@ -28,7 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Access the storyboard and fetch an instance of the view controller
             let storyboard = UIStoryboard(name: "Main", bundle: nil);
             let viewController: UITabBarController = storyboard.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController;
-            self.window!.rootViewController?.show(viewController, sender: self)
+            //self.window!.rootViewController?.show(viewController, sender: self)
+            self.window!.rootViewController = viewController
+            //present(viewController, animated: true, completion: nil)
+            //self.window!.rootViewController?.performSegue(withIdentifier: "goToHome", sender: self)
             self.window!.makeKeyAndVisible()
         }
         return true

@@ -62,6 +62,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         let profilePictureTapGesture = UITapGestureRecognizer(target: self,
                                                 action: #selector(profilePictureTapped))
         profilePictureImageView.addGestureRecognizer(profilePictureTapGesture)
+        
     }
     
     func application(_ application: UIApplication,

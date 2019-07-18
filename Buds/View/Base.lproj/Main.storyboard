@@ -405,6 +405,7 @@
                         <segue destination="dQU-QY-h3r" kind="relationship" relationship="viewControllers" id="vYD-TE-AYf"/>
                         <segue destination="N0T-a4-foq" kind="relationship" relationship="viewControllers" id="jdp-Vz-Uke"/>
                         <segue destination="Zlj-q1-AWQ" kind="relationship" relationship="viewControllers" id="HJ1-hd-bk8"/>
+                        <segue destination="WLc-Xc-379" kind="relationship" relationship="viewControllers" id="iOX-bs-Gnc"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RIr-gd-2tV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -419,7 +420,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1tB-eq-KgL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2772" y="-55"/>
+            <point key="canvasLocation" x="2774" y="-88"/>
         </scene>
         <!--Activity-->
         <scene sceneID="VMc-fR-bOw">
@@ -429,7 +430,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gcx-D6-qU2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2779" y="9"/>
+            <point key="canvasLocation" x="2779" y="-26"/>
         </scene>
         <!--Settings-->
         <scene sceneID="08r-l0-fIH">
@@ -439,7 +440,17 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P4Z-Vd-bKO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2782" y="76"/>
+            <point key="canvasLocation" x="2782" y="47"/>
+        </scene>
+        <!--ActivityFeed-->
+        <scene sceneID="2rl-y8-kNB">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ActivityFeed" id="WLc-Xc-379" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="DQy-1h-LX6"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Utv-Ky-p6h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2800" y="115"/>
         </scene>
     </scenes>
     <resources>

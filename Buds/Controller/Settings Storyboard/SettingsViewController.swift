@@ -45,7 +45,16 @@ class SettingsViewController: UIViewController {
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
-            self.performSegue(withIdentifier: "unwind", sender: nil)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil);
+            let viewController: UINavigationController = storyboard.instantiateViewController(withIdentifier: "welcomeNavigationController") as! UINavigationController;
+            present(viewController, animated: true, completion: nil)
+            
+            //self.window!.rootViewController?.show(viewController, sender: self)
+            //self.window!.rootViewController = viewController
+            //present(viewController, animated: true, completion: nil)
+            //self.window!.rootViewController?.performSegue(withIdentifier: "goToHome", sender: self)
+            //self.window!.makeKeyAndVisible()
+            //self.performSegue(withIdentifier: "unwind", sender: nil)
             print("Signing out...")
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)

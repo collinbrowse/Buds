@@ -12,6 +12,8 @@
 		BE02A32322DCEF9A00431854 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02A32222DCEF9A00431854 /* Network.swift */; };
 		BE02A32522DE557200431854 /* LocationSearchBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02A32422DE557200431854 /* LocationSearchBarController.swift */; };
 		BE02A32722DE61AB00431854 /* LocationSearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02A32622DE61AB00431854 /* LocationSearchDelegate.swift */; };
+		BE02A32A22DFBC4400431854 /* ActivityFeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE02A32922DFBC4400431854 /* ActivityFeed.storyboard */; };
+		BE02A32C22DFBD5F00431854 /* ActivityFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02A32B22DFBD5F00431854 /* ActivityFeedController.swift */; };
 		BE03D2A722C2676E0059B587 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03D2A622C2676E0059B587 /* WelcomeViewController.swift */; };
 		BE03D2A922C269060059B587 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03D2A822C269060059B587 /* LogInViewController.swift */; };
 		BE03D2AB22C269730059B587 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03D2AA22C269730059B587 /* RegisterViewController.swift */; };
@@ -67,6 +69,8 @@
 		BE02A32222DCEF9A00431854 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		BE02A32422DE557200431854 /* LocationSearchBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchBarController.swift; sourceTree = "<group>"; };
 		BE02A32622DE61AB00431854 /* LocationSearchDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchDelegate.swift; sourceTree = "<group>"; };
+		BE02A32922DFBC4400431854 /* ActivityFeed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ActivityFeed.storyboard; sourceTree = "<group>"; };
+		BE02A32B22DFBD5F00431854 /* ActivityFeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedController.swift; sourceTree = "<group>"; };
 		BE03D2A622C2676E0059B587 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		BE03D2A822C269060059B587 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		BE03D2AA22C269730059B587 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +154,52 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		BE02A32D22DFBD8100431854 /* Profile Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				BE03D2AC22C548480059B587 /* ProfileViewController.swift */,
+			);
+			path = "Profile Storyboard";
+			sourceTree = "<group>";
+		};
+		BE02A32E22DFBD9800431854 /* Main Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				BE03D2A822C269060059B587 /* LogInViewController.swift */,
+				BE03D2AA22C269730059B587 /* RegisterViewController.swift */,
+				BE03D2A622C2676E0059B587 /* WelcomeViewController.swift */,
+				BE02A32622DE61AB00431854 /* LocationSearchDelegate.swift */,
+				BE02A32422DE557200431854 /* LocationSearchBarController.swift */,
+			);
+			path = "Main Storyboard";
+			sourceTree = "<group>";
+		};
+		BE02A32F22DFBDA900431854 /* Activity Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				BE747FBA22CAAD9800D071FD /* ActivityViewController.swift */,
+				BE747FC122CBD54B00D071FD /* SmokingActivityTableViewController.swift */,
+				BE747FC522CD1E9E00D071FD /* ActivityDetailsDelegate.swift */,
+			);
+			path = "Activity Storyboard";
+			sourceTree = "<group>";
+		};
+		BE02A33022DFBDB000431854 /* ActivityFeed Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				BE02A32B22DFBD5F00431854 /* ActivityFeedController.swift */,
+			);
+			path = "ActivityFeed Storyboard";
+			sourceTree = "<group>";
+		};
+		BE02A33122DFBDBC00431854 /* Settings Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				BE747FC922D53C2600D071FD /* SettingsViewController.swift */,
+			);
+			path = "Settings Storyboard";
+			sourceTree = "<group>";
+		};
 		BE03D2A422C124A70059B587 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +207,7 @@
 				BE747FB622CA798300D071FD /* Profile.storyboard */,
 				BE41464722BA718C0009A738 /* Main.storyboard */,
 				BE747FB822CA7A5A00D071FD /* Activity.storyboard */,
+				BE02A32922DFBC4400431854 /* ActivityFeed.storyboard */,
 				BE747FC722D53BB300D071FD /* Settings.storyboard */,
 			);
 			path = View;
@@ -165,16 +216,11 @@
 		BE03D2A522C267410059B587 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				BE03D2A822C269060059B587 /* LogInViewController.swift */,
-				BE03D2AA22C269730059B587 /* RegisterViewController.swift */,
-				BE03D2A622C2676E0059B587 /* WelcomeViewController.swift */,
-				BE03D2AC22C548480059B587 /* ProfileViewController.swift */,
-				BE747FBA22CAAD9800D071FD /* ActivityViewController.swift */,
-				BE747FC122CBD54B00D071FD /* SmokingActivityTableViewController.swift */,
-				BE747FC522CD1E9E00D071FD /* ActivityDetailsDelegate.swift */,
-				BE747FC922D53C2600D071FD /* SettingsViewController.swift */,
-				BE02A32422DE557200431854 /* LocationSearchBarController.swift */,
-				BE02A32622DE61AB00431854 /* LocationSearchDelegate.swift */,
+				BE02A33122DFBDBC00431854 /* Settings Storyboard */,
+				BE02A33022DFBDB000431854 /* ActivityFeed Storyboard */,
+				BE02A32F22DFBDA900431854 /* Activity Storyboard */,
+				BE02A32E22DFBD9800431854 /* Main Storyboard */,
+				BE02A32D22DFBD8100431854 /* Profile Storyboard */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -386,6 +432,7 @@
 				BE41464B22BA718D0009A738 /* Assets.xcassets in Resources */,
 				BE747FB722CA798300D071FD /* Profile.storyboard in Resources */,
 				BE41464922BA718C0009A738 /* Main.storyboard in Resources */,
+				BE02A32A22DFBC4400431854 /* ActivityFeed.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,6 +557,7 @@
 				BE41467B22BA91950009A738 /* ActivityFunctions.swift in Sources */,
 				BE41467D22BA9CE50009A738 /* Birthday.swift in Sources */,
 				BE03D2A922C269060059B587 /* LogInViewController.swift in Sources */,
+				BE02A32C22DFBD5F00431854 /* ActivityFeedController.swift in Sources */,
 				BE41464422BA718C0009A738 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

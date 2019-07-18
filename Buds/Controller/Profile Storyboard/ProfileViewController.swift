@@ -25,13 +25,19 @@ class ProfileViewController: UIViewController {
     var handle: AuthStateDidChangeListenerHandle?
     var username: String?
     var ref: DatabaseReference!
-    var user: User?
+    var user: User? {
+        didSet {
+            navigationItem.title = user?.displayName
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Connect to Realtime Database
         ref = Database.database().reference()
+        
+        self.navigationItem.title = "Collin"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,31 +72,37 @@ class ProfileViewController: UIViewController {
                 
                 // Get all the information we can from Realtime Database
                 let value = snapshot.value as? NSDictionary
-                let name = value?["name"] as? String ?? ""
-                let email = value?["email"] as? String ?? ""
-                let birthday = value?["birthday"] as? String ?? ""
-                let location = value?["location"] as? String ?? ""
-                let username = value?["username"] as? String ?? ""
-                let profilePictureURL = value?["profilePicture"] as? String ?? ""
-                // Get the Profile Picture from Firebase Storage
-                let storageRef = Storage.storage().reference(forURL: profilePictureURL)
-                let taskReference = storageRef.getData(maxSize: 4*1024*1024, completion: { [weak self] (data, error) in
-                    if let error = error {
-                        print("There was an error getting the profile picture: \(error.localizedDescription)")
-                        return
-                    }
-                    if let data = data {
-                        
-                        // Now that we have our profile picture, we can set all of our information
-                        self?.nameTextView.text = name
-                        self?.birthdayTextView.text = birthday
-                        self?.locationTextView.text = location
-                        self?.emailTextView.text = email
-                        self?.usernameTextView.text = username
-                        self?.profilePhotoImageView.image = UIImage(data: data)
-                        SVProgressHUD.dismiss()
-                    }
-                })
+
+                var information = [String: String]()
+                information["name"] = value?["name"] as? String ?? ""
+                information["email"] = value?["email"] as? String ?? ""
+                information["birthday"] = value?["birthday"] as? String ?? ""
+                information["location"] = value?["location"] as? String ?? ""
+                information["username"] = value?["username"] as? String ?? ""
+                
+                
+                if let profilePictureURL = value?["profilePicture"] as? String {
+                    // Get the Profile Picture from Firebase Storage
+                    let storageRef = Storage.storage().reference(forURL: profilePictureURL)
+                    let taskReference = storageRef.getData(maxSize: 4*1024*1024, completion: { [weak self] (data, error) in
+                        if let error = error {
+                            print("There was an error getting the profile picture: \(error.localizedDescription)")
+                            return
+                        }
+                        if let data = data {
+                            
+                            // Now that we have our profile picture, we can set all of our information
+                            self?.profilePhotoImageView.image = UIImage(data: data)
+                            self?.setProfileUI(information: information)
+                            SVProgressHUD.dismiss()
+                        }
+                    })
+                }
+                else {
+                    // Set our information without a profile picture
+                    self.setProfileUI(information: information)
+                    SVProgressHUD.dismiss()
+                }
                 
             }
         } else {
@@ -99,6 +111,14 @@ class ProfileViewController: UIViewController {
         
     }
     
+    // Helper functon to set the UI components with information from Firebase
+    func setProfileUI(information: [String: String]) {
+        nameTextView.text = information["name"]
+        birthdayTextView.text = information["birthday"]
+        locationTextView.text = information["location"]
+        emailTextView.text = information["email"]
+        usernameTextView.text = information["username"]
+    }
     
     class NameTextView: UITextView {
         
