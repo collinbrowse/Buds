@@ -82,8 +82,8 @@ class ActivityViewController: UIViewController {
         
         
         // Add the Details of the Smoking Activity
-        var activityDetailsDict = [String : Any]()
-        activityDetailsDict["user"] = user?.displayName
+        var activityDetailsDict = [String : String]()
+        activityDetailsDict["user"] = user?.uid 
         activityDetailsDict["time"] = getTodayString()
         activityDetailsDict["smoking_style"] = smokingStylePlaceholderTextView.text
         activityDetailsDict["rating"] = ratingPlaceholderTextView.text

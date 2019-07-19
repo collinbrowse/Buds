@@ -41,10 +41,8 @@ class ProfileViewController: UIViewController {
             if let user = user {
                 self.user = user
                 self.navigationItem.title = user.displayName
-                self.profilePhotoImageView.layer.masksToBounds = true
-                self.profilePhotoImageView.layer.cornerRadius = self.profilePhotoImageView.frame.size.width
-                //print("Intrinsic Content Size  \(profilePhotoImageView.intrinsicContentSize.width / 2)")
-                //print("Frame.size.width   \(profilePhotoImageView.frame.size.width / 2)")
+                self.profilePhotoImageView.layer.cornerRadius = self.profilePhotoImageView.frame.size.width / 2
+                self.profilePhotoImageView.clipsToBounds = true
                 self.displayUser()
             } else {
                 // No User is signed in.

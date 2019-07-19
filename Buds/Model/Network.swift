@@ -21,7 +21,7 @@ class Network {
     // -- -- --rating
     // -- -- --smoking_style
     // -- -- --strain
-    static func addNewActivity(userID: String, activityDetails: [String : Any]) -> Bool {
+    static func addNewActivity(userID: String, activityDetails: [String : String]) -> Bool {
         print("Add New Activity Function Called")
         
         //Grab a connection to Realtime database

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="mt2-DM-xGH" customClass="ActivityFeedCustomCell" customModule="Buds" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="449" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SVU-Ay-JSp">
+                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="W81-Ia-NdX"/>
+                        <constraint firstAttribute="height" constant="100" id="fl5-WG-f0Y"/>
+                    </constraints>
+                </imageView>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Name" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Jg-P5-xKc" userLabel="Name Text View">
+                    <rect key="frame" x="116" y="8" width="285" height="32"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="32" id="uAF-PF-TDA"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Location" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icA-XB-JzI" userLabel="Location Text View">
+                    <rect key="frame" x="116" y="40" width="325" height="22"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <accessibility key="accessibilityConfiguration">
+                        <accessibilityTraits key="traits" notEnabled="YES"/>
+                    </accessibility>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="oB3-0T-W7c"/>
+                    </constraints>
+                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="9h" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HA0-OF-Mrp" userLabel="Time Text View">
+                    <rect key="frame" x="409" y="8" width="32" height="32"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="32" id="3we-3n-gPE"/>
+                        <constraint firstAttribute="height" constant="32" id="LMX-fR-Imb"/>
+                    </constraints>
+                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buz-mZ-IsI" userLabel="Description Text View">
+                    <rect key="frame" x="116" y="62" width="325" height="60"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="aeo-kH-i3L"/>
+                    </constraints>
+                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Strain" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rJD-GX-txd" userLabel="Strain Text View">
+                    <rect key="frame" x="116" y="122" width="325" height="22"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="NyH-eU-62o"/>
+                    </constraints>
+                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Rating" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gd6-kv-mq3" userLabel="Rating Text View">
+                    <rect key="frame" x="116" y="144" width="325" height="22"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="cpi-p2-Kxa"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="g4C-sT-BQp"/>
+                    </constraints>
+                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Smoking Style" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VEi-gu-Mgi" userLabel="Smoking Style Text View">
+                    <rect key="frame" x="116" y="166" width="325" height="22"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="Wft-QK-Sx8"/>
+                        <constraint firstAttribute="height" constant="22" id="ijo-7Z-bx5"/>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="22" id="wHa-Kd-OVt"/>
+                    </constraints>
+                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="VEi-gu-Mgi" secondAttribute="trailing" constant="8" id="19e-03-gZ7"/>
+                <constraint firstItem="buz-mZ-IsI" firstAttribute="leading" secondItem="SVU-Ay-JSp" secondAttribute="trailing" constant="16" id="6tm-GE-5dB"/>
+                <constraint firstItem="HA0-OF-Mrp" firstAttribute="top" secondItem="mt2-DM-xGH" secondAttribute="top" constant="8" id="A82-fh-QBo"/>
+                <constraint firstItem="VEi-gu-Mgi" firstAttribute="leading" secondItem="mt2-DM-xGH" secondAttribute="leading" constant="116" id="ARe-rz-Teg"/>
+                <constraint firstItem="rJD-GX-txd" firstAttribute="leading" secondItem="Bix-Zk-Ala" secondAttribute="leading" constant="116" id="Apt-k8-VrA"/>
+                <constraint firstItem="SVU-Ay-JSp" firstAttribute="top" secondItem="mt2-DM-xGH" secondAttribute="top" id="Btb-vF-dFx"/>
+                <constraint firstItem="3Jg-P5-xKc" firstAttribute="top" secondItem="mt2-DM-xGH" secondAttribute="top" constant="8" id="CQy-ak-6LX"/>
+                <constraint firstItem="rJD-GX-txd" firstAttribute="top" secondItem="buz-mZ-IsI" secondAttribute="bottom" id="F2h-bf-tKz"/>
+                <constraint firstItem="icA-XB-JzI" firstAttribute="top" secondItem="3Jg-P5-xKc" secondAttribute="bottom" id="FLD-0n-5Lm"/>
+                <constraint firstItem="Gd6-kv-mq3" firstAttribute="top" secondItem="rJD-GX-txd" secondAttribute="bottom" id="H9s-TC-OMa"/>
+                <constraint firstItem="Bix-Zk-Ala" firstAttribute="trailing" secondItem="Gd6-kv-mq3" secondAttribute="trailing" constant="8" id="KAy-bq-tM8"/>
+                <constraint firstAttribute="trailing" secondItem="HA0-OF-Mrp" secondAttribute="trailing" constant="8" id="LPX-j2-Ll2"/>
+                <constraint firstItem="Gd6-kv-mq3" firstAttribute="leading" secondItem="Bix-Zk-Ala" secondAttribute="leading" constant="116" id="Lyt-Bd-cef"/>
+                <constraint firstItem="icA-XB-JzI" firstAttribute="leading" secondItem="SVU-Ay-JSp" secondAttribute="trailing" constant="16" id="N0c-gx-Pha"/>
+                <constraint firstItem="VEi-gu-Mgi" firstAttribute="top" secondItem="Gd6-kv-mq3" secondAttribute="bottom" id="Qo0-Hd-ftF"/>
+                <constraint firstItem="buz-mZ-IsI" firstAttribute="top" secondItem="icA-XB-JzI" secondAttribute="bottom" id="UbI-6n-ItT"/>
+                <constraint firstItem="3Jg-P5-xKc" firstAttribute="leading" secondItem="SVU-Ay-JSp" secondAttribute="trailing" constant="16" id="aDD-BC-BQ4"/>
+                <constraint firstItem="Bix-Zk-Ala" firstAttribute="trailing" secondItem="rJD-GX-txd" secondAttribute="trailing" constant="8" id="asV-WJ-7pA"/>
+                <constraint firstItem="SVU-Ay-JSp" firstAttribute="leading" secondItem="Bix-Zk-Ala" secondAttribute="leading" id="f1I-qo-pHU"/>
+                <constraint firstItem="HA0-OF-Mrp" firstAttribute="leading" secondItem="3Jg-P5-xKc" secondAttribute="trailing" constant="8" id="fZ9-y8-wHE"/>
+                <constraint firstItem="Bix-Zk-Ala" firstAttribute="trailing" secondItem="buz-mZ-IsI" secondAttribute="trailing" constant="8" id="gni-yt-127"/>
+                <constraint firstItem="Bix-Zk-Ala" firstAttribute="trailing" secondItem="icA-XB-JzI" secondAttribute="trailing" constant="8" id="wbs-eY-iEx"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="Bix-Zk-Ala"/>
+            <connections>
+                <outlet property="RatingTextView" destination="Gd6-kv-mq3" id="EDl-Vl-DDd"/>
+                <outlet property="descriptionTextView" destination="buz-mZ-IsI" id="etc-jU-hCO"/>
+                <outlet property="locationTextView" destination="icA-XB-JzI" id="dJV-8m-KiX"/>
+                <outlet property="nameTextView" destination="3Jg-P5-xKc" id="eNQ-1B-Sjm"/>
+                <outlet property="profilePictureImageView" destination="SVU-Ay-JSp" id="DFV-Qh-ufA"/>
+                <outlet property="ratingTextView" destination="Gd6-kv-mq3" id="hlY-5C-Azd"/>
+                <outlet property="smokingStyleTextView" destination="VEi-gu-Mgi" id="Nxl-FK-kRu"/>
+                <outlet property="strainTextView" destination="rJD-GX-txd" id="Hkb-Z9-gA7"/>
+                <outlet property="timeTextView" destination="HA0-OF-Mrp" id="CB1-1k-cLa"/>
+            </connections>
+            <point key="canvasLocation" x="136.95652173913044" y="90.401785714285708"/>
+        </view>
+    </objects>
+</document>
