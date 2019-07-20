@@ -66,8 +66,9 @@ class ActivityFeedController: UITableViewController {
         // This requires downloading all activites from firebase each time ths view is loaded
         // There is likely a better way
         activities.removeAll()
+        
         if (user?.email != nil) {
-            print("User is logged in")
+            
             ref.child("activity").observe(.childAdded) { (snapshot) in
                 if let dictionary = snapshot.value as? [String: Any] {
                     
@@ -79,13 +80,28 @@ class ActivityFeedController: UITableViewController {
                     // Firebase has all the information besides the User's actual name. Let's add that as well
                     activity.setValuesForKeys(dictionary)
                     activity.name = self.user?.displayName
-                    self.activities.append(activity)
-                    
-                    // Since we are currently in a completion handler and UI is done on main thread,
-                    // We have to use this method to perform an async call on the main thread
-                    DispatchQueue.main.async{ [weak self] in
-                        self?.tableView.reloadData()
+
+                    // Get the Profile Information from Realtime Database
+                    self.ref.child("users").child(dictionary["user"] as! String).observeSingleEvent(of: .value) { (snapshot) in
+                        
+                        if let dict = snapshot.value as? [String: Any] {
+                            
+                            // Grab the URL of the Photo in Firebase Storage
+                            let photoURL = dict["profilePicture"]
+                            activity.profilePictureURL = photoURL as? String
+                            
+                            // Now add the activity to the activities array
+                            self.activities.append(activity)
+                            
+                            // Since we are currently in a completion handler and UI is done on main thread,
+                            // We have to use this method to perform an async call on the main thread
+                            DispatchQueue.main.async{ [weak self] in
+                                self?.activityFeedTableView.reloadData()
+                            }
+                        }
                     }
+
+                    
                 }
             }
         }
@@ -94,11 +110,11 @@ class ActivityFeedController: UITableViewController {
 }
 
 extension ActivityFeedController {
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        //let cell = UITableViewCell(style: .value1, reuseIdentifier: "Cell")
         let cell = tableView.dequeueReusableCell(withIdentifier: "customActivityCell") as! ActivityFeedCustomCell
-        
         
         // Add information to each cell
         if activities.count > 0 {
@@ -108,8 +124,24 @@ extension ActivityFeedController {
             cell.strainTextView.text = activities[indexPath.row].strain
             cell.ratingTextView.text = activities[indexPath.row].rating
             cell.smokingStyleTextView.text = activities[indexPath.row].smoking_style
+            
+            // Grab the Photo From Firebase Storage
+            if let photoURL = activities[indexPath.row].profilePictureURL {
+                
+                let storageRef = Storage.storage().reference(forURL: photoURL)
+                let taskReference = storageRef.getData(maxSize: 4*1024*1024, completion: { [weak self] (data, error) in
+                    
+                    if let error = error {
+                        print("There was an error getting the profile picture: \(error.localizedDescription)")
+                        return
+                    }
+                    if let data = data {
+                        // Now that we have our profile picture, we can set that remaining information
+                        cell.profilePictureImageView.image = UIImage(data: data)
+                    }
+                })
+            }
         }
-        
         return cell
     }
     

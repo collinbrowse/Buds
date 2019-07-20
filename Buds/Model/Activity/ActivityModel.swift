@@ -12,7 +12,7 @@ import Foundation
 @objcMembers
 class ActivityModel: NSObject {
     
-    //var name: String?
+    
     var location: String?
     var rating: String?
     var smoking_style: String?
@@ -20,9 +20,6 @@ class ActivityModel: NSObject {
     var time: String?
     var user: String?
     var name: String? 
-    
-    
-    
-    
+    var profilePictureURL: String?
 
 }

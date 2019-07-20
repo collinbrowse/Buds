@@ -16,15 +16,8 @@
             <rect key="frame" x="0.0" y="0.0" width="449" height="200"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SVU-Ay-JSp">
-                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="100" id="W81-Ia-NdX"/>
-                        <constraint firstAttribute="height" constant="100" id="fl5-WG-f0Y"/>
-                    </constraints>
-                </imageView>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Name" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Jg-P5-xKc" userLabel="Name Text View">
-                    <rect key="frame" x="116" y="8" width="285" height="32"/>
+                    <rect key="frame" x="82" y="8" width="319" height="32"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="32" id="uAF-PF-TDA"/>
@@ -33,7 +26,7 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Location" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icA-XB-JzI" userLabel="Location Text View">
-                    <rect key="frame" x="116" y="40" width="325" height="22"/>
+                    <rect key="frame" x="82" y="40" width="359" height="22"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" notEnabled="YES"/>
@@ -56,8 +49,8 @@
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buz-mZ-IsI" userLabel="Description Text View">
-                    <rect key="frame" x="116" y="62" width="325" height="60"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buz-mZ-IsI" userLabel="Description Text View">
+                    <rect key="frame" x="82" y="62" width="359" height="60"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="aeo-kH-i3L"/>
@@ -66,8 +59,8 @@
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Strain" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rJD-GX-txd" userLabel="Strain Text View">
-                    <rect key="frame" x="116" y="122" width="325" height="22"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Strain" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rJD-GX-txd" userLabel="Strain Text View">
+                    <rect key="frame" x="82" y="122" width="359" height="22"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="NyH-eU-62o"/>
@@ -76,8 +69,8 @@
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Rating" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gd6-kv-mq3" userLabel="Rating Text View">
-                    <rect key="frame" x="116" y="144" width="325" height="22"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Rating" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gd6-kv-mq3" userLabel="Rating Text View">
+                    <rect key="frame" x="82" y="144" width="359" height="22"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="cpi-p2-Kxa"/>
@@ -87,8 +80,26 @@
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Smoking Style" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VEi-gu-Mgi" userLabel="Smoking Style Text View">
-                    <rect key="frame" x="116" y="166" width="325" height="22"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VOA-7n-CxG">
+                    <rect key="frame" x="0.0" y="0.0" width="82" height="200"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SVU-Ay-JSp">
+                            <rect key="frame" x="16" y="16" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="W81-Ia-NdX"/>
+                                <constraint firstAttribute="height" constant="50" id="fl5-WG-f0Y"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="SVU-Ay-JSp" firstAttribute="leading" secondItem="VOA-7n-CxG" secondAttribute="leading" constant="16" id="IBv-Ub-Zt0"/>
+                        <constraint firstItem="SVU-Ay-JSp" firstAttribute="top" secondItem="VOA-7n-CxG" secondAttribute="top" constant="16" id="Lw4-k7-eqs"/>
+                        <constraint firstAttribute="width" constant="82" id="dAk-Fg-kEf"/>
+                    </constraints>
+                </view>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Smoking Style" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VEi-gu-Mgi" userLabel="Smoking Style Text View">
+                    <rect key="frame" x="82" y="166" width="359" height="22"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="Wft-QK-Sx8"/>
@@ -102,27 +113,28 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="rJD-GX-txd" firstAttribute="leading" secondItem="VOA-7n-CxG" secondAttribute="trailing" id="0ef-pJ-cAa"/>
                 <constraint firstAttribute="trailing" secondItem="VEi-gu-Mgi" secondAttribute="trailing" constant="8" id="19e-03-gZ7"/>
-                <constraint firstItem="buz-mZ-IsI" firstAttribute="leading" secondItem="SVU-Ay-JSp" secondAttribute="trailing" constant="16" id="6tm-GE-5dB"/>
+                <constraint firstItem="3Jg-P5-xKc" firstAttribute="leading" secondItem="VOA-7n-CxG" secondAttribute="trailing" id="69K-b6-Fwt"/>
+                <constraint firstItem="VEi-gu-Mgi" firstAttribute="leading" secondItem="VOA-7n-CxG" secondAttribute="trailing" id="8h1-Je-Wqp"/>
+                <constraint firstItem="VOA-7n-CxG" firstAttribute="top" secondItem="mt2-DM-xGH" secondAttribute="top" id="9xW-dv-b45"/>
                 <constraint firstItem="HA0-OF-Mrp" firstAttribute="top" secondItem="mt2-DM-xGH" secondAttribute="top" constant="8" id="A82-fh-QBo"/>
-                <constraint firstItem="VEi-gu-Mgi" firstAttribute="leading" secondItem="mt2-DM-xGH" secondAttribute="leading" constant="116" id="ARe-rz-Teg"/>
-                <constraint firstItem="rJD-GX-txd" firstAttribute="leading" secondItem="Bix-Zk-Ala" secondAttribute="leading" constant="116" id="Apt-k8-VrA"/>
-                <constraint firstItem="SVU-Ay-JSp" firstAttribute="top" secondItem="mt2-DM-xGH" secondAttribute="top" id="Btb-vF-dFx"/>
                 <constraint firstItem="3Jg-P5-xKc" firstAttribute="top" secondItem="mt2-DM-xGH" secondAttribute="top" constant="8" id="CQy-ak-6LX"/>
                 <constraint firstItem="rJD-GX-txd" firstAttribute="top" secondItem="buz-mZ-IsI" secondAttribute="bottom" id="F2h-bf-tKz"/>
                 <constraint firstItem="icA-XB-JzI" firstAttribute="top" secondItem="3Jg-P5-xKc" secondAttribute="bottom" id="FLD-0n-5Lm"/>
                 <constraint firstItem="Gd6-kv-mq3" firstAttribute="top" secondItem="rJD-GX-txd" secondAttribute="bottom" id="H9s-TC-OMa"/>
                 <constraint firstItem="Bix-Zk-Ala" firstAttribute="trailing" secondItem="Gd6-kv-mq3" secondAttribute="trailing" constant="8" id="KAy-bq-tM8"/>
                 <constraint firstAttribute="trailing" secondItem="HA0-OF-Mrp" secondAttribute="trailing" constant="8" id="LPX-j2-Ll2"/>
-                <constraint firstItem="Gd6-kv-mq3" firstAttribute="leading" secondItem="Bix-Zk-Ala" secondAttribute="leading" constant="116" id="Lyt-Bd-cef"/>
-                <constraint firstItem="icA-XB-JzI" firstAttribute="leading" secondItem="SVU-Ay-JSp" secondAttribute="trailing" constant="16" id="N0c-gx-Pha"/>
+                <constraint firstItem="Gd6-kv-mq3" firstAttribute="leading" secondItem="VOA-7n-CxG" secondAttribute="trailing" id="MkW-SU-M6x"/>
                 <constraint firstItem="VEi-gu-Mgi" firstAttribute="top" secondItem="Gd6-kv-mq3" secondAttribute="bottom" id="Qo0-Hd-ftF"/>
                 <constraint firstItem="buz-mZ-IsI" firstAttribute="top" secondItem="icA-XB-JzI" secondAttribute="bottom" id="UbI-6n-ItT"/>
-                <constraint firstItem="3Jg-P5-xKc" firstAttribute="leading" secondItem="SVU-Ay-JSp" secondAttribute="trailing" constant="16" id="aDD-BC-BQ4"/>
+                <constraint firstItem="buz-mZ-IsI" firstAttribute="leading" secondItem="VOA-7n-CxG" secondAttribute="trailing" id="ZKK-jK-cG9"/>
+                <constraint firstItem="icA-XB-JzI" firstAttribute="leading" secondItem="VOA-7n-CxG" secondAttribute="trailing" id="ZWz-zN-teu"/>
                 <constraint firstItem="Bix-Zk-Ala" firstAttribute="trailing" secondItem="rJD-GX-txd" secondAttribute="trailing" constant="8" id="asV-WJ-7pA"/>
-                <constraint firstItem="SVU-Ay-JSp" firstAttribute="leading" secondItem="Bix-Zk-Ala" secondAttribute="leading" id="f1I-qo-pHU"/>
                 <constraint firstItem="HA0-OF-Mrp" firstAttribute="leading" secondItem="3Jg-P5-xKc" secondAttribute="trailing" constant="8" id="fZ9-y8-wHE"/>
                 <constraint firstItem="Bix-Zk-Ala" firstAttribute="trailing" secondItem="buz-mZ-IsI" secondAttribute="trailing" constant="8" id="gni-yt-127"/>
+                <constraint firstItem="VOA-7n-CxG" firstAttribute="leading" secondItem="Bix-Zk-Ala" secondAttribute="leading" id="lrM-ZE-Xf8"/>
+                <constraint firstAttribute="bottom" secondItem="VOA-7n-CxG" secondAttribute="bottom" id="nWI-2P-ihE"/>
                 <constraint firstItem="Bix-Zk-Ala" firstAttribute="trailing" secondItem="icA-XB-JzI" secondAttribute="trailing" constant="8" id="wbs-eY-iEx"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

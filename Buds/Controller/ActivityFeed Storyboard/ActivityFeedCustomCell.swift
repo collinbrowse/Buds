@@ -30,7 +30,7 @@ class ActivityFeedCustomCell: UITableViewCell {
         nameTextView.text = ""
         timeTextView.text = ""
         locationTextView.text = ""
-        descriptionTextView.text = ""
+        
         strainTextView.text = ""
         ratingTextView.text = ""
         smokingStyleTextView.text = ""
