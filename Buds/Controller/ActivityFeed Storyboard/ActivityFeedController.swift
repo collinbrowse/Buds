@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SVProgressHUD
 
 class ActivityFeedController: UITableViewController {
     
@@ -42,6 +43,7 @@ class ActivityFeedController: UITableViewController {
             // If we get a user object back
             if let user = user {
                 self.user = user
+                SVProgressHUD.show()
                 self.displayActivityFeed()
             }
             else {
@@ -100,11 +102,10 @@ class ActivityFeedController: UITableViewController {
                             }
                         }
                     }
-
-                    
                 }
             }
         }
+        SVProgressHUD.dismiss()
     }
     
 }
@@ -130,7 +131,7 @@ extension ActivityFeedController {
             if let photoURL = activities[indexPath.row].profilePictureURL {
                 
                 let storageRef = Storage.storage().reference(forURL: photoURL)
-                let taskReference = storageRef.getData(maxSize: 4*1024*1024, completion: { [weak self] (data, error) in
+                storageRef.getData(maxSize: 4*1024*1024, completion: { [weak self] (data, error) in
                     
                     if let error = error {
                         print("There was an error getting the profile picture: \(error.localizedDescription)")

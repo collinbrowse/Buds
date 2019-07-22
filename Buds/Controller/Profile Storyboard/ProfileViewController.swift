@@ -77,7 +77,7 @@ class ProfileViewController: UIViewController {
                 if let profilePictureURL = value?["profilePicture"] as? String {
                     // Get the Profile Picture from Firebase Storage
                     let storageRef = Storage.storage().reference(forURL: profilePictureURL)
-                    let taskReference = storageRef.getData(maxSize: 4*1024*1024, completion: { [weak self] (data, error) in
+                    storageRef.getData(maxSize: 4*1024*1024, completion: { [weak self] (data, error) in
                         if let error = error {
                             print("There was an error getting the profile picture: \(error.localizedDescription)")
                             return

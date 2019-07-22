@@ -250,7 +250,7 @@
                             </scopeButtonTitles>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="6TL-W4-dtb">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="locationCell" id="6TL-W4-dtb">
                                 <rect key="frame" x="0.0" y="84" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6TL-W4-dtb" id="GDb-8M-TBE">
@@ -459,6 +459,6 @@
         <image name="weed_background" width="556" height="791"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3jz-L0-6BJ"/>
+        <segue reference="dlC-V7-xSn"/>
     </inferredMetricsTieBreakers>
 </document>
