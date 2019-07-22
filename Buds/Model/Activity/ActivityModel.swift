@@ -21,5 +21,6 @@ class ActivityModel: NSObject {
     var user: String?
     var name: String? 
     var profilePictureURL: String?
+    var note: String?
 
 }

@@ -124,6 +124,7 @@ extension ActivityFeedController {
             cell.strainTextView.text = activities[indexPath.row].strain
             cell.ratingTextView.text = activities[indexPath.row].rating
             cell.smokingStyleTextView.text = activities[indexPath.row].smoking_style
+            cell.noteTextView.text = activities[indexPath.row].note
             
             // Grab the Photo From Firebase Storage
             if let photoURL = activities[indexPath.row].profilePictureURL {

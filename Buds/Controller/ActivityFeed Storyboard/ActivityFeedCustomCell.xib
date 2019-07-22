@@ -17,67 +17,65 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Name" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Jg-P5-xKc" userLabel="Name Text View">
-                    <rect key="frame" x="82" y="8" width="319" height="32"/>
+                    <rect key="frame" x="82" y="8" width="319" height="22"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="32" id="uAF-PF-TDA"/>
+                        <constraint firstAttribute="height" constant="22" id="uAF-PF-TDA"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Location" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icA-XB-JzI" userLabel="Location Text View">
-                    <rect key="frame" x="82" y="40" width="359" height="22"/>
+                    <rect key="frame" x="82" y="30" width="359" height="12"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" notEnabled="YES"/>
                     </accessibility>
                     <constraints>
-                        <constraint firstAttribute="height" constant="22" id="oB3-0T-W7c"/>
+                        <constraint firstAttribute="height" constant="12" id="oB3-0T-W7c"/>
                     </constraints>
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="9h" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HA0-OF-Mrp" userLabel="Time Text View">
-                    <rect key="frame" x="409" y="8" width="32" height="32"/>
+                    <rect key="frame" x="409" y="8" width="32" height="22"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="32" id="3we-3n-gPE"/>
-                        <constraint firstAttribute="height" constant="32" id="LMX-fR-Imb"/>
+                        <constraint firstAttribute="height" constant="22" id="LMX-fR-Imb"/>
                     </constraints>
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buz-mZ-IsI" userLabel="Description Text View">
-                    <rect key="frame" x="82" y="62" width="359" height="60"/>
+                    <rect key="frame" x="82" y="42" width="359" height="29.5"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="60" id="aeo-kH-i3L"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="aeo-kH-i3L"/>
                     </constraints>
-                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
-                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Strain" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rJD-GX-txd" userLabel="Strain Text View">
-                    <rect key="frame" x="82" y="122" width="359" height="22"/>
+                    <rect key="frame" x="82" y="71.5" width="359" height="20"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="22" id="NyH-eU-62o"/>
+                        <constraint firstAttribute="height" constant="20" id="NyH-eU-62o"/>
                     </constraints>
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Rating" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gd6-kv-mq3" userLabel="Rating Text View">
-                    <rect key="frame" x="82" y="144" width="359" height="22"/>
+                    <rect key="frame" x="82" y="91.5" width="359" height="20"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="22" id="cpi-p2-Kxa"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="g4C-sT-BQp"/>
+                        <constraint firstAttribute="height" constant="20" id="g4C-sT-BQp"/>
                     </constraints>
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VOA-7n-CxG">
@@ -99,15 +97,13 @@
                     </constraints>
                 </view>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Smoking Style" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VEi-gu-Mgi" userLabel="Smoking Style Text View">
-                    <rect key="frame" x="82" y="166" width="359" height="22"/>
+                    <rect key="frame" x="82" y="111.5" width="359" height="20"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="Wft-QK-Sx8"/>
-                        <constraint firstAttribute="height" constant="22" id="ijo-7Z-bx5"/>
-                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="22" id="wHa-Kd-OVt"/>
+                        <constraint firstAttribute="height" constant="20" id="ijo-7Z-bx5"/>
                     </constraints>
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
             </subviews>
@@ -141,9 +137,9 @@
             <viewLayoutGuide key="safeArea" id="Bix-Zk-Ala"/>
             <connections>
                 <outlet property="RatingTextView" destination="Gd6-kv-mq3" id="EDl-Vl-DDd"/>
-                <outlet property="descriptionTextView" destination="buz-mZ-IsI" id="etc-jU-hCO"/>
                 <outlet property="locationTextView" destination="icA-XB-JzI" id="dJV-8m-KiX"/>
                 <outlet property="nameTextView" destination="3Jg-P5-xKc" id="eNQ-1B-Sjm"/>
+                <outlet property="noteTextView" destination="buz-mZ-IsI" id="KB8-zO-XQb"/>
                 <outlet property="profilePictureImageView" destination="SVU-Ay-JSp" id="DFV-Qh-ufA"/>
                 <outlet property="ratingTextView" destination="Gd6-kv-mq3" id="hlY-5C-Azd"/>
                 <outlet property="smokingStyleTextView" destination="VEi-gu-Mgi" id="Nxl-FK-kRu"/>

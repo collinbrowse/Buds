@@ -34,6 +34,7 @@ class ActivityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        noteTextField.becomeFirstResponder()
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -89,6 +90,7 @@ class ActivityViewController: UIViewController {
         activityDetailsDict["rating"] = ratingPlaceholderTextView.text
         activityDetailsDict["strain"] = strainPlaceholderTextView.text
         activityDetailsDict["location"] = locationPlaceholderTextView.text
+        activityDetailsDict["note"] = noteTextField.text
         let userID = user?.uid ?? ""
         
         // Submit the Activity
@@ -101,6 +103,7 @@ class ActivityViewController: UIViewController {
             ratingPlaceholderTextView.text = ""
             strainPlaceholderTextView.text = ""
             locationPlaceholderTextView.text = ""
+            noteTextField.text = ""
         }
         else {
             showAlert(success: didAddActivity, alertMessage: "Please Try Again")
