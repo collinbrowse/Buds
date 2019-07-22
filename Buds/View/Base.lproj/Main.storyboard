@@ -225,7 +225,7 @@
                         <outlet property="profilePictureImageView" destination="hZS-mg-5bX" id="Uqs-eD-S9V"/>
                         <outlet property="usernameTextfield" destination="Wy9-fR-b58" id="10T-ip-aK2"/>
                         <segue destination="Msz-Cy-TPC" kind="showDetail" identifier="goToHome" id="3jz-L0-6BJ"/>
-                        <segue destination="IIi-Fe-Pbg" kind="show" identifier="goToLocationSearch" id="fUm-dj-R7A"/>
+                        <segue destination="IIi-Fe-Pbg" kind="presentation" identifier="goToLocationSearch" id="fUm-dj-R7A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4nR-xh-ezQ" userLabel="First Responder" sceneMemberID="firstResponder"/>

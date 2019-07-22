@@ -92,7 +92,7 @@ extension LocationSearchBarController {
         locationDelegate?.setSelectedLocation(location: searchResults[indexPath.row].title)
         
         // Head back to RegisterViewController
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
 
     }
 }
