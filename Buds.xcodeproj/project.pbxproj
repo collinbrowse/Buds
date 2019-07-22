@@ -16,6 +16,7 @@
 		BE02A33722E2562000431854 /* ActivityFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02A33522E2562000431854 /* ActivityFeedController.swift */; };
 		BE02A33A22E2572F00431854 /* ActivityFeedCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE02A33922E2572F00431854 /* ActivityFeedCustomCell.xib */; };
 		BE02A33C22E2581800431854 /* ActivityFeedCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02A33B22E2581800431854 /* ActivityFeedCustomCell.swift */; };
+		BE02A33E22E6436600431854 /* NewActivityLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02A33D22E6436600431854 /* NewActivityLocationController.swift */; };
 		BE03D2A722C2676E0059B587 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03D2A622C2676E0059B587 /* WelcomeViewController.swift */; };
 		BE03D2A922C269060059B587 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03D2A822C269060059B587 /* LogInViewController.swift */; };
 		BE03D2AB22C269730059B587 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03D2AA22C269730059B587 /* RegisterViewController.swift */; };
@@ -75,6 +76,7 @@
 		BE02A33522E2562000431854 /* ActivityFeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedController.swift; sourceTree = "<group>"; };
 		BE02A33922E2572F00431854 /* ActivityFeedCustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityFeedCustomCell.xib; sourceTree = "<group>"; };
 		BE02A33B22E2581800431854 /* ActivityFeedCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedCustomCell.swift; sourceTree = "<group>"; };
+		BE02A33D22E6436600431854 /* NewActivityLocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityLocationController.swift; sourceTree = "<group>"; };
 		BE03D2A622C2676E0059B587 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		BE03D2A822C269060059B587 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		BE03D2AA22C269730059B587 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				BE747FBA22CAAD9800D071FD /* ActivityViewController.swift */,
 				BE747FC122CBD54B00D071FD /* SmokingActivityTableViewController.swift */,
 				BE747FC522CD1E9E00D071FD /* ActivityDetailsDelegate.swift */,
+				BE02A33D22E6436600431854 /* NewActivityLocationController.swift */,
 			);
 			path = "Activity Storyboard";
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 				BE747FBB22CAAD9800D071FD /* ActivityViewController.swift in Sources */,
 				BE02A32522DE557200431854 /* LocationSearchBarController.swift in Sources */,
 				BE41467B22BA91950009A738 /* ActivityFunctions.swift in Sources */,
+				BE02A33E22E6436600431854 /* NewActivityLocationController.swift in Sources */,
 				BE41467D22BA9CE50009A738 /* Birthday.swift in Sources */,
 				BE03D2A922C269060059B587 /* LogInViewController.swift in Sources */,
 				BE41464422BA718C0009A738 /* AppDelegate.swift in Sources */,

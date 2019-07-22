@@ -55,26 +55,35 @@ class ActivityViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nav = segue.destination as? SmokingActivityTableViewController {
             nav.delegate = self
-        }
-        if segue.identifier == "goToSmokingStyle" {
-            if let destinationVC = segue.destination as? SmokingActivityTableViewController {
-                destinationVC.dataToRetrieve = "smoking_styles"
+        
+            if segue.identifier == "goToSmokingStyle" {
+                if let destinationVC = segue.destination as? SmokingActivityTableViewController {
+                    destinationVC.dataToRetrieve = "smoking_styles"
+                }
             }
-        }
-        else if segue.identifier == "goToRating" {
-            if let destinationVC = segue.destination as? SmokingActivityTableViewController {
-                destinationVC.dataToRetrieve = "rating"
+            else if segue.identifier == "goToRating" {
+                if let destinationVC = segue.destination as? SmokingActivityTableViewController {
+                    destinationVC.dataToRetrieve = "rating"
+                }
             }
-        }
-        else if segue.identifier == "goToStrain" {
-            if let destinationVC = segue.destination as? SmokingActivityTableViewController {
-                destinationVC.dataToRetrieve = "strain"
+            else if segue.identifier == "goToStrain" {
+                if let destinationVC = segue.destination as? SmokingActivityTableViewController {
+                    destinationVC.dataToRetrieve = "strain"
+                }
             }
+//            else if segue.identifier == "goToLocation" {
+//                if let destinationVC = segue.destination as? SmokingActivityTableViewController {
+//                    destinationVC.dataToRetrieve = "goToLocation"
+//                }
+//            }
         }
-        else if segue.identifier == "goToLocation" {
-            if let destinationVC = segue.destination as? SmokingActivityTableViewController {
-                destinationVC.dataToRetrieve = "location"
-            }
+        else if let nav = segue.destination as? NewActivityLocationController {
+            nav.locationDelegate = self
+//            if segue.identifier == "goToLocation" {
+//                if let destinationVC = segue.destination as? NewActivityLocationController {
+//
+//                }
+//            }
         }
     }
     
@@ -172,10 +181,18 @@ extension ActivityViewController: ActivityDetailsDelegate {
         else if detail == "strain" {
             strainPlaceholderTextView.text = value
         }
-        else if detail == "location" {
-            locationPlaceholderTextView.text = value
-        }
-        print(value)
+//        else if detail == "location" {
+//            locationPlaceholderTextView.text = value
+//        }
+    }
+    
+    
+}
+
+extension ActivityViewController: LocationSearchDelegate {
+    
+    func setSelectedLocation(location: String) {
+        locationPlaceholderTextView.text = location
     }
     
     

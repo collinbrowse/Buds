@@ -1,70 +1,62 @@
 //
-//  LocationSearchBarController.swift
+//  NewActivityLocationController.swift
 //  Buds
 //
-//  Created by Collin Browse on 7/16/19.
+//  Created by Collin Browse on 7/22/19.
 //  Copyright © 2019 Collin Browse. All rights reserved.
 //
 
-import Foundation
 import UIKit
+import Foundation
 import MapKit
 
-class LocationSearchBarController: UITableViewController {
+class NewActivityLocationController: UITableViewController {
     
-    // Search Bar & Table UI Items
-    @IBOutlet weak var searchResultsTableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
+    // Search bar & Table UI Items
+    @IBOutlet weak var newActivityLocationTableView: UITableView!
+    @IBOutlet weak var newActivityLocationSearchBar: UISearchBar!
     
     // MapKit AutoCompleter
     var searchCompleter = MKLocalSearchCompleter()
     var searchResults = [MKLocalSearchCompletion]()
     
-    // Delegate to send back location data
+    // Delegate to receive the location data
     var locationDelegate: LocationSearchDelegate?
     
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // The Search Completer knows this class is where to send its data
         searchCompleter.delegate = self
-        // The search bar knows this class responds to the protocol
-        searchBar.delegate = self
-        // Remove Points of interest from the search bar
+        newActivityLocationSearchBar.delegate = self
         searchCompleter.filterType = .locationsOnly
-        // Make the search Bar in focus / first responder
-        searchBar.becomeFirstResponder()
-        let backgroundImage = UIImage(named: "weed_background")
-        let backgroundView = UIImageView(image: backgroundImage)
-        searchResultsTableView.backgroundView = backgroundView
-
-        searchResultsTableView.separatorStyle = .none
+        newActivityLocationSearchBar.becomeFirstResponder()
+        newActivityLocationTableView.separatorStyle = .none
     }
 }
 
+
+
 // Extension for the Search Bar
 // Says that this class conforms to the UISearchBar Protocol
-extension LocationSearchBarController: UISearchBarDelegate {
-    
+extension NewActivityLocationController: UISearchBarDelegate {
+
     // What should we do when the text of the search bar changes
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.count > 0 {
+            // Record that text
             searchCompleter.queryFragment = searchText
+            print(searchText)
         }
     }
 }
 
-// Extension for MKLocalSearchCompleter
-// An MKLocalSearchCompleter object allows you to retreive autocomplete suggestions
-// for your own map-based controls. As the user types text, you feed the current text
-// string into the search completer object, which delivers possible string completions
-// that match locations or points of interest
-extension LocationSearchBarController: MKLocalSearchCompleterDelegate {
+// Handles functions for the LocalSearchCompleter
+extension NewActivityLocationController: MKLocalSearchCompleterDelegate {
     
+    // Use this function to update your app with the new search results
+    // Called when the specified search completer updates its array of search completions.
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         searchResults = completer.results
-        searchResultsTableView.reloadData()
+        newActivityLocationTableView.reloadData()
     }
     
     // Method to handle an error
@@ -73,16 +65,20 @@ extension LocationSearchBarController: MKLocalSearchCompleterDelegate {
     }
 }
 
-// Extension for TableView Methods
-extension LocationSearchBarController {
+
+
+// Extension for the Table View methods
+extension NewActivityLocationController {
     
     // How many items should we show?
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults.count
     }
     
-    // What should each cell look like?
+    // What should we put in each cell?
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // Use a default cell of type .subtitle
         let searchResult = searchResults[indexPath.row]
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         cell.textLabel?.text = searchResult.title
@@ -90,14 +86,15 @@ extension LocationSearchBarController {
         return cell
     }
     
+    // What happens if we select a row?
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
         
-        // Pass the location back to RegisterViewController using the delegate/protocol we created
+        // Set the Placeholder Text Field in the previous view controller
         locationDelegate?.setSelectedLocation(location: searchResults[indexPath.row].title)
         
-        self.dismiss(animated: true, completion: nil)
+        tableView.deselectRow(at: indexPath, animated: true)
         
+        // Head back to view controller that got us here
+        self.navigationController?.popViewController(animated: true)
     }
 }
-
