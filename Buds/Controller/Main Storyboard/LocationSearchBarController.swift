@@ -34,7 +34,12 @@ class LocationSearchBarController: UITableViewController {
         searchCompleter.filterType = .locationsOnly
         // Make the search Bar in focus / first responder
         searchBar.becomeFirstResponder()
-        
+        let backgroundImage = UIImage(named: "weed_background")
+        let backgroundView = UIImageView(image: backgroundImage)
+        searchResultsTableView.backgroundView = backgroundView
+        backgroundView.safetyAreaBottomAnchor = searchResultsTableView.safeAreaLayoutGuide.bottomAnchor
+
+        searchResultsTableView.separatorStyle = .none
     }
 }
 
