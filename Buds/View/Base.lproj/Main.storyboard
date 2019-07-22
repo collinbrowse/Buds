@@ -402,10 +402,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="N0T-a4-foq" kind="relationship" relationship="viewControllers" id="jdp-Vz-Uke"/>
-                        <segue destination="Zlj-q1-AWQ" kind="relationship" relationship="viewControllers" id="HJ1-hd-bk8"/>
-                        <segue destination="WLc-Xc-379" kind="relationship" relationship="viewControllers" id="iOX-bs-Gnc"/>
-                        <segue destination="dQU-QY-h3r" kind="relationship" relationship="viewControllers" id="qPS-xj-rlb"/>
+                        <segue destination="WLc-Xc-379" kind="relationship" relationship="viewControllers" id="rsz-k6-8DM"/>
+                        <segue destination="N0T-a4-foq" kind="relationship" relationship="viewControllers" id="A31-Zf-YhA"/>
+                        <segue destination="dQU-QY-h3r" kind="relationship" relationship="viewControllers" id="GkJ-6H-61q"/>
+                        <segue destination="Zlj-q1-AWQ" kind="relationship" relationship="viewControllers" id="hNv-VO-zlh"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RIr-gd-2tV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -420,7 +420,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1tB-eq-KgL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2774" y="-88"/>
+            <point key="canvasLocation" x="2774" y="15"/>
         </scene>
         <!--Activity-->
         <scene sceneID="VMc-fR-bOw">
@@ -440,7 +440,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P4Z-Vd-bKO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2782" y="47"/>
+            <point key="canvasLocation" x="2779" y="66"/>
         </scene>
         <!--ActivityFeed-->
         <scene sceneID="2rl-y8-kNB">
@@ -450,7 +450,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Utv-Ky-p6h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2800" y="115"/>
+            <point key="canvasLocation" x="2797" y="-61"/>
         </scene>
     </scenes>
     <resources>

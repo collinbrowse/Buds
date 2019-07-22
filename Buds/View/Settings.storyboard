@@ -10,10 +10,12 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Settings-->
         <scene sceneID="Hfw-V7-YJh">
             <objects>
                 <navigationController id="pVC-7B-qbp" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" id="7GP-FX-kyX"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ymw-77-1PI">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -53,7 +55,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Wt-zF-MhT"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="more" id="ib1-t4-xL7"/>
                     <navigationItem key="navigationItem" title="Settings" id="IN5-ub-Jst">
                         <barButtonItem key="backBarButtonItem" title="Back" id="QfL-mI-J7o"/>
                     </navigationItem>

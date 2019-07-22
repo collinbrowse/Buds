@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -117,7 +116,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5E3-Ka-eW5"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="UbB-aM-IvU"/>
                     <navigationItem key="navigationItem" title="Profile Picture" id="a2X-a5-277"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -133,11 +131,13 @@
             </objects>
             <point key="canvasLocation" x="5069.5652173913049" y="1050.6696428571429"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Profile-->
         <scene sceneID="4Vp-3C-WmC">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0C0-6J-lLY" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" id="UbB-aM-IvU"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Q9c-Y7-rYd">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
