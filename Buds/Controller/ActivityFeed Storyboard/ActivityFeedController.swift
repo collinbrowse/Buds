@@ -79,16 +79,16 @@ class ActivityFeedController: UITableViewController {
                     
                     // Firebase has all the information besides the User's actual name. Let's add that as well
                     activity.setValuesForKeys(dictionary)
-                    activity.name = self.user?.displayName
-
+                    //activity.name = self.user?.displayName
+                    
                     // Get the Profile Information from Realtime Database
                     self.ref.child("users").child(dictionary["user"] as! String).observeSingleEvent(of: .value) { (snapshot) in
                         
                         if let dict = snapshot.value as? [String: Any] {
                             
                             // Grab the URL of the Photo in Firebase Storage
-                            let photoURL = dict["profilePicture"]
-                            activity.profilePictureURL = photoURL as? String
+                            activity.profilePictureURL = dict["profilePicture"] as? String
+                            activity.name = dict["name"] as? String 
                             
                             // Now add the activity to the activities array
                             self.activities.append(activity)
