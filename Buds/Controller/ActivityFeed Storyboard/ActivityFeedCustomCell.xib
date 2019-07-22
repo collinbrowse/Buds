@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="449" height="200"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Name" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Jg-P5-xKc" userLabel="Name Text View">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Name" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Jg-P5-xKc" userLabel="Name Text View">
                     <rect key="frame" x="82" y="8" width="319" height="22"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -25,7 +25,7 @@
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Location" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icA-XB-JzI" userLabel="Location Text View">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Location" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icA-XB-JzI" userLabel="Location Text View">
                     <rect key="frame" x="82" y="30" width="359" height="12"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <accessibility key="accessibilityConfiguration">
@@ -38,7 +38,7 @@
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="9h" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HA0-OF-Mrp" userLabel="Time Text View">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="9h" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HA0-OF-Mrp" userLabel="Time Text View">
                     <rect key="frame" x="409" y="8" width="32" height="22"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
