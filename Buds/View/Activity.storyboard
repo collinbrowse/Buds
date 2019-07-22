@@ -18,10 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CAC-5j-Lfy" userLabel="Wrapping Note View">
-                                <rect key="frame" x="20" y="0.0" width="374" height="250"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CAC-5j-Lfy" userLabel="Wrapping Profile View">
+                                <rect key="frame" x="20" y="0.0" width="374" height="70"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person-icon" translatesAutoresizingMaskIntoConstraints="NO" id="9Af-Bt-IL6">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person-icon" translatesAutoresizingMaskIntoConstraints="NO" id="9Af-Bt-IL6">
                                         <rect key="frame" x="8" y="8" width="44" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="2xM-zq-31E"/>
@@ -48,171 +48,25 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" placeholder="What have you been smoking?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DVi-3U-qMC" userLabel="Note Text Field">
-                                        <rect key="frame" x="6" y="68" width="368" height="166"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="DVi-3U-qMC" firstAttribute="leading" secondItem="CAC-5j-Lfy" secondAttribute="leading" constant="6" id="3GE-es-3Gg"/>
-                                    <constraint firstItem="DVi-3U-qMC" firstAttribute="top" secondItem="9Af-Bt-IL6" secondAttribute="bottom" constant="16" id="9Hp-kR-Sx1"/>
                                     <constraint firstItem="Z13-R7-w1u" firstAttribute="leading" secondItem="9Af-Bt-IL6" secondAttribute="trailing" constant="16" id="DKM-WV-Zho"/>
                                     <constraint firstItem="9Af-Bt-IL6" firstAttribute="leading" secondItem="CAC-5j-Lfy" secondAttribute="leading" constant="8" id="LK2-5b-tiK"/>
                                     <constraint firstAttribute="trailing" secondItem="Z13-R7-w1u" secondAttribute="trailing" id="W3v-ib-Ors"/>
                                     <constraint firstItem="9Af-Bt-IL6" firstAttribute="top" secondItem="CAC-5j-Lfy" secondAttribute="top" constant="8" id="ZYy-Ag-3b5"/>
-                                    <constraint firstAttribute="bottom" secondItem="DVi-3U-qMC" secondAttribute="bottom" constant="16" id="dWe-dw-Ro6"/>
                                     <constraint firstAttribute="trailing" secondItem="GNQ-52-1gk" secondAttribute="trailing" id="dhu-q0-lQD"/>
                                     <constraint firstItem="GNQ-52-1gk" firstAttribute="leading" secondItem="9Af-Bt-IL6" secondAttribute="trailing" constant="16" id="hfM-aB-u54"/>
                                     <constraint firstItem="Z13-R7-w1u" firstAttribute="top" secondItem="CAC-5j-Lfy" secondAttribute="top" constant="8" id="mQ2-fS-0ND"/>
-                                    <constraint firstAttribute="height" constant="250" id="pGa-8x-6xn"/>
                                     <constraint firstItem="GNQ-52-1gk" firstAttribute="top" secondItem="Z13-R7-w1u" secondAttribute="bottom" id="vWX-qo-J9D"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="y1G-7g-cAg"/>
-                                    <constraint firstAttribute="trailing" secondItem="DVi-3U-qMC" secondAttribute="trailing" id="zh2-3F-NtW"/>
+                                    <constraint firstAttribute="height" constant="70" id="y1G-7g-cAg"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pke-H8-bPg" userLabel="Wrapping Details View">
-                                <rect key="frame" x="20" y="250" width="374" height="524"/>
+                                <rect key="frame" x="20" y="70" width="374" height="704"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAu-VG-3cI" userLabel="Wrapping Smoking Style View">
-                                        <rect key="frame" x="0.0" y="8" width="374" height="44"/>
-                                        <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Smoking Style" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtG-zB-7GT" userLabel="Smoking Style Text View">
-                                                <rect key="frame" x="0.0" y="0.0" width="150" height="44"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="150" id="ePc-MK-sOt"/>
-                                                    <constraint firstAttribute="height" constant="44" id="pZC-NY-bbf"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Je-7A-xfU" userLabel="Smoking Style Right Carrot Button">
-                                                <rect key="frame" x="350" y="10" width="24" height="24"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="24" id="DFc-X6-xHf"/>
-                                                    <constraint firstAttribute="width" constant="24" id="hSX-2b-7de"/>
-                                                </constraints>
-                                                <state key="normal" backgroundImage="right_carrot_icon"/>
-                                                <connections>
-                                                    <action selector="smokingStylePressed:" destination="oJC-zi-Pjq" eventType="touchUpInside" id="Pxd-fX-JCb"/>
-                                                </connections>
-                                            </button>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LqC-Qa-ILQ" userLabel="Smoking Style Placeholder Text View">
-                                                <rect key="frame" x="158" y="6" width="184" height="32"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="vtG-zB-7GT" firstAttribute="leading" secondItem="hAu-VG-3cI" secondAttribute="leading" id="09Z-ae-iot"/>
-                                            <constraint firstAttribute="bottom" secondItem="8Je-7A-xfU" secondAttribute="bottom" constant="10" id="6ZS-HL-bAg"/>
-                                            <constraint firstItem="8Je-7A-xfU" firstAttribute="top" secondItem="hAu-VG-3cI" secondAttribute="top" constant="10" id="Gt9-NH-5bZ"/>
-                                            <constraint firstAttribute="trailing" secondItem="8Je-7A-xfU" secondAttribute="trailing" id="Hce-YF-oaE"/>
-                                            <constraint firstItem="vtG-zB-7GT" firstAttribute="top" secondItem="hAu-VG-3cI" secondAttribute="top" id="Hr6-BL-sxC"/>
-                                            <constraint firstItem="LqC-Qa-ILQ" firstAttribute="top" secondItem="hAu-VG-3cI" secondAttribute="top" constant="6" id="iMP-ps-ZDy"/>
-                                            <constraint firstAttribute="bottom" secondItem="LqC-Qa-ILQ" secondAttribute="bottom" constant="6" id="jNX-uB-Zaw"/>
-                                            <constraint firstAttribute="bottom" secondItem="vtG-zB-7GT" secondAttribute="bottom" id="mmi-1Z-tud"/>
-                                            <constraint firstItem="LqC-Qa-ILQ" firstAttribute="leading" secondItem="vtG-zB-7GT" secondAttribute="trailing" constant="8" id="qg8-O7-BE7"/>
-                                            <constraint firstAttribute="height" constant="44" id="usc-0t-DBm"/>
-                                            <constraint firstItem="8Je-7A-xfU" firstAttribute="leading" secondItem="LqC-Qa-ILQ" secondAttribute="trailing" constant="8" id="zwO-PG-DNC"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qpq-DL-yXH" userLabel="Wrapping Location View">
-                                        <rect key="frame" x="0.0" y="68" width="374" height="44"/>
-                                        <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Location" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Hw-BK-jlN" userLabel="Location Text View">
-                                                <rect key="frame" x="0.0" y="0.0" width="150" height="44"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="1bW-cb-0cJ"/>
-                                                    <constraint firstAttribute="width" constant="150" id="7Z0-K2-oyg"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MdF-d5-KxZ" userLabel="Location Right Carrot Button">
-                                                <rect key="frame" x="350" y="10" width="24" height="24"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="24" id="KwM-lV-1Av"/>
-                                                    <constraint firstAttribute="width" constant="24" id="eTR-Zz-PzL"/>
-                                                </constraints>
-                                                <state key="normal" backgroundImage="right_carrot_icon"/>
-                                                <connections>
-                                                    <action selector="locationPressed:" destination="oJC-zi-Pjq" eventType="touchUpInside" id="rwJ-vF-K1m"/>
-                                                </connections>
-                                            </button>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a3h-Yc-RCA" userLabel="Location Placeholder Text View">
-                                                <rect key="frame" x="158" y="6" width="184" height="32"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="MdF-d5-KxZ" firstAttribute="leading" secondItem="a3h-Yc-RCA" secondAttribute="trailing" constant="8" id="0kh-qx-uex"/>
-                                            <constraint firstItem="a3h-Yc-RCA" firstAttribute="top" secondItem="qpq-DL-yXH" secondAttribute="top" constant="6" id="GOy-Au-PZR"/>
-                                            <constraint firstAttribute="trailing" secondItem="MdF-d5-KxZ" secondAttribute="trailing" id="GkF-nX-v3M"/>
-                                            <constraint firstItem="a3h-Yc-RCA" firstAttribute="leading" secondItem="7Hw-BK-jlN" secondAttribute="trailing" constant="8" id="ITz-uG-OVi"/>
-                                            <constraint firstAttribute="bottom" secondItem="a3h-Yc-RCA" secondAttribute="bottom" constant="6" id="M6W-E3-bl3"/>
-                                            <constraint firstAttribute="bottom" secondItem="7Hw-BK-jlN" secondAttribute="bottom" id="OWP-Ib-nCM"/>
-                                            <constraint firstAttribute="bottom" secondItem="MdF-d5-KxZ" secondAttribute="bottom" constant="10" id="OeE-3h-p4x"/>
-                                            <constraint firstItem="7Hw-BK-jlN" firstAttribute="leading" secondItem="qpq-DL-yXH" secondAttribute="leading" id="QYJ-si-e9q"/>
-                                            <constraint firstItem="7Hw-BK-jlN" firstAttribute="top" secondItem="qpq-DL-yXH" secondAttribute="top" id="gY3-kX-Vuh"/>
-                                            <constraint firstItem="MdF-d5-KxZ" firstAttribute="top" secondItem="qpq-DL-yXH" secondAttribute="top" constant="10" id="m1d-8y-FUy"/>
-                                            <constraint firstAttribute="height" constant="44" id="oW7-5o-iOj"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4go-2Y-JYk" userLabel="Wrapping Rating View">
-                                        <rect key="frame" x="0.0" y="128" width="374" height="44"/>
-                                        <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Rating" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZ6-CT-58m" userLabel="Rating Text View">
-                                                <rect key="frame" x="0.0" y="0.0" width="150" height="44"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="C76-a7-0D0"/>
-                                                    <constraint firstAttribute="width" constant="150" id="L46-s6-pdh"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E95-8e-av1" userLabel="Rating Right Carrot Button">
-                                                <rect key="frame" x="350" y="10" width="24" height="24"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="24" id="0tr-IV-jIN"/>
-                                                    <constraint firstAttribute="height" constant="24" id="RcO-r0-LgH"/>
-                                                </constraints>
-                                                <state key="normal" backgroundImage="right_carrot_icon"/>
-                                                <connections>
-                                                    <action selector="ratingPressed:" destination="oJC-zi-Pjq" eventType="touchUpInside" id="gVT-Sp-qtV"/>
-                                                </connections>
-                                            </button>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5MM-WP-YIk" userLabel="Rating Placeholder Text View">
-                                                <rect key="frame" x="158" y="6" width="184" height="32"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="5MM-WP-YIk" firstAttribute="leading" secondItem="zZ6-CT-58m" secondAttribute="trailing" constant="8" id="FPW-Og-eRt"/>
-                                            <constraint firstItem="zZ6-CT-58m" firstAttribute="leading" secondItem="4go-2Y-JYk" secondAttribute="leading" id="Gfj-nq-HOv"/>
-                                            <constraint firstItem="E95-8e-av1" firstAttribute="top" secondItem="4go-2Y-JYk" secondAttribute="top" constant="10" id="GnP-k4-nTw"/>
-                                            <constraint firstAttribute="trailing" secondItem="E95-8e-av1" secondAttribute="trailing" id="PEc-Qo-zpR"/>
-                                            <constraint firstAttribute="bottom" secondItem="zZ6-CT-58m" secondAttribute="bottom" id="Uxm-4y-ONw"/>
-                                            <constraint firstAttribute="bottom" secondItem="5MM-WP-YIk" secondAttribute="bottom" constant="6" id="Y6d-kc-2Qg"/>
-                                            <constraint firstAttribute="bottom" secondItem="E95-8e-av1" secondAttribute="bottom" constant="10" id="Ywv-dF-TaU"/>
-                                            <constraint firstItem="5MM-WP-YIk" firstAttribute="top" secondItem="4go-2Y-JYk" secondAttribute="top" constant="6" id="an9-Aq-2CJ"/>
-                                            <constraint firstItem="zZ6-CT-58m" firstAttribute="top" secondItem="4go-2Y-JYk" secondAttribute="top" id="jQj-Zs-XEt"/>
-                                            <constraint firstAttribute="height" constant="44" id="tTp-UW-kvI"/>
-                                            <constraint firstItem="E95-8e-av1" firstAttribute="leading" secondItem="5MM-WP-YIk" secondAttribute="trailing" constant="8" id="uqR-qe-gou"/>
-                                        </constraints>
-                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8QW-bx-ckq" userLabel="Wrapping Strain View">
-                                        <rect key="frame" x="0.0" y="188" width="374" height="44"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Strain" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tks-30-UiF" userLabel="Strain Text View">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="44"/>
@@ -256,21 +110,168 @@
                                             <constraint firstItem="Rbi-pb-EP3" firstAttribute="top" secondItem="8QW-bx-ckq" secondAttribute="top" constant="6" id="xgh-18-0IY"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAu-VG-3cI" userLabel="Wrapping Smoking Style View">
+                                        <rect key="frame" x="0.0" y="44" width="374" height="44"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Smoking Style" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtG-zB-7GT" userLabel="Smoking Style Text View">
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="44"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="ePc-MK-sOt"/>
+                                                    <constraint firstAttribute="height" constant="44" id="pZC-NY-bbf"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Je-7A-xfU" userLabel="Smoking Style Right Carrot Button">
+                                                <rect key="frame" x="350" y="10" width="24" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="24" id="DFc-X6-xHf"/>
+                                                    <constraint firstAttribute="width" constant="24" id="hSX-2b-7de"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="right_carrot_icon"/>
+                                                <connections>
+                                                    <action selector="smokingStylePressed:" destination="oJC-zi-Pjq" eventType="touchUpInside" id="Pxd-fX-JCb"/>
+                                                </connections>
+                                            </button>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LqC-Qa-ILQ" userLabel="Smoking Style Placeholder Text View">
+                                                <rect key="frame" x="158" y="6" width="184" height="32"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="vtG-zB-7GT" firstAttribute="leading" secondItem="hAu-VG-3cI" secondAttribute="leading" id="09Z-ae-iot"/>
+                                            <constraint firstAttribute="bottom" secondItem="8Je-7A-xfU" secondAttribute="bottom" constant="10" id="6ZS-HL-bAg"/>
+                                            <constraint firstItem="8Je-7A-xfU" firstAttribute="top" secondItem="hAu-VG-3cI" secondAttribute="top" constant="10" id="Gt9-NH-5bZ"/>
+                                            <constraint firstAttribute="trailing" secondItem="8Je-7A-xfU" secondAttribute="trailing" id="Hce-YF-oaE"/>
+                                            <constraint firstItem="vtG-zB-7GT" firstAttribute="top" secondItem="hAu-VG-3cI" secondAttribute="top" id="Hr6-BL-sxC"/>
+                                            <constraint firstItem="LqC-Qa-ILQ" firstAttribute="top" secondItem="hAu-VG-3cI" secondAttribute="top" constant="6" id="iMP-ps-ZDy"/>
+                                            <constraint firstAttribute="bottom" secondItem="LqC-Qa-ILQ" secondAttribute="bottom" constant="6" id="jNX-uB-Zaw"/>
+                                            <constraint firstAttribute="bottom" secondItem="vtG-zB-7GT" secondAttribute="bottom" id="mmi-1Z-tud"/>
+                                            <constraint firstItem="LqC-Qa-ILQ" firstAttribute="leading" secondItem="vtG-zB-7GT" secondAttribute="trailing" constant="8" id="qg8-O7-BE7"/>
+                                            <constraint firstAttribute="height" constant="44" id="usc-0t-DBm"/>
+                                            <constraint firstItem="8Je-7A-xfU" firstAttribute="leading" secondItem="LqC-Qa-ILQ" secondAttribute="trailing" constant="8" id="zwO-PG-DNC"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4go-2Y-JYk" userLabel="Wrapping Rating View">
+                                        <rect key="frame" x="0.0" y="88" width="374" height="44"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Rating" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZ6-CT-58m" userLabel="Rating Text View">
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="44"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="C76-a7-0D0"/>
+                                                    <constraint firstAttribute="width" constant="150" id="L46-s6-pdh"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E95-8e-av1" userLabel="Rating Right Carrot Button">
+                                                <rect key="frame" x="350" y="10" width="24" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="24" id="0tr-IV-jIN"/>
+                                                    <constraint firstAttribute="height" constant="24" id="RcO-r0-LgH"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="right_carrot_icon"/>
+                                                <connections>
+                                                    <action selector="ratingPressed:" destination="oJC-zi-Pjq" eventType="touchUpInside" id="gVT-Sp-qtV"/>
+                                                </connections>
+                                            </button>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5MM-WP-YIk" userLabel="Rating Placeholder Text View">
+                                                <rect key="frame" x="158" y="6" width="184" height="32"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="5MM-WP-YIk" firstAttribute="leading" secondItem="zZ6-CT-58m" secondAttribute="trailing" constant="8" id="FPW-Og-eRt"/>
+                                            <constraint firstItem="zZ6-CT-58m" firstAttribute="leading" secondItem="4go-2Y-JYk" secondAttribute="leading" id="Gfj-nq-HOv"/>
+                                            <constraint firstItem="E95-8e-av1" firstAttribute="top" secondItem="4go-2Y-JYk" secondAttribute="top" constant="10" id="GnP-k4-nTw"/>
+                                            <constraint firstAttribute="trailing" secondItem="E95-8e-av1" secondAttribute="trailing" id="PEc-Qo-zpR"/>
+                                            <constraint firstAttribute="bottom" secondItem="zZ6-CT-58m" secondAttribute="bottom" id="Uxm-4y-ONw"/>
+                                            <constraint firstAttribute="bottom" secondItem="5MM-WP-YIk" secondAttribute="bottom" constant="6" id="Y6d-kc-2Qg"/>
+                                            <constraint firstAttribute="bottom" secondItem="E95-8e-av1" secondAttribute="bottom" constant="10" id="Ywv-dF-TaU"/>
+                                            <constraint firstItem="5MM-WP-YIk" firstAttribute="top" secondItem="4go-2Y-JYk" secondAttribute="top" constant="6" id="an9-Aq-2CJ"/>
+                                            <constraint firstItem="zZ6-CT-58m" firstAttribute="top" secondItem="4go-2Y-JYk" secondAttribute="top" id="jQj-Zs-XEt"/>
+                                            <constraint firstAttribute="height" constant="44" id="tTp-UW-kvI"/>
+                                            <constraint firstItem="E95-8e-av1" firstAttribute="leading" secondItem="5MM-WP-YIk" secondAttribute="trailing" constant="8" id="uqR-qe-gou"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qpq-DL-yXH" userLabel="Wrapping Location View">
+                                        <rect key="frame" x="0.0" y="132" width="374" height="44"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Location" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Hw-BK-jlN" userLabel="Location Text View">
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="44"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="1bW-cb-0cJ"/>
+                                                    <constraint firstAttribute="width" constant="150" id="7Z0-K2-oyg"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MdF-d5-KxZ" userLabel="Location Right Carrot Button">
+                                                <rect key="frame" x="350" y="10" width="24" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="24" id="KwM-lV-1Av"/>
+                                                    <constraint firstAttribute="width" constant="24" id="eTR-Zz-PzL"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="right_carrot_icon"/>
+                                                <connections>
+                                                    <action selector="locationPressed:" destination="oJC-zi-Pjq" eventType="touchUpInside" id="rwJ-vF-K1m"/>
+                                                </connections>
+                                            </button>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a3h-Yc-RCA" userLabel="Location Placeholder Text View">
+                                                <rect key="frame" x="158" y="6" width="184" height="32"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="MdF-d5-KxZ" firstAttribute="leading" secondItem="a3h-Yc-RCA" secondAttribute="trailing" constant="8" id="0kh-qx-uex"/>
+                                            <constraint firstItem="a3h-Yc-RCA" firstAttribute="top" secondItem="qpq-DL-yXH" secondAttribute="top" constant="6" id="GOy-Au-PZR"/>
+                                            <constraint firstAttribute="trailing" secondItem="MdF-d5-KxZ" secondAttribute="trailing" id="GkF-nX-v3M"/>
+                                            <constraint firstItem="a3h-Yc-RCA" firstAttribute="leading" secondItem="7Hw-BK-jlN" secondAttribute="trailing" constant="8" id="ITz-uG-OVi"/>
+                                            <constraint firstAttribute="bottom" secondItem="a3h-Yc-RCA" secondAttribute="bottom" constant="6" id="M6W-E3-bl3"/>
+                                            <constraint firstAttribute="bottom" secondItem="7Hw-BK-jlN" secondAttribute="bottom" id="OWP-Ib-nCM"/>
+                                            <constraint firstAttribute="bottom" secondItem="MdF-d5-KxZ" secondAttribute="bottom" constant="10" id="OeE-3h-p4x"/>
+                                            <constraint firstItem="7Hw-BK-jlN" firstAttribute="leading" secondItem="qpq-DL-yXH" secondAttribute="leading" id="QYJ-si-e9q"/>
+                                            <constraint firstItem="7Hw-BK-jlN" firstAttribute="top" secondItem="qpq-DL-yXH" secondAttribute="top" id="gY3-kX-Vuh"/>
+                                            <constraint firstItem="MdF-d5-KxZ" firstAttribute="top" secondItem="qpq-DL-yXH" secondAttribute="top" constant="10" id="m1d-8y-FUy"/>
+                                            <constraint firstAttribute="height" constant="44" id="oW7-5o-iOj"/>
+                                        </constraints>
+                                    </view>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" placeholder="Provide some more description here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DVi-3U-qMC" userLabel="Note Text Field">
+                                        <rect key="frame" x="0.0" y="184" width="374" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="W5l-Nd-khB"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="8QW-bx-ckq" firstAttribute="leading" secondItem="pke-H8-bPg" secondAttribute="leading" id="7Jr-rj-fjx"/>
-                                    <constraint firstItem="hAu-VG-3cI" firstAttribute="top" secondItem="pke-H8-bPg" secondAttribute="top" constant="8" id="9Yl-fh-LBq"/>
                                     <constraint firstAttribute="trailing" secondItem="4go-2Y-JYk" secondAttribute="trailing" id="DC6-zq-8bH"/>
                                     <constraint firstItem="qpq-DL-yXH" firstAttribute="leading" secondItem="pke-H8-bPg" secondAttribute="leading" id="EMt-LJ-0HL"/>
                                     <constraint firstAttribute="trailing" secondItem="hAu-VG-3cI" secondAttribute="trailing" id="JkN-m4-z3O"/>
+                                    <constraint firstAttribute="trailing" secondItem="DVi-3U-qMC" secondAttribute="trailing" id="KPI-M4-lwj"/>
                                     <constraint firstItem="4go-2Y-JYk" firstAttribute="leading" secondItem="pke-H8-bPg" secondAttribute="leading" id="PAg-Px-wdO"/>
                                     <constraint firstAttribute="trailing" secondItem="qpq-DL-yXH" secondAttribute="trailing" id="Rjo-GF-VXl"/>
+                                    <constraint firstItem="DVi-3U-qMC" firstAttribute="leading" secondItem="pke-H8-bPg" secondAttribute="leading" id="ThA-mQ-g6e"/>
                                     <constraint firstAttribute="trailing" secondItem="8QW-bx-ckq" secondAttribute="trailing" id="UW2-0U-ANV"/>
-                                    <constraint firstItem="4go-2Y-JYk" firstAttribute="top" secondItem="qpq-DL-yXH" secondAttribute="bottom" constant="16" id="ZZJ-Sg-aRV"/>
+                                    <constraint firstItem="4go-2Y-JYk" firstAttribute="top" secondItem="hAu-VG-3cI" secondAttribute="bottom" id="bnY-vI-gw3"/>
                                     <constraint firstItem="hAu-VG-3cI" firstAttribute="leading" secondItem="pke-H8-bPg" secondAttribute="leading" id="eAp-WT-TMy"/>
-                                    <constraint firstItem="8QW-bx-ckq" firstAttribute="top" secondItem="4go-2Y-JYk" secondAttribute="bottom" constant="16" id="f2E-VV-4vM"/>
-                                    <constraint firstItem="qpq-DL-yXH" firstAttribute="top" secondItem="hAu-VG-3cI" secondAttribute="bottom" constant="16" id="fsn-Td-Din"/>
+                                    <constraint firstItem="hAu-VG-3cI" firstAttribute="top" secondItem="8QW-bx-ckq" secondAttribute="bottom" id="f4S-T6-V3i"/>
+                                    <constraint firstItem="DVi-3U-qMC" firstAttribute="top" secondItem="qpq-DL-yXH" secondAttribute="bottom" constant="8" id="iew-dH-AuY"/>
+                                    <constraint firstItem="8QW-bx-ckq" firstAttribute="top" secondItem="pke-H8-bPg" secondAttribute="top" id="m4f-X4-EqJ"/>
+                                    <constraint firstItem="qpq-DL-yXH" firstAttribute="top" secondItem="4go-2Y-JYk" secondAttribute="bottom" id="rV6-89-jWm"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -279,8 +280,8 @@
                             <constraint firstItem="pke-H8-bPg" firstAttribute="leading" secondItem="oje-eC-Ore" secondAttribute="leading" constant="20" id="79O-ut-K6Q"/>
                             <constraint firstItem="pke-H8-bPg" firstAttribute="bottom" secondItem="oje-eC-Ore" secondAttribute="bottom" id="ACo-ID-vUJ"/>
                             <constraint firstItem="oje-eC-Ore" firstAttribute="trailing" secondItem="pke-H8-bPg" secondAttribute="trailing" constant="20" id="BC5-cT-SGB"/>
+                            <constraint firstItem="pke-H8-bPg" firstAttribute="top" secondItem="CAC-5j-Lfy" secondAttribute="bottom" id="Mrm-Hr-Keu"/>
                             <constraint firstItem="oje-eC-Ore" firstAttribute="trailing" secondItem="CAC-5j-Lfy" secondAttribute="trailing" constant="20" id="SCE-hW-IvY"/>
-                            <constraint firstItem="pke-H8-bPg" firstAttribute="top" secondItem="CAC-5j-Lfy" secondAttribute="bottom" id="fdB-Jw-YgI"/>
                             <constraint firstItem="CAC-5j-Lfy" firstAttribute="top" secondItem="oje-eC-Ore" secondAttribute="top" id="qXs-9z-hNW"/>
                             <constraint firstItem="CAC-5j-Lfy" firstAttribute="leading" secondItem="oje-eC-Ore" secondAttribute="leading" constant="20" id="yTX-Zh-Gg8"/>
                         </constraints>
@@ -300,6 +301,7 @@
                         <outlet property="currentNameTextView" destination="Z13-R7-w1u" id="pHe-ez-p9L"/>
                         <outlet property="locationPlaceholderTextView" destination="a3h-Yc-RCA" id="gto-if-uca"/>
                         <outlet property="noteTextField" destination="DVi-3U-qMC" id="Vtl-iX-9FB"/>
+                        <outlet property="profilePictureImageView" destination="9Af-Bt-IL6" id="qad-8E-2b6"/>
                         <outlet property="ratingPlaceholderTextView" destination="5MM-WP-YIk" id="HtJ-3c-UaU"/>
                         <outlet property="ratingTextView" destination="vtG-zB-7GT" id="AtI-kv-4cy"/>
                         <outlet property="smokingStylePlaceholderTextView" destination="LqC-Qa-ILQ" id="XJx-ls-EHy"/>
@@ -434,7 +436,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Location" id="TTb-ni-Nay" userLabel="Location Search Bar">
+                        <searchBar key="tableHeaderView" contentMode="redraw" misplaced="YES" placeholder="Location" id="TTb-ni-Nay" userLabel="Location Search Bar">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="words" spellCheckingType="yes" returnKeyType="done" textContentType="address-level2"/>
