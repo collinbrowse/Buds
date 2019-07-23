@@ -42,9 +42,7 @@ extension NewActivityLocationController: UISearchBarDelegate {
     // What should we do when the text of the search bar changes
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.count > 0 {
-            // Record that text
             searchCompleter.queryFragment = searchText
-            print(searchText)
         }
     }
 }

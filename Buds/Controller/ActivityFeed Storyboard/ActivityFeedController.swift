@@ -18,6 +18,7 @@ class ActivityFeedController: UITableViewController {
     var user: User?
     var ref: DatabaseReference!
     var activities = [ActivityModel]()
+    var activitiesDictionary = [String: ActivityModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,8 @@ class ActivityFeedController: UITableViewController {
         activityFeedTableView.separatorStyle = .singleLine
         activityFeedTableView.register(UINib(nibName: "ActivityFeedCustomCell", bundle: nil), forCellReuseIdentifier: "customActivityCell")
         activityFeedTableView.tableFooterView = UIView(frame: .zero)
+        activityFeedTableView.estimatedRowHeight = 100
+        activityFeedTableView.rowHeight = UITableView.automaticDimension
         
         
     }
@@ -71,7 +74,7 @@ class ActivityFeedController: UITableViewController {
         
         if (user?.email != nil) {
             
-            ref.child("activity").observe(.childAdded) { (snapshot) in
+            ref.child("activity").queryOrderedByKey().observe(.childAdded) { (snapshot) in
                 if let dictionary = snapshot.value as? [String: Any] {
                     
                     // Here we are creating an arrary of ActivityModel Objects.
@@ -81,8 +84,8 @@ class ActivityFeedController: UITableViewController {
                     
                     // Firebase has all the information besides the User's actual name. Let's add that as well
                     activity.setValuesForKeys(dictionary)
-                    //activity.name = self.user?.displayName
-                    
+                    self.activities.insert(activity, at: 0)
+                
                     // Get the Profile Information from Realtime Database
                     self.ref.child("users").child(dictionary["user"] as! String).observeSingleEvent(of: .value) { (snapshot) in
                         
@@ -90,10 +93,7 @@ class ActivityFeedController: UITableViewController {
                             
                             // Grab the URL of the Photo in Firebase Storage
                             activity.profilePictureURL = dict["profilePicture"] as? String
-                            activity.name = dict["name"] as? String 
-                            
-                            // Now add the activity to the activities array
-                            self.activities.insert(activity, at: 0)
+                            activity.name = dict["name"] as? String
                             
                             // Since we are currently in a completion handler and UI is done on main thread,
                             // We have to use this method to perform an async call on the main thread
@@ -161,7 +161,7 @@ extension ActivityFeedController {
     
     // How tall is each row?
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return UITableView.automaticDimension
     }
 }
 
