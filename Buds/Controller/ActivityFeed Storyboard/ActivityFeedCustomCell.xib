@@ -25,19 +25,12 @@
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Location" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icA-XB-JzI" userLabel="Location Text View">
-                    <rect key="frame" x="82" y="30" width="359" height="12"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <accessibility key="accessibilityConfiguration">
-                        <accessibilityTraits key="traits" notEnabled="YES"/>
-                    </accessibility>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="12" id="oB3-0T-W7c"/>
-                    </constraints>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZk-cB-ach" userLabel="Location Label">
+                    <rect key="frame" x="90" y="30" width="351" height="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
+                    <nil key="highlightedColor"/>
+                </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="9h" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HA0-OF-Mrp" userLabel="Time Text View">
                     <rect key="frame" x="409" y="8" width="32" height="22"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -49,6 +42,24 @@
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VOA-7n-CxG">
+                    <rect key="frame" x="0.0" y="0.0" width="82" height="200"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SVU-Ay-JSp">
+                            <rect key="frame" x="16" y="16" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="W81-Ia-NdX"/>
+                                <constraint firstAttribute="height" constant="50" id="fl5-WG-f0Y"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="SVU-Ay-JSp" firstAttribute="leading" secondItem="VOA-7n-CxG" secondAttribute="leading" constant="16" id="IBv-Ub-Zt0"/>
+                        <constraint firstItem="SVU-Ay-JSp" firstAttribute="top" secondItem="VOA-7n-CxG" secondAttribute="top" constant="16" id="Lw4-k7-eqs"/>
+                        <constraint firstAttribute="width" constant="82" id="dAk-Fg-kEf"/>
+                    </constraints>
+                </view>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buz-mZ-IsI" userLabel="Description Text View">
                     <rect key="frame" x="82" y="42" width="359" height="29.5"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -78,24 +89,6 @@
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VOA-7n-CxG">
-                    <rect key="frame" x="0.0" y="0.0" width="82" height="200"/>
-                    <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SVU-Ay-JSp">
-                            <rect key="frame" x="16" y="16" width="50" height="50"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="50" id="W81-Ia-NdX"/>
-                                <constraint firstAttribute="height" constant="50" id="fl5-WG-f0Y"/>
-                            </constraints>
-                        </imageView>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstItem="SVU-Ay-JSp" firstAttribute="leading" secondItem="VOA-7n-CxG" secondAttribute="leading" constant="16" id="IBv-Ub-Zt0"/>
-                        <constraint firstItem="SVU-Ay-JSp" firstAttribute="top" secondItem="VOA-7n-CxG" secondAttribute="top" constant="16" id="Lw4-k7-eqs"/>
-                        <constraint firstAttribute="width" constant="82" id="dAk-Fg-kEf"/>
-                    </constraints>
-                </view>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Smoking Style" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VEi-gu-Mgi" userLabel="Smoking Style Text View">
                     <rect key="frame" x="82" y="111.5" width="359" height="20"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -117,27 +110,27 @@
                 <constraint firstItem="HA0-OF-Mrp" firstAttribute="top" secondItem="mt2-DM-xGH" secondAttribute="top" constant="8" id="A82-fh-QBo"/>
                 <constraint firstItem="3Jg-P5-xKc" firstAttribute="top" secondItem="mt2-DM-xGH" secondAttribute="top" constant="8" id="CQy-ak-6LX"/>
                 <constraint firstItem="rJD-GX-txd" firstAttribute="top" secondItem="buz-mZ-IsI" secondAttribute="bottom" id="F2h-bf-tKz"/>
-                <constraint firstItem="icA-XB-JzI" firstAttribute="top" secondItem="3Jg-P5-xKc" secondAttribute="bottom" id="FLD-0n-5Lm"/>
                 <constraint firstItem="Gd6-kv-mq3" firstAttribute="top" secondItem="rJD-GX-txd" secondAttribute="bottom" id="H9s-TC-OMa"/>
                 <constraint firstItem="Bix-Zk-Ala" firstAttribute="trailing" secondItem="Gd6-kv-mq3" secondAttribute="trailing" constant="8" id="KAy-bq-tM8"/>
+                <constraint firstItem="cZk-cB-ach" firstAttribute="leading" secondItem="VOA-7n-CxG" secondAttribute="trailing" constant="8" id="Kdw-lw-YHY"/>
                 <constraint firstAttribute="trailing" secondItem="HA0-OF-Mrp" secondAttribute="trailing" constant="8" id="LPX-j2-Ll2"/>
                 <constraint firstItem="Gd6-kv-mq3" firstAttribute="leading" secondItem="VOA-7n-CxG" secondAttribute="trailing" id="MkW-SU-M6x"/>
                 <constraint firstItem="VEi-gu-Mgi" firstAttribute="top" secondItem="Gd6-kv-mq3" secondAttribute="bottom" id="Qo0-Hd-ftF"/>
-                <constraint firstItem="buz-mZ-IsI" firstAttribute="top" secondItem="icA-XB-JzI" secondAttribute="bottom" id="UbI-6n-ItT"/>
                 <constraint firstItem="buz-mZ-IsI" firstAttribute="leading" secondItem="VOA-7n-CxG" secondAttribute="trailing" id="ZKK-jK-cG9"/>
-                <constraint firstItem="icA-XB-JzI" firstAttribute="leading" secondItem="VOA-7n-CxG" secondAttribute="trailing" id="ZWz-zN-teu"/>
                 <constraint firstItem="Bix-Zk-Ala" firstAttribute="trailing" secondItem="rJD-GX-txd" secondAttribute="trailing" constant="8" id="asV-WJ-7pA"/>
+                <constraint firstItem="Bix-Zk-Ala" firstAttribute="trailing" secondItem="cZk-cB-ach" secondAttribute="trailing" constant="8" id="cQU-8A-Jii"/>
+                <constraint firstItem="buz-mZ-IsI" firstAttribute="top" secondItem="cZk-cB-ach" secondAttribute="bottom" id="d5i-wV-0b8"/>
                 <constraint firstItem="HA0-OF-Mrp" firstAttribute="leading" secondItem="3Jg-P5-xKc" secondAttribute="trailing" constant="8" id="fZ9-y8-wHE"/>
                 <constraint firstItem="Bix-Zk-Ala" firstAttribute="trailing" secondItem="buz-mZ-IsI" secondAttribute="trailing" constant="8" id="gni-yt-127"/>
                 <constraint firstItem="VOA-7n-CxG" firstAttribute="leading" secondItem="Bix-Zk-Ala" secondAttribute="leading" id="lrM-ZE-Xf8"/>
+                <constraint firstItem="cZk-cB-ach" firstAttribute="top" secondItem="3Jg-P5-xKc" secondAttribute="bottom" id="ltO-d5-eUc"/>
                 <constraint firstAttribute="bottom" secondItem="VOA-7n-CxG" secondAttribute="bottom" id="nWI-2P-ihE"/>
-                <constraint firstItem="Bix-Zk-Ala" firstAttribute="trailing" secondItem="icA-XB-JzI" secondAttribute="trailing" constant="8" id="wbs-eY-iEx"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="Bix-Zk-Ala"/>
             <connections>
                 <outlet property="RatingTextView" destination="Gd6-kv-mq3" id="EDl-Vl-DDd"/>
-                <outlet property="locationTextView" destination="icA-XB-JzI" id="dJV-8m-KiX"/>
+                <outlet property="locationLabel" destination="cZk-cB-ach" id="hEz-Y1-Nw8"/>
                 <outlet property="nameTextView" destination="3Jg-P5-xKc" id="eNQ-1B-Sjm"/>
                 <outlet property="noteTextView" destination="buz-mZ-IsI" id="KB8-zO-XQb"/>
                 <outlet property="profilePictureImageView" destination="SVU-Ay-JSp" id="DFV-Qh-ufA"/>

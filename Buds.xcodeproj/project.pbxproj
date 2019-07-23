@@ -17,6 +17,8 @@
 		BE02A33A22E2572F00431854 /* ActivityFeedCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE02A33922E2572F00431854 /* ActivityFeedCustomCell.xib */; };
 		BE02A33C22E2581800431854 /* ActivityFeedCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02A33B22E2581800431854 /* ActivityFeedCustomCell.swift */; };
 		BE02A33E22E6436600431854 /* NewActivityLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02A33D22E6436600431854 /* NewActivityLocationController.swift */; };
+		BE02A34222E6B7C500431854 /* CustomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02A34122E6B7C500431854 /* CustomDateFormatter.swift */; };
+		BE02A34422E6BD7D00431854 /* TimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02A34322E6BD7D00431854 /* TimeHelper.swift */; };
 		BE03D2A722C2676E0059B587 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03D2A622C2676E0059B587 /* WelcomeViewController.swift */; };
 		BE03D2A922C269060059B587 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03D2A822C269060059B587 /* LogInViewController.swift */; };
 		BE03D2AB22C269730059B587 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03D2AA22C269730059B587 /* RegisterViewController.swift */; };
@@ -77,6 +79,8 @@
 		BE02A33922E2572F00431854 /* ActivityFeedCustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityFeedCustomCell.xib; sourceTree = "<group>"; };
 		BE02A33B22E2581800431854 /* ActivityFeedCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedCustomCell.swift; sourceTree = "<group>"; };
 		BE02A33D22E6436600431854 /* NewActivityLocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityLocationController.swift; sourceTree = "<group>"; };
+		BE02A34122E6B7C500431854 /* CustomDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateFormatter.swift; sourceTree = "<group>"; };
+		BE02A34322E6BD7D00431854 /* TimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHelper.swift; sourceTree = "<group>"; };
 		BE03D2A622C2676E0059B587 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		BE03D2A822C269060059B587 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		BE03D2AA22C269730059B587 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -295,6 +299,8 @@
 				BE41467322BA8F8A0009A738 /* Activity */,
 				BE41467222BA8F700009A738 /* Person */,
 				BE02A32222DCEF9A00431854 /* Network.swift */,
+				BE02A34122E6B7C500431854 /* CustomDateFormatter.swift */,
+				BE02A34322E6BD7D00431854 /* TimeHelper.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -559,6 +565,7 @@
 				BE41467922BA918A0009A738 /* ActivityModel.swift in Sources */,
 				BE41467722BA917C0009A738 /* PersonFunctions.swift in Sources */,
 				BE747FC622CD1E9E00D071FD /* ActivityDetailsDelegate.swift in Sources */,
+				BE02A34222E6B7C500431854 /* CustomDateFormatter.swift in Sources */,
 				BE41467522BA91670009A738 /* PersonModel.swift in Sources */,
 				BE02A32722DE61AB00431854 /* LocationSearchDelegate.swift in Sources */,
 				BE747FCA22D53C2600D071FD /* SettingsViewController.swift in Sources */,
@@ -568,6 +575,7 @@
 				BE02A32522DE557200431854 /* LocationSearchBarController.swift in Sources */,
 				BE41467B22BA91950009A738 /* ActivityFunctions.swift in Sources */,
 				BE02A33E22E6436600431854 /* NewActivityLocationController.swift in Sources */,
+				BE02A34422E6BD7D00431854 /* TimeHelper.swift in Sources */,
 				BE41467D22BA9CE50009A738 /* Birthday.swift in Sources */,
 				BE03D2A922C269060059B587 /* LogInViewController.swift in Sources */,
 				BE41464422BA718C0009A738 /* AppDelegate.swift in Sources */,

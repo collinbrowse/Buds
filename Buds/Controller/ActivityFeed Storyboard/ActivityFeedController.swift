@@ -93,7 +93,7 @@ class ActivityFeedController: UITableViewController {
                             activity.name = dict["name"] as? String 
                             
                             // Now add the activity to the activities array
-                            self.activities.append(activity)
+                            self.activities.insert(activity, at: 0)
                             
                             // Since we are currently in a completion handler and UI is done on main thread,
                             // We have to use this method to perform an async call on the main thread
@@ -119,9 +119,16 @@ extension ActivityFeedController {
         
         // Add information to each cell
         if activities.count > 0 {
+            
+            // Let's convert the string from Firebase to a Date object
+            // This allows us to see how long ago a post was made
+            let timeAgoDateObject = TimeHelper.getDateFromString(dateString: activities[indexPath.row].time!) // Returns a Date Object
+            
+            
+            // Populate each cell with information
             cell.nameTextView.text = activities[indexPath.row].name
-            cell.locationTextView.text = activities[indexPath.row].location
-            cell.timeTextView.text = activities[indexPath.row].time
+            cell.locationLabel.text = activities[indexPath.row].location
+            cell.timeTextView.text = timeAgoDateObject.timeAgoString()
             cell.strainTextView.text = activities[indexPath.row].strain
             cell.ratingTextView.text = activities[indexPath.row].rating
             cell.smokingStyleTextView.text = activities[indexPath.row].smoking_style

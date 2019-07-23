@@ -13,7 +13,7 @@ class ActivityFeedCustomCell: UITableViewCell {
     
     @IBOutlet weak var profilePictureImageView: UIImageView!
     @IBOutlet weak var nameTextView: UITextView!
-    @IBOutlet weak var locationTextView: UITextView!
+    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var timeTextView: UITextView!
     @IBOutlet weak var noteTextView: UITextView!
     @IBOutlet weak var strainTextView: UITextView!
@@ -25,7 +25,7 @@ class ActivityFeedCustomCell: UITableViewCell {
         
         nameTextView.text = ""
         timeTextView.text = ""
-        locationTextView.text = ""
+        locationLabel.text = ""
         noteTextView.text = ""
         strainTextView.text = ""
         ratingTextView.text = ""

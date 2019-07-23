@@ -132,11 +132,10 @@ class ActivityViewController: UIViewController {
     // send off to firebase
     @IBAction func addBarButtonPressed(_ sender: Any) {
         
-        
         // Add the Details of the Smoking Activity
         var activityDetailsDict = [String : String]()
         activityDetailsDict["user"] = user?.uid 
-        activityDetailsDict["time"] = getTodayString()
+        activityDetailsDict["time"] = TimeHelper.getTodayString()
         activityDetailsDict["smoking_style"] = smokingStylePlaceholderTextView.text
         activityDetailsDict["rating"] = ratingPlaceholderTextView.text
         activityDetailsDict["strain"] = strainPlaceholderTextView.text
@@ -179,22 +178,19 @@ class ActivityViewController: UIViewController {
     }
     
     // Helper Function to get the current Date/Time as a String
-    func getTodayString() -> String{
+    func getTodayString() -> String {
         
-        let date = Date()
-        let calender = Calendar.current
-        let components = calender.dateComponents([.year,.month,.day,.hour,.minute,.second], from: date)
+        // Current time
+        let now = Date()
         
-        let year = components.year
-        let month = components.month
-        let day = components.day
-        let hour = components.hour
-        let minute = components.minute
-        let second = components.second
+        // Let's set the format of date we will be using throughout the app
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
-        let today_string = String(year!) + "-" + String(month!) + "-" + String(day!) + " " + String(hour!)  + ":" + String(minute!) + ":" +  String(second!)
+        // Let's change our date object to that string with that format
+        let formattedDateString = formatter.string(from: now)
         
-        return today_string
+        return formattedDateString
         
     }
     
