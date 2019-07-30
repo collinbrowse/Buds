@@ -63,7 +63,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pke-H8-bPg" userLabel="Wrapping Details View">
-                                <rect key="frame" x="20" y="70" width="374" height="704"/>
+                                <rect key="frame" x="20" y="70" width="374" height="655"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8QW-bx-ckq" userLabel="Wrapping Strain View">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
@@ -245,48 +245,49 @@
                                             <constraint firstAttribute="height" constant="44" id="oW7-5o-iOj"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" placeholder="Provide some more description here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DVi-3U-qMC" userLabel="Note Text Field">
-                                        <rect key="frame" x="0.0" y="184" width="374" height="25"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Add some more description here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Us5-jj-LKM">
+                                        <rect key="frame" x="0.0" y="176" width="374" height="44"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="W5l-Nd-khB"/>
+                                            <constraint firstAttribute="height" constant="44" id="uLI-nv-0b8"/>
                                         </constraints>
-                                        <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="8QW-bx-ckq" firstAttribute="leading" secondItem="pke-H8-bPg" secondAttribute="leading" id="7Jr-rj-fjx"/>
                                     <constraint firstAttribute="trailing" secondItem="4go-2Y-JYk" secondAttribute="trailing" id="DC6-zq-8bH"/>
                                     <constraint firstItem="qpq-DL-yXH" firstAttribute="leading" secondItem="pke-H8-bPg" secondAttribute="leading" id="EMt-LJ-0HL"/>
+                                    <constraint firstItem="Us5-jj-LKM" firstAttribute="leading" secondItem="pke-H8-bPg" secondAttribute="leading" id="I4M-hS-RTV"/>
                                     <constraint firstAttribute="trailing" secondItem="hAu-VG-3cI" secondAttribute="trailing" id="JkN-m4-z3O"/>
-                                    <constraint firstAttribute="trailing" secondItem="DVi-3U-qMC" secondAttribute="trailing" id="KPI-M4-lwj"/>
                                     <constraint firstItem="4go-2Y-JYk" firstAttribute="leading" secondItem="pke-H8-bPg" secondAttribute="leading" id="PAg-Px-wdO"/>
                                     <constraint firstAttribute="trailing" secondItem="qpq-DL-yXH" secondAttribute="trailing" id="Rjo-GF-VXl"/>
-                                    <constraint firstItem="DVi-3U-qMC" firstAttribute="leading" secondItem="pke-H8-bPg" secondAttribute="leading" id="ThA-mQ-g6e"/>
                                     <constraint firstAttribute="trailing" secondItem="8QW-bx-ckq" secondAttribute="trailing" id="UW2-0U-ANV"/>
                                     <constraint firstItem="4go-2Y-JYk" firstAttribute="top" secondItem="hAu-VG-3cI" secondAttribute="bottom" id="bnY-vI-gw3"/>
                                     <constraint firstItem="hAu-VG-3cI" firstAttribute="leading" secondItem="pke-H8-bPg" secondAttribute="leading" id="eAp-WT-TMy"/>
                                     <constraint firstItem="hAu-VG-3cI" firstAttribute="top" secondItem="8QW-bx-ckq" secondAttribute="bottom" id="f4S-T6-V3i"/>
-                                    <constraint firstItem="DVi-3U-qMC" firstAttribute="top" secondItem="qpq-DL-yXH" secondAttribute="bottom" constant="8" id="iew-dH-AuY"/>
+                                    <constraint firstItem="Us5-jj-LKM" firstAttribute="top" secondItem="qpq-DL-yXH" secondAttribute="bottom" id="laT-IM-xol"/>
                                     <constraint firstItem="8QW-bx-ckq" firstAttribute="top" secondItem="pke-H8-bPg" secondAttribute="top" id="m4f-X4-EqJ"/>
                                     <constraint firstItem="qpq-DL-yXH" firstAttribute="top" secondItem="4go-2Y-JYk" secondAttribute="bottom" id="rV6-89-jWm"/>
+                                    <constraint firstAttribute="trailing" secondItem="Us5-jj-LKM" secondAttribute="trailing" id="suR-3M-00e"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="pke-H8-bPg" firstAttribute="leading" secondItem="oje-eC-Ore" secondAttribute="leading" constant="20" id="79O-ut-K6Q"/>
-                            <constraint firstItem="pke-H8-bPg" firstAttribute="bottom" secondItem="oje-eC-Ore" secondAttribute="bottom" id="ACo-ID-vUJ"/>
                             <constraint firstItem="oje-eC-Ore" firstAttribute="trailing" secondItem="pke-H8-bPg" secondAttribute="trailing" constant="20" id="BC5-cT-SGB"/>
                             <constraint firstItem="pke-H8-bPg" firstAttribute="top" secondItem="CAC-5j-Lfy" secondAttribute="bottom" id="Mrm-Hr-Keu"/>
                             <constraint firstItem="oje-eC-Ore" firstAttribute="trailing" secondItem="CAC-5j-Lfy" secondAttribute="trailing" constant="20" id="SCE-hW-IvY"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="pke-H8-bPg" secondAttribute="bottom" id="Ypc-UI-oQ0"/>
                             <constraint firstItem="CAC-5j-Lfy" firstAttribute="top" secondItem="oje-eC-Ore" secondAttribute="top" id="qXs-9z-hNW"/>
                             <constraint firstItem="CAC-5j-Lfy" firstAttribute="leading" secondItem="oje-eC-Ore" secondAttribute="leading" constant="20" id="yTX-Zh-Gg8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oje-eC-Ore"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="q8N-UT-p6a"/>
                     <navigationItem key="navigationItem" title="New Activity" id="trn-hR-DG3">
                         <barButtonItem key="backBarButtonItem" title="Back" id="oDC-QW-eOB"/>
                         <barButtonItem key="rightBarButtonItem" title="Add" id="LJQ-Nh-Xcc">
@@ -295,17 +296,19 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addBarButton" destination="LJQ-Nh-Xcc" id="VxD-8b-ICj"/>
                         <outlet property="currentLocationTextView" destination="GNQ-52-1gk" id="IlR-Mr-PfM"/>
                         <outlet property="currentNameTextView" destination="Z13-R7-w1u" id="pHe-ez-p9L"/>
                         <outlet property="locationPlaceholderTextView" destination="a3h-Yc-RCA" id="gto-if-uca"/>
-                        <outlet property="noteTextField" destination="DVi-3U-qMC" id="Vtl-iX-9FB"/>
+                        <outlet property="noteTextView" destination="Us5-jj-LKM" id="6Id-Zz-YjS"/>
                         <outlet property="profilePictureImageView" destination="9Af-Bt-IL6" id="qad-8E-2b6"/>
                         <outlet property="ratingPlaceholderTextView" destination="5MM-WP-YIk" id="HtJ-3c-UaU"/>
                         <outlet property="ratingTextView" destination="vtG-zB-7GT" id="AtI-kv-4cy"/>
                         <outlet property="smokingStylePlaceholderTextView" destination="LqC-Qa-ILQ" id="XJx-ls-EHy"/>
                         <outlet property="strainPlaceholderTextView" destination="Rbi-pb-EP3" id="o5o-2S-PtH"/>
+                        <outlet property="wrappingDetailsView" destination="pke-H8-bPg" id="yWg-CC-tlo"/>
                         <outletCollection property="collectionOfTextViews" destination="GNQ-52-1gk" collectionClass="NSMutableArray" id="7L8-tW-Js4"/>
                         <outletCollection property="collectionOfTextViews" destination="Z13-R7-w1u" collectionClass="NSMutableArray" id="97X-wH-WOi"/>
                         <outletCollection property="collectionOfTextViews" destination="vtG-zB-7GT" collectionClass="NSMutableArray" id="OdC-TA-hah"/>

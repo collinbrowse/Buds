@@ -18,7 +18,7 @@ class ActivityViewController: UIViewController {
     @IBOutlet weak var profilePictureImageView: UIImageView!
     @IBOutlet weak var currentNameTextView: UITextView!
     @IBOutlet weak var currentLocationTextView: UITextView!
-    @IBOutlet weak var noteTextField: UITextField!
+    @IBOutlet weak var noteTextView: UITextView!
     @IBOutlet weak var ratingTextView: UITextView!
     @IBOutlet weak var smokingStylePlaceholderTextView: UITextView!
     @IBOutlet weak var locationPlaceholderTextView: UITextView!
@@ -26,6 +26,8 @@ class ActivityViewController: UIViewController {
     @IBOutlet weak var strainPlaceholderTextView: UITextView!
     @IBOutlet var collectionOfTextViews: Array<UITextView>! // = [UIView]
     @IBOutlet weak var addBarButton: UIBarButtonItem!
+    @IBOutlet weak var wrappingDetailsView: UIView!
+    
     
     var handle: AuthStateDidChangeListenerHandle?
     var user: User?
@@ -34,6 +36,10 @@ class ActivityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Height: \(UIScreen.main.bounds.height)")
+        // Set the Description Text View to the appropriate height
+        noteTextView.delegate = self
+        textViewDidChange(noteTextView)
     }
     
     
@@ -140,7 +146,7 @@ class ActivityViewController: UIViewController {
         activityDetailsDict["rating"] = ratingPlaceholderTextView.text
         activityDetailsDict["strain"] = strainPlaceholderTextView.text
         activityDetailsDict["location"] = locationPlaceholderTextView.text
-        activityDetailsDict["note"] = noteTextField.text
+        activityDetailsDict["note"] = noteTextView.text
         let userID = user?.uid ?? ""
         
         // Submit the Activity
@@ -153,7 +159,7 @@ class ActivityViewController: UIViewController {
             ratingPlaceholderTextView.text = ""
             strainPlaceholderTextView.text = ""
             locationPlaceholderTextView.text = ""
-            noteTextField.text = ""
+            noteTextView.text = ""
         }
         else {
             showAlert(success: didAddActivity, alertMessage: "Please Try Again")
@@ -219,4 +225,51 @@ extension ActivityViewController: LocationSearchDelegate {
     }
     
     
+}
+
+extension ActivityViewController: UITextViewDelegate {
+    
+    func textViewDidChange(_ textView: UITextView) {
+        print(textView.text)
+        
+//        let heightOfDisplay = view.frame.size.height
+        let heightOfTextView = textView.frame.size.height
+        let positionOfTextView = textView.frame.origin.y
+        let bottomOfTextView = heightOfTextView + positionOfTextView
+//        var bottomSafeArea = CGFloat()
+//        let heightOfNavigationController = tabBarController?.tabBar.frame.size.height
+//        if #available(iOS 11.0, *) {
+//            let window = UIApplication.shared.keyWindow
+//            bottomSafeArea = (window?.safeAreaInsets.bottom)!
+//        }
+//        print("Wrapping Details View Height: \(wrappingDetailsView.frame.size.height)")
+//        print("Bottom Safe Area: \(bottomSafeArea)")
+//        print("Height of Text View: \(heightOfTextView)")
+//        print("Position of Text View: \(positionOfTextView)")
+//        print("Bottom of Text View: \(bottomOfTextView)")
+//        print("Height of Display: \(heightOfDisplay)")
+//        print("Height of NavigationController + safe area: \(heightOfNavigationController! + bottomSafeArea)")
+//        print("Height of Display - Navigation Controller + bottom Safe Area: \(heightOfDisplay - (heightOfNavigationController! + bottomSafeArea))")
+        
+        
+        if bottomOfTextView > (wrappingDetailsView.frame.size.height - 33) {
+            // Text View is off the screen
+            textView.isScrollEnabled = true
+            print("Scroll Enabled")
+            let bottom = NSMakeRange(textView.text.count - 1, 1)
+            textView.scrollRangeToVisible(bottom)
+            
+        }
+        else {
+            let size = CGSize(width: view.frame.width-40, height: .infinity)
+            let estimatedSize = textView.sizeThatFits(size)
+
+            // Loop through the constraints of the textView to find the height
+            textView.constraints.forEach { (constraint) in
+                if constraint.firstAttribute == .height {
+                    constraint.constant = estimatedSize.height
+                }
+            }
+        }
+    }
 }
