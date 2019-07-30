@@ -39,9 +39,9 @@
 		BE41468222BAD6A00009A738 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE41468022BAD6A00009A738 /* GoogleService-Info.plist */; };
 		BE41468322BAD6A00009A738 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE41468022BAD6A00009A738 /* GoogleService-Info.plist */; };
 		BE747FB722CA798300D071FD /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE747FB622CA798300D071FD /* Profile.storyboard */; };
-		BE747FB922CA7A5A00D071FD /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE747FB822CA7A5A00D071FD /* Activity.storyboard */; };
-		BE747FBB22CAAD9800D071FD /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE747FBA22CAAD9800D071FD /* ActivityViewController.swift */; };
-		BE747FC322CBD54B00D071FD /* SmokingActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE747FC122CBD54B00D071FD /* SmokingActivityTableViewController.swift */; };
+		BE747FB922CA7A5A00D071FD /* NewActivity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE747FB822CA7A5A00D071FD /* NewActivity.storyboard */; };
+		BE747FBB22CAAD9800D071FD /* NewActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE747FBA22CAAD9800D071FD /* NewActivityViewController.swift */; };
+		BE747FC322CBD54B00D071FD /* NewActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE747FC122CBD54B00D071FD /* NewActivityTableViewController.swift */; };
 		BE747FC622CD1E9E00D071FD /* ActivityDetailsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE747FC522CD1E9E00D071FD /* ActivityDetailsDelegate.swift */; };
 		BE747FC822D53BB300D071FD /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE747FC722D53BB300D071FD /* Settings.storyboard */; };
 		BE747FCA22D53C2600D071FD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE747FC922D53C2600D071FD /* SettingsViewController.swift */; };
@@ -105,9 +105,9 @@
 		BE41467E22BA9E180009A738 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		BE41468022BAD6A00009A738 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BE747FB622CA798300D071FD /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
-		BE747FB822CA7A5A00D071FD /* Activity.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Activity.storyboard; sourceTree = "<group>"; };
-		BE747FBA22CAAD9800D071FD /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
-		BE747FC122CBD54B00D071FD /* SmokingActivityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokingActivityTableViewController.swift; sourceTree = "<group>"; };
+		BE747FB822CA7A5A00D071FD /* NewActivity.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewActivity.storyboard; sourceTree = "<group>"; };
+		BE747FBA22CAAD9800D071FD /* NewActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityViewController.swift; sourceTree = "<group>"; };
+		BE747FC122CBD54B00D071FD /* NewActivityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityTableViewController.swift; sourceTree = "<group>"; };
 		BE747FC522CD1E9E00D071FD /* ActivityDetailsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailsDelegate.swift; sourceTree = "<group>"; };
 		BE747FC722D53BB300D071FD /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		BE747FC922D53C2600D071FD /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -187,10 +187,10 @@
 		BE02A32F22DFBDA900431854 /* Activity Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				BE747FBA22CAAD9800D071FD /* ActivityViewController.swift */,
-				BE747FC122CBD54B00D071FD /* SmokingActivityTableViewController.swift */,
-				BE747FC522CD1E9E00D071FD /* ActivityDetailsDelegate.swift */,
+				BE747FBA22CAAD9800D071FD /* NewActivityViewController.swift */,
 				BE02A33D22E6436600431854 /* NewActivityLocationController.swift */,
+				BE747FC122CBD54B00D071FD /* NewActivityTableViewController.swift */,
+				BE747FC522CD1E9E00D071FD /* ActivityDetailsDelegate.swift */,
 			);
 			path = "Activity Storyboard";
 			sourceTree = "<group>";
@@ -219,7 +219,7 @@
 				BE747FBC22CBD36000D071FD /* Custom Cell */,
 				BE747FB622CA798300D071FD /* Profile.storyboard */,
 				BE41464722BA718C0009A738 /* Main.storyboard */,
-				BE747FB822CA7A5A00D071FD /* Activity.storyboard */,
+				BE747FB822CA7A5A00D071FD /* NewActivity.storyboard */,
 				BE02A32922DFBC4400431854 /* ActivityFeed.storyboard */,
 				BE747FC722D53BB300D071FD /* Settings.storyboard */,
 			);
@@ -441,7 +441,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE41464E22BA718D0009A738 /* LaunchScreen.storyboard in Resources */,
-				BE747FB922CA7A5A00D071FD /* Activity.storyboard in Resources */,
+				BE747FB922CA7A5A00D071FD /* NewActivity.storyboard in Resources */,
 				BE41468122BAD6A00009A738 /* GoogleService-Info.plist in Resources */,
 				BE747FC822D53BB300D071FD /* Settings.storyboard in Resources */,
 				BE41464B22BA718D0009A738 /* Assets.xcassets in Resources */,
@@ -560,7 +560,7 @@
 				BE03D2AB22C269730059B587 /* RegisterViewController.swift in Sources */,
 				BE02A32322DCEF9A00431854 /* Network.swift in Sources */,
 				BE02A33C22E2581800431854 /* ActivityFeedCustomCell.swift in Sources */,
-				BE747FC322CBD54B00D071FD /* SmokingActivityTableViewController.swift in Sources */,
+				BE747FC322CBD54B00D071FD /* NewActivityTableViewController.swift in Sources */,
 				BE41467F22BA9E180009A738 /* Location.swift in Sources */,
 				BE41467922BA918A0009A738 /* ActivityModel.swift in Sources */,
 				BE41467722BA917C0009A738 /* PersonFunctions.swift in Sources */,
@@ -571,7 +571,7 @@
 				BE747FCA22D53C2600D071FD /* SettingsViewController.swift in Sources */,
 				BE03D2AD22C548480059B587 /* ProfileViewController.swift in Sources */,
 				BE02A33722E2562000431854 /* ActivityFeedController.swift in Sources */,
-				BE747FBB22CAAD9800D071FD /* ActivityViewController.swift in Sources */,
+				BE747FBB22CAAD9800D071FD /* NewActivityViewController.swift in Sources */,
 				BE02A32522DE557200431854 /* LocationSearchBarController.swift in Sources */,
 				BE41467B22BA91950009A738 /* ActivityFunctions.swift in Sources */,
 				BE02A33E22E6436600431854 /* NewActivityLocationController.swift in Sources */,

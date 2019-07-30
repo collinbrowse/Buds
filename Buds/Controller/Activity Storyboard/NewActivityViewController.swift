@@ -12,7 +12,7 @@ import Firebase
 import UIKit
 import SVProgressHUD
 
-class ActivityViewController: UIViewController {
+class NewActivityViewController: UIViewController {
     
     // Hook Up Outlets
     @IBOutlet weak var profilePictureImageView: UIImageView!
@@ -36,10 +36,12 @@ class ActivityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Height: \(UIScreen.main.bounds.height)")
+        
         // Set the Description Text View to the appropriate height
         noteTextView.delegate = self
         textViewDidChange(noteTextView)
+        
+        
     }
     
     
@@ -111,21 +113,21 @@ class ActivityViewController: UIViewController {
     
     // Set up some information when a segue is called
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let nav = segue.destination as? SmokingActivityTableViewController {
+        if let nav = segue.destination as? NewActivityTableViewController {
             nav.delegate = self
         
             if segue.identifier == "goToSmokingStyle" {
-                if let destinationVC = segue.destination as? SmokingActivityTableViewController {
+                if let destinationVC = segue.destination as? NewActivityTableViewController {
                     destinationVC.dataToRetrieve = "smoking_styles"
                 }
             }
             else if segue.identifier == "goToRating" {
-                if let destinationVC = segue.destination as? SmokingActivityTableViewController {
+                if let destinationVC = segue.destination as? NewActivityTableViewController {
                     destinationVC.dataToRetrieve = "rating"
                 }
             }
             else if segue.identifier == "goToStrain" {
-                if let destinationVC = segue.destination as? SmokingActivityTableViewController {
+                if let destinationVC = segue.destination as? NewActivityTableViewController {
                     destinationVC.dataToRetrieve = "strain"
                 }
             }
@@ -201,7 +203,7 @@ class ActivityViewController: UIViewController {
     }
     
 }
-extension ActivityViewController: ActivityDetailsDelegate {
+extension NewActivityViewController: ActivityDetailsDelegate {
     
     func setSelectedDetail(detail: String, value: String) {
         if detail == "smoking_styles" {
@@ -218,7 +220,7 @@ extension ActivityViewController: ActivityDetailsDelegate {
     
 }
 
-extension ActivityViewController: LocationSearchDelegate {
+extension NewActivityViewController: LocationSearchDelegate {
     
     func setSelectedLocation(location: String) {
         locationPlaceholderTextView.text = location
@@ -227,7 +229,7 @@ extension ActivityViewController: LocationSearchDelegate {
     
 }
 
-extension ActivityViewController: UITextViewDelegate {
+extension NewActivityViewController: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         print(textView.text)

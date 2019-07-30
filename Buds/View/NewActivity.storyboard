@@ -13,7 +13,7 @@
         <!--New Activity Controller-->
         <scene sceneID="oWd-TK-2uP">
             <objects>
-                <viewController storyboardIdentifier="newActivityStoryboard" title="Add Activity" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oJC-zi-Pjq" userLabel="New Activity Controller" customClass="ActivityViewController" customModule="Buds" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="newActivityStoryboard" title="Add Activity" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oJC-zi-Pjq" userLabel="New Activity Controller" customClass="NewActivityViewController" customModule="Buds" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eqR-ot-wtx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -325,7 +325,7 @@
         <!--Smoking Style-->
         <scene sceneID="AO6-b4-UFU">
             <objects>
-                <tableViewController title="Smoking Style" id="8DW-fj-FfQ" customClass="SmokingActivityTableViewController" customModule="Buds" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Smoking Style" id="8DW-fj-FfQ" customClass="NewActivityTableViewController" customModule="Buds" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="NWH-YB-t4q">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -354,7 +354,7 @@
         <!--Rating-->
         <scene sceneID="Tma-CR-n1d">
             <objects>
-                <tableViewController title="Rating" id="7Gg-xS-fGn" customClass="SmokingActivityTableViewController" customModule="Buds" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Rating" id="7Gg-xS-fGn" customClass="NewActivityTableViewController" customModule="Buds" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="iYj-El-6rC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -383,7 +383,7 @@
         <!--Strain-->
         <scene sceneID="hHO-ha-yq9">
             <objects>
-                <tableViewController title="Strain" id="LCH-p1-BSd" customClass="SmokingActivityTableViewController" customModule="Buds" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Strain" id="LCH-p1-BSd" customClass="NewActivityTableViewController" customModule="Buds" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Zo4-n8-EEi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
