@@ -232,27 +232,10 @@ extension NewActivityViewController: LocationSearchDelegate {
 extension NewActivityViewController: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
-        print(textView.text)
         
-//        let heightOfDisplay = view.frame.size.height
         let heightOfTextView = textView.frame.size.height
         let positionOfTextView = textView.frame.origin.y
         let bottomOfTextView = heightOfTextView + positionOfTextView
-//        var bottomSafeArea = CGFloat()
-//        let heightOfNavigationController = tabBarController?.tabBar.frame.size.height
-//        if #available(iOS 11.0, *) {
-//            let window = UIApplication.shared.keyWindow
-//            bottomSafeArea = (window?.safeAreaInsets.bottom)!
-//        }
-//        print("Wrapping Details View Height: \(wrappingDetailsView.frame.size.height)")
-//        print("Bottom Safe Area: \(bottomSafeArea)")
-//        print("Height of Text View: \(heightOfTextView)")
-//        print("Position of Text View: \(positionOfTextView)")
-//        print("Bottom of Text View: \(bottomOfTextView)")
-//        print("Height of Display: \(heightOfDisplay)")
-//        print("Height of NavigationController + safe area: \(heightOfNavigationController! + bottomSafeArea)")
-//        print("Height of Display - Navigation Controller + bottom Safe Area: \(heightOfDisplay - (heightOfNavigationController! + bottomSafeArea))")
-        
         
         if bottomOfTextView > (wrappingDetailsView.frame.size.height - 33) {
             // Text View is off the screen
