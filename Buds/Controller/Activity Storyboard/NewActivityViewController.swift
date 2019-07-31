@@ -41,7 +41,10 @@ class NewActivityViewController: UIViewController {
         noteTextView.delegate = self
         textViewDidChange(noteTextView)
         
-        
+        // Alter the Navigation Bar
+        let navigationBar = navigationController!.navigationBar
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.shadowImage = UIImage()
     }
     
     
