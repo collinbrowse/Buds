@@ -22,6 +22,14 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        logoutButton.layer.cornerRadius = 8
+        logoutButton.showsTouchWhenHighlighted = true
+        logoutButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        logoutButton.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        logoutButton.layer.shadowOpacity = 2.0
+        logoutButton.layer.shadowRadius = 1.0
+        logoutButton.layer.masksToBounds = false
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,7 +49,7 @@ class SettingsViewController: UIViewController {
     
     
     @IBAction func logoutButtonPressed(_ sender: Any) {
-        
+
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
@@ -49,13 +57,6 @@ class SettingsViewController: UIViewController {
             let viewController: UINavigationController = storyboard.instantiateViewController(withIdentifier: "welcomeNavigationController") as! UINavigationController;
             present(viewController, animated: true, completion: nil)
             
-            //self.window!.rootViewController?.show(viewController, sender: self)
-            //self.window!.rootViewController = viewController
-            //present(viewController, animated: true, completion: nil)
-            //self.window!.rootViewController?.performSegue(withIdentifier: "goToHome", sender: self)
-            //self.window!.makeKeyAndVisible()
-            //self.performSegue(withIdentifier: "unwind", sender: nil)
-            print("Signing out...")
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
