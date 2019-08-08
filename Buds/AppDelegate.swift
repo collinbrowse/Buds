@@ -25,17 +25,67 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // If Logged in, bypass the Welcome View Controller
         if user != nil {
-            // Access the storyboard and fetch an instance of the view controller
-            let storyboard = UIStoryboard(name: "Main", bundle: nil);
-            let viewController: UITabBarController = storyboard.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController;
-            //self.window!.rootViewController?.show(viewController, sender: self)
-            self.window!.rootViewController = viewController
-            //present(viewController, animated: true, completion: nil)
-            //self.window!.rootViewController?.performSegue(withIdentifier: "goToHome", sender: self)
-            self.window!.makeKeyAndVisible()
+            let ref = Database.database().reference()
+            // We can get the user's info here
+            // Get the Profile Information from Realtime Database
+            ref.child("users").child(user!.uid).observeSingleEvent(of: .value) { (snapshot) in
+                
+                // Get all the information we can from Realtime Database
+                let value = snapshot.value as? NSDictionary
+                
+                var information = [String: String]()
+                information["name"] = value?["name"] as? String ?? ""
+                information["email"] = value?["email"] as? String ?? ""
+                information["birthday"] = value?["birthday"] as? String ?? ""
+                information["location"] = value?["location"] as? String ?? ""
+                information["username"] = value?["username"] as? String ?? ""
+                information["profilePictureURL"] = value?["profilePicture"] as? String ?? ""
+                
+                // Access the storyboard
+                let storyboard = UIStoryboard(name: "Main", bundle: nil);
+                
+                // Access the TabBarController within this storyboard
+                let tabBarController: UITabBarController = storyboard.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController;
+                
+                // Loop through the Tab Bar Items
+                for n in 0...tabBarController.viewControllers!.count {
+                    
+                    // Every tab bar item has a Nav Controller so this is ok
+                    let navController = tabBarController.viewControllers![n] as! UINavigationController
+                    
+                    // Once We find the ActivityFeedController...
+                    if navController.topViewController is ActivityFeedController {
+                        let vc = navController.topViewController as? ActivityFeedController
+                        let newModelController = ModelController()
+                        newModelController.person = Person(name: information["name"]!,
+                                                           email: information["email"]!,
+                                                           location: information["location"]!,
+                                                           birthday: information["birthday"]!,
+                                                           profilePictureURL: information["profilePictureURL"]!)
+                        vc!.modelController = newModelController
+                        print("ActivityFeedController")
+                        break
+                    }
+                }
+                self.window!.rootViewController = tabBarController
+                self.window!.makeKeyAndVisible()
+            }
         }
+            
+        // User is not logged in so show the Welcome View Controller
+        else {
+            
+            if let welcomeViewController = window?.rootViewController as? WelcomeViewController {
+                welcomeViewController.modelController = ModelController()
+                print("Setting the destination VC to Welcome View Controller")
+            }
+            
+        }
+        print("Returning True")
+        // If for some reason above didn't work, set the Welcome View Controller without the Model Controller
         return true
     }
+    
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

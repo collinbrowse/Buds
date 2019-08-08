@@ -30,6 +30,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     var username: String!
     
     var ref: DatabaseReference!
+    var modelController: ModelController!
     
     //Location Search MapKit
     var searchCompleter = MKLocalSearchCompleter()
@@ -165,6 +166,8 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             let tabBarViewController = segue.destination as? UITabBarController
             if let destinationVC = tabBarViewController?.viewControllers![0] as? ProfileViewController {
                 destinationVC.username = self.username
+                destinationVC.modelController = modelController
+                print("RegisterViewController.modelController -> ProfileViewController")
             }
         }
         // If the user wants to enter a locations...
@@ -223,6 +226,11 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                                         }
                                         else {
                                             // If we are here all firebase storage is a success and we can move on
+                                            
+                                            var person = Person(name: name, email: email, location: location, birthday: birthday, profilePictureURL: "self.profilePictureImageView.image!")
+                                            person.profilePicture = self.profilePictureImageView.image!
+                                            self.modelController.person = person
+                                            self.modelController.state = .loggedIn
                                             SVProgressHUD.dismiss()
                                             self.performSegue(withIdentifier: "goToHome", sender: self)
                                         }

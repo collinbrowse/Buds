@@ -16,7 +16,7 @@ class SettingsViewController: UIViewController {
     
     var handle: AuthStateDidChangeListenerHandle?
     var user: User?
-    
+    var modelController: ModelController!
     
     override func viewDidLoad() {
         super.viewDidLoad()

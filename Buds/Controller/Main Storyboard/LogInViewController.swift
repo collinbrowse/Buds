@@ -21,6 +21,7 @@ class LogInViewController: UIViewController {
     
     var ref: DatabaseReference!
     var username: String!
+    var modelController: ModelController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +53,7 @@ class LogInViewController: UIViewController {
             Auth.auth().signIn(withEmail: email!, password: password!) { [weak self] user, error in
                 password = nil
                 guard let strongSelf = self else { return }
+                
                 strongSelf.performSegue(withIdentifier: "goToHome", sender: self)
             }
         }
@@ -70,7 +72,15 @@ class LogInViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Add Code if needed
+
+        // If the user tried to log in....
+        let tabBarViewController = segue.destination as? UITabBarController
+        if let destinationVC = tabBarViewController?.viewControllers![1] as? ProfileViewController {
+            destinationVC.modelController = modelController
+            print("LogInViewController.modelController -> ProfileViewController")
+        }
+        print("Unable to access the Profile VC in the tab bar")
+        
     }
     
     

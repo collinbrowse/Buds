@@ -10,19 +10,19 @@ import Foundation
 
 class PersonFunctions {
     
-    // CRUD Functions
-    static func createPerson(personModel: PersonModel) {
-        
-    }
-    
-    static func readPerson() {
-        
-    }
-    
-    // Not in the MVP
-    static func updatePerson(personModel: PersonModel) {
-    }
-    // Not in the MVP
-    static func deletePerson(personModel: PersonModel) {
-    }
+//    // CRUD Functions
+//    static func createPerson(personModel: PersonModel) {
+//
+//    }
+//
+//    static func readPerson() {
+//
+//    }
+//
+//    // Not in the MVP
+//    static func updatePerson(personModel: PersonModel) {
+//    }
+//    // Not in the MVP
+//    static func deletePerson(personModel: PersonModel) {
+//    }
 }

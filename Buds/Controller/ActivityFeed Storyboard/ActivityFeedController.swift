@@ -19,6 +19,11 @@ class ActivityFeedController: UITableViewController {
     var ref: DatabaseReference!
     var activities = [ActivityModel]()
     var activitiesDictionary = [String: ActivityModel]()
+    var modelController: ModelController! {
+        willSet {
+            print("Printing the Model Controller Person's name from ActivityFeedVC: \(newValue.person.name)")
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

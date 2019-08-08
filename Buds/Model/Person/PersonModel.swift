@@ -7,20 +7,22 @@
 //
 
 import Foundation
+import UIKit
 
-class PersonModel {
-    var id: UUID!
-    var name: PersonNameComponents!
-    var email: String!
-    var location: Location!
-    var birthday: Birthday!
+class Person {
+    var id: UUID
+    var name: PersonNameComponents
+    var email: String
+    var location: Location
+    var birthday: Birthday
+    var profilePicture: UIImage
     
-    init(name: PersonNameComponents, email: String, location: Location, birthday: Birthday) {
+    init(name: PersonNameComponents, email: String, location: Location, birthday: Birthday, profilePicture: UIImage) {
         id = UUID()
         self.name = name
         self.email = email
         self.location = location
         self.birthday = birthday 
-        
+        self.profilePicture = profilePicture
     }
 }

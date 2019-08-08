@@ -13,15 +13,34 @@ import UIKit
 
 class WelcomeViewController: UIViewController {
     
+    var modelController: ModelController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        // If somehow the model controller isn't passed through from the App Delegate, create it here. 
+        if modelController == nil {
+            modelController = ModelController()
+        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func myUnwindAction(segue: UIStoryboardSegue) {}  
+    @IBAction func myUnwindAction(segue: UIStoryboardSegue) {}
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? RegisterViewController {
+            print("WelcomeViewController.modelController -> RegisterViewController")
+            vc.modelController = modelController
+        } else if let vc = segue.destination as? LogInViewController {
+            print("WelcomeViewController.modelController -> LogInViewController")
+            vc.modelController = modelController
+        }
+    }
     
 }

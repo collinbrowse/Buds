@@ -33,6 +33,7 @@ class NewActivityViewController: UIViewController {
     var user: User?
     var selectedDetail: String?
     var ref: DatabaseReference?
+    var modelController: ModelController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
