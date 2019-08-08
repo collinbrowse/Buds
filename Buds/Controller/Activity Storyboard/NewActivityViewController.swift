@@ -37,6 +37,9 @@ class NewActivityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Shouldn't be able to add
+        addBarButton.isEnabled = false
+        
         // Set the Description Text View to the appropriate height
         noteTextView.delegate = self
         textViewDidChange(noteTextView)
@@ -154,17 +157,19 @@ class NewActivityViewController: UIViewController {
         // Submit the Activity
         let didAddActivity = Network.addNewActivity(userID: userID, activityDetails: activityDetailsDict)
         
-        // Show Alert With Success status
         if (didAddActivity) {
-            showAlert(success: didAddActivity, alertMessage: "Your Smoking Activity has been saved in the database!")
-            strainButton.setTitle("Strain", for: .normal)
-            smokingStyleButton.setTitle("Smoking Style", for: .normal)
-            ratingButton.setTitle("Rating", for: .normal)
-            locationButton.setTitle("Location", for: .normal)
-            noteTextView.text = ""
+            // Move to the activity feed after adding
+            tabBarController?.selectedIndex = 0
         }
         else {
             showAlert(success: didAddActivity, alertMessage: "Please Try Again")
+        }
+    }
+    
+    func buttonStateChanged() {
+        print("Button State Changed")
+        if strainButton.isSelected == true && smokingStyleButton.isSelected == true && ratingButton.isSelected == true && locationButton.isSelected == true {
+            addBarButton.isEnabled = true
         }
     }
     
@@ -208,13 +213,20 @@ extension NewActivityViewController: ActivityDetailsDelegate {
     func setSelectedDetail(detail: String, value: String) {
         if detail == "smoking_styles" {
             smokingStyleButton.setTitle(value, for: .normal)
+            smokingStyleButton.isSelected = true
+            buttonStateChanged()
         }
         else if detail == "rating" {
             ratingButton.setTitle(value, for: .normal)
+            ratingButton.isSelected = true
+            buttonStateChanged()
+
         }
         else if detail == "strain" {
-            print("Detail = strain")
             strainButton.setTitle(value, for: .normal)
+            strainButton.isSelected = true
+            buttonStateChanged()
+
         }
     }
     
@@ -225,6 +237,9 @@ extension NewActivityViewController: LocationSearchDelegate {
     
     func setSelectedLocation(location: String) {
         locationButton.setTitle(location, for: .normal)
+        locationButton.isSelected = true
+        buttonStateChanged()
+
     }
     
     
