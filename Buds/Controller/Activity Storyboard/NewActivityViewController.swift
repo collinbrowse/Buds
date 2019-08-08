@@ -259,4 +259,9 @@ extension NewActivityViewController: UITextViewDelegate {
             }
         }
     }
+    
+//    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+//        
+//        // COmbine the TextView text and the replacement text to create the up
+//    }
 }
