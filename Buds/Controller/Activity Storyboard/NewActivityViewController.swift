@@ -42,6 +42,7 @@ class NewActivityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         // Set the Description Text View to the appropriate height
         noteTextView.delegate = self
         textViewDidChange(noteTextView)
