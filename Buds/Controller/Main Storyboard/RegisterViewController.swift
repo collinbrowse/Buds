@@ -227,7 +227,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                                         else {
                                             // If we are here all firebase storage is a success and we can move on
                                             
-                                            var person = Person(name: name, email: email, location: location, birthday: birthday, profilePictureURL: "self.profilePictureImageView.image!")
+                                            var person = Person(id: Auth.auth().currentUser!.providerID, name: name, email: email, location: location, birthday: birthday, profilePictureURL: "self.profilePictureImageView.image!")
                                             person.profilePicture = self.profilePictureImageView.image!
                                             self.modelController.person = person
                                             self.modelController.state = .loggedIn

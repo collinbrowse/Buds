@@ -12,7 +12,7 @@ import UIKit
 struct Person {
     
     
-    private var id: UUID
+    var id: String 
     var name: String
     var email: String
     var location: String
@@ -20,8 +20,8 @@ struct Person {
     var profilePicture: UIImage?
     var profilePictureURL: String
     
-    init(name: String, email: String, location: String, birthday: String, profilePictureURL: String) {
-        id = UUID()
+    init(id: String, name: String, email: String, location: String, birthday: String, profilePictureURL: String) {
+        self.id = id
         self.name = name
         self.email = email
         self.location = location

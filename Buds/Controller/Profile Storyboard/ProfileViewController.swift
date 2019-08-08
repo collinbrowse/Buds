@@ -16,7 +16,7 @@ import SVProgressHUD
 
 class ProfileViewController: UIViewController {
     
-    @IBOutlet weak var profilePhotoImageView: UIImageView!
+    @IBOutlet weak var profilePictureImageView: UIImageView!
     @IBOutlet weak var nameTextView: UITextView!
     @IBOutlet weak var birthdayTextView: UITextView!
     @IBOutlet weak var locationTextView: UITextView!
@@ -43,20 +43,37 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        // Create a handle to listen to the Current User's Logged in State
-        handle = Auth.auth().addStateDidChangeListener { auth, user in
-            if let user = user {
-                self.user = user
-                self.navigationItem.title = user.displayName
-                self.profilePhotoImageView.layer.cornerRadius = self.profilePhotoImageView.frame.size.width / 2
-                self.profilePhotoImageView.clipsToBounds = true
-                self.displayUser()
-            } else {
-                // No User is signed in.
-                print("No User Signed In")
+        
+        // Pull the user's data from the Model, not the network
+        nameTextView.text = modelController.person.name
+        birthdayTextView.text = modelController.person.birthday
+        locationTextView.text = modelController.person.location
+        emailTextView.text = modelController.person.email
+        
+        if modelController.person.profilePicture != nil {
+            profilePictureImageView.image = modelController.person.profilePicture
+        } else {
+            
+            // Make a network call to find the profile picture
+            Network.getProfilePicture(userID: modelController.person.id) { (profilePicture) in
+                self.profilePictureImageView.image = profilePicture
             }
+            
         }
-        print("Didn't find the Auth Handle")
+//        // Create a handle to listen to the Current User's Logged in State
+//        handle = Auth.auth().addStateDidChangeListener { auth, user in
+//            if let user = user {
+//                self.user = user
+//                self.navigationItem.title = user.displayName
+//                self.profilePhotoImageView.layer.cornerRadius = self.profilePhotoImageView.frame.size.width / 2
+//                self.profilePhotoImageView.clipsToBounds = true
+//                self.displayUser()
+//            } else {
+//                // No User is signed in.
+//                print("No User Signed In")
+//            }
+//        }
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -110,7 +127,7 @@ class ProfileViewController: UIViewController {
                         if let data = data {
                             
                             // Now that we have our profile picture, we can set all of our information
-                            self?.profilePhotoImageView.image = UIImage(data: data)
+                            self?.profilePictureImageView.image = UIImage(data: data)
                             self?.setProfileUI(information: information)
                             SVProgressHUD.dismiss()
                         }

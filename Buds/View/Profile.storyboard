@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -123,7 +124,7 @@
                         <outlet property="emailTextView" destination="j3Q-07-tk0" id="4VG-aQ-z8Y"/>
                         <outlet property="locationTextView" destination="tah-gh-6lA" id="9D8-Lb-HKF"/>
                         <outlet property="nameTextView" destination="Viq-dV-3sX" id="Ghb-bE-0KM"/>
-                        <outlet property="profilePhotoImageView" destination="PKE-Qj-qsE" id="4T5-3l-kql"/>
+                        <outlet property="profilePictureImageView" destination="PKE-Qj-qsE" id="4T5-3l-kql"/>
                         <outlet property="usernameTextView" destination="s66-pY-7Mf" id="kzg-yU-EzG"/>
                     </connections>
                 </viewController>

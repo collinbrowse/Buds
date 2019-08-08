@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let tabBarController: UITabBarController = storyboard.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController;
                 
                 // Loop through the Tab Bar Items
-                for n in 0...tabBarController.viewControllers!.count {
+                for n in 0...tabBarController.viewControllers!.count-1 {
                     
                     // Every tab bar item has a Nav Controller so this is ok
                     let navController = tabBarController.viewControllers![n] as! UINavigationController
@@ -57,18 +57,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     if navController.topViewController is ActivityFeedController {
                         let vc = navController.topViewController as? ActivityFeedController
                         let newModelController = ModelController()
-                        newModelController.person = Person(name: information["name"]!,
+                        newModelController.person = Person(id: user!.uid,
+                                                            name: information["name"]!,
                                                            email: information["email"]!,
                                                            location: information["location"]!,
                                                            birthday: information["birthday"]!,
                                                            profilePictureURL: information["profilePictureURL"]!)
                         vc!.modelController = newModelController
-                        print("ActivityFeedController")
-                        break
+                        
+                    } else if navController.topViewController is ProfileViewController {
+                        let vc = navController.topViewController as? ProfileViewController
+                        let newModelController = ModelController()
+                        newModelController.person = Person(id: user!.uid,
+                                                           name: information["name"]!,
+                                                           email: information["email"]!,
+                                                           location: information["location"]!,
+                                                           birthday: information["birthday"]!,
+                                                           profilePictureURL: information["profilePictureURL"]!)
+                        vc!.modelController = newModelController
+                        
+                    } else if navController.topViewController is NewActivityViewController {
+                        let vc = navController.topViewController as? NewActivityViewController
+                        let newModelController = ModelController()
+                        newModelController.person = Person(id: user!.uid,
+                                                           name: information["name"]!,
+                                                           email: information["email"]!,
+                                                           location: information["location"]!,
+                                                           birthday: information["birthday"]!,
+                                                           profilePictureURL: information["profilePictureURL"]!)
+                        vc!.modelController = newModelController
+                        
+                    } else if navController.topViewController is SettingsViewController {
+                        let vc = navController.topViewController as? SettingsViewController
+                        let newModelController = ModelController()
+                        newModelController.person = Person(id: user!.uid,
+                                                           name: information["name"]!,
+                                                           email: information["email"]!,
+                                                           location: information["location"]!,
+                                                           birthday: information["birthday"]!,
+                                                           profilePictureURL: information["profilePictureURL"]!)
+                        vc!.modelController = newModelController
+                        
                     }
                 }
                 self.window!.rootViewController = tabBarController
                 self.window!.makeKeyAndVisible()
+                
             }
         }
             
@@ -77,11 +111,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             if let welcomeViewController = window?.rootViewController as? WelcomeViewController {
                 welcomeViewController.modelController = ModelController()
-                print("Setting the destination VC to Welcome View Controller")
             }
             
         }
-        print("Returning True")
+    
         // If for some reason above didn't work, set the Welcome View Controller without the Model Controller
         return true
     }

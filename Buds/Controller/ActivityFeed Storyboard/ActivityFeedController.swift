@@ -66,7 +66,6 @@ class ActivityFeedController: UITableViewController {
             Auth.auth().removeStateDidChangeListener(handle!)
         }
         else {
-            // User was never logged in so we don't have to worry about it
         }
     }
     
