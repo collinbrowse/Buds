@@ -33,7 +33,11 @@ class NewActivityViewController: UIViewController {
     var user: User?
     var selectedDetail: String?
     var ref: DatabaseReference?
-    var modelController: ModelController!
+    var modelController: ModelController! {
+        willSet {
+            print("Printing the Model Controller Person's name from ProfileVC: \(newValue.person.name)")
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,24 +51,40 @@ class NewActivityViewController: UIViewController {
         navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationBar.shadowImage = UIImage()
         
-        setUpNavbar()
+        
+        // Pull the user's data from the Model, not the network
+        if modelController.person.profilePicture != nil {
+            self.setUpNavbar(modelController.person.profilePicture!)
+            
+        } else {
+            
+            // Make a network call to find the profile picture
+            Network.getProfilePicture(userID: modelController.person.id) { (profilePicture) in
+                self.modelController.person.profilePicture = profilePicture
+                self.setUpNavbar(profilePicture)
+            }
+            
+        }
+        
+        //setUpNavbar()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
-        SVProgressHUD.show()
-        handle = Auth.auth().addStateDidChangeListener { auth, user in
-            if let user = user {
-                self.user = user
-                self.ref = Database.database().reference()
-                self.profilePictureImageView.layer.cornerRadius = self.profilePictureImageView.frame.size.width / 2
-                self.profilePictureImageView.clipsToBounds = true
-                self.loadUser()
-            } else {
-                // No User is signed in.
-                SVProgressHUD.dismiss()
-            }
-        }
+//        handle = Auth.auth().addStateDidChangeListener { auth, user in
+//            if let user = user {
+//                self.user = user
+//                self.ref = Database.database().reference()
+//                self.profilePictureImageView.layer.cornerRadius = self.profilePictureImageView.frame.size.width / 2
+//                self.profilePictureImageView.clipsToBounds = true
+//                self.loadUser()
+//            } else {
+//                // No User is signed in.
+//                SVProgressHUD.dismiss()
+//            }
+//        }
+        
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -75,11 +95,10 @@ class NewActivityViewController: UIViewController {
     
     
     // Add the User's profile picture to the navigation bar
-    func setUpNavbar() {
+    func setUpNavbar(_ image: UIImage) {
         
         // Set up/Gain Access to everything we will need
         let navController = navigationController!
-        let image = #imageLiteral(resourceName: "person-icon")
         let bannerWidth = navController.navigationBar.frame.size.width
         let bannerHeight = navController.navigationBar.frame.size.height
         let titleView = UIView()
@@ -102,6 +121,7 @@ class NewActivityViewController: UIViewController {
         
         // Finally set the titleView of the nav bar to our new title view
         navigationItem.titleView = titleView
+        SVProgressHUD.dismiss()
     }
     
     func loadUser() {

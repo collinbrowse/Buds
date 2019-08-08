@@ -39,11 +39,6 @@ class ProfileViewController: UIViewController {
         // Connect to Realtime Database
         ref = Database.database().reference()
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-        
         // Pull the user's data from the Model, not the network
         nameTextView.text = modelController.person.name
         birthdayTextView.text = modelController.person.birthday
@@ -60,19 +55,9 @@ class ProfileViewController: UIViewController {
             }
             
         }
-//        // Create a handle to listen to the Current User's Logged in State
-//        handle = Auth.auth().addStateDidChangeListener { auth, user in
-//            if let user = user {
-//                self.user = user
-//                self.navigationItem.title = user.displayName
-//                self.profilePhotoImageView.layer.cornerRadius = self.profilePhotoImageView.frame.size.width / 2
-//                self.profilePhotoImageView.clipsToBounds = true
-//                self.displayUser()
-//            } else {
-//                // No User is signed in.
-//                print("No User Signed In")
-//            }
-//        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         
     }
     

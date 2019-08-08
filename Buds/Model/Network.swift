@@ -38,14 +38,18 @@ class Network {
     
     static func getProfilePicture(userID: String, complete: @escaping (UIImage) -> ()) {
         
-        var profilePicture: UIImage?
+        var profilePicture = UIImage(named: "person-icon")
         
         // Step 1: Get access to the user in RealtimeDatabase
         ref.child("users").child(userID).observeSingleEvent(of: .value) { (snapshot) in
             
+            print("Found the user in Realtime Database")
+            
             // Step 2: Get that users Profile Picture URL
             let value = snapshot.value as? NSDictionary
             if let profilePictureURL = value?["profilePicture"] as? String {
+                
+                print("Found the ProfilePictureURL for the User")
                 
                 // Step 3: Get the picture from storage using that URL
                 let storageRef = Storage.storage().reference(forURL: profilePictureURL)
@@ -57,17 +61,19 @@ class Network {
                     }
                     if let data = data {
                         // Step 4: Convert the Firebase Storage Data to an Image
+                        print("Successfully found the image in Storage")
                         profilePicture = UIImage(data: data)
+                        //Step 5: Use the completion handler to return the Profile Picture
+                        complete(profilePicture!)
                     }
                 })
-            } else {
-                // The User doesn't have a profile picture
-                // Return a default one
-                profilePicture = UIImage(named: "person-icon")
+            } else { // We didn't find that user
+                complete(profilePicture!)
             }
-            //Step 5: Use the completion handler to return the Profile Picture
-            complete(profilePicture!)
+            
         }
+        
+        //complete(profilePicture!)
     }
     
 
