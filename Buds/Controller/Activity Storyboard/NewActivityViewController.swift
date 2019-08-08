@@ -15,9 +15,6 @@ import SVProgressHUD
 class NewActivityViewController: UIViewController {
     
     // Hook Up Outlets
-    @IBOutlet weak var profilePictureImageView: UIImageView!
-    @IBOutlet weak var currentNameTextView: UITextView!
-    @IBOutlet weak var currentLocationTextView: UITextView!
     @IBOutlet weak var noteTextView: UITextView!
     @IBOutlet weak var ratingTextView: UITextView!
     @IBOutlet weak var smokingStylePlaceholderTextView: UITextView!

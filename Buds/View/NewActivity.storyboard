@@ -18,52 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CAC-5j-Lfy" userLabel="Wrapping Profile View">
-                                <rect key="frame" x="20" y="0.0" width="374" height="70"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person-icon" translatesAutoresizingMaskIntoConstraints="NO" id="9Af-Bt-IL6">
-                                        <rect key="frame" x="8" y="8" width="44" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="2xM-zq-31E"/>
-                                            <constraint firstAttribute="width" constant="44" id="nnC-Cd-zNW"/>
-                                        </constraints>
-                                    </imageView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Steamboat Springs, CO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GNQ-52-1gk" userLabel="Current Location Text View">
-                                        <rect key="frame" x="68" y="30" width="306" height="22"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="22" id="UFR-Q1-KlX"/>
-                                        </constraints>
-                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Collin Browse" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z13-R7-w1u" userLabel="Name Text View">
-                                        <rect key="frame" x="68" y="8" width="306" height="22"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="22" id="C2o-qh-Tb1"/>
-                                        </constraints>
-                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="Z13-R7-w1u" firstAttribute="leading" secondItem="9Af-Bt-IL6" secondAttribute="trailing" constant="16" id="DKM-WV-Zho"/>
-                                    <constraint firstItem="9Af-Bt-IL6" firstAttribute="leading" secondItem="CAC-5j-Lfy" secondAttribute="leading" constant="8" id="LK2-5b-tiK"/>
-                                    <constraint firstAttribute="trailing" secondItem="Z13-R7-w1u" secondAttribute="trailing" id="W3v-ib-Ors"/>
-                                    <constraint firstItem="9Af-Bt-IL6" firstAttribute="top" secondItem="CAC-5j-Lfy" secondAttribute="top" constant="8" id="ZYy-Ag-3b5"/>
-                                    <constraint firstAttribute="trailing" secondItem="GNQ-52-1gk" secondAttribute="trailing" id="dhu-q0-lQD"/>
-                                    <constraint firstItem="GNQ-52-1gk" firstAttribute="leading" secondItem="9Af-Bt-IL6" secondAttribute="trailing" constant="16" id="hfM-aB-u54"/>
-                                    <constraint firstItem="Z13-R7-w1u" firstAttribute="top" secondItem="CAC-5j-Lfy" secondAttribute="top" constant="8" id="mQ2-fS-0ND"/>
-                                    <constraint firstItem="GNQ-52-1gk" firstAttribute="top" secondItem="Z13-R7-w1u" secondAttribute="bottom" id="vWX-qo-J9D"/>
-                                    <constraint firstAttribute="height" constant="70" id="y1G-7g-cAg"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pke-H8-bPg" userLabel="Wrapping Details View">
-                                <rect key="frame" x="20" y="70" width="374" height="655"/>
+                                <rect key="frame" x="20" y="0.0" width="374" height="725"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8QW-bx-ckq" userLabel="Wrapping Strain View">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
@@ -279,11 +235,8 @@
                         <constraints>
                             <constraint firstItem="pke-H8-bPg" firstAttribute="leading" secondItem="oje-eC-Ore" secondAttribute="leading" constant="20" id="79O-ut-K6Q"/>
                             <constraint firstItem="oje-eC-Ore" firstAttribute="trailing" secondItem="pke-H8-bPg" secondAttribute="trailing" constant="20" id="BC5-cT-SGB"/>
-                            <constraint firstItem="pke-H8-bPg" firstAttribute="top" secondItem="CAC-5j-Lfy" secondAttribute="bottom" id="Mrm-Hr-Keu"/>
-                            <constraint firstItem="oje-eC-Ore" firstAttribute="trailing" secondItem="CAC-5j-Lfy" secondAttribute="trailing" constant="20" id="SCE-hW-IvY"/>
                             <constraint firstAttribute="bottomMargin" secondItem="pke-H8-bPg" secondAttribute="bottom" id="Ypc-UI-oQ0"/>
-                            <constraint firstItem="CAC-5j-Lfy" firstAttribute="top" secondItem="oje-eC-Ore" secondAttribute="top" id="qXs-9z-hNW"/>
-                            <constraint firstItem="CAC-5j-Lfy" firstAttribute="leading" secondItem="oje-eC-Ore" secondAttribute="leading" constant="20" id="yTX-Zh-Gg8"/>
+                            <constraint firstItem="pke-H8-bPg" firstAttribute="top" secondItem="oje-eC-Ore" secondAttribute="top" id="zIS-aV-HvU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oje-eC-Ore"/>
                     </view>
@@ -299,18 +252,13 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addBarButton" destination="LJQ-Nh-Xcc" id="VxD-8b-ICj"/>
-                        <outlet property="currentLocationTextView" destination="GNQ-52-1gk" id="IlR-Mr-PfM"/>
-                        <outlet property="currentNameTextView" destination="Z13-R7-w1u" id="pHe-ez-p9L"/>
                         <outlet property="locationPlaceholderTextView" destination="a3h-Yc-RCA" id="gto-if-uca"/>
                         <outlet property="noteTextView" destination="Us5-jj-LKM" id="6Id-Zz-YjS"/>
-                        <outlet property="profilePictureImageView" destination="9Af-Bt-IL6" id="qad-8E-2b6"/>
                         <outlet property="ratingPlaceholderTextView" destination="5MM-WP-YIk" id="HtJ-3c-UaU"/>
                         <outlet property="ratingTextView" destination="vtG-zB-7GT" id="AtI-kv-4cy"/>
                         <outlet property="smokingStylePlaceholderTextView" destination="LqC-Qa-ILQ" id="XJx-ls-EHy"/>
                         <outlet property="strainPlaceholderTextView" destination="Rbi-pb-EP3" id="o5o-2S-PtH"/>
                         <outlet property="wrappingDetailsView" destination="pke-H8-bPg" id="yWg-CC-tlo"/>
-                        <outletCollection property="collectionOfTextViews" destination="GNQ-52-1gk" collectionClass="NSMutableArray" id="7L8-tW-Js4"/>
-                        <outletCollection property="collectionOfTextViews" destination="Z13-R7-w1u" collectionClass="NSMutableArray" id="97X-wH-WOi"/>
                         <outletCollection property="collectionOfTextViews" destination="vtG-zB-7GT" collectionClass="NSMutableArray" id="OdC-TA-hah"/>
                         <segue destination="8DW-fj-FfQ" kind="show" identifier="goToSmokingStyle" id="H3w-Cq-OXD"/>
                         <segue destination="7Gg-xS-fGn" kind="show" identifier="goToRating" id="DL5-VG-NDu"/>
@@ -474,7 +422,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="person-icon" width="610" height="564"/>
         <image name="right_carrot_icon" width="512" height="512"/>
     </resources>
     <color key="tintColor" red="0.0" green="0.28940463066101074" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
