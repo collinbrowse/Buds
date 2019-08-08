@@ -28,11 +28,11 @@ class NewActivityViewController: UIViewController {
     @IBOutlet weak var addBarButton: UIBarButtonItem!
     @IBOutlet weak var wrappingDetailsView: UIView!
     
-    
-    var handle: AuthStateDidChangeListenerHandle?
-    var user: User?
+    // Instance Variables
     var selectedDetail: String?
     var ref: DatabaseReference?
+    
+    // Observed Properties
     var modelController: ModelController! {
         willSet {
             print("Printing the Model Controller Person's name from ProfileVC: \(newValue.person.name)")
@@ -46,56 +46,33 @@ class NewActivityViewController: UIViewController {
         noteTextView.delegate = self
         textViewDidChange(noteTextView)
         
-        // Alter the Navigation Bar
-        let navigationBar = navigationController!.navigationBar
-        navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationBar.shadowImage = UIImage()
-        
-        
         // Pull the user's data from the Model, not the network
         if modelController.person.profilePicture != nil {
             self.setUpNavbar(modelController.person.profilePicture!)
-            
         } else {
-            
             // Make a network call to find the profile picture
             Network.getProfilePicture(userID: modelController.person.id) { (profilePicture) in
                 self.modelController.person.profilePicture = profilePicture
                 self.setUpNavbar(profilePicture)
             }
-            
         }
-        
-        //setUpNavbar()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
-//        handle = Auth.auth().addStateDidChangeListener { auth, user in
-//            if let user = user {
-//                self.user = user
-//                self.ref = Database.database().reference()
-//                self.profilePictureImageView.layer.cornerRadius = self.profilePictureImageView.frame.size.width / 2
-//                self.profilePictureImageView.clipsToBounds = true
-//                self.loadUser()
-//            } else {
-//                // No User is signed in.
-//                SVProgressHUD.dismiss()
-//            }
-//        }
-        
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        if handle != nil {
-            Auth.auth().removeStateDidChangeListener(handle!)
-        }
     }
     
     
     // Add the User's profile picture to the navigation bar
     func setUpNavbar(_ image: UIImage) {
+        
+        // Alter the Navigation Bar
+        let navigationBar = navigationController!.navigationBar
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.shadowImage = UIImage()
         
         // Set up/Gain Access to everything we will need
         let navController = navigationController!
@@ -121,35 +98,6 @@ class NewActivityViewController: UIViewController {
         
         // Finally set the titleView of the nav bar to our new title view
         navigationItem.titleView = titleView
-        SVProgressHUD.dismiss()
-    }
-    
-    func loadUser() {
-        if user?.email != nil {
-            ref!.child("users").child(user!.uid).observeSingleEvent(of: .value) { (snapshot) in
-                // Get the Profile Picture, Name, Location
-                if let dictionary = snapshot.value as? NSDictionary {
-                    self.currentNameTextView.text = dictionary["name"] as? String
-                    self.currentLocationTextView.text = dictionary["location"] as? String
-                    
-                    if let profilePictureURL = dictionary["profilePicture"] as? String {
-                        let firebaseStorageRef = Storage.storage().reference(forURL: profilePictureURL)
-                        firebaseStorageRef.getData(maxSize: 4*1024*1024, completion: { (data, error) in
-                            if let error = error {
-                                print("There was an error getting this data \(error.localizedDescription)")
-                                // Profile Picture already has a default value
-                                return
-                            }
-                            if let data = data {
-                                self.profilePictureImageView.image = UIImage(data: data)
-                                
-                                SVProgressHUD.dismiss()
-                            }
-                        })
-                    }
-                }
-            }
-        }
         SVProgressHUD.dismiss()
     }
     
@@ -199,14 +147,14 @@ class NewActivityViewController: UIViewController {
         
         // Add the Details of the Smoking Activity
         var activityDetailsDict = [String : String]()
-        activityDetailsDict["user"] = user?.uid 
+        activityDetailsDict["user"] = modelController.person.id
         activityDetailsDict["time"] = TimeHelper.getTodayString()
         activityDetailsDict["smoking_style"] = smokingStylePlaceholderTextView.text
         activityDetailsDict["rating"] = ratingPlaceholderTextView.text
         activityDetailsDict["strain"] = strainPlaceholderTextView.text
         activityDetailsDict["location"] = locationPlaceholderTextView.text
         activityDetailsDict["note"] = noteTextView.text
-        let userID = user?.uid ?? ""
+        let userID = modelController.person.id 
         
         // Submit the Activity
         let didAddActivity = Network.addNewActivity(userID: userID, activityDetails: activityDetailsDict)

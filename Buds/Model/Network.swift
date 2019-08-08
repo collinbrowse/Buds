@@ -11,19 +11,11 @@ import Firebase
 import FirebaseAuth
 
 class Network {
+
     //Grab a connection to Realtime database
     static var ref = Database.database().reference()
-    // Adds a smoking activity to Relatime Database
-    // Data format:
-    // activity
-    // --user id
-    // -- --Date/Time
-    // -- -- --location
-    // -- -- --rating
-    // -- -- --smoking_style
-    // -- -- --strain
+
     static func addNewActivity(userID: String, activityDetails: [String : String]) -> Bool {
-        print("Add New Activity Function Called")
         
         // Add the activity with the User's ID identifying it
         ref.child("activity").childByAutoId().setValue(activityDetails)
@@ -36,6 +28,8 @@ class Network {
         
     }
     
+    // Retrieves the User's profile picture with id: userID from FirebaseStorage
+    // If none is available, then a default image is used
     static func getProfilePicture(userID: String, complete: @escaping (UIImage) -> ()) {
         
         var profilePicture = UIImage(named: "person-icon")
@@ -43,13 +37,9 @@ class Network {
         // Step 1: Get access to the user in RealtimeDatabase
         ref.child("users").child(userID).observeSingleEvent(of: .value) { (snapshot) in
             
-            print("Found the user in Realtime Database")
-            
             // Step 2: Get that users Profile Picture URL
             let value = snapshot.value as? NSDictionary
             if let profilePictureURL = value?["profilePicture"] as? String {
-                
-                print("Found the ProfilePictureURL for the User")
                 
                 // Step 3: Get the picture from storage using that URL
                 let storageRef = Storage.storage().reference(forURL: profilePictureURL)
@@ -61,7 +51,6 @@ class Network {
                     }
                     if let data = data {
                         // Step 4: Convert the Firebase Storage Data to an Image
-                        print("Successfully found the image in Storage")
                         profilePicture = UIImage(data: data)
                         //Step 5: Use the completion handler to return the Profile Picture
                         complete(profilePicture!)
@@ -70,13 +59,6 @@ class Network {
             } else { // We didn't find that user
                 complete(profilePicture!)
             }
-            
         }
-        
-        //complete(profilePicture!)
     }
-    
-
-    
-    
 }
