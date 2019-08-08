@@ -243,7 +243,7 @@
                     <tabBarItem key="tabBarItem" title="Item" id="q8N-UT-p6a"/>
                     <navigationItem key="navigationItem" title="New Activity" id="trn-hR-DG3">
                         <barButtonItem key="backBarButtonItem" title="Back" id="oDC-QW-eOB"/>
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="LJQ-Nh-Xcc">
+                        <barButtonItem key="rightBarButtonItem" title="POST" id="LJQ-Nh-Xcc">
                             <connections>
                                 <action selector="addBarButtonPressed:" destination="oJC-zi-Pjq" id="fq0-o6-9Jd"/>
                             </connections>
