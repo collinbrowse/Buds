@@ -16,14 +16,12 @@ class NewActivityViewController: UIViewController {
     
     // Hook Up Outlets
     @IBOutlet weak var noteTextView: UITextView!
-    @IBOutlet weak var ratingTextView: UITextView!
-    @IBOutlet weak var smokingStylePlaceholderTextView: UITextView!
-    @IBOutlet weak var locationPlaceholderTextView: UITextView!
-    @IBOutlet weak var ratingPlaceholderTextView: UITextView!
-    @IBOutlet weak var strainPlaceholderTextView: UITextView!
-    @IBOutlet var collectionOfTextViews: Array<UITextView>! // = [UIView]
     @IBOutlet weak var addBarButton: UIBarButtonItem!
     @IBOutlet weak var wrappingDetailsView: UIView!
+    @IBOutlet weak var strainButton: UIButton!
+    @IBOutlet weak var smokingStyleButton: UIButton!
+    @IBOutlet weak var ratingButton: UIButton!
+    @IBOutlet weak var locationButton: UIButton!
     
     // Instance Variables
     var selectedDetail: String?
@@ -146,10 +144,10 @@ class NewActivityViewController: UIViewController {
         var activityDetailsDict = [String : String]()
         activityDetailsDict["user"] = modelController.person.id
         activityDetailsDict["time"] = TimeHelper.getTodayString()
-        activityDetailsDict["smoking_style"] = smokingStylePlaceholderTextView.text
-        activityDetailsDict["rating"] = ratingPlaceholderTextView.text
-        activityDetailsDict["strain"] = strainPlaceholderTextView.text
-        activityDetailsDict["location"] = locationPlaceholderTextView.text
+        activityDetailsDict["smoking_style"] = smokingStyleButton.title(for: .normal)
+        activityDetailsDict["rating"] = ratingButton.title(for: .normal)
+        activityDetailsDict["strain"] = strainButton.title(for: .normal)
+        activityDetailsDict["location"] = locationButton.title(for: .normal)
         activityDetailsDict["note"] = noteTextView.text
         let userID = modelController.person.id 
         
@@ -159,33 +157,33 @@ class NewActivityViewController: UIViewController {
         // Show Alert With Success status
         if (didAddActivity) {
             showAlert(success: didAddActivity, alertMessage: "Your Smoking Activity has been saved in the database!")
-            smokingStylePlaceholderTextView.text = ""
-            ratingPlaceholderTextView.text = ""
-            strainPlaceholderTextView.text = ""
-            locationPlaceholderTextView.text = ""
+            strainButton.setTitle("Strain", for: .normal)
+            smokingStyleButton.setTitle("Smoking Style", for: .normal)
+            ratingButton.setTitle("Rating", for: .normal)
+            locationButton.setTitle("Location", for: .normal)
             noteTextView.text = ""
         }
         else {
             showAlert(success: didAddActivity, alertMessage: "Please Try Again")
         }
     }
-   
+    
+    @IBAction func strainPressed(_ sender: Any) {
+        performSegue(withIdentifier: "goToStrain", sender: Any?.self)
+    }
     
     @IBAction func smokingStylePressed(_ sender: Any) {
         performSegue(withIdentifier: "goToSmokingStyle", sender: Any?.self)
-    }
-    
-    @IBAction func locationPressed(_ sender: Any) {
-        performSegue(withIdentifier: "goToLocation", sender: Any?.self)
     }
     
     @IBAction func ratingPressed(_ sender: Any) {
         performSegue(withIdentifier: "goToRating", sender: Any?.self)
     }
     
-    @IBAction func strainPressed(_ sender: Any) {
-        performSegue(withIdentifier: "goToStrain", sender: Any?.self)
+    @IBAction func locationPressed(_ sender: Any) {
+        performSegue(withIdentifier: "goToLocation", sender: Any?.self)
     }
+    
     
     // Helper Function to get the current Date/Time as a String
     func getTodayString() -> String {
@@ -209,13 +207,14 @@ extension NewActivityViewController: ActivityDetailsDelegate {
     
     func setSelectedDetail(detail: String, value: String) {
         if detail == "smoking_styles" {
-            smokingStylePlaceholderTextView.text = value
+            smokingStyleButton.setTitle(value, for: .normal)
         }
         else if detail == "rating" {
-            ratingPlaceholderTextView.text = value
+            ratingButton.setTitle(value, for: .normal)
         }
         else if detail == "strain" {
-            strainPlaceholderTextView.text = value
+            print("Detail = strain")
+            strainButton.setTitle(value, for: .normal)
         }
     }
     
@@ -225,7 +224,7 @@ extension NewActivityViewController: ActivityDetailsDelegate {
 extension NewActivityViewController: LocationSearchDelegate {
     
     func setSelectedLocation(location: String) {
-        locationPlaceholderTextView.text = location
+        locationButton.setTitle(location, for: .normal)
     }
     
     
@@ -259,9 +258,4 @@ extension NewActivityViewController: UITextViewDelegate {
             }
         }
     }
-    
-//    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-//        
-//        // COmbine the TextView text and the replacement text to create the up
-//    }
 }
