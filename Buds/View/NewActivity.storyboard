@@ -53,8 +53,7 @@
                                         <rect key="frame" x="0.0" y="44" width="374" height="44"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJV-K1-SY3" userLabel="Smoking Style Button">
-                                                <rect key="frame" x="116.5" y="5.5" width="141" height="33"/>
-                                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
+                                                <rect key="frame" x="121" y="7" width="132" height="30"/>
                                                 <state key="normal" title="SMOKING STYLE &gt;">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
