@@ -58,9 +58,28 @@ class NewActivityViewController: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        // Register an observer if the keyboard is showing
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+    }
+    
+    var keyboardRectangle: CGRect?
+    var keyboardHeight: CGFloat?
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            keyboardRectangle = keyboardFrame.cgRectValue
+            keyboardHeight = keyboardRectangle!.height
+            textViewDidChange(noteTextView)
+        }
     }
     
     
@@ -249,8 +268,8 @@ extension NewActivityViewController: UITextViewDelegate {
         let heightOfTextView = textView.frame.size.height
         let positionOfTextView = textView.frame.origin.y
         let bottomOfTextView = heightOfTextView + positionOfTextView
-        
-        if bottomOfTextView > (wrappingDetailsView.frame.size.height - 33) {
+        if keyboardHeight != nil {
+        if bottomOfTextView > (wrappingDetailsView.frame.size.height - keyboardHeight!) {
             // Text View is off the screen
             textView.isScrollEnabled = true
             print("Scroll Enabled")
@@ -268,6 +287,7 @@ extension NewActivityViewController: UITextViewDelegate {
                     constraint.constant = estimatedSize.height
                 }
             }
+        }
         }
     }
 }
