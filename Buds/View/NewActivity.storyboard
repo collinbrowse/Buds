@@ -9,6 +9,14 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="PlayfairDisplay-Regular.otf">
+            <string>PlayfairDisplay-Regular</string>
+        </array>
+        <array key="Proxima Nova Regular.otf">
+            <string>ProximaNova-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--New Activity Controller-->
         <scene sceneID="oWd-TK-2uP">
@@ -25,9 +33,9 @@
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4eW-Pi-xvu" userLabel="Strain Button">
-                                                <rect key="frame" x="155" y="5" width="64" height="34"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <state key="normal" title="Strain &gt;">
+                                                <rect key="frame" x="151.5" y="5.5" width="71" height="33"/>
+                                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
+                                                <state key="normal" title="STRAIN &gt;">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <connections>
@@ -45,9 +53,9 @@
                                         <rect key="frame" x="0.0" y="44" width="374" height="44"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJV-K1-SY3" userLabel="Smoking Style Button">
-                                                <rect key="frame" x="121" y="5" width="132" height="34"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <state key="normal" title="Smoking Style &gt;">
+                                                <rect key="frame" x="116.5" y="5.5" width="141" height="33"/>
+                                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
+                                                <state key="normal" title="SMOKING STYLE &gt;">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <connections>
@@ -65,9 +73,9 @@
                                         <rect key="frame" x="0.0" y="88" width="374" height="44"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6KM-Tf-G4o" userLabel="Rating Button">
-                                                <rect key="frame" x="153" y="5" width="68" height="34"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <state key="normal" title="Rating &gt;">
+                                                <rect key="frame" x="151" y="5.5" width="72" height="33"/>
+                                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
+                                                <state key="normal" title="RATING &gt;">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <connections>
@@ -85,9 +93,9 @@
                                         <rect key="frame" x="0.0" y="132" width="374" height="44"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NNX-zj-6Bo">
-                                                <rect key="frame" x="144.5" y="5" width="85" height="34"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <state key="normal" title="Location &gt;">
+                                                <rect key="frame" x="139.5" y="5.5" width="95" height="33"/>
+                                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
+                                                <state key="normal" title="LOCATION &gt;">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <connections>
@@ -101,16 +109,16 @@
                                             <constraint firstAttribute="height" constant="44" id="oW7-5o-iOj"/>
                                         </constraints>
                                     </view>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Us5-jj-LKM" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                                        <rect key="frame" x="0.0" y="176" width="374" height="44"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Us5-jj-LKM" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
+                                        <rect key="frame" x="0.0" y="192" width="374" height="44"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="uLI-nv-0b8"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <fontDescription key="fontDescription" name="PlayfairDisplay-Regular" family="Playfair Display" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Add Some More Description"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="What else would you like to say?"/>
                                         </userDefinedRuntimeAttributes>
                                     </textView>
                                 </subviews>
@@ -127,7 +135,7 @@
                                     <constraint firstItem="4go-2Y-JYk" firstAttribute="top" secondItem="hAu-VG-3cI" secondAttribute="bottom" id="bnY-vI-gw3"/>
                                     <constraint firstItem="hAu-VG-3cI" firstAttribute="leading" secondItem="pke-H8-bPg" secondAttribute="leading" id="eAp-WT-TMy"/>
                                     <constraint firstItem="hAu-VG-3cI" firstAttribute="top" secondItem="8QW-bx-ckq" secondAttribute="bottom" id="f4S-T6-V3i"/>
-                                    <constraint firstItem="Us5-jj-LKM" firstAttribute="top" secondItem="qpq-DL-yXH" secondAttribute="bottom" id="laT-IM-xol"/>
+                                    <constraint firstItem="Us5-jj-LKM" firstAttribute="top" secondItem="qpq-DL-yXH" secondAttribute="bottom" constant="16" id="laT-IM-xol"/>
                                     <constraint firstItem="8QW-bx-ckq" firstAttribute="top" secondItem="pke-H8-bPg" secondAttribute="top" id="m4f-X4-EqJ"/>
                                     <constraint firstItem="qpq-DL-yXH" firstAttribute="top" secondItem="4go-2Y-JYk" secondAttribute="bottom" id="rV6-89-jWm"/>
                                     <constraint firstAttribute="trailing" secondItem="Us5-jj-LKM" secondAttribute="trailing" id="suR-3M-00e"/>
