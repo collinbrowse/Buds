@@ -17,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Name" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Jg-P5-xKc" userLabel="Name Text View">
-                    <rect key="frame" x="82" y="8" width="319" height="22"/>
+                    <rect key="frame" x="82" y="8" width="309" height="22"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="uAF-PF-TDA"/>
@@ -31,11 +31,11 @@
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="9h" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HA0-OF-Mrp" userLabel="Time Text View">
-                    <rect key="frame" x="409" y="8" width="32" height="22"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="9h" textAlignment="right" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HA0-OF-Mrp" userLabel="Time Text View">
+                    <rect key="frame" x="399" y="8" width="42" height="22"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="32" id="3we-3n-gPE"/>
+                        <constraint firstAttribute="width" constant="42" id="3we-3n-gPE"/>
                         <constraint firstAttribute="height" constant="22" id="LMX-fR-Imb"/>
                     </constraints>
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
