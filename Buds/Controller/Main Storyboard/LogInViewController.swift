@@ -50,18 +50,18 @@ class LogInViewController: UIViewController {
         passwordTextfield.text = nil
         
         if ( !password!.isEmpty && !email!.isEmpty) {
-            Auth.auth().signIn(withEmail: email!, password: password!) { [weak self] user, error in
+            Network.logInUser(email: email!, password: password!) { (user) in
+                self.modelController.person = user
+                self.modelController.state = .loggedIn
                 password = nil
-                guard let strongSelf = self else { return }
-                
-                strongSelf.performSegue(withIdentifier: "goToHome", sender: self)
+                self.performSegue(withIdentifier: "goToHome", sender: self)
             }
         }
         else {
             SVProgressHUD.dismiss()
+            password = nil
             self.showAlert(alertMessage: "All Fields Must Be Filled Out")
         }
-        
     }
     
     func showAlert(alertMessage: String) {
@@ -73,15 +73,32 @@ class LogInViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-        // If the user tried to log in....
-        let tabBarViewController = segue.destination as? UITabBarController
-        if let destinationVC = tabBarViewController?.viewControllers![1] as? ProfileViewController {
-            destinationVC.modelController = modelController
-            print("LogInViewController.modelController -> ProfileViewController")
+        if segue.identifier == "goToHome" {
+        
+            if let tabBarViewController = segue.destination as? UITabBarController {
+            
+                // FIX: Safely unwrap the tab Bar Controller
+                for n in 0...tabBarViewController.viewControllers!.count-1 {
+                    let navController = tabBarViewController.viewControllers![n] as! UINavigationController
+                    if navController.topViewController is ActivityFeedController {
+                        let vc = navController.topViewController as! ActivityFeedController
+                        vc.modelController = modelController
+                    } else if navController.topViewController is ProfileViewController {
+                        let vc = navController.topViewController as! ProfileViewController
+                        vc.modelController = modelController
+                    } else if navController.topViewController is NewActivityViewController {
+                        let vc = navController.topViewController as! NewActivityViewController
+                        vc.modelController = modelController
+                    } else if navController.topViewController is SettingsViewController {
+                        let vc = navController.topViewController as! SettingsViewController
+                        vc.modelController = modelController
+                    }
+                }
+            }
         }
-        print("Unable to access the Profile VC in the tab bar")
+        else {
+            print("Unable to find the specified Segue")
+        }
         
     }
-    
-    
 }

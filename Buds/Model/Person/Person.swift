@@ -28,6 +28,15 @@ struct Person {
         self.birthday = birthday 
         self.profilePictureURL = profilePictureURL
     }
+    init(id: String, name: String, email: String, location: String, birthday: String, profilePictureURL: String, profilePicture: UIImage) {
+        self.id = id
+        self.name = name
+        self.email = email
+        self.location = location
+        self.birthday = birthday
+        self.profilePictureURL = profilePictureURL
+        self.profilePicture = profilePicture
+    }
     
     mutating func setProfilePicture(_ picture: UIImage) {
         self.profilePicture = picture

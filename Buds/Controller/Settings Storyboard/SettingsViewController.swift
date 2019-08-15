@@ -53,6 +53,7 @@ class SettingsViewController: UIViewController {
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
+            modelController = nil 
             let storyboard = UIStoryboard(name: "Main", bundle: nil);
             let viewController: UINavigationController = storyboard.instantiateViewController(withIdentifier: "welcomeNavigationController") as! UINavigationController;
             present(viewController, animated: true, completion: nil)

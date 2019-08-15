@@ -24,14 +24,60 @@ class Network {
     }
     
     // Log In a User with Firebase Auth
-    static func logIn(email: String, password: String) {
+    static func logInUser(email: String, password: String, complete: @escaping (Person) -> ()) {
+
+        Auth.auth().signIn(withEmail: email, password: password) { user, error in
+            
+            if let error = error {
+                // Indicates log in was not successful
+                print(error.localizedDescription)
+            }
+            else if user != nil {
+                
+                guard let userID = Auth.auth().currentUser?.uid else {
+                    fatalError("Unable To get the Current User's ID")
+                }
+                
+                // Able to sign the user in, grab the rest of the info from Realtime Database
+                Network.getUserInfo(userID: userID, complete: { (userInfo) in
+                
+                    // First Grab the Profile Picture from FirebaseStorage
+                    Network.getProfilePicture(userID: userID, complete: { (profilePicture) in
+                        
+                        // Finally create the Person Object
+                        let loggedInUser = Person(id: userID, name: userInfo["name"]!, email: userInfo["email"]!, location: userInfo["location"]!, birthday: userInfo["birthday"]!, profilePictureURL: userInfo["profilePictureURL"]!, profilePicture: profilePicture)
+                        
+                        complete(loggedInUser)
+                    })
+                
+                })
+            }
+        }
+    }
+    
+    // Get a User's Info with Realtime Database
+    private static func getUserInfo(userID: String, complete: @escaping ([String: String]) -> ()) {
+        
+        ref.child("users").child(userID).observeSingleEvent(of: .value) { (snapshot) in
+            
+            let value = snapshot.value as? NSDictionary
+            var information = [String: String]()
+            information["name"] = value?["name"] as? String ?? ""
+            information["email"] = value?["email"] as? String ?? ""
+            information["birthday"] = value?["birthday"] as? String ?? ""
+            information["location"] = value?["location"] as? String ?? ""
+            information["username"] = value?["username"] as? String ?? ""
+            information["profilePictureURL"] = value?["profilePictureURL"] as? String ?? ""
+            print("found the user's info in Realtime Database")
+            complete(information)
+        }
         
     }
     
     // Retrieves the User's profile picture with id: userID from FirebaseStorage
     // If none is available, then a default image is used
     static func getProfilePicture(userID: String, complete: @escaping (UIImage) -> ()) {
-        
+
         var profilePicture = UIImage(named: "person-icon")
         
         // Step 1: Get access to the user in RealtimeDatabase

@@ -212,7 +212,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                                 storageRef.downloadURL { (url, error) in
                                     guard let downloadURL = url else { return }
                                     // Send their data to Realtime Database
-                                    let userData = ["name": name, "location": location, "birthday": birthday, "username": username, "email": email, "profilePicture": downloadURL.absoluteString]
+                                    let userData = ["name": name, "location": location, "birthday": birthday, "username": username, "email": email, "profilePictureURL": downloadURL.absoluteString]
                                     self.ref.child("users").child((createUserAuthResult?.user.uid)!).setValue(userData)
                                     
                                     // Once Data is in Realtime Database let's update the user profile in
