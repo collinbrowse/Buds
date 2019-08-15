@@ -91,8 +91,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qpq-DL-yXH" userLabel="Wrapping Location View">
                                         <rect key="frame" x="0.0" y="132" width="374" height="44"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NNX-zj-6Bo">
-                                                <rect key="frame" x="139.5" y="5.5" width="95" height="33"/>
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NNX-zj-6Bo">
+                                                <rect key="frame" x="0.0" y="5.5" width="374" height="33"/>
                                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
                                                 <state key="normal" title="LOCATION &gt;">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -104,8 +104,10 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="NNX-zj-6Bo" firstAttribute="centerY" secondItem="qpq-DL-yXH" secondAttribute="centerY" id="0XZ-Sj-QPj"/>
+                                            <constraint firstItem="NNX-zj-6Bo" firstAttribute="leading" secondItem="qpq-DL-yXH" secondAttribute="leading" id="14I-J2-MfS"/>
                                             <constraint firstItem="NNX-zj-6Bo" firstAttribute="centerX" secondItem="qpq-DL-yXH" secondAttribute="centerX" id="gJU-iJ-U4I"/>
                                             <constraint firstAttribute="height" constant="44" id="oW7-5o-iOj"/>
+                                            <constraint firstAttribute="trailing" secondItem="NNX-zj-6Bo" secondAttribute="trailing" id="py5-qG-WR6"/>
                                         </constraints>
                                     </view>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Us5-jj-LKM" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">

@@ -253,7 +253,9 @@ extension NewActivityViewController: ActivityDetailsDelegate {
 extension NewActivityViewController: LocationSearchDelegate {
     
     func setSelectedLocation(location: String) {
+        
         locationButton.setTitle(location, for: .normal)
+        locationButton.titleLabel?.lineBreakMode = NSLineBreakMode.byTruncatingTail
         buttonStateChanged()
 
     }
