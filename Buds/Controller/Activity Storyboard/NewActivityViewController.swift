@@ -83,41 +83,6 @@ class NewActivityViewController: UIViewController {
     }
     
     
-    // Add the User's profile picture to the navigation bar
-    func setUpNavbar(_ image: UIImage) {
-        
-        // Alter the Navigation Bar
-        let navigationBar = navigationController!.navigationBar
-        navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationBar.shadowImage = UIImage()
-        
-        // Set up/Gain Access to everything we will need
-        let navController = navigationController!
-        let bannerWidth = navController.navigationBar.frame.size.width
-        let bannerHeight = navController.navigationBar.frame.size.height
-        let titleView = UIView()
-        let profileImageView = UIImageView(image: image)
-        
-        
-        // Create the View in the Title Bar and add the image
-        titleView.frame = CGRect(x: 0, y: 0, width: bannerWidth, height: bannerHeight)
-        titleView.addSubview(profileImageView)
-        
-        // Style & Position Image within the titleView
-        profileImageView.contentMode = .scaleAspectFill
-        profileImageView.layer.cornerRadius = 20
-        profileImageView.clipsToBounds = true
-        profileImageView.translatesAutoresizingMaskIntoConstraints = false
-        profileImageView.centerXAnchor.constraint(equalTo: titleView.centerXAnchor).isActive = true
-        profileImageView.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
-        profileImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        
-        // Finally set the titleView of the nav bar to our new title view
-        navigationItem.titleView = titleView
-        SVProgressHUD.dismiss()
-    }
-    
     // Method to show a popup alert to the user if they are unable to register
     func showAlert(success: Bool, alertMessage: String) {
         var title: String
@@ -208,6 +173,9 @@ class NewActivityViewController: UIViewController {
         performSegue(withIdentifier: "goToLocation", sender: Any?.self)
     }
     
+}
+
+extension NewActivityViewController {
     
     // Helper Function to get the current Date/Time as a String
     func getTodayString() -> String {
@@ -226,7 +194,43 @@ class NewActivityViewController: UIViewController {
         
     }
     
+    // Add the User's profile picture to the navigation bar
+    func setUpNavbar(_ image: UIImage) {
+        
+        // Alter the Navigation Bar
+        let navigationBar = navigationController!.navigationBar
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.shadowImage = UIImage()
+        
+        // Set up/Gain Access to everything we will need
+        let navController = navigationController!
+        let bannerWidth = navController.navigationBar.frame.size.width
+        let bannerHeight = navController.navigationBar.frame.size.height
+        let titleView = UIView()
+        let profileImageView = UIImageView(image: image)
+        
+        
+        // Create the View in the Title Bar and add the image
+        titleView.frame = CGRect(x: 0, y: 0, width: bannerWidth, height: bannerHeight)
+        titleView.addSubview(profileImageView)
+        
+        // Style & Position Image within the titleView
+        profileImageView.contentMode = .scaleAspectFill
+        profileImageView.layer.cornerRadius = 20
+        profileImageView.clipsToBounds = true
+        profileImageView.translatesAutoresizingMaskIntoConstraints = false
+        profileImageView.centerXAnchor.constraint(equalTo: titleView.centerXAnchor).isActive = true
+        profileImageView.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        // Finally set the titleView of the nav bar to our new title view
+        navigationItem.titleView = titleView
+        SVProgressHUD.dismiss()
+    }
 }
+
+
 extension NewActivityViewController: ActivityDetailsDelegate {
     
     func setSelectedDetail(detail: String, value: String) {
