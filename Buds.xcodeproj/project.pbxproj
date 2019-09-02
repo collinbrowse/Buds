@@ -68,6 +68,7 @@
 		BE747FC622CD1E9E00D071FD /* ActivityDetailsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE747FC522CD1E9E00D071FD /* ActivityDetailsDelegate.swift */; };
 		BE747FC822D53BB300D071FD /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE747FC722D53BB300D071FD /* Settings.storyboard */; };
 		BE747FCA22D53C2600D071FD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE747FC922D53C2600D071FD /* SettingsViewController.swift */; };
+		BEA34332231DBFDD0012A504 /* StrainDetailsWebKitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA34331231DBFDD0012A504 /* StrainDetailsWebKitController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +158,7 @@
 		BE747FC522CD1E9E00D071FD /* ActivityDetailsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailsDelegate.swift; sourceTree = "<group>"; };
 		BE747FC722D53BB300D071FD /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		BE747FC922D53C2600D071FD /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		BEA34331231DBFDD0012A504 /* StrainDetailsWebKitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrainDetailsWebKitController.swift; sourceTree = "<group>"; };
 		CE5601E64FE0FA1F69DE5776 /* Pods-Buds.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buds.debug.xcconfig"; path = "Target Support Files/Pods-Buds/Pods-Buds.debug.xcconfig"; sourceTree = "<group>"; };
 		F9E4C8A256D2C5A23E8D8B52 /* Pods-Buds.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buds.release.xcconfig"; path = "Target Support Files/Pods-Buds/Pods-Buds.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -267,6 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				BE03D2AC22C548480059B587 /* ProfileViewController.swift */,
+				BEA34331231DBFDD0012A504 /* StrainDetailsWebKitController.swift */,
 			);
 			path = "Profile Storyboard";
 			sourceTree = "<group>";
@@ -700,6 +703,7 @@
 				BE02A33E22E6436600431854 /* NewActivityLocationController.swift in Sources */,
 				BE02A34422E6BD7D00431854 /* TimeHelper.swift in Sources */,
 				BE41467D22BA9CE50009A738 /* Birthday.swift in Sources */,
+				BEA34332231DBFDD0012A504 /* StrainDetailsWebKitController.swift in Sources */,
 				BE0A065822FB6F5F00C41B53 /* ModelController.swift in Sources */,
 				BE03D2A922C269060059B587 /* LogInViewController.swift in Sources */,
 				BE41464422BA718C0009A738 /* AppDelegate.swift in Sources */,

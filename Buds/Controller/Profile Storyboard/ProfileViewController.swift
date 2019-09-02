@@ -17,6 +17,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var bubble1: UIButton!
     @IBOutlet weak var bubble2: UIButton!
     @IBOutlet weak var bubble3: UIButton!
+    @IBOutlet weak var topStrainsTableView: UITableView!
     
     var username: String?
     var ref: DatabaseReference!
@@ -32,6 +33,10 @@ class ProfileViewController: UIViewController {
         
         // Connect to Realtime Database
         ref = Database.database().reference()
+        
+        topStrainsTableView.delegate = self
+        topStrainsTableView.dataSource = self
+    
         
         bubble1.layer.masksToBounds = true
         bubble1.layer.cornerRadius = 50
@@ -120,6 +125,31 @@ extension ProfileViewController {
         navigationItem.titleView = titleView
         SVProgressHUD.dismiss()
     }
+    
+    
+}
+
+
+extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: "Cell")
+        
+        cell.textLabel?.text = "This is some text"
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Top Strains"
+    }
+    
+    
+    
     
     
 }
