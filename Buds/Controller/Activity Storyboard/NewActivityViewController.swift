@@ -236,16 +236,19 @@ extension NewActivityViewController: ActivityDetailsDelegate {
     func setSelectedDetail(detail: String, value: String) {
         if detail == "smoking_styles" {
             smokingStyleButton.setTitle(value, for: .normal)
+            smokingStyleButton.isSelected = true
             buttonStateChanged()
         }
         else if detail == "rating" {
             let rating = value + "/5"
             ratingButton.setTitle(rating, for: .normal)
+            ratingButton.isSelected = true
             buttonStateChanged()
 
         }
         else if detail == "strain" {
             strainButton.setTitle(value, for: .normal)
+            strainButton.isSelected = true
             buttonStateChanged()
 
         }
@@ -260,6 +263,7 @@ extension NewActivityViewController: LocationSearchDelegate {
         
         locationButton.setTitle(location, for: .normal)
         locationButton.titleLabel?.lineBreakMode = NSLineBreakMode.byTruncatingTail
+        locationButton.isSelected = true 
         buttonStateChanged()
 
     }
