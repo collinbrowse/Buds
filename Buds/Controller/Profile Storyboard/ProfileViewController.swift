@@ -14,11 +14,6 @@ import SVProgressHUD
 
 class ProfileViewController: UIViewController {
     
-    @IBOutlet weak var bubble1: UIButton!
-    @IBOutlet weak var bubble2: UIButton!
-    @IBOutlet weak var bubble3: UIButton!
-    @IBOutlet weak var topStrainsTableView: UITableView!
-    
     var username: String?
     var ref: DatabaseReference!
     var user: User?
@@ -27,47 +22,36 @@ class ProfileViewController: UIViewController {
             print("Printing the Model Controller Person's name from ProfileVC: \(newValue.person.name)")
         }
     }
+    @IBOutlet weak var exampleCard: UIImageView!
+    @IBOutlet weak var exampleCard2: UIImageView!
     
+    @IBOutlet weak var exampleCard3: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Connect to Realtime Database
         ref = Database.database().reference()
         
-        topStrainsTableView.delegate = self
-        topStrainsTableView.dataSource = self
-    
+        exampleCard.layer.cornerRadius = 20.0
+        exampleCard.layer.shadowColor = UIColor.gray.cgColor
+        exampleCard.layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
+        exampleCard.layer.shadowRadius = 20.0
+        exampleCard.layer.shadowOpacity = 0.9
+        exampleCard.alpha = 0.6
         
-        bubble1.layer.masksToBounds = true
-        bubble1.layer.cornerRadius = 50
-        bubble1.layer.shadowOpacity = 0.5
-        bubble1.layer.shadowRadius = 1
-        bubble1.layer.shadowOffset = CGSize(width: 0, height: 1)
-        bubble1.backgroundColor = .clear
-        bubble1.layer.borderWidth = 1
-        bubble1.layer.borderColor = UIColor.black.cgColor
-        bubble1.setTitle("OG KUSH", for: .normal)
+        exampleCard2.layer.cornerRadius = 20.0
+        exampleCard2.layer.shadowColor = UIColor.gray.cgColor
+        exampleCard2.layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
+        exampleCard2.layer.shadowRadius = 20.0
+        exampleCard2.layer.shadowOpacity = 0.9
+        exampleCard2.alpha = 0.6
         
-        bubble2.layer.masksToBounds = true
-        bubble2.layer.cornerRadius = 50
-        bubble2.layer.shadowOpacity = 0.5
-        bubble2.layer.shadowRadius = 1
-        bubble2.layer.shadowOffset = CGSize(width: 0, height: 1)
-        bubble2.backgroundColor = .clear
-        bubble2.layer.borderWidth = 1
-        bubble2.layer.borderColor = UIColor.black.cgColor
-        bubble2.setTitle("Blue Dream", for: .normal)
-        
-        bubble3.layer.masksToBounds = true
-        bubble3.layer.cornerRadius = 50
-        bubble3.layer.shadowOpacity = 0.5
-        bubble3.layer.shadowRadius = 1
-        bubble3.layer.shadowOffset = CGSize(width: 0, height: 1)
-        bubble3.backgroundColor = .clear
-        bubble3.layer.borderWidth = 1
-        bubble3.layer.borderColor = UIColor.black.cgColor
-        bubble3.setTitle("Sour Diesel", for: .normal)
-        
+        exampleCard3.layer.cornerRadius = 20.0
+        exampleCard3.layer.shadowColor = UIColor.gray.cgColor
+        exampleCard3.layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
+        exampleCard3.layer.shadowRadius = 20.0
+        exampleCard3.layer.shadowOpacity = 0.9
+        exampleCard3.alpha = 0.6
         
         if modelController.person.profilePicture != nil {
             setUpNavbar(modelController.person.profilePicture!)

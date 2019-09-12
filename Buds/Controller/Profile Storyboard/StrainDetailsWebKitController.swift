@@ -8,29 +8,43 @@
 
 import UIKit
 import WebKit
+import SVProgressHUD
+import Alamofire
 
 class StrainDetailsWebKitController: UIViewController, WKNavigationDelegate {
     
-    @IBOutlet var webView: WKWebView!
+    private var strainApiUrl = "strainapi.evanbusse.com/3HT8al6/strains/search/"
+    private var detail = ""
+    private var strainDetail = ""
+    
+    @IBOutlet weak var effect: UILabel!
+    @IBOutlet weak var race: UILabel!
+    @IBOutlet weak var flavor: UILabel!
     
     override func loadView() {
-        webView = WKWebView()
-        webView.navigationDelegate = self
-        view = webView
+       
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        SVProgressHUD.show()
+        let testUrl = URL(string: "https://strainapi.evanbusse.com/3HT8al6/strains/search/name/elephant")
         
-        let url = URL(string: "https://www.google.com")
-        let request = URLRequest(url: url!)
-        
-        webView.load(request)
+        Alamofire.request(testUrl!, method: .get).validate().responseJSON { (response) in
+            if response.result.isSuccess {
+                print(response.result)
+                self.effect.text = "response"
+                self.race.text = "response"
+                self.flavor.text = "response"
+                
+            }
+        }
+        //webView.load(request)
     }
     
     
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        print("webkit finished")
+        SVProgressHUD.dismiss()
     }
     
     

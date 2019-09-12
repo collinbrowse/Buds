@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43FF409AB11E63D89EA1309C06BD11CE"
-               BuildableName = "Firebase-Analytics-Auth-Core-CoreOnly-Database-Storage"
-               BlueprintName = "Firebase-Analytics-Auth-Core-CoreOnly-Database-Storage"
+               BlueprintIdentifier = "3CADDA1B0B7B809F07D702CAB861E0BB"
+               BuildableName = "Firebase.common-Analytics-Auth-Database-Storage"
+               BlueprintName = "Firebase.common-Analytics-Auth-Database-Storage"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
