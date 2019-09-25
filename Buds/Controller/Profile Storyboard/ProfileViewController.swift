@@ -12,46 +12,38 @@ import FirebaseAuth
 import FirebaseStorage
 import SVProgressHUD
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UITableViewController {
     
-    var username: String?
-    var ref: DatabaseReference!
-    var user: User?
     var modelController: ModelController! {
         willSet {
             print("Printing the Model Controller Person's name from ProfileVC: \(newValue.person.name)")
         }
     }
-    @IBOutlet weak var exampleCard: UIImageView!
-    @IBOutlet weak var exampleCard2: UIImageView!
+    var username: String?
+    var ref: DatabaseReference!
+    var user: User?
+    lazy var model = generateRandomData()
+    var storedOffsets = [Int: CGFloat]()
     
-    @IBOutlet weak var exampleCard3: UIImageView!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Connect to Realtime Database
         ref = Database.database().reference()
         
-        exampleCard.layer.cornerRadius = 20.0
-        exampleCard.layer.shadowColor = UIColor.gray.cgColor
-        exampleCard.layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
-        exampleCard.layer.shadowRadius = 20.0
-        exampleCard.layer.shadowOpacity = 0.9
-        exampleCard.alpha = 0.6
-        
-        exampleCard2.layer.cornerRadius = 20.0
-        exampleCard2.layer.shadowColor = UIColor.gray.cgColor
-        exampleCard2.layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
-        exampleCard2.layer.shadowRadius = 20.0
-        exampleCard2.layer.shadowOpacity = 0.9
-        exampleCard2.alpha = 0.6
-        
-        exampleCard3.layer.cornerRadius = 20.0
-        exampleCard3.layer.shadowColor = UIColor.gray.cgColor
-        exampleCard3.layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
-        exampleCard3.layer.shadowRadius = 20.0
-        exampleCard3.layer.shadowOpacity = 0.9
-        exampleCard3.alpha = 0.6
+        // We are going to load this data into cache, and then have the tableview pull from the cache
+        Network.getUserStrainData(userID: modelController.person.id) { (userInfo) in
+            
+            // Do something with the data returned from firebase
+            // Data is of the form: [String: Array<String>]
+//            var x = 20
+//            for (category, info) in userInfo {
+//                self.scrollView1.backgroundColor = .red
+//            }
+        }
         
         if modelController.person.profilePicture != nil {
             setUpNavbar(modelController.person.profilePicture!)
@@ -65,31 +57,153 @@ class ProfileViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
     }
-    
+
+    func generateRandomData() -> [[UIColor]] {
+        let numberOfRows = 20
+        let numberOfItemsPerRow = 15
+
+        return (0..<numberOfRows).map { _ in
+            return (0..<numberOfItemsPerRow).map { _ in UIColor.randomColor() }
+        }
+    }
+
 }
 
 
+///////////////////////////////////////////
+/// Table View Methods
+///////////////////////////////////////////
+extension ProfileViewController {
+    
+    ///numberOfRowsInSection
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    ///cellForRowAt
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        return cell
+    }
+    ///heightForRowAt
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if (indexPath.section == 0) {
+            return 200
+        } else {
+            return 120
+        }
+    }
+    ///numberOfSectionsInTableView
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return model.count
+    }
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Header"
+    }
+    ///willDisplay cell forRowAt
+    override func tableView(_ tableView: UITableView,
+        willDisplay cell: UITableViewCell,
+        forRowAt indexPath: IndexPath) {
+
+        guard let tableViewCell = cell as? TableViewCell else { return }
+        tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
+        tableViewCell.collectionViewOffset = storedOffsets[indexPath.row] ?? 0
+    }
+    ///didEndDisplaying cell
+    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let tableViewCell = cell as? TableViewCell else { return }
+        storedOffsets[indexPath.row] = tableViewCell.collectionViewOffset
+    }
+}
+
+//////////////////////////////////////////////
+///Collection View Methods
+//////////////////////////////////////////////
+// How many collection view cells should we have in each row?
+// What goes in each collection view cell?
+extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    ///numberOfItemsInSection
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return model[collectionView.tag].count
+    }
+    ///cellForItemAt
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+        let itemHeight = collectionView.bounds.height
+        let collectionViewFlowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+        let top = collectionViewFlowLayout?.sectionInset.top ?? 0
+        let bottom = collectionViewFlowLayout?.sectionInset.bottom ?? 0
+        let label = UILabel(frame: CGRect(x: 0, y: itemHeight - (top + bottom + 34 + 20), width: 100, height: 34))
+        label.text = "Hello This is a long label"
+        label.textAlignment = .center
+        label.font = UIFont(name: "Arvo-Bold", size: 44)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.2
+        label.numberOfLines = 0 // = any number of lines
+        label.baselineAdjustment = .alignCenters
+        cell.addSubview(label)
+        
+        cell.backgroundView = UIImageView(image: UIImage(named: "weed_background.png"))
+        cell.layer.cornerRadius = 20.0
+        cell.layer.shadowOpacity = 0.9
+        cell.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        cell.layer.backgroundColor = UIColor.gray.cgColor
+        return cell
+    }
+    ///sizeForItemAt
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        // Dynamically set the height of a collection view cell based on the height of the table view row and the section insets on the collectionview
+        let itemHeight = collectionView.bounds.height
+        let collectionViewFlowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+        let top = collectionViewFlowLayout?.sectionInset.top ?? 0
+        let bottom = collectionViewFlowLayout?.sectionInset.bottom ?? 0
+        return CGSize(width: 100, height: itemHeight - (top + bottom))
+    }
+
+    func configureCard(_ cell: UICollectionViewCell, _ tag: Int) -> UICollectionViewCell {
+        
+        var y = 50
+        if tag == 0 { y = 100 }
+        let label = UILabel(frame: CGRect(x: 0, y: y, width: 100, height: 34))
+        label.text = "Hello This is a long label"
+        label.textAlignment = .center
+        label.font = UIFont(name: "Arvo-Bold", size: 44)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.2
+        label.numberOfLines = 0 // = any number of lines
+        label.baselineAdjustment = .alignCenters
+        cell.addSubview(label)
+        
+        cell.backgroundView = UIImageView(image: UIImage(named: "weed_background.png"))
+        cell.layer.cornerRadius = 20.0
+        cell.layer.shadowOpacity = 0.9
+        cell.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        cell.layer.backgroundColor = UIColor.gray.cgColor
+        return cell
+    }
+}
+
+//////////////////////////////////////////
+///Navigation Bar Methods
+//////////////////////////////////////////
 extension ProfileViewController {
     
     // Add the User's profile picture to the navigation bar
     func setUpNavbar(_ image: UIImage) {
         
         // Alter the Navigation Bar
-        let navigationBar = navigationController!.navigationBar
-        navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationBar.shadowImage = UIImage()
-        
         // Set up/Gain Access to everything we will need
-        let navController = navigationController!
-        let bannerWidth = navController.navigationBar.frame.size.width
-        let bannerHeight = navController.navigationBar.frame.size.height
+        let navigationBar = navigationController!.navigationBar
+        let bannerWidth = navigationBar.frame.size.width
+        let bannerHeight = navigationBar.frame.size.height
         let titleView = UIView()
         let profileImageView = UIImageView(image: image)
-        
         
         // Create the View in the Title Bar and add the image
         titleView.frame = CGRect(x: 0, y: 0, width: bannerWidth, height: bannerHeight)
@@ -109,31 +223,17 @@ extension ProfileViewController {
         navigationItem.titleView = titleView
         SVProgressHUD.dismiss()
     }
-    
-    
 }
 
 
-extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
+extension UIColor {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+    class func randomColor() -> UIColor {
+
+        let hue = CGFloat(arc4random() % 100) / 100
+        let saturation = CGFloat(arc4random() % 100) / 100
+        let brightness = CGFloat(arc4random() % 100) / 100
+
+        return UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1.0)
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: "Cell")
-        
-        cell.textLabel?.text = "This is some text"
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Top Strains"
-    }
-    
-    
-    
-    
-    
 }

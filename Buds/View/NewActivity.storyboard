@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dg6-2H-Y2E">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dg6-2H-Y2E">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="ArvoBold.ttf">
+            <string>Arvo-Bold</string>
+        </array>
         <array key="PlayfairDisplay-Regular.otf">
             <string>PlayfairDisplay-Regular</string>
-        </array>
-        <array key="Proxima Nova Regular.otf">
-            <string>ProximaNova-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -33,8 +31,8 @@
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4eW-Pi-xvu" userLabel="Strain Button">
-                                                <rect key="frame" x="151.5" y="5.5" width="71" height="33"/>
-                                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
+                                                <rect key="frame" x="147.5" y="5.5" width="79" height="33"/>
+                                                <fontDescription key="fontDescription" name="Arvo-Bold" family="Arvo" pointSize="17"/>
                                                 <state key="normal" title="STRAIN &gt;">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
@@ -53,7 +51,8 @@
                                         <rect key="frame" x="0.0" y="44" width="374" height="44"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJV-K1-SY3" userLabel="Smoking Style Button">
-                                                <rect key="frame" x="121" y="7" width="132" height="30"/>
+                                                <rect key="frame" x="105.5" y="5.5" width="163" height="33"/>
+                                                <fontDescription key="fontDescription" name="Arvo-Bold" family="Arvo" pointSize="17"/>
                                                 <state key="normal" title="SMOKING STYLE &gt;">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
@@ -72,8 +71,8 @@
                                         <rect key="frame" x="0.0" y="88" width="374" height="44"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6KM-Tf-G4o" userLabel="Rating Button">
-                                                <rect key="frame" x="151" y="5.5" width="72" height="33"/>
-                                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
+                                                <rect key="frame" x="146.5" y="5.5" width="81" height="33"/>
+                                                <fontDescription key="fontDescription" name="Arvo-Bold" family="Arvo" pointSize="17"/>
                                                 <state key="normal" title="RATING &gt;">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
@@ -93,7 +92,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NNX-zj-6Bo">
                                                 <rect key="frame" x="0.0" y="5.5" width="374" height="33"/>
-                                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="Arvo-Bold" family="Arvo" pointSize="17"/>
                                                 <state key="normal" title="LOCATION &gt;">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
@@ -190,7 +189,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelCell" id="vPn-B8-6bm">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vPn-B8-6bm" id="c6n-zm-P8l">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -219,7 +218,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelCell" id="lfF-9w-7Zo">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lfF-9w-7Zo" id="rZC-Mp-XhU">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -248,7 +247,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelCell" id="5cp-IC-aSt">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5cp-IC-aSt" id="Dz3-fp-pKa">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -297,7 +296,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" misplaced="YES" placeholder="Location" id="TTb-ni-Nay" userLabel="Location Search Bar">
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Location" id="TTb-ni-Nay" userLabel="Location Search Bar">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="words" spellCheckingType="yes" returnKeyType="done" textContentType="address-level2"/>
@@ -308,7 +307,7 @@
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="newActivityLocationCell" id="87a-Eb-faD">
-                                <rect key="frame" x="0.0" y="84" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="84" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="87a-Eb-faD" id="1NM-Sd-zuW">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>

@@ -79,7 +79,7 @@ class Network {
     static func getProfilePicture(userID: String, complete: @escaping (UIImage) -> ()) {
 
         var profilePicture = UIImage(named: "person-icon")
-        
+        print(userID)
         // Step 1: Get access to the user in RealtimeDatabase
         ref.child("users").child(userID).observeSingleEvent(of: .value) { (snapshot) in
             
@@ -106,5 +106,63 @@ class Network {
                 complete(profilePicture!)
             }
         }
+    }
+    
+    
+    static func getUserStrainData(userID: String, complete: @escaping ([String: Array<String>]) -> ()) {
+        
+        
+        
+        
+        ref.child("users").child(userID).child("strain_data").observeSingleEvent(of: .value) { (snapshot) in
+            
+            let value = snapshot.value as? NSDictionary
+            //let data = [String: [String]]()
+            var data = Dictionary<String, Array<String>>()
+            
+            // Should exit loop with blank dictionary if nothing is returned from firebase
+            for (category, info) in value ?? NSDictionary() {
+                let strains = info as? NSDictionary
+                var strain = ""
+                for (key, _) in strains ?? NSDictionary() {
+                    strain = key as! String
+                    // Need to check if the array has already been set up for that key
+                    // If it has, we append to the array
+                    // If not, set up the array
+                    if (data["\(category)"] == nil) {
+                        data["\(category)"] = []
+                    }
+                    data["\(category)"]!.append("\(strain)")
+                }
+            }
+            complete(data)
+            
+            
+            
+            
+            // profile_data
+            // --favorites
+            // -- --og_kush: ""
+            // -- --sour_diesel: ""
+            // --sleep
+            // -- --blue_cheese: ""
+            // -- --purple_kush: ""
+            // -- --blackberry_kush: ""
+            // -- --grape_ape: ""
+            // --migraines
+            // -- --blue_dream: ""
+            // -- --sour_diesel: ""
+            // -- --green_crack: ""
+            // -- --jack_herer: ""
+            
+            
+            
+            
+            
+        }
+        
+        
+        
+        
     }
 }

@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
+   uuid = "5C88F6A9-AB35-4033-B9DC-B7913B14EB6F"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FAC33BAF-0592-4E97-919B-5FE8EBDA4570"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Buds/Model/Network.swift"
+            timestampString = "590705499.462956"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "getUserStrainData(userID:complete:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
