@@ -25,7 +25,6 @@ class ProfileViewController: UITableViewController {
     var storedOffsets = [Int: CGFloat]()
     var categories = [String]()
     var strains = [[String]]()
-    var counter = 0
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,34 +32,27 @@ class ProfileViewController: UITableViewController {
         // Connect to Realtime Database
         ref = Database.database().reference()
         
-        // We are going to load this data into cache, and then have the tableview pull from the cache
+        // Get User's Strain Data
+        // Save data to populate table view and collection View
         Network.getUserStrainData(userID: modelController.person.id) { (userInfo) in
             
-            for (thing1, thing2) in userInfo {
-                self.categories.append(thing1)
-                self.strains.append(thing2)
+            for (category, strains) in userInfo {
+                self.categories.append(category)
+                self.strains.append(strains)
             }
             self.tableView.reloadData()
         }
         
+        // Add the User's Profile Picture to the nav bar
         if modelController.person.profilePicture != nil {
             setUpNavbar(modelController.person.profilePicture!)
         } else {
-            
             // Make a network call to find the profile picture
             Network.getProfilePicture(userID: modelController.person.id) { (profilePicture) in
                 self.setUpNavbar(profilePicture)
             }
         }
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-    }
-
 }
 
 
@@ -98,10 +90,12 @@ extension ProfileViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         view.backgroundColor = .white
+        
         let label = UILabel(frame: CGRect(x: 16, y: 10, width: tableView.bounds.width, height: 30))
         label.text = categories[section].uppercased()
         label.font = UIFont(name: "Arvo-Italic", size: 17)
         label.textColor = .black
+        
         view.addSubview(label)
         return view
     }
@@ -109,10 +103,7 @@ extension ProfileViewController {
         return CGFloat(50)
     }
     ///willDisplay cell forRowAt
-    override func tableView(_ tableView: UITableView,
-        willDisplay cell: UITableViewCell,
-        forRowAt indexPath: IndexPath) {
-        
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let tableViewCell = cell as? TableViewCell else { return }
         tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forSection: indexPath.section)
         tableViewCell.collectionViewOffset = storedOffsets[indexPath.row] ?? 0
@@ -139,13 +130,11 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        
         cell.backgroundView = UIImageView(image: UIImage(named: "weed_background.png"))
         cell.layer.cornerRadius = 20.0
         cell.layer.shadowOpacity = 0.9
         cell.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         cell.layer.backgroundColor = UIColor.gray.cgColor
-        
         
         let itemHeight = collectionView.bounds.height
         let collectionViewFlowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
@@ -184,27 +173,6 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         return CGSize(width: 100, height: itemHeight - (top + bottom))
     }
 
-    func configureCard(_ cell: UICollectionViewCell, _ tag: Int) -> UICollectionViewCell {
-        
-        var y = 50
-        if tag == 0 { y = 100 }
-        let label = UILabel(frame: CGRect(x: 0, y: y, width: 100, height: 34))
-        label.text = "Hello This is a long label"
-        label.textAlignment = .center
-        label.font = UIFont(name: "Arvo-Bold", size: 44)
-        label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.2
-        label.numberOfLines = 0 // = any number of lines
-        label.baselineAdjustment = .alignCenters
-        cell.addSubview(label)
-        
-        cell.backgroundView = UIImageView(image: UIImage(named: "weed_background.png"))
-        cell.layer.cornerRadius = 20.0
-        cell.layer.shadowOpacity = 0.9
-        cell.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
-        cell.layer.backgroundColor = UIColor.gray.cgColor
-        return cell
-    }
 }
 
 //////////////////////////////////////////
@@ -240,18 +208,5 @@ extension ProfileViewController {
         // Finally set the titleView of the nav bar to our new title view
         navigationItem.titleView = titleView
         SVProgressHUD.dismiss()
-    }
-}
-
-
-extension UIColor {
-    
-    class func randomColor() -> UIColor {
-
-        let hue = CGFloat(arc4random() % 100) / 100
-        let saturation = CGFloat(arc4random() % 100) / 100
-        let brightness = CGFloat(arc4random() % 100) / 100
-
-        return UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1.0)
     }
 }
