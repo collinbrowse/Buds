@@ -25,6 +25,7 @@ class ProfileViewController: UITableViewController {
     var storedOffsets = [Int: CGFloat]()
     var categories = [String]()
     var strains = [[String]]()
+    var selectedStrain: String = ""
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +54,13 @@ class ProfileViewController: UITableViewController {
             }
         }
     }
+    ///prepareForSegue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? StrainDetailsViewController {
+            vc.strainLabelText = selectedStrain
+        }
+    }
+
 }
 
 
@@ -153,6 +161,13 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         cell.contentView.addSubview(label)
     
         return cell
+    }
+    ///didSelectItemAt
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        selectedStrain = strains[collectionView.tag][indexPath.row].uppercased()
+        print("Did Select Item At: \(selectedStrain)")
+        self.performSegue(withIdentifier: "goToStrainDetails", sender: self)
     }
     
     ///didEndDisplaying
