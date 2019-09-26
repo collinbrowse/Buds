@@ -22,7 +22,6 @@ class ProfileViewController: UITableViewController {
     var username: String?
     var ref: DatabaseReference!
     var user: User?
-    lazy var model = generateRandomData()
     var storedOffsets = [Int: CGFloat]()
     var categories = [String]()
     var strains = [[String]]()
@@ -42,13 +41,6 @@ class ProfileViewController: UITableViewController {
                 self.strains.append(thing2)
             }
             self.tableView.reloadData()
-            
-            // Do something with the data returned from firebase
-            // Data is of the form: [String: Array<String>]
-//            var x = 20
-//            for (category, info) in userInfo {
-//                self.scrollView1.backgroundColor = .red
-//            }
         }
         
         if modelController.person.profilePicture != nil {
@@ -67,15 +59,6 @@ class ProfileViewController: UITableViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-    }
-
-    func generateRandomData() -> [[UIColor]] {
-        let numberOfRows = 20
-        let numberOfItemsPerRow = 15
-
-        return (0..<numberOfRows).map { _ in
-            return (0..<numberOfItemsPerRow).map { _ in UIColor.randomColor() }
-        }
     }
 
 }
@@ -114,7 +97,7 @@ extension ProfileViewController {
     ///viewForHeaderInSection
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
-        view.backgroundColor = .clear
+        view.backgroundColor = .white
         let label = UILabel(frame: CGRect(x: 16, y: 10, width: tableView.bounds.width, height: 30))
         label.text = categories[section].uppercased()
         label.font = UIFont(name: "Arvo-Italic", size: 17)
@@ -178,17 +161,16 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         label.minimumScaleFactor = 0.2
         label.numberOfLines = 0 // = any number of lines
         label.baselineAdjustment = .alignCenters
-        cell.addSubview(label)
-        
-        
-        
-        
-        
-        if indexPath.row == 4 {
-            counter = counter + 1
-        }
+        cell.contentView.addSubview(label)
     
         return cell
+    }
+    
+    ///didEndDisplaying
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        cell.contentView.subviews.forEach {
+            $0.removeFromSuperview()
+        }
     }
     
     ///sizeForItemAt
