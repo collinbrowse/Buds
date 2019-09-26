@@ -24,10 +24,10 @@ class ProfileViewController: UITableViewController {
     var user: User?
     lazy var model = generateRandomData()
     var storedOffsets = [Int: CGFloat]()
-    
-    
-    
-    
+    var categories = [String]()
+    var strains = [[String]]()
+    var counter = 0
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,6 +36,12 @@ class ProfileViewController: UITableViewController {
         
         // We are going to load this data into cache, and then have the tableview pull from the cache
         Network.getUserStrainData(userID: modelController.person.id) { (userInfo) in
+            
+            for (thing1, thing2) in userInfo {
+                self.categories.append(thing1)
+                self.strains.append(thing2)
+            }
+            self.tableView.reloadData()
             
             // Do something with the data returned from firebase
             // Data is of the form: [String: Array<String>]
@@ -99,18 +105,20 @@ extension ProfileViewController {
     }
     ///numberOfSectionsInTableView
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return model.count
+        return strains.count
     }
+    ///titleForHeaderInSection
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Header"
+        
+        return categories[section].uppercased()
     }
     ///willDisplay cell forRowAt
     override func tableView(_ tableView: UITableView,
         willDisplay cell: UITableViewCell,
         forRowAt indexPath: IndexPath) {
-
+        
         guard let tableViewCell = cell as? TableViewCell else { return }
-        tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
+        tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forSection: indexPath.section)
         tableViewCell.collectionViewOffset = storedOffsets[indexPath.row] ?? 0
     }
     ///didEndDisplaying cell
@@ -129,17 +137,18 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     ///numberOfItemsInSection
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return model[collectionView.tag].count
+        return 5
     }
     ///cellForItemAt
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         let itemHeight = collectionView.bounds.height
         let collectionViewFlowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
         let top = collectionViewFlowLayout?.sectionInset.top ?? 0
         let bottom = collectionViewFlowLayout?.sectionInset.bottom ?? 0
         let label = UILabel(frame: CGRect(x: 0, y: itemHeight - (top + bottom + 34 + 20), width: 100, height: 34))
-        label.text = "Hello This is a long label"
+        label.text = strains[collectionView.tag][indexPath.row]
         label.textAlignment = .center
         label.font = UIFont(name: "Arvo-Bold", size: 44)
         label.adjustsFontSizeToFitWidth = true
@@ -153,8 +162,14 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         cell.layer.shadowOpacity = 0.9
         cell.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         cell.layer.backgroundColor = UIColor.gray.cgColor
+        
+        if indexPath.row == 4 {
+            counter = counter + 1
+        }
+    
         return cell
     }
+    
     ///sizeForItemAt
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         

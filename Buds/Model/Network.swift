@@ -111,9 +111,6 @@ class Network {
     
     static func getUserStrainData(userID: String, complete: @escaping ([String: Array<String>]) -> ()) {
         
-        
-        
-        
         ref.child("users").child(userID).child("strain_data").observeSingleEvent(of: .value) { (snapshot) in
             
             let value = snapshot.value as? NSDictionary

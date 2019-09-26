@@ -11,16 +11,17 @@ import UIKit
 class TableViewCell: UITableViewCell {
     
     @IBOutlet private weak var collectionView: UICollectionView!
+    
     var collectionViewOffset: CGFloat {
         get { return collectionView.contentOffset.x }
         set { collectionView.contentOffset.x = newValue }
     }
     
     
-    func setCollectionViewDataSourceDelegate(dataSourceDelegate: UICollectionViewDataSource & UICollectionViewDelegate, forRow row: Int) {
+    func setCollectionViewDataSourceDelegate(dataSourceDelegate: UICollectionViewDataSource & UICollectionViewDelegate, forSection section: Int) {
         collectionView.delegate = dataSourceDelegate
         collectionView.dataSource = dataSourceDelegate
-        collectionView.tag = row
+        collectionView.tag = section
         collectionView.reloadData()
     }
     
