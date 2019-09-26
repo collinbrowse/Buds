@@ -109,8 +109,21 @@ extension ProfileViewController {
     }
     ///titleForHeaderInSection
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
         return categories[section].uppercased()
+    }
+    ///viewForHeaderInSection
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = .clear
+        let label = UILabel(frame: CGRect(x: 16, y: 10, width: tableView.bounds.width, height: 30))
+        label.text = categories[section].uppercased()
+        label.font = UIFont(name: "Arvo-Italic", size: 17)
+        label.textColor = .black
+        view.addSubview(label)
+        return view
+    }
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat(50)
     }
     ///willDisplay cell forRowAt
     override func tableView(_ tableView: UITableView,
@@ -143,25 +156,33 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        let itemHeight = collectionView.bounds.height
-        let collectionViewFlowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
-        let top = collectionViewFlowLayout?.sectionInset.top ?? 0
-        let bottom = collectionViewFlowLayout?.sectionInset.bottom ?? 0
-        let label = UILabel(frame: CGRect(x: 0, y: itemHeight - (top + bottom + 34 + 20), width: 100, height: 34))
-        label.text = strains[collectionView.tag][indexPath.row]
-        label.textAlignment = .center
-        label.font = UIFont(name: "Arvo-Bold", size: 44)
-        label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.2
-        label.numberOfLines = 0 // = any number of lines
-        label.baselineAdjustment = .alignCenters
-        cell.addSubview(label)
         
         cell.backgroundView = UIImageView(image: UIImage(named: "weed_background.png"))
         cell.layer.cornerRadius = 20.0
         cell.layer.shadowOpacity = 0.9
         cell.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         cell.layer.backgroundColor = UIColor.gray.cgColor
+        
+        
+        let itemHeight = collectionView.bounds.height
+        let collectionViewFlowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+        let top = collectionViewFlowLayout?.sectionInset.top ?? 0
+        let bottom = collectionViewFlowLayout?.sectionInset.bottom ?? 0
+        let label = UILabel(frame: CGRect(x: 10, y: itemHeight - (top + bottom + 34 + 20), width: 80, height: 34))
+        let labelText = strains[collectionView.tag][indexPath.row].uppercased()
+        label.text = labelText.replacingOccurrences(of: "_", with: " ")
+        label.textAlignment = .center
+        label.font = UIFont(name: "Arvo-Bold", size: 44)
+        label.textColor = .white
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.2
+        label.numberOfLines = 0 // = any number of lines
+        label.baselineAdjustment = .alignCenters
+        cell.addSubview(label)
+        
+        
+        
+        
         
         if indexPath.row == 4 {
             counter = counter + 1
