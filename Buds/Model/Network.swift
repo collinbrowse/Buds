@@ -113,8 +113,10 @@ class Network {
         
         ref.child("users").child(userID).child("strain_data").observeSingleEvent(of: .value) { (snapshot) in
             
+            // value is now the data from firebase
             let value = snapshot.value as? NSDictionary
-            //let data = [String: [String]]()
+            
+            // We are returning data
             var data = Dictionary<String, Array<String>>()
             
             // Should exit loop with blank dictionary if nothing is returned from firebase

@@ -37,7 +37,19 @@ class ProfileViewController: UITableViewController {
         // Save data to populate table view and collection View
         Network.getUserStrainData(userID: modelController.person.id) { (userInfo) in
             
+            var info = userInfo
+            
+            // First look for the Favorites
             for (category, strains) in userInfo {
+                if (category == "favorite") {
+                    self.categories.append(category + "s")
+                    self.strains.append(strains)
+                    info.removeValue(forKey: "favorite")
+                }
+            }
+            
+            // Then add the rest
+            for (category, strains) in info {
                 self.categories.append(category)
                 self.strains.append(strains)
             }
