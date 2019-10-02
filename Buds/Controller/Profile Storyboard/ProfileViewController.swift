@@ -58,6 +58,7 @@ class ProfileViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? StrainDetailsViewController {
             vc.strainLabelText = selectedStrain
+            vc.modelController = modelController
         }
     }
 
@@ -152,7 +153,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         let labelText = strains[collectionView.tag][indexPath.row].uppercased()
         label.text = labelText.replacingOccurrences(of: "_", with: " ")
         label.textAlignment = .center
-        label.font = UIFont(name: "Arvo-Bold", size: 44)
+        label.font = UIFont(name: "Arvo-Bold", size: 17)
         label.textColor = .white
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.2
@@ -165,7 +166,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     ///didSelectItemAt
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        selectedStrain = strains[collectionView.tag][indexPath.row].uppercased()
+        selectedStrain = strains[collectionView.tag][indexPath.row].uppercased().replacingOccurrences(of: "_", with: " ")
         print("Did Select Item At: \(selectedStrain)")
         self.performSegue(withIdentifier: "goToStrainDetails", sender: self)
     }

@@ -133,33 +133,23 @@ class Network {
                 }
             }
             complete(data)
-            
-            
-            
-            
-            // profile_data
-            // --favorites
-            // -- --og_kush: ""
-            // -- --sour_diesel: ""
-            // --sleep
-            // -- --blue_cheese: ""
-            // -- --purple_kush: ""
-            // -- --blackberry_kush: ""
-            // -- --grape_ape: ""
-            // --migraines
-            // -- --blue_dream: ""
-            // -- --sour_diesel: ""
-            // -- --green_crack: ""
-            // -- --jack_herer: ""
-            
-            
-            
-            
-            
         }
+    }
+    
+    
+    ///getStrainDetailsForUser
+    static func getStrainDetailsForUser(userID: String, strain: String, complete: @escaping ([String: String]) -> ()) {
         
-        
-        
-        
+        ref.child("users").child(userID).child("strain").child(strain).observeSingleEvent(of: .value) { (snapshot) in
+            
+            // Retrieve the details that this user has for this strain
+            let value = snapshot.value as? NSDictionary
+            var data = Dictionary<String, String>()
+            for (descriptionType, description) in value ?? NSDictionary() {
+                data["\(descriptionType)"] = description as? String ?? ""
+            }
+            print(data)
+            complete(data)
+        }
     }
 }
