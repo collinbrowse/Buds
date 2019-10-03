@@ -120,6 +120,7 @@ extension ProfileViewController {
         view.addSubview(label)
         return view
     }
+    ///heightForHeaderInSection
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return CGFloat(50)
     }
@@ -139,8 +140,6 @@ extension ProfileViewController {
 //////////////////////////////////////////////
 ///Collection View Methods
 //////////////////////////////////////////////
-// How many collection view cells should we have in each row?
-// What goes in each collection view cell?
 extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     ///numberOfItemsInSection
