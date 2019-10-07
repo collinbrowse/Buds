@@ -88,7 +88,7 @@ extension ProfileViewController {
     }
     ///cellForRowAt
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewRow", for: indexPath)
         return cell
     }
     ///heightForRowAt
@@ -178,11 +178,16 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         selectedStrain = strains[collectionView.tag][indexPath.row].uppercased().replacingOccurrences(of: "_", with: " ")
+        print("Did Select Item At: \(selectedStrain)")
         self.performSegue(withIdentifier: "goToStrainDetails", sender: self)
     }
     
     ///didEndDisplaying
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+                
+        cell.contentView.subviews.forEach {
+            $0.removeFromSuperview()
+        }
     }
     
     ///sizeForItemAt
