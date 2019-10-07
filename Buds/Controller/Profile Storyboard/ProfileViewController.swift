@@ -148,7 +148,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     ///cellForItemAt
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+                
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         cell.backgroundView = UIImageView(image: UIImage(named: "weed_background.png"))
         cell.layer.cornerRadius = 20.0
@@ -178,15 +178,11 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         selectedStrain = strains[collectionView.tag][indexPath.row].uppercased().replacingOccurrences(of: "_", with: " ")
-        print("Did Select Item At: \(selectedStrain)")
         self.performSegue(withIdentifier: "goToStrainDetails", sender: self)
     }
     
     ///didEndDisplaying
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        cell.contentView.subviews.forEach {
-            $0.removeFromSuperview()
-        }
     }
     
     ///sizeForItemAt
