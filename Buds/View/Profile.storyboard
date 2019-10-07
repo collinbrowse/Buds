@@ -50,22 +50,21 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kX5-4a-MhJ">
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kX5-4a-MhJ">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="26" minimumInteritemSpacing="10" id="Uvw-ob-0Ab">
-                                                <size key="itemSize" width="0.0" height="0.0"/>
-                                                <size key="estimatedItemSize" width="100" height="100"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="20" minimumInteritemSpacing="10" id="9VN-OO-MMO">
+                                                <size key="itemSize" width="50" height="50"/>
                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                <inset key="sectionInset" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                             </collectionViewFlowLayout>
                                             <cells>
                                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="foI-Qg-RjU">
-                                                    <rect key="frame" x="16" y="25" width="100" height="100"/>
+                                                    <rect key="frame" x="10" y="0.0" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ciW-9u-dOB">
-                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </collectionViewCellContentView>
                                                 </collectionViewCell>
@@ -74,11 +73,11 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="kX5-4a-MhJ" firstAttribute="centerX" secondItem="pgD-Ns-WrO" secondAttribute="centerX" id="3ds-g4-A3c"/>
-                                        <constraint firstAttribute="trailing" secondItem="kX5-4a-MhJ" secondAttribute="trailing" id="7pP-Fg-MBD"/>
-                                        <constraint firstItem="kX5-4a-MhJ" firstAttribute="top" secondItem="pgD-Ns-WrO" secondAttribute="top" id="96a-yb-RZz"/>
-                                        <constraint firstAttribute="bottom" secondItem="kX5-4a-MhJ" secondAttribute="bottom" id="GXP-ZY-XHu"/>
+                                        <constraint firstAttribute="bottom" secondItem="kX5-4a-MhJ" secondAttribute="bottom" id="FP2-Pp-1zO"/>
                                         <constraint firstItem="kX5-4a-MhJ" firstAttribute="centerY" secondItem="pgD-Ns-WrO" secondAttribute="centerY" id="QAS-zs-0On"/>
-                                        <constraint firstItem="kX5-4a-MhJ" firstAttribute="leading" secondItem="pgD-Ns-WrO" secondAttribute="leading" id="mz6-GT-e1x"/>
+                                        <constraint firstItem="kX5-4a-MhJ" firstAttribute="top" secondItem="pgD-Ns-WrO" secondAttribute="top" id="XQG-Cy-RTW"/>
+                                        <constraint firstAttribute="trailing" secondItem="kX5-4a-MhJ" secondAttribute="trailing" id="lRs-2Y-6hG"/>
+                                        <constraint firstItem="kX5-4a-MhJ" firstAttribute="leading" secondItem="pgD-Ns-WrO" secondAttribute="leading" id="reY-zR-nQ7"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <viewLayoutGuide key="safeArea" id="asU-Uj-9FW"/>
