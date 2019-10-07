@@ -156,22 +156,6 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         cell.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         cell.layer.backgroundColor = UIColor.gray.cgColor
         
-        let itemHeight = collectionView.bounds.height
-        let collectionViewFlowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
-        let top = collectionViewFlowLayout?.sectionInset.top ?? 0
-        let bottom = collectionViewFlowLayout?.sectionInset.bottom ?? 0
-        let label = UILabel(frame: CGRect(x: 10, y: itemHeight - (top + bottom + 34 + 20), width: 80, height: 34))
-        let labelText = strains[collectionView.tag][indexPath.row].uppercased()
-        label.text = labelText.replacingOccurrences(of: "_", with: " ")
-        label.textAlignment = .center
-        label.font = UIFont(name: "Arvo-Bold", size: 17)
-        label.textColor = .white
-        label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.2
-        label.numberOfLines = 0 // = any number of lines
-        label.baselineAdjustment = .alignCenters
-        cell.contentView.addSubview(label)
-    
         return cell
     }
     ///didSelectItemAt
@@ -182,9 +166,29 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         self.performSegue(withIdentifier: "goToStrainDetails", sender: self)
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        let itemHeight = collectionView.bounds.height
+        let collectionViewFlowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+        let top = collectionViewFlowLayout?.sectionInset.top ?? 0
+        let bottom = collectionViewFlowLayout?.sectionInset.bottom ?? 0
+        let label = UILabel(frame: CGRect(x: 10, y: itemHeight - (top + bottom + 50 + 20), width: 130, height: 50))
+        let labelText = strains[collectionView.tag][indexPath.row].uppercased()
+        label.text = labelText.replacingOccurrences(of: "_", with: " ")
+        label.textAlignment = .center
+        label.font = UIFont(name: "Arvo-Bold", size: 13)
+        label.textColor = .white
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.1
+        label.numberOfLines = 0 // = any number of lines
+        label.baselineAdjustment = .alignCenters
+        label.lineBreakMode = .byWordWrapping
+        cell.contentView.addSubview(label)
+    }
+    
     ///didEndDisplaying
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-                
+        
         cell.contentView.subviews.forEach {
             $0.removeFromSuperview()
         }
@@ -198,7 +202,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         let collectionViewFlowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
         let top = collectionViewFlowLayout?.sectionInset.top ?? 0
         let bottom = collectionViewFlowLayout?.sectionInset.bottom ?? 0
-        return CGSize(width: 100, height: itemHeight - (top + bottom))
+        return CGSize(width: 150, height: itemHeight - (top + bottom))
     }
 
 }
