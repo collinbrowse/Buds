@@ -94,11 +94,12 @@
                     <navigationItem key="navigationItem" id="4zm-FH-obW"/>
                     <connections>
                         <segue destination="X7V-kq-JYM" kind="show" identifier="goToStrainDetails" id="Szi-IV-SG9"/>
+                        <segue destination="DE0-vZ-ty6" kind="showDetail" identifier="goToNewActivity" id="E3N-Pa-cR4"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zxa-Zm-P4U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4994.202898550725" y="1051.3392857142858"/>
+            <point key="canvasLocation" x="4994" y="1051"/>
         </scene>
         <!--Strain Details View Controller-->
         <scene sceneID="17h-te-mfU">
@@ -215,6 +216,16 @@
                 <exit id="JTV-2g-gDZ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5840.579710144928" y="1051.3392857142858"/>
+        </scene>
+        <!--NewActivity-->
+        <scene sceneID="p4b-Pi-n4b">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="NewActivityStoryboardReference" storyboardName="NewActivity" id="DE0-vZ-ty6" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="lXK-Ys-p3k"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="shj-Xr-d7s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4995" y="583"/>
         </scene>
     </scenes>
     <resources>

@@ -14,6 +14,7 @@ import SVProgressHUD
 
 class ProfileViewController: UITableViewController {
     
+    //var tabBarController: UITabBarController?
     var modelController: ModelController! {
         willSet {
             print("Printing the Model Controller Person's name from ProfileVC: \(newValue.person.name)")
@@ -26,6 +27,7 @@ class ProfileViewController: UITableViewController {
     var categories = [String]()
     var strains = [[String]]()
     var selectedStrain: String = ""
+    
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,8 +74,16 @@ class ProfileViewController: UITableViewController {
             vc.strainLabelText = selectedStrain
             vc.modelController = modelController
         }
+        if let vc = segue.destination as? NewActivityViewController {
+            vc.modelController = modelController
+            print("prepare for segue as new activity view controller")
+        }
     }
-
+    
+    @objc func noDataButtonAction(sender: UIButton!) {
+        UIView.transition(from: self.view, to: tabBarController!.viewControllers![2].view, duration: 0.3, options: [.transitionCrossDissolve], completion: nil)
+        // tabBarController!.selectedIndex = 2
+    }
 }
 
 
@@ -101,6 +111,21 @@ extension ProfileViewController {
     }
     ///numberOfSectionsInTableView
     override func numberOfSections(in tableView: UITableView) -> Int {
+        if self.categories.count == 0 {
+             print("No Categories")
+            tableView.backgroundColor = .gray
+            let noDataLabel: UILabel  = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+            noDataLabel.text          = "You haven't recorded any smoking experiences yet"
+            noDataLabel.textColor     = UIColor.black
+            noDataLabel.textAlignment = .center
+            
+            let noDataButton: UIButton = UIButton(frame: CGRect(x: 0, y: 20, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+            noDataButton.setTitle("Add an Activity", for: .normal)
+            noDataButton.addTarget(self, action: #selector(noDataButtonAction), for: .touchUpInside)
+
+            tableView.addSubview(noDataLabel)
+            tableView.addSubview(noDataButton)
+        }
         return strains.count
     }
     ///titleForHeaderInSection

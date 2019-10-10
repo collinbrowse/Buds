@@ -106,6 +106,7 @@ class Network {
                 complete(profilePicture!)
             }
         }
+        complete(profilePicture!)
     }
     
     

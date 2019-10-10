@@ -19,7 +19,7 @@
         <!--New Activity Controller-->
         <scene sceneID="oWd-TK-2uP">
             <objects>
-                <viewController storyboardIdentifier="newActivityStoryboard" title="Add Activity" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oJC-zi-Pjq" userLabel="New Activity Controller" customClass="NewActivityViewController" customModule="Buds" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="newActivityViewController" title="Add Activity" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oJC-zi-Pjq" userLabel="New Activity Controller" customClass="NewActivityViewController" customModule="Buds" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eqR-ot-wtx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -269,7 +269,7 @@
         <!--New Activity-->
         <scene sceneID="8rO-Zx-Fjz">
             <objects>
-                <navigationController id="dg6-2H-Y2E" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="newActivityNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dg6-2H-Y2E" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="New Activity" id="Nsx-pE-Ojq"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="87s-zV-WCk">

@@ -47,63 +47,71 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 // Access the TabBarController within this storyboard
                 let tabBarController: UITabBarController = storyboard.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController;
                 
-                // Loop through the Tab Bar Items
-                for n in 0...tabBarController.viewControllers!.count-1 {
+                Network.getProfilePicture(userID: user!.uid) { (profilePicture) in
                     
-                    // Every tab bar item has a Nav Controller so this is ok
-                    let navController = tabBarController.viewControllers![n] as! UINavigationController
-                    
-                    // Once We find the ActivityFeedController...
-                    if navController.topViewController is ActivityFeedController {
-                        let vc = navController.topViewController as? ActivityFeedController
-                        let newModelController = ModelController()
-                        newModelController.person = Person(id: user!.uid,
-                                                            name: information["name"]!,
-                                                           email: information["email"]!,
-                                                           location: information["location"]!,
-                                                           birthday: information["birthday"]!,
-                                                           profilePictureURL: information["profilePictureURL"]!)
-                        vc!.modelController = newModelController
+                    // Loop through the Tab Bar Items
+                    for n in 0...tabBarController.viewControllers!.count-1 {
                         
-                    } else if navController.topViewController is ProfileViewController {
-                        let vc = navController.topViewController as? ProfileViewController
-                        let newModelController = ModelController()
-                        newModelController.person = Person(id: user!.uid,
-                                                           name: information["name"]!,
-                                                           email: information["email"]!,
-                                                           location: information["location"]!,
-                                                           birthday: information["birthday"]!,
-                                                           profilePictureURL: information["profilePictureURL"]!)
-                        vc!.modelController = newModelController
+                        // Every tab bar item has a Nav Controller so this is ok
+                        let navController = tabBarController.viewControllers![n] as! UINavigationController
                         
-                    } else if navController.topViewController is NewActivityViewController {
-                        let vc = navController.topViewController as? NewActivityViewController
-                        let newModelController = ModelController()
-                        newModelController.person = Person(id: user!.uid,
-                                                           name: information["name"]!,
-                                                           email: information["email"]!,
-                                                           location: information["location"]!,
-                                                           birthday: information["birthday"]!,
-                                                           profilePictureURL: information["profilePictureURL"]!)
-                        vc!.modelController = newModelController
-                        
-                    } else if navController.topViewController is SettingsViewController {
-                        let vc = navController.topViewController as? SettingsViewController
-                        let newModelController = ModelController()
-                        newModelController.person = Person(id: user!.uid,
-                                                           name: information["name"]!,
-                                                           email: information["email"]!,
-                                                           location: information["location"]!,
-                                                           birthday: information["birthday"]!,
-                                                           profilePictureURL: information["profilePictureURL"]!)
-                        vc!.modelController = newModelController
-                        
+                        // Once We find the ActivityFeedController...
+                        if navController.topViewController is ActivityFeedController {
+                            let vc = navController.topViewController as? ActivityFeedController
+                            let newModelController = ModelController()
+                            newModelController.person = Person(id: user!.uid,
+                                                                name: information["name"]!,
+                                                               email: information["email"]!,
+                                                               location: information["location"]!,
+                                                               birthday: information["birthday"]!,
+                                                               profilePictureURL: information["profilePictureURL"]!,
+                                                               profilePicture: profilePicture)
+                            vc!.modelController = newModelController
+                            
+                        } else if navController.topViewController is ProfileViewController {
+                            let vc = navController.topViewController as? ProfileViewController
+                            let newModelController = ModelController()
+                            newModelController.person = Person(id: user!.uid,
+                                                               name: information["name"]!,
+                                                               email: information["email"]!,
+                                                               location: information["location"]!,
+                                                               birthday: information["birthday"]!,
+                                                               profilePictureURL: information["profilePictureURL"]!,
+                                                               profilePicture: profilePicture)
+                            vc!.modelController = newModelController
+                            
+                        } else if navController.topViewController is NewActivityViewController {
+                            let vc = navController.topViewController as? NewActivityViewController
+                            let newModelController = ModelController()
+                            newModelController.person = Person(id: user!.uid,
+                                                               name: information["name"]!,
+                                                               email: information["email"]!,
+                                                               location: information["location"]!,
+                                                               birthday: information["birthday"]!,
+                                                               profilePictureURL: information["profilePictureURL"]!,
+                                                            profilePicture: profilePicture)
+                            vc!.modelController = newModelController
+                            
+                        } else if navController.topViewController is SettingsViewController {
+                            let vc = navController.topViewController as? SettingsViewController
+                            let newModelController = ModelController()
+                            newModelController.person = Person(id: user!.uid,
+                                                               name: information["name"]!,
+                                                               email: information["email"]!,
+                                                               location: information["location"]!,
+                                                               birthday: information["birthday"]!,
+                                                               profilePictureURL: information["profilePictureURL"]!,
+                                                               profilePicture: profilePicture)
+                            vc!.modelController = newModelController
+                            
+                        }
                     }
                 }
                 self.window!.rootViewController = tabBarController
                 self.window!.makeKeyAndVisible()
                 
             }
+                
         }
             
         // User is not logged in so show the Welcome View Controller
