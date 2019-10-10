@@ -82,7 +82,11 @@ class ProfileViewController: UITableViewController {
     
     @objc func noDataButtonAction(sender: UIButton!) {
         UIView.transition(from: self.view, to: tabBarController!.viewControllers![2].view, duration: 0.3, options: [.transitionCrossDissolve], completion: nil)
-        // tabBarController!.selectedIndex = 2
+         tabBarController!.selectedIndex = 2
+    }
+    
+    func addGenericStrainData() {
+        
     }
 }
 
@@ -113,18 +117,20 @@ extension ProfileViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         if self.categories.count == 0 {
              print("No Categories")
-            tableView.backgroundColor = .gray
-            let noDataLabel: UILabel  = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+            tableView.backgroundColor = .white
+            let noDataLabel: UILabel  = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 20))
             noDataLabel.text          = "You haven't recorded any smoking experiences yet"
             noDataLabel.textColor     = UIColor.black
             noDataLabel.textAlignment = .center
             
-            let noDataButton: UIButton = UIButton(frame: CGRect(x: 0, y: 20, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+            let noDataButton: UIButton = UIButton(frame: CGRect(x: 0, y: 26, width: tableView.bounds.size.width, height: 20))
             noDataButton.setTitle("Add an Activity", for: .normal)
+            noDataButton.setTitleColor(.black, for: .normal)
             noDataButton.addTarget(self, action: #selector(noDataButtonAction), for: .touchUpInside)
 
             tableView.addSubview(noDataLabel)
             tableView.addSubview(noDataButton)
+            addGenericStrainData()
         }
         return strains.count
     }

@@ -110,7 +110,7 @@
                                         </constraints>
                                     </view>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Us5-jj-LKM" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                                        <rect key="frame" x="0.0" y="192" width="374" height="44"/>
+                                        <rect key="frame" x="0.0" y="220" width="374" height="44"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="uLI-nv-0b8"/>
@@ -121,21 +121,46 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="What else would you like to say?"/>
                                         </userDefinedRuntimeAttributes>
                                     </textView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="few-bq-Qma" userLabel="Wrapping Effects View">
+                                        <rect key="frame" x="0.0" y="176" width="374" height="44"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ypG-je-ypy" userLabel="Effects Button">
+                                                <rect key="frame" x="0.0" y="5.5" width="374" height="33"/>
+                                                <fontDescription key="fontDescription" name="Arvo-Bold" family="Arvo" pointSize="17"/>
+                                                <state key="normal" title="EFFECTS &gt;">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="effectsPressed:" destination="oJC-zi-Pjq" eventType="touchUpInside" id="K8G-BT-WKR"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="ypG-je-ypy" firstAttribute="centerY" secondItem="few-bq-Qma" secondAttribute="centerY" id="ZMb-wI-G8y"/>
+                                            <constraint firstItem="ypG-je-ypy" firstAttribute="centerX" secondItem="few-bq-Qma" secondAttribute="centerX" id="fm3-FL-sSp"/>
+                                            <constraint firstAttribute="trailing" secondItem="ypG-je-ypy" secondAttribute="trailing" id="h7x-5T-TbE"/>
+                                            <constraint firstItem="ypG-je-ypy" firstAttribute="leading" secondItem="few-bq-Qma" secondAttribute="leading" id="mpe-HD-teV"/>
+                                            <constraint firstAttribute="height" constant="44" id="zL5-1v-gcP"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="8QW-bx-ckq" firstAttribute="leading" secondItem="pke-H8-bPg" secondAttribute="leading" id="7Jr-rj-fjx"/>
                                     <constraint firstAttribute="trailing" secondItem="4go-2Y-JYk" secondAttribute="trailing" id="DC6-zq-8bH"/>
                                     <constraint firstItem="qpq-DL-yXH" firstAttribute="leading" secondItem="pke-H8-bPg" secondAttribute="leading" id="EMt-LJ-0HL"/>
+                                    <constraint firstItem="few-bq-Qma" firstAttribute="top" secondItem="qpq-DL-yXH" secondAttribute="bottom" id="FNS-70-Gnf"/>
                                     <constraint firstItem="Us5-jj-LKM" firstAttribute="leading" secondItem="pke-H8-bPg" secondAttribute="leading" id="I4M-hS-RTV"/>
+                                    <constraint firstAttribute="trailing" secondItem="few-bq-Qma" secondAttribute="trailing" id="Ia6-Ie-dPB"/>
                                     <constraint firstAttribute="trailing" secondItem="hAu-VG-3cI" secondAttribute="trailing" id="JkN-m4-z3O"/>
+                                    <constraint firstItem="Us5-jj-LKM" firstAttribute="top" secondItem="few-bq-Qma" secondAttribute="bottom" id="Kbn-jf-RLu"/>
                                     <constraint firstItem="4go-2Y-JYk" firstAttribute="leading" secondItem="pke-H8-bPg" secondAttribute="leading" id="PAg-Px-wdO"/>
                                     <constraint firstAttribute="trailing" secondItem="qpq-DL-yXH" secondAttribute="trailing" id="Rjo-GF-VXl"/>
                                     <constraint firstAttribute="trailing" secondItem="8QW-bx-ckq" secondAttribute="trailing" id="UW2-0U-ANV"/>
                                     <constraint firstItem="4go-2Y-JYk" firstAttribute="top" secondItem="hAu-VG-3cI" secondAttribute="bottom" id="bnY-vI-gw3"/>
                                     <constraint firstItem="hAu-VG-3cI" firstAttribute="leading" secondItem="pke-H8-bPg" secondAttribute="leading" id="eAp-WT-TMy"/>
                                     <constraint firstItem="hAu-VG-3cI" firstAttribute="top" secondItem="8QW-bx-ckq" secondAttribute="bottom" id="f4S-T6-V3i"/>
-                                    <constraint firstItem="Us5-jj-LKM" firstAttribute="top" secondItem="qpq-DL-yXH" secondAttribute="bottom" constant="16" id="laT-IM-xol"/>
+                                    <constraint firstItem="few-bq-Qma" firstAttribute="leading" secondItem="pke-H8-bPg" secondAttribute="leading" id="h3F-bg-1uA"/>
                                     <constraint firstItem="8QW-bx-ckq" firstAttribute="top" secondItem="pke-H8-bPg" secondAttribute="top" id="m4f-X4-EqJ"/>
                                     <constraint firstItem="qpq-DL-yXH" firstAttribute="top" secondItem="4go-2Y-JYk" secondAttribute="bottom" id="rV6-89-jWm"/>
                                     <constraint firstAttribute="trailing" secondItem="Us5-jj-LKM" secondAttribute="trailing" id="suR-3M-00e"/>
@@ -163,6 +188,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addBarButton" destination="LJQ-Nh-Xcc" id="VxD-8b-ICj"/>
+                        <outlet property="effectsButton" destination="ypG-je-ypy" id="KtT-45-rNu"/>
                         <outlet property="locationButton" destination="NNX-zj-6Bo" id="MZK-LN-REI"/>
                         <outlet property="noteTextView" destination="Us5-jj-LKM" id="6Id-Zz-YjS"/>
                         <outlet property="ratingButton" destination="6KM-Tf-G4o" id="idU-8j-lhC"/>
@@ -173,11 +199,42 @@
                         <segue destination="7Gg-xS-fGn" kind="show" identifier="goToRating" id="DL5-VG-NDu"/>
                         <segue destination="LCH-p1-BSd" kind="show" identifier="goToStrain" id="gfh-AY-n0W"/>
                         <segue destination="X1Z-VN-ngc" kind="show" identifier="goToLocation" id="aaU-PS-CD3"/>
+                        <segue destination="Gn8-fX-UMT" kind="show" identifier="goToEffects" id="27i-Q0-hB1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pns-Am-w9e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1228.985507246377" y="148.66071428571428"/>
+        </scene>
+        <!--Effects-->
+        <scene sceneID="5J1-vm-Vzn">
+            <objects>
+                <tableViewController title="Effects" id="Gn8-fX-UMT" customClass="NewActivityTableViewController" customModule="Buds" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="6xj-he-iZm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelCell" id="w5k-Tx-HJu">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="w5k-Tx-HJu" id="aaJ-XS-yHq">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Gn8-fX-UMT" id="NGa-8N-V80"/>
+                            <outlet property="delegate" destination="Gn8-fX-UMT" id="cHx-pB-LtP"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Bwz-No-eAR"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Iqz-S1-2bK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2198" y="152"/>
         </scene>
         <!--Smoking Style-->
         <scene sceneID="AO6-b4-UFU">

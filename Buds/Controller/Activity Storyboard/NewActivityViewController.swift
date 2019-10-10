@@ -22,6 +22,7 @@ class NewActivityViewController: UIViewController {
     @IBOutlet weak var smokingStyleButton: UIButton!
     @IBOutlet weak var ratingButton: UIButton!
     @IBOutlet weak var locationButton: UIButton!
+    @IBOutlet weak var effectsButton: UIButton!
     
     // Instance Variables
     var selectedDetail: String?
@@ -102,7 +103,6 @@ class NewActivityViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nav = segue.destination as? NewActivityTableViewController {
             nav.delegate = self
-        
             if segue.identifier == "goToSmokingStyle" {
                 if let destinationVC = segue.destination as? NewActivityTableViewController {
                     destinationVC.dataToRetrieve = "smoking_styles"
@@ -116,6 +116,11 @@ class NewActivityViewController: UIViewController {
             else if segue.identifier == "goToStrain" {
                 if let destinationVC = segue.destination as? NewActivityTableViewController {
                     destinationVC.dataToRetrieve = "strain"
+                }
+            }
+            else if segue.identifier == "goToEffects" {
+                if let destinationVC = segue.destination as? NewActivityTableViewController {
+                    destinationVC.dataToRetrieve = "effects"
                 }
             }
         }
@@ -171,6 +176,10 @@ class NewActivityViewController: UIViewController {
     
     @IBAction func locationPressed(_ sender: Any) {
         performSegue(withIdentifier: "goToLocation", sender: Any?.self)
+    }
+    
+    @IBAction func effectsPressed(_ sender: Any) {
+        performSegue(withIdentifier: "goToEffects", sender: Any?.self)
     }
     
 }
@@ -244,13 +253,17 @@ extension NewActivityViewController: ActivityDetailsDelegate {
             ratingButton.setTitle(rating, for: .normal)
             ratingButton.isSelected = true
             buttonStateChanged()
-
         }
         else if detail == "strain" {
             strainButton.setTitle(value, for: .normal)
             strainButton.isSelected = true
             buttonStateChanged()
-
+        }
+        else if detail == "effects" {
+            effectsButton.setTitle(value, for: .normal)
+            effectsButton.isSelected = true
+            buttonStateChanged()
+            
         }
     }
     
