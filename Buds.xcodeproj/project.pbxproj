@@ -46,6 +46,12 @@
 		BE03D2AB22C269730059B587 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03D2AA22C269730059B587 /* RegisterViewController.swift */; };
 		BE03D2AD22C548480059B587 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03D2AC22C548480059B587 /* ProfileViewController.swift */; };
 		BE0A065822FB6F5F00C41B53 /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0A065722FB6F5F00C41B53 /* ModelController.swift */; };
+		BE12BA91233A7621009FAD1D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE12BA90233A7621009FAD1D /* TableViewCell.swift */; };
+		BE12BA97233BA5CF009FAD1D /* ArvoBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE12BA93233BA5CE009FAD1D /* ArvoBoldItalic.ttf */; };
+		BE12BA98233BA5CF009FAD1D /* ArvoRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE12BA94233BA5CE009FAD1D /* ArvoRegular.ttf */; };
+		BE12BA99233BA5CF009FAD1D /* ArvoItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE12BA95233BA5CE009FAD1D /* ArvoItalic.ttf */; };
+		BE12BA9A233BA5CF009FAD1D /* ArvoBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE12BA96233BA5CF009FAD1D /* ArvoBold.ttf */; };
+		BE12BA9C233D1CA8009FAD1D /* StrainDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE12BA9B233D1CA8009FAD1D /* StrainDetailsViewController.swift */; };
 		BE41464422BA718C0009A738 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41464322BA718C0009A738 /* AppDelegate.swift */; };
 		BE41464922BA718C0009A738 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE41464722BA718C0009A738 /* Main.storyboard */; };
 		BE41464B22BA718D0009A738 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE41464A22BA718D0009A738 /* Assets.xcassets */; };
@@ -68,6 +74,7 @@
 		BE747FC622CD1E9E00D071FD /* ActivityDetailsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE747FC522CD1E9E00D071FD /* ActivityDetailsDelegate.swift */; };
 		BE747FC822D53BB300D071FD /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE747FC722D53BB300D071FD /* Settings.storyboard */; };
 		BE747FCA22D53C2600D071FD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE747FC922D53C2600D071FD /* SettingsViewController.swift */; };
+		BEB7430823326089003B52DE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB7430723326089003B52DE /* CardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +138,12 @@
 		BE03D2AA22C269730059B587 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		BE03D2AC22C548480059B587 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		BE0A065722FB6F5F00C41B53 /* ModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelController.swift; sourceTree = "<group>"; };
+		BE12BA90233A7621009FAD1D /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		BE12BA93233BA5CE009FAD1D /* ArvoBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ArvoBoldItalic.ttf; sourceTree = "<group>"; };
+		BE12BA94233BA5CE009FAD1D /* ArvoRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ArvoRegular.ttf; sourceTree = "<group>"; };
+		BE12BA95233BA5CE009FAD1D /* ArvoItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ArvoItalic.ttf; sourceTree = "<group>"; };
+		BE12BA96233BA5CF009FAD1D /* ArvoBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ArvoBold.ttf; sourceTree = "<group>"; };
+		BE12BA9B233D1CA8009FAD1D /* StrainDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrainDetailsViewController.swift; sourceTree = "<group>"; };
 		BE41464022BA718C0009A738 /* Buds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Buds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE41464322BA718C0009A738 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE41464822BA718C0009A738 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -157,6 +170,7 @@
 		BE747FC522CD1E9E00D071FD /* ActivityDetailsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailsDelegate.swift; sourceTree = "<group>"; };
 		BE747FC722D53BB300D071FD /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		BE747FC922D53C2600D071FD /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		BEB7430723326089003B52DE /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		CE5601E64FE0FA1F69DE5776 /* Pods-Buds.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buds.debug.xcconfig"; path = "Target Support Files/Pods-Buds/Pods-Buds.debug.xcconfig"; sourceTree = "<group>"; };
 		F9E4C8A256D2C5A23E8D8B52 /* Pods-Buds.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buds.release.xcconfig"; path = "Target Support Files/Pods-Buds/Pods-Buds.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -213,6 +227,7 @@
 		BE00F0CB22FDB92600B65AB5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BE12BA92233BA59A009FAD1D /* Arvo */,
 				BE00F0EA22FDD58300B65AB5 /* Proxima Nova */,
 				BE00F0E522FDBD0800B65AB5 /* Coves */,
 				BE00F0E422FDBCF600B65AB5 /* PlayfairDisplay */,
@@ -267,6 +282,9 @@
 			isa = PBXGroup;
 			children = (
 				BE03D2AC22C548480059B587 /* ProfileViewController.swift */,
+				BEB7430723326089003B52DE /* CardView.swift */,
+				BE12BA90233A7621009FAD1D /* TableViewCell.swift */,
+				BE12BA9B233D1CA8009FAD1D /* StrainDetailsViewController.swift */,
 			);
 			path = "Profile Storyboard";
 			sourceTree = "<group>";
@@ -335,6 +353,17 @@
 				BE02A32D22DFBD8100431854 /* Profile Storyboard */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		BE12BA92233BA59A009FAD1D /* Arvo */ = {
+			isa = PBXGroup;
+			children = (
+				BE12BA96233BA5CF009FAD1D /* ArvoBold.ttf */,
+				BE12BA93233BA5CE009FAD1D /* ArvoBoldItalic.ttf */,
+				BE12BA95233BA5CE009FAD1D /* ArvoItalic.ttf */,
+				BE12BA94233BA5CE009FAD1D /* ArvoRegular.ttf */,
+			);
+			path = Arvo;
 			sourceTree = "<group>";
 		};
 		BE41463722BA718C0009A738 = {
@@ -548,6 +577,7 @@
 				BE00F0F422FDD59200B65AB5 /* Proxima Nova Regular.otf in Resources */,
 				BE00F0F622FDD59200B65AB5 /* Proxima Nova Black.otf in Resources */,
 				BE41468122BAD6A00009A738 /* GoogleService-Info.plist in Resources */,
+				BE12BA98233BA5CF009FAD1D /* ArvoRegular.ttf in Resources */,
 				BE00F0F522FDD59200B65AB5 /* Proxima Nova Alt Bold.otf in Resources */,
 				BE747FC822D53BB300D071FD /* Settings.storyboard in Resources */,
 				BE00F0F922FDD59200B65AB5 /* Proxima Nova Bold.otf in Resources */,
@@ -562,6 +592,7 @@
 				BE00F0DE22FDB9C500B65AB5 /* PlayfairDisplay-Black.otf in Resources */,
 				BE00F0D922FDB9C500B65AB5 /* PlayfairDisplaySC-BlackItalic.otf in Resources */,
 				BE00F0E022FDB9C500B65AB5 /* PlayfairDisplay-Bold.otf in Resources */,
+				BE12BA99233BA5CF009FAD1D /* ArvoItalic.ttf in Resources */,
 				BE00F0FA22FDD59200B65AB5 /* Proxima Nova Extrabold.otf in Resources */,
 				BE02A33A22E2572F00431854 /* ActivityFeedCustomCell.xib in Resources */,
 				BE00F0DC22FDB9C500B65AB5 /* PlayfairDisplaySC-Regular.otf in Resources */,
@@ -570,6 +601,8 @@
 				BE00F0DB22FDB9C500B65AB5 /* PlayfairDisplaySC-Italic.otf in Resources */,
 				BE00F0E922FDBD1500B65AB5 /* Coves Bold.otf in Resources */,
 				BE02A32A22DFBC4400431854 /* ActivityFeed.storyboard in Resources */,
+				BE12BA97233BA5CF009FAD1D /* ArvoBoldItalic.ttf in Resources */,
+				BE12BA9A233BA5CF009FAD1D /* ArvoBold.ttf in Resources */,
 				BE00F0E222FDB9C500B65AB5 /* PlayfairDisplaySC-Bold.otf in Resources */,
 				BE00F0F722FDD59200B65AB5 /* Proxima Nova Thin.otf in Resources */,
 			);
@@ -691,6 +724,7 @@
 				BE02A34222E6B7C500431854 /* CustomDateFormatter.swift in Sources */,
 				BE41467522BA91670009A738 /* Person.swift in Sources */,
 				BE02A32722DE61AB00431854 /* LocationSearchDelegate.swift in Sources */,
+				BE12BA91233A7621009FAD1D /* TableViewCell.swift in Sources */,
 				BE747FCA22D53C2600D071FD /* SettingsViewController.swift in Sources */,
 				BE03D2AD22C548480059B587 /* ProfileViewController.swift in Sources */,
 				BE02A33722E2562000431854 /* ActivityFeedController.swift in Sources */,
@@ -700,7 +734,9 @@
 				BE02A33E22E6436600431854 /* NewActivityLocationController.swift in Sources */,
 				BE02A34422E6BD7D00431854 /* TimeHelper.swift in Sources */,
 				BE41467D22BA9CE50009A738 /* Birthday.swift in Sources */,
+				BE12BA9C233D1CA8009FAD1D /* StrainDetailsViewController.swift in Sources */,
 				BE0A065822FB6F5F00C41B53 /* ModelController.swift in Sources */,
+				BEB7430823326089003B52DE /* CardView.swift in Sources */,
 				BE03D2A922C269060059B587 /* LogInViewController.swift in Sources */,
 				BE41464422BA718C0009A738 /* AppDelegate.swift in Sources */,
 			);

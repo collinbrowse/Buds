@@ -31,12 +31,14 @@ class NewActivityTableViewController: UITableViewController {
         // Small amount of information should be negligible on performance
         if dataToRetrieve != nil {
             ref.child(dataToRetrieve!).observeSingleEvent(of: .value, with: { (snapshot) in
-                print(snapshot)
+                print("snapshot \(snapshot)")
                 if snapshot.exists() {
 
                     for child in snapshot.children.allObjects as! [DataSnapshot] {
 
                         if self.dataToRetrieve == "strain" {
+                            self.detailsListArray.append(child.key)
+                        } else if self.dataToRetrieve == "effects" {
                             self.detailsListArray.append(child.key)
                         }
                         else {

@@ -79,7 +79,7 @@ class Network {
     static func getProfilePicture(userID: String, complete: @escaping (UIImage) -> ()) {
 
         var profilePicture = UIImage(named: "person-icon")
-        
+        print(userID)
         // Step 1: Get access to the user in RealtimeDatabase
         ref.child("users").child(userID).observeSingleEvent(of: .value) { (snapshot) in
             
@@ -105,6 +105,54 @@ class Network {
             } else { // We didn't find that user
                 complete(profilePicture!)
             }
+        }
+        complete(profilePicture!)
+    }
+    
+    
+    static func getUserStrainData(userID: String, complete: @escaping ([String: Array<String>]) -> ()) {
+        
+        ref.child("users").child(userID).child("strain_data").observeSingleEvent(of: .value) { (snapshot) in
+            
+            // value is now the data from firebase
+            let value = snapshot.value as? NSDictionary
+            
+            // We are returning data
+            var data = Dictionary<String, Array<String>>()
+            
+            // Should exit loop with blank dictionary if nothing is returned from firebase
+            for (category, info) in value ?? NSDictionary() {
+                let strains = info as? NSDictionary
+                var strain = ""
+                for (key, _) in strains ?? NSDictionary() {
+                    strain = key as! String
+                    // Need to check if the array has already been set up for that key
+                    // If it has, we append to the array
+                    // If not, set up the array
+                    if (data["\(category)"] == nil) {
+                        data["\(category)"] = []
+                    }
+                    data["\(category)"]!.append("\(strain)")
+                }
+            }
+            complete(data)
+        }
+    }
+    
+    
+    ///getStrainDetailsForUser
+    static func getStrainDetailsForUser(userID: String, strain: String, complete: @escaping ([String: String]) -> ()) {
+        
+        ref.child("users").child(userID).child("strain").child(strain).observeSingleEvent(of: .value) { (snapshot) in
+            
+            // Retrieve the details that this user has for this strain
+            let value = snapshot.value as? NSDictionary
+            var data = Dictionary<String, String>()
+            for (descriptionType, description) in value ?? NSDictionary() {
+                data["\(descriptionType)"] = description as? String ?? ""
+            }
+            print(data)
+            complete(data)
         }
     }
 }
