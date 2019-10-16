@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Iip-4m-mjt">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Iip-4m-mjt">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -224,7 +222,7 @@
                         <outlet property="passwordTextfield" destination="cBN-Td-wai" id="cLz-4h-yxS"/>
                         <outlet property="profilePictureImageView" destination="hZS-mg-5bX" id="Uqs-eD-S9V"/>
                         <outlet property="usernameTextfield" destination="Wy9-fR-b58" id="10T-ip-aK2"/>
-                        <segue destination="Msz-Cy-TPC" kind="showDetail" identifier="goToHome" id="3jz-L0-6BJ"/>
+                        <segue destination="Msz-Cy-TPC" kind="show" identifier="goToHome" id="3jz-L0-6BJ"/>
                         <segue destination="IIi-Fe-Pbg" kind="presentation" identifier="goToLocationSearch" id="fUm-dj-R7A"/>
                     </connections>
                 </viewController>
@@ -237,7 +235,7 @@
             <objects>
                 <tableViewController id="IIi-Fe-Pbg" customClass="LocationSearchBarController" customModule="Buds" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="XwV-w3-Sjd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Location" id="5gs-MQ-3uP" userLabel="Location Search Bar">
@@ -251,7 +249,7 @@
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="locationCell" id="6TL-W4-dtb">
-                                <rect key="frame" x="0.0" y="84" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="84" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6TL-W4-dtb" id="GDb-8M-TBE">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -364,7 +362,7 @@
                     <connections>
                         <outlet property="emailTextfield" destination="UVY-hH-slZ" id="hDc-yX-ABk"/>
                         <outlet property="passwordTextfield" destination="YII-YP-CAp" id="QnX-0A-2C6"/>
-                        <segue destination="Msz-Cy-TPC" kind="showDetail" identifier="goToHome" id="dlC-V7-xSn"/>
+                        <segue destination="Msz-Cy-TPC" kind="show" identifier="goToHome" id="dlC-V7-xSn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O4i-8q-bXu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -396,6 +394,7 @@
             <objects>
                 <tabBarController storyboardIdentifier="tabBarController" automaticallyAdjustsScrollViewInsets="NO" id="Msz-Cy-TPC" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="3Gb-NK-15g"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Pmf-bo-AiZ">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -459,6 +458,6 @@
         <image name="weed_background" width="556" height="791"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dlC-V7-xSn"/>
+        <segue reference="3jz-L0-6BJ"/>
     </inferredMetricsTieBreakers>
 </document>
