@@ -56,7 +56,9 @@ class SettingsViewController: UIViewController {
             modelController = nil 
             let storyboard = UIStoryboard(name: "Main", bundle: nil);
             let viewController: UINavigationController = storyboard.instantiateViewController(withIdentifier: "welcomeNavigationController") as! UINavigationController;
-            present(viewController, animated: true, completion: nil)
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = viewController
+            UIView.transition(from: self.view, to: viewController.topViewController!.view, duration: 0.3, options: [.transitionCrossDissolve], completion: nil)
             
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
