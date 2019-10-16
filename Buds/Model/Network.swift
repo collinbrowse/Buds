@@ -24,13 +24,14 @@ class Network {
     }
     
     // Log In a User with Firebase Auth
-    static func logInUser(email: String, password: String, complete: @escaping (Person) -> ()) {
+    static func logInUser(email: String, password: String, complete: @escaping (Person?) -> ()) {
 
         Auth.auth().signIn(withEmail: email, password: password) { user, error in
             
             if let error = error {
                 // Indicates log in was not successful
                 print(error.localizedDescription)
+                complete(nil)
             }
             else if user != nil {
                 

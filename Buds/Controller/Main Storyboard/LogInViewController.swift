@@ -51,7 +51,13 @@ class LogInViewController: UIViewController {
         
         if ( !password!.isEmpty && !email!.isEmpty) {
             Network.logInUser(email: email!, password: password!) { (user) in
-                self.modelController.person = user
+                guard let loggedInUser = user else {
+                    SVProgressHUD.dismiss()
+                    self.showAlert(alertMessage: "Incorrect Username/Password")
+                    password = nil
+                    return
+                }
+                self.modelController.person = loggedInUser
                 self.modelController.state = .loggedIn
                 password = nil
                 self.performSegue(withIdentifier: "goToHome", sender: self)
@@ -65,7 +71,7 @@ class LogInViewController: UIViewController {
     }
     
     func showAlert(alertMessage: String) {
-        let alert = UIAlertController(title: "Unable to Register", message: alertMessage, preferredStyle: .alert)
+        let alert = UIAlertController(title: "There was an error", message: alertMessage, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
         SVProgressHUD.dismiss()
