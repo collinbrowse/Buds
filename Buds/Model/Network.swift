@@ -155,4 +155,37 @@ class Network {
             complete(data)
         }
     }
+    
+    
+    ///displayActivityFeed
+    static func displayActivityFeed(userID: String, complete: @escaping([ActivityModel]) -> ()) {
+        
+        var activities = [ActivityModel]()
+        
+        // Only display activity from that user
+        ref.child("activity").queryOrdered(byChild: "user").queryEqual(toValue: userID).observe(.childAdded) { (snapshot) in
+
+            if let dictionary = snapshot.value as? [String: Any] {
+                
+                // Here we are creating an arrary of ActivityModel Objects.
+                // This is the best way to structure the information from firebase as we need
+                // an array to populate the table view
+                let activity = ActivityModel()
+                
+                activity.setValuesForKeys(dictionary)
+                activities.insert(activity, at: 0)
+            
+                // Firebase has all the information besides the User's actual name. Let's add that as well
+                self.ref.child("users").child(dictionary["user"] as! String).observeSingleEvent(of: .value) { (snapshot) in
+                    
+                    if let dict = snapshot.value as? [String: Any] {
+                        activity.name = dict["name"] as? String
+                        // Grab the URL of the Photo in Firebase Storage
+                        activity.profilePictureURL = dict["profilePicture"] as? String
+                    }
+                    complete(activities)
+                }
+            }
+        }
+    }
 }

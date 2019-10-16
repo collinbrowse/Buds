@@ -75,39 +75,13 @@ class ActivityFeedController: UITableViewController {
         // This requires downloading all activites from firebase each time ths view is loaded
         // There is likely a better way
         activities.removeAll()
-        
-        if (user?.email != nil) {
+
+        Network.displayActivityFeed(userID: modelController.person.id) { (activities) in
+            // Populate the table view with text
+            self.activities = activities
+            self.activityFeedTableView.reloadData()
             
-            ref.child("activity").queryOrderedByKey().observe(.childAdded) { (snapshot) in
-                if let dictionary = snapshot.value as? [String: Any] {
-                    
-                    // Here we are creating an arrary of ActivityModel Objects.
-                    // This is the best way to structure the information from firebase as we need
-                    // an array to populate the table view
-                    let activity = ActivityModel()
-                    
-                    // Firebase has all the information besides the User's actual name. Let's add that as well
-                    activity.setValuesForKeys(dictionary)
-                    self.activities.insert(activity, at: 0)
-                
-                    // Get the Profile Information from Realtime Database
-                    self.ref.child("users").child(dictionary["user"] as! String).observeSingleEvent(of: .value) { (snapshot) in
-                        
-                        if let dict = snapshot.value as? [String: Any] {
-                            
-                            // Grab the URL of the Photo in Firebase Storage
-                            activity.profilePictureURL = dict["profilePicture"] as? String
-                            activity.name = dict["name"] as? String
-                            
-                            // Since we are currently in a completion handler and UI is done on main thread,
-                            // We have to use this method to perform an async call on the main thread
-                            DispatchQueue.main.async{ [weak self] in
-                                self?.activityFeedTableView.reloadData()
-                            }
-                        }
-                    }
-                }
-            }
+            // Populate the table view with pictures
         }
         SVProgressHUD.dismiss()
     }
