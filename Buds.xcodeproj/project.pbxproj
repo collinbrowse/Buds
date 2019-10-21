@@ -75,6 +75,8 @@
 		BE747FC822D53BB300D071FD /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE747FC722D53BB300D071FD /* Settings.storyboard */; };
 		BE747FCA22D53C2600D071FD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE747FC922D53C2600D071FD /* SettingsViewController.swift */; };
 		BEB7430823326089003B52DE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB7430723326089003B52DE /* CardView.swift */; };
+		BEFB6FF8235B6151008805E5 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFB6FF7235B6151008805E5 /* Switcher.swift */; };
+		BEFB6FFA235B659D008805E5 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEFB6FF9235B659D008805E5 /* TabBar.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,6 +173,9 @@
 		BE747FC722D53BB300D071FD /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		BE747FC922D53C2600D071FD /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		BEB7430723326089003B52DE /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		BEFB6FF7235B6151008805E5 /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
+		BEFB6FF9235B659D008805E5 /* TabBar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
+		BEFB6FFB235B65B3008805E5 /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = TabBar.storyboard; path = "/Users/collinbrowse/Documents/After College/Personal Development/Buds/Buds/Buds/View/TabBar.storyboard"; sourceTree = "<absolute>"; };
 		CE5601E64FE0FA1F69DE5776 /* Pods-Buds.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buds.debug.xcconfig"; path = "Target Support Files/Pods-Buds/Pods-Buds.debug.xcconfig"; sourceTree = "<group>"; };
 		F9E4C8A256D2C5A23E8D8B52 /* Pods-Buds.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buds.release.xcconfig"; path = "Target Support Files/Pods-Buds/Pods-Buds.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -336,6 +341,7 @@
 				BE747FBC22CBD36000D071FD /* Custom Cell */,
 				BE747FB622CA798300D071FD /* Profile.storyboard */,
 				BE41464722BA718C0009A738 /* Main.storyboard */,
+				BEFB6FFB235B65B3008805E5 /* TabBar.storyboard */,
 				BE747FB822CA7A5A00D071FD /* NewActivity.storyboard */,
 				BE02A32922DFBC4400431854 /* ActivityFeed.storyboard */,
 				BE747FC722D53BB300D071FD /* Settings.storyboard */,
@@ -431,6 +437,7 @@
 				BE02A34122E6B7C500431854 /* CustomDateFormatter.swift */,
 				BE02A34322E6BD7D00431854 /* TimeHelper.swift */,
 				BE0A065722FB6F5F00C41B53 /* ModelController.swift */,
+				BEFB6FF7235B6151008805E5 /* Switcher.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -458,6 +465,7 @@
 		BE747FBC22CBD36000D071FD /* Custom Cell */ = {
 			isa = PBXGroup;
 			children = (
+				BEFB6FF9235B659D008805E5 /* TabBar.storyboard */,
 			);
 			path = "Custom Cell";
 			sourceTree = "<group>";
@@ -598,6 +606,7 @@
 				BE00F0DC22FDB9C500B65AB5 /* PlayfairDisplaySC-Regular.otf in Resources */,
 				BE00F0D822FDB9C500B65AB5 /* PlayfairDisplay-BoldItalic.otf in Resources */,
 				BE41464922BA718C0009A738 /* Main.storyboard in Resources */,
+				BEFB6FFA235B659D008805E5 /* TabBar.storyboard in Resources */,
 				BE00F0DB22FDB9C500B65AB5 /* PlayfairDisplaySC-Italic.otf in Resources */,
 				BE00F0E922FDBD1500B65AB5 /* Coves Bold.otf in Resources */,
 				BE02A32A22DFBC4400431854 /* ActivityFeed.storyboard in Resources */,
@@ -730,6 +739,7 @@
 				BE02A33722E2562000431854 /* ActivityFeedController.swift in Sources */,
 				BE747FBB22CAAD9800D071FD /* NewActivityViewController.swift in Sources */,
 				BE02A32522DE557200431854 /* LocationSearchBarController.swift in Sources */,
+				BEFB6FF8235B6151008805E5 /* Switcher.swift in Sources */,
 				BE41467B22BA91950009A738 /* ActivityFunctions.swift in Sources */,
 				BE02A33E22E6436600431854 /* NewActivityLocationController.swift in Sources */,
 				BE02A34422E6BD7D00431854 /* TimeHelper.swift in Sources */,

@@ -56,6 +56,20 @@ class Network {
         }
     }
     
+    static func logOutUser() {
+        
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            Switcher.setUserDefaultsIsSignIn(false)
+            Switcher.removeUserDefaultsModelController()
+            Switcher.updateRootViewController()
+
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+    }
+    
     // Get a User's Info with Realtime Database
     private static func getUserInfo(userID: String, complete: @escaping ([String: String]) -> ()) {
         

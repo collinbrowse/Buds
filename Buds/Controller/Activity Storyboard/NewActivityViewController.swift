@@ -38,6 +38,13 @@ class NewActivityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if Switcher.getUserDefaultsIsSignIn() {
+           modelController = Switcher.getUserDefaultsModelController()
+        } else {
+            Switcher.updateRootViewController()
+        }
+        
+        
         // Shouldn't be able to add
         addBarButton.isEnabled = false
         
@@ -46,8 +53,8 @@ class NewActivityViewController: UIViewController {
         textViewDidChange(noteTextView)
         
         // Pull the user's data from the Model, not the network
-        if modelController.person.profilePicture != nil {
-            self.setUpNavbar(modelController.person.profilePicture!)
+        if let profilePicture = modelController.person?.profilePicture {
+            self.setUpNavbar(profilePicture)
         } else {
             // Make a network call to find the profile picture
             Network.getProfilePicture(userID: modelController.person.id) { (profilePicture) in
@@ -61,12 +68,13 @@ class NewActivityViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         // Register an observer if the keyboard is showing
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillShow),
-            name: UIResponder.keyboardWillShowNotification,
-            object: nil
-        )
+                   NotificationCenter.default.addObserver(
+                       self,
+                       selector: #selector(keyboardWillShow),
+                       name: UIResponder.keyboardWillShowNotification,
+                       object: nil
+                   )
+     
     }
     
     override func viewWillDisappear(_ animated: Bool) {

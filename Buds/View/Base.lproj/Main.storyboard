@@ -222,7 +222,6 @@
                         <outlet property="passwordTextfield" destination="cBN-Td-wai" id="cLz-4h-yxS"/>
                         <outlet property="profilePictureImageView" destination="hZS-mg-5bX" id="Uqs-eD-S9V"/>
                         <outlet property="usernameTextfield" destination="Wy9-fR-b58" id="10T-ip-aK2"/>
-                        <segue destination="Msz-Cy-TPC" kind="show" identifier="goToHome" id="3jz-L0-6BJ"/>
                         <segue destination="IIi-Fe-Pbg" kind="presentation" identifier="goToLocationSearch" id="fUm-dj-R7A"/>
                     </connections>
                 </viewController>
@@ -362,7 +361,6 @@
                     <connections>
                         <outlet property="emailTextfield" destination="UVY-hH-slZ" id="hDc-yX-ABk"/>
                         <outlet property="passwordTextfield" destination="YII-YP-CAp" id="QnX-0A-2C6"/>
-                        <segue destination="Msz-Cy-TPC" kind="show" identifier="goToHome" id="dlC-V7-xSn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O4i-8q-bXu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -389,67 +387,15 @@
             </objects>
             <point key="canvasLocation" x="-534.39999999999998" y="10.794602698650676"/>
         </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="NHy-0S-lBE">
+        <!--tabBarController-->
+        <scene sceneID="DGA-Kp-CWR">
             <objects>
-                <tabBarController storyboardIdentifier="tabBarController" automaticallyAdjustsScrollViewInsets="NO" id="Msz-Cy-TPC" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="3Gb-NK-15g"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Pmf-bo-AiZ">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="dQU-QY-h3r" kind="relationship" relationship="viewControllers" id="j9f-Az-Avp"/>
-                        <segue destination="WLc-Xc-379" kind="relationship" relationship="viewControllers" id="BSd-vO-6Tx"/>
-                        <segue destination="6uf-zc-7j1" kind="relationship" relationship="viewControllers" id="C8p-Xh-FlL"/>
-                        <segue destination="Zlj-q1-AWQ" kind="relationship" relationship="viewControllers" id="y14-fZ-pdA"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RIr-gd-2tV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardIdentifier="tabBarController" storyboardName="TabBar" referencedIdentifier="tabBarController" id="nN8-Rh-6lc" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="v91-dO-YlH"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R7I-FT-Ajf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2178" y="10"/>
-        </scene>
-        <!--Profile-->
-        <scene sceneID="DcK-3T-hoF">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Profile" id="dQU-QY-h3r" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Ytl-cm-mX4"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1tB-eq-KgL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2774" y="15"/>
-        </scene>
-        <!--Settings-->
-        <scene sceneID="08r-l0-fIH">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Settings" id="Zlj-q1-AWQ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="zNi-ER-r0O"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="P4Z-Vd-bKO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2779" y="66"/>
-        </scene>
-        <!--ActivityFeed-->
-        <scene sceneID="2rl-y8-kNB">
-            <objects>
-                <viewControllerPlaceholder storyboardName="ActivityFeed" id="WLc-Xc-379" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="DQy-1h-LX6"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Utv-Ky-p6h" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2797" y="-61"/>
-        </scene>
-        <!--NewActivity-->
-        <scene sceneID="fym-aZ-5Pd">
-            <objects>
-                <viewControllerPlaceholder storyboardName="NewActivity" id="6uf-zc-7j1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="be5-Ij-BPZ"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="a4m-mB-J4Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2793" y="-22"/>
         </scene>
     </scenes>
     <resources>
@@ -457,7 +403,4 @@
         <image name="view_icon" width="512" height="512"/>
         <image name="weed_background" width="556" height="791"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="3jz-L0-6BJ"/>
-    </inferredMetricsTieBreakers>
 </document>

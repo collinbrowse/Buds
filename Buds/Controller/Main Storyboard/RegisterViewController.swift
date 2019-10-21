@@ -162,7 +162,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         // If the user tried to log in....
-        if segue.identifier == "goToHome" {
+        if segue.identifier == "goToHomeFromRegister" {
             let tabBarViewController = segue.destination as? UITabBarController
             if let destinationVC = tabBarViewController?.viewControllers![0] as? ProfileViewController {
                 destinationVC.username = self.username
@@ -230,9 +230,8 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                                             var person = Person(id: Auth.auth().currentUser!.providerID, name: name, email: email, location: location, birthday: birthday, profilePictureURL: "self.profilePictureImageView.image!")
                                             person.profilePicture = self.profilePictureImageView.image!
                                             self.modelController.person = person
-                                            self.modelController.state = .loggedIn
                                             SVProgressHUD.dismiss()
-                                            self.performSegue(withIdentifier: "goToHome", sender: self)
+                                            self.performSegue(withIdentifier: "goToHomeFromRegister", sender: self)
                                         }
                                     }
                                     

@@ -21,17 +21,26 @@ class ActivityFeedController: UITableViewController {
     var activitiesDictionary = [String: ActivityModel]()
     var modelController: ModelController! {
         willSet {
-            print("Printing the Model Controller Person's name from ActivityFeedVC: \(newValue.person.name)")
+            //print("Printing the Model Controller Person's name from ActivityFeedVC: \(newValue.person.name)")
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Activity Feed View Did Load")
+        
+        if Switcher.getUserDefaultsIsSignIn() {
+           modelController = Switcher.getUserDefaultsModelController()
+        } else {
+            Switcher.updateRootViewController()
+        }
+        
+        
         
         // Get a reference to Firebase
         ref = Database.database().reference()
         
-        navigationItem.title = "Activity"
+        //navigationItem.title = "Activity"
         
         // Set up the Table View
         activityFeedTableView.delegate = self
@@ -47,17 +56,7 @@ class ActivityFeedController: UITableViewController {
     
     // Check for User's Logged In State
     override func viewWillAppear(_ animated: Bool) {
-        handle = Auth.auth().addStateDidChangeListener{ (auth, user) in
-            // If we get a user object back
-            if let user = user {
-                self.user = user
-                SVProgressHUD.show()
-                self.displayActivityFeed()
-            }
-            else {
-                print("Unable to log in the user")
-            }
-        }
+        
     }
     
     // Release the Handle when the view leaves
@@ -76,13 +75,13 @@ class ActivityFeedController: UITableViewController {
         // There is likely a better way
         activities.removeAll()
 
-        Network.displayActivityFeed(userID: modelController.person.id) { (activities) in
-            // Populate the table view with text
-            self.activities = activities
-            self.activityFeedTableView.reloadData()
-            
-            // Populate the table view with pictures
-        }
+//        Network.displayActivityFeed(userID: modelController.person.id) { (activities) in
+//            // Populate the table view with text
+//            self.activities = activities
+//            self.activityFeedTableView.reloadData()
+//
+//            // Populate the table view with pictures
+//        }
         SVProgressHUD.dismiss()
     }
     

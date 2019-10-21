@@ -25,6 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // If Logged in, bypass the Welcome View Controller
         if user != nil {
+            
+            Switcher.updateRootViewController()
+            return true
+            
             let ref = Database.database().reference()
             // We can get the user's info here
             // Get the Profile Information from Realtime Database
@@ -136,6 +140,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+        
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {

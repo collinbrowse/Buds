@@ -32,6 +32,13 @@ class ProfileViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if Switcher.getUserDefaultsIsSignIn() {
+           modelController = Switcher.getUserDefaultsModelController()
+        } else {
+            Switcher.updateRootViewController()
+        }
+        
+        
         // Connect to Realtime Database
         ref = Database.database().reference()
         
@@ -68,6 +75,13 @@ class ProfileViewController: UITableViewController {
             }
         }
     }
+    
+    // Check for User's Logged In State
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
+    
+    
     ///prepareForSegue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? StrainDetailsViewController {
@@ -115,8 +129,8 @@ extension ProfileViewController {
     }
     ///numberOfSectionsInTableView
     override func numberOfSections(in tableView: UITableView) -> Int {
-        if self.categories.count == 0 {
-             print("No Categories")
+        if categories.count == 0 {
+            print("No Categories")
             tableView.backgroundColor = .white
             let noDataLabel: UILabel  = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 20))
             noDataLabel.text          = "You haven't recorded any smoking experiences yet"

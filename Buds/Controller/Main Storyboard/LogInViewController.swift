@@ -43,24 +43,30 @@ class LogInViewController: UIViewController {
     }
     
     @IBAction func logInPressed(_ sender: AnyObject) {
-    
+
         SVProgressHUD.show()
         let email = emailTextfield.text
         var password = passwordTextfield.text
         passwordTextfield.text = nil
         
         if ( !password!.isEmpty && !email!.isEmpty) {
+            
             Network.logInUser(email: email!, password: password!) { (user) in
+                password = nil
+                
+                // Check to make sure user was logged in Successfully,
+                // If not...
                 guard let loggedInUser = user else {
                     SVProgressHUD.dismiss()
                     self.showAlert(alertMessage: "Incorrect Username/Password")
-                    password = nil
                     return
                 }
+                
+                // If they were...
                 self.modelController.person = loggedInUser
-                self.modelController.state = .loggedIn
-                password = nil
-                self.performSegue(withIdentifier: "goToHome", sender: self)
+                UserDefaults.standard.set(true, forKey: "isSignIn")
+                Switcher.setUserDefaultsModelController(modelController: self.modelController)
+                Switcher.updateRootViewController()
             }
         }
         else {
@@ -79,7 +85,7 @@ class LogInViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-        if segue.identifier == "goToHome" {
+        if segue.identifier == "goToHomeFromLogIn" {
         
             if let tabBarViewController = segue.destination as? UITabBarController {
             
