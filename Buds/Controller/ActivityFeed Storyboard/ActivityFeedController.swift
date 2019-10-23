@@ -40,7 +40,7 @@ class ActivityFeedController: UITableViewController {
         // Get a reference to Firebase
         ref = Database.database().reference()
         
-        //navigationItem.title = "Activity"
+        navigationItem.title = "Activity"
         
         // Set up the Table View
         activityFeedTableView.delegate = self
@@ -51,6 +51,10 @@ class ActivityFeedController: UITableViewController {
         activityFeedTableView.estimatedRowHeight = 100
         activityFeedTableView.rowHeight = UITableView.automaticDimension
         
+        Network.displayActivityFeed(userID: modelController.person.id) { (activities) in
+            self.activities = activities
+            self.activityFeedTableView.reloadData()
+        }
         
     }
     
