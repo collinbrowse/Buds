@@ -30,8 +30,9 @@ class Network {
             
             if let error = error {
                 // Indicates log in was not successful
-                print(error.localizedDescription)
+                print("There was an error signing in the user: \(error.localizedDescription)")
                 complete(nil)
+                return
             }
             else if user != nil {
                 
@@ -40,17 +41,11 @@ class Network {
                 }
                 
                 // Able to sign the user in, grab the rest of the info from Realtime Database
-                Network.getUserInfo(userID: userID, complete: { (userInfo) in
-                
-                    // First Grab the Profile Picture from FirebaseStorage
-                    Network.getProfilePicture(userID: userID, complete: { (profilePicture) in
-                        
-                        // Finally create the Person Object
-                        let loggedInUser = Person(id: userID, name: userInfo["name"]!, email: userInfo["email"]!, location: userInfo["location"]!, birthday: userInfo["birthday"]!, profilePictureURL: userInfo["profilePictureURL"]!, profilePicture: profilePicture)
-                        
-                        complete(loggedInUser)
-                    })
-                
+                Network.getUserInfo(userID: userID, complete: { userInfo in
+
+                    let loggedInUser = Person(id: userID, name: userInfo["name"]!, email: userInfo["email"]!, location: userInfo["location"]!, birthday: userInfo["birthday"]!, profilePictureURL: userInfo["profilePictureURL"]!)
+                    
+                    complete(loggedInUser)
                 })
             }
         }
@@ -64,6 +59,7 @@ class Network {
             Switcher.setUserDefaultsIsSignIn(false)
             Switcher.removeUserDefaultsModelController()
             Switcher.updateRootViewController()
+            print("Attempting to logOutUser")
 
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
@@ -94,7 +90,7 @@ class Network {
     static func getProfilePicture(userID: String, complete: @escaping (UIImage) -> ()) {
 
         var profilePicture = UIImage(named: "person-icon")
-        print(userID)
+        
         // Step 1: Get access to the user in RealtimeDatabase
         ref.child("users").child(userID).observeSingleEvent(of: .value) { (snapshot) in
             

@@ -19,30 +19,28 @@ class ActivityFeedController: UITableViewController {
     var ref: DatabaseReference!
     var activities = [ActivityModel]()
     var activitiesDictionary = [String: ActivityModel]()
-    var modelController: ModelController! {
-        willSet {
-            //print("Printing the Model Controller Person's name from ActivityFeedVC: \(newValue.person.name)")
-        }
-    }
+    var modelController: ModelController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Activity Feed View Did Load")
         
+        //UserDefaults.standard.set(false, forKey: "isSignIn")
+        
         if Switcher.getUserDefaultsIsSignIn() {
-           modelController = Switcher.getUserDefaultsModelController()
+            modelController = Switcher.getUserDefaultsModelController()
+            print("Person's ID: \(modelController.person.id)")
         } else {
             Switcher.updateRootViewController()
+            return
         }
-        
-        
         
         // Get a reference to Firebase
         ref = Database.database().reference()
-        
+
         navigationItem.title = "Activity"
-        
-        // Set up the Table View
+
+         //Set up the Table View
         activityFeedTableView.delegate = self
         activityFeedTableView.dataSource = self
         activityFeedTableView.separatorStyle = .singleLine

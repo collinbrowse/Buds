@@ -387,16 +387,6 @@
             </objects>
             <point key="canvasLocation" x="-534.39999999999998" y="10.794602698650676"/>
         </scene>
-        <!--tabBarController-->
-        <scene sceneID="DGA-Kp-CWR">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="tabBarController" storyboardName="TabBar" referencedIdentifier="tabBarController" id="nN8-Rh-6lc" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="v91-dO-YlH"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="R7I-FT-Ajf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2178" y="10"/>
-        </scene>
     </scenes>
     <resources>
         <image name="person-icon" width="610" height="564"/>

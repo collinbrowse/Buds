@@ -18,14 +18,16 @@ class Switcher {
         var rootViewController : UIViewController?
 
         #if DEBUG
-        print(status)
+        //print(status)
         #endif
 
         if (status == true) {
+            print("User Defaults says user is logged in")
             let mainStoryBoard = UIStoryboard(name: "TabBar", bundle: nil)
             let mainTabBarController = mainStoryBoard.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
             rootViewController = mainTabBarController
         } else {
+            print("User Defaults says user is logged out")
             let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
             let signInViewController = mainStoryBoard.instantiateViewController(withIdentifier: "welcomeNavigationController") as! UINavigationController
             rootViewController = signInViewController

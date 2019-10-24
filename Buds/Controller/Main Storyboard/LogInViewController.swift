@@ -28,11 +28,11 @@ class LogInViewController: UIViewController {
         ref = Database.database().reference()
     }
     
-    func application(_ application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        FirebaseApp.configure()
-        return true
-    }
+//    func application(_ application: UIApplication,
+//                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+//        FirebaseApp.configure()
+//        return true
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -42,8 +42,8 @@ class LogInViewController: UIViewController {
         passwordTextfield.isSecureTextEntry.toggle()
     }
     
-    @IBAction func logInPressed(_ sender: AnyObject) {
-
+    @IBAction func logInPressed(_ sender: Any) {
+        
         SVProgressHUD.show()
         let email = emailTextfield.text
         var password = passwordTextfield.text
@@ -53,7 +53,7 @@ class LogInViewController: UIViewController {
             
             Network.logInUser(email: email!, password: password!) { (user) in
                 password = nil
-                
+                print("Got a user back from firebase")
                 // Check to make sure user was logged in Successfully,
                 // If not...
                 guard let loggedInUser = user else {
@@ -64,7 +64,7 @@ class LogInViewController: UIViewController {
                 
                 // If they were...
                 self.modelController.person = loggedInUser
-                UserDefaults.standard.set(true, forKey: "isSignIn")
+                Switcher.setUserDefaultsIsSignIn(true)
                 Switcher.setUserDefaultsModelController(modelController: self.modelController)
                 Switcher.updateRootViewController()
             }
