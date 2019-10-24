@@ -63,11 +63,7 @@ class ActivityFeedController: UITableViewController {
     
     // Release the Handle when the view leaves
     override func viewWillDisappear(_ animated: Bool) {
-        if handle != nil {
-            Auth.auth().removeStateDidChangeListener(handle!)
-        }
-        else {
-        }
+
     }
     
     func displayActivityFeed() {

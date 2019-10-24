@@ -15,6 +15,10 @@ class Network {
     //Grab a connection to Realtime database
     static var ref = Database.database().reference()
 
+    deinit {
+        Network.ref.removeAllObservers()
+    }
+    
     static func addNewActivity(userID: String, activityDetails: [String : String]) -> Bool {
         
         // Add the activity with the User's ID identifying it
@@ -53,14 +57,16 @@ class Network {
     
     static func logOutUser() {
         
+        Switcher.setUserDefaultsIsSignIn(false)
+        Switcher.removeUserDefaultsModelController()
+    
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
-            Switcher.setUserDefaultsIsSignIn(false)
-            Switcher.removeUserDefaultsModelController()
+            print("Successfully logOutUser from Firebase")
+            Network.ref.child("activity").removeAllObservers()
+            Network.ref.child("users").removeAllObservers()
             Switcher.updateRootViewController()
-            print("Attempting to logOutUser")
-
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }

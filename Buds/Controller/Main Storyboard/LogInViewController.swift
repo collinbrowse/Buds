@@ -52,18 +52,19 @@ class LogInViewController: UIViewController {
         if ( !password!.isEmpty && !email!.isEmpty) {
             
             Network.logInUser(email: email!, password: password!) { (user) in
-                password = nil
-                print("Got a user back from firebase")
+                
+                password = nil // security
+                
                 // Check to make sure user was logged in Successfully,
                 // If not...
-                guard let loggedInUser = user else {
+                if user == nil {
                     SVProgressHUD.dismiss()
                     self.showAlert(alertMessage: "Incorrect Username/Password")
                     return
                 }
                 
                 // If they were...
-                self.modelController.person = loggedInUser
+                self.modelController.person = user
                 Switcher.setUserDefaultsIsSignIn(true)
                 Switcher.setUserDefaultsModelController(modelController: self.modelController)
                 Switcher.updateRootViewController()

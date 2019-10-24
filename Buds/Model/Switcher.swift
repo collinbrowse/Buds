@@ -11,17 +11,17 @@ import UIKit
 
 
 class Switcher {
-
+    
     static func updateRootViewController() {
 
         let status = UserDefaults.standard.bool(forKey: "isSignIn")
         var rootViewController : UIViewController?
 
         #if DEBUG
-        //print(status)
+        print(status)
         #endif
 
-        if (status == true) {
+        if (status) {
             print("User Defaults says user is logged in")
             let mainStoryBoard = UIStoryboard(name: "TabBar", bundle: nil)
             let mainTabBarController = mainStoryBoard.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
@@ -29,8 +29,8 @@ class Switcher {
         } else {
             print("User Defaults says user is logged out")
             let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-            let signInViewController = mainStoryBoard.instantiateViewController(withIdentifier: "welcomeNavigationController") as! UINavigationController
-            rootViewController = signInViewController
+            let welcomeViewController = mainStoryBoard.instantiateViewController(withIdentifier: "welcomeNavigationController") as! UINavigationController
+            rootViewController = welcomeViewController
         }
 
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -74,10 +74,13 @@ class Switcher {
     
     static func removeUserDefaultsModelController() {
         UserDefaults.standard.set(nil, forKey: "modelController")
+        print("Model Controller from User Defaults: \(UserDefaults.standard.dictionary(forKey: "modelController"))")
     }
     
     static func setUserDefaultsIsSignIn(_ state: Bool) {
         UserDefaults.standard.set(state, forKey: "isSignIn")
+        UserDefaults.standard.synchronize()
+        print("User Defaults isSignIn is: \(state)")
     }
     
     static func getUserDefaultsIsSignIn() -> Bool {
