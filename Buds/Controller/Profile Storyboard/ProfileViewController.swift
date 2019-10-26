@@ -15,11 +15,7 @@ import SVProgressHUD
 class ProfileViewController: UITableViewController {
     
     //var tabBarController: UITabBarController?
-    var modelController: ModelController! {
-        willSet {
-            print("Printing the Model Controller Person's name from ProfileVC: \(newValue.person.name)")
-        }
-    }
+    var modelController: ModelController!
     var username: String?
     var ref: DatabaseReference!
     var user: User?
@@ -90,7 +86,6 @@ class ProfileViewController: UITableViewController {
         }
         if let vc = segue.destination as? NewActivityViewController {
             vc.modelController = modelController
-            print("prepare for segue as new activity view controller")
         }
     }
     
@@ -130,7 +125,6 @@ extension ProfileViewController {
     ///numberOfSectionsInTableView
     override func numberOfSections(in tableView: UITableView) -> Int {
         if categories.count == 0 {
-            print("No Categories")
             tableView.backgroundColor = .white
             let noDataLabel: UILabel  = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 20))
             noDataLabel.text          = "You haven't recorded any smoking experiences yet"
@@ -207,7 +201,6 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         selectedStrain = strains[collectionView.tag][indexPath.row].uppercased().replacingOccurrences(of: "_", with: " ")
-        print("Did Select Item At: \(selectedStrain)")
         self.performSegue(withIdentifier: "goToStrainDetails", sender: self)
     }
     

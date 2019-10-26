@@ -23,13 +23,11 @@ class ActivityFeedController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Activity Feed View Did Load")
         
         //UserDefaults.standard.set(false, forKey: "isSignIn")
         
         if Switcher.getUserDefaultsIsSignIn() {
             modelController = Switcher.getUserDefaultsModelController()
-            print("Person's ID: \(modelController.person.id)")
         } else {
             Switcher.updateRootViewController()
             return

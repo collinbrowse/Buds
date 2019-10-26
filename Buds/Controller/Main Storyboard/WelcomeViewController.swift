@@ -17,7 +17,6 @@ class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("User Defaults says the sign in status is: \(UserDefaults.standard.bool(forKey: "isSignIn"))")
     }
     
     override func viewWillAppear(_ animated: Bool) {

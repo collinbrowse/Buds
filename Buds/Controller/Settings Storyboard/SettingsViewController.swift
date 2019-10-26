@@ -52,7 +52,6 @@ class SettingsViewController: UIViewController {
     
     
     @IBAction func logoutButtonPressed(_ sender: Any) {
-        print("Logout button pressed")
         view.window?.rootViewController?.dismiss(animated: true, completion: nil)
         modelController = nil
         Network.logOutUser()

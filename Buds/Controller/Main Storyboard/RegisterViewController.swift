@@ -167,7 +167,6 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             if let destinationVC = tabBarViewController?.viewControllers![0] as? ProfileViewController {
                 destinationVC.username = self.username
                 destinationVC.modelController = modelController
-                print("RegisterViewController.modelController -> ProfileViewController")
             }
         }
         // If the user wants to enter a locations...

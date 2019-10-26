@@ -17,17 +17,11 @@ class Switcher {
         let status = UserDefaults.standard.bool(forKey: "isSignIn")
         var rootViewController : UIViewController?
 
-        #if DEBUG
-        print(status)
-        #endif
-
         if (status) {
-            print("User Defaults says user is logged in")
             let mainStoryBoard = UIStoryboard(name: "TabBar", bundle: nil)
             let mainTabBarController = mainStoryBoard.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
             rootViewController = mainTabBarController
         } else {
-            print("User Defaults says user is logged out")
             let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
             let welcomeViewController = mainStoryBoard.instantiateViewController(withIdentifier: "welcomeNavigationController") as! UINavigationController
             rootViewController = welcomeViewController
@@ -74,13 +68,11 @@ class Switcher {
     
     static func removeUserDefaultsModelController() {
         UserDefaults.standard.set(nil, forKey: "modelController")
-        print("Model Controller from User Defaults: \(UserDefaults.standard.dictionary(forKey: "modelController"))")
     }
     
     static func setUserDefaultsIsSignIn(_ state: Bool) {
         UserDefaults.standard.set(state, forKey: "isSignIn")
         UserDefaults.standard.synchronize()
-        print("User Defaults isSignIn is: \(state)")
     }
     
     static func getUserDefaultsIsSignIn() -> Bool {

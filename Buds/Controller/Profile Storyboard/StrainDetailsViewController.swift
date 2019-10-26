@@ -11,11 +11,7 @@ import UIKit
 
 class StrainDetailsViewController: UIViewController {
     
-    var modelController: ModelController! {
-        willSet {
-            print("Printing the Model Controller Person's name from ProfileVC: \(newValue.person.name)")
-        }
-    }
+    var modelController: ModelController!
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }

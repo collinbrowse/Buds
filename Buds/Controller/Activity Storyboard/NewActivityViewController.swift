@@ -29,11 +29,7 @@ class NewActivityViewController: UIViewController {
     var ref: DatabaseReference?
     
     // Observed Properties
-    var modelController: ModelController! {
-        willSet {
-            print("Printing the Model Controller Person's name from ProfileVC: \(newValue.person.name)")
-        }
-    }
+    var modelController: ModelController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -164,7 +160,6 @@ class NewActivityViewController: UIViewController {
     }
     
     func buttonStateChanged() {
-        print("Button State Changed")
         if strainButton.isSelected == true && smokingStyleButton.isSelected == true && ratingButton.isSelected == true && locationButton.isSelected == true {
             addBarButton.isEnabled = true
         }
@@ -303,7 +298,6 @@ extension NewActivityViewController: UITextViewDelegate {
         if bottomOfTextView > (wrappingDetailsView.frame.size.height - keyboardHeight!) {
             // Text View is off the screen
             textView.isScrollEnabled = true
-            print("Scroll Enabled")
             let bottom = NSMakeRange(textView.text.count - 1, 1)
             textView.scrollRangeToVisible(bottom)
             

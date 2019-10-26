@@ -63,7 +63,6 @@ class Network {
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
-            print("Successfully logOutUser from Firebase")
             Network.ref.child("activity").removeAllObservers()
             Network.ref.child("users").removeAllObservers()
             Switcher.updateRootViewController()
@@ -85,7 +84,6 @@ class Network {
             information["location"] = value?["location"] as? String ?? ""
             information["username"] = value?["username"] as? String ?? ""
             information["profilePictureURL"] = value?["profilePictureURL"] as? String ?? ""
-            print("found the user's info in Realtime Database")
             complete(information)
         }
         
@@ -168,7 +166,6 @@ class Network {
             for (descriptionType, description) in value ?? NSDictionary() {
                 data["\(descriptionType)"] = description as? String ?? ""
             }
-            print(data)
             complete(data)
         }
     }
