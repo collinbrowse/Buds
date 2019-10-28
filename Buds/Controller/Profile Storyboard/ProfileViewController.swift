@@ -33,8 +33,7 @@ class ProfileViewController: UITableViewController {
         } else {
             Switcher.updateRootViewController()
         }
-        
-        
+        Network.testAPICall()
         // Connect to Realtime Database
         ref = Database.database().reference()
         
@@ -97,6 +96,7 @@ class ProfileViewController: UITableViewController {
     func addGenericStrainData() {
         
     }
+
 }
 
 

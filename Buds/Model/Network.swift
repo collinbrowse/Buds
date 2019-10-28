@@ -9,6 +9,9 @@
 import Foundation
 import Firebase
 import FirebaseAuth
+import Alamofire
+import SwiftyJSON
+
 
 class Network {
 
@@ -201,5 +204,53 @@ class Network {
                 }
             }
         }
+    }
+    
+    
+    
+    
+    static func testAPICall() {
+        print("testAPI CALL")
+        Alamofire.request("http://strainapi.evanbusse.com/3HT8al6/searchdata/effects", method: .get).validate().responseJSON { (response) in
+            
+            if response.result.isSuccess {
+                print("success")
+                let adpJSON = JSON(response.result.value!)
+
+                // Now add all the Players to Realm
+                for item in adpJSON.arrayValue {
+                    //StrainTypes.positiveEffect
+                }
+            }
+            else {
+                print("Error \(String(describing: response.result.error))")
+            }
+        }
+//        let headers = [
+//            "x-rapidapi-host": "StrainraygorodskijV1.p.rapidapi.com",
+//            "x-rapidapi-key": "e8389a48ecmshad3d5db878de714p1b3d55jsnac359c89f9e7",
+//            "content-type": "application/x-www-form-urlencoded"
+//        ]
+//
+//        let postData = NSMutableData(data: "apiKey=3HT8al6".data(using: String.Encoding.utf8)!)
+//
+//        let request = NSMutableURLRequest(url: NSURL(string: "https://strainraygorodskijv1.p.rapidapi.com/getListAllEffects")! as URL,
+//                                                cachePolicy: .useProtocolCachePolicy,
+//                                            timeoutInterval: 10.0)
+//        request.httpMethod = "POST"
+//        request.allHTTPHeaderFields = headers
+//        request.httpBody = postData as Data
+//
+//        let session = URLSession.shared
+//        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+//            if (error != nil) {
+//                print(error)
+//            } else {
+//                let httpResponse = response as? HTTPURLResponse
+//                print(httpResponse)
+//            }
+//        })
+//
+//        dataTask.resume()
     }
 }
