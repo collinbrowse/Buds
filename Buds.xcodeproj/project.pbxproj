@@ -39,7 +39,6 @@
 		BE02A33A22E2572F00431854 /* ActivityFeedCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE02A33922E2572F00431854 /* ActivityFeedCustomCell.xib */; };
 		BE02A33C22E2581800431854 /* ActivityFeedCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02A33B22E2581800431854 /* ActivityFeedCustomCell.swift */; };
 		BE02A33E22E6436600431854 /* NewActivityLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02A33D22E6436600431854 /* NewActivityLocationController.swift */; };
-		BE02A34222E6B7C500431854 /* CustomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02A34122E6B7C500431854 /* CustomDateFormatter.swift */; };
 		BE02A34422E6BD7D00431854 /* TimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02A34322E6BD7D00431854 /* TimeHelper.swift */; };
 		BE03D2A722C2676E0059B587 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03D2A622C2676E0059B587 /* WelcomeViewController.swift */; };
 		BE03D2A922C269060059B587 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03D2A822C269060059B587 /* LogInViewController.swift */; };
@@ -59,9 +58,7 @@
 		BE41465922BA718D0009A738 /* BudsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41465822BA718D0009A738 /* BudsTests.swift */; };
 		BE41466422BA718D0009A738 /* BudsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41466322BA718D0009A738 /* BudsUITests.swift */; };
 		BE41467522BA91670009A738 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41467422BA91670009A738 /* Person.swift */; };
-		BE41467722BA917C0009A738 /* PersonFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41467622BA917C0009A738 /* PersonFunctions.swift */; };
 		BE41467922BA918A0009A738 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41467822BA918A0009A738 /* ActivityModel.swift */; };
-		BE41467B22BA91950009A738 /* ActivityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41467A22BA91950009A738 /* ActivityFunctions.swift */; };
 		BE41467D22BA9CE50009A738 /* Birthday.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41467C22BA9CE50009A738 /* Birthday.swift */; };
 		BE41467F22BA9E180009A738 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41467E22BA9E180009A738 /* Location.swift */; };
 		BE41468122BAD6A00009A738 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE41468022BAD6A00009A738 /* GoogleService-Info.plist */; };
@@ -133,7 +130,6 @@
 		BE02A33922E2572F00431854 /* ActivityFeedCustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityFeedCustomCell.xib; sourceTree = "<group>"; };
 		BE02A33B22E2581800431854 /* ActivityFeedCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedCustomCell.swift; sourceTree = "<group>"; };
 		BE02A33D22E6436600431854 /* NewActivityLocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityLocationController.swift; sourceTree = "<group>"; };
-		BE02A34122E6B7C500431854 /* CustomDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateFormatter.swift; sourceTree = "<group>"; };
 		BE02A34322E6BD7D00431854 /* TimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHelper.swift; sourceTree = "<group>"; };
 		BE03D2A622C2676E0059B587 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		BE03D2A822C269060059B587 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -159,9 +155,7 @@
 		BE41466322BA718D0009A738 /* BudsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudsUITests.swift; sourceTree = "<group>"; };
 		BE41466522BA718D0009A738 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE41467422BA91670009A738 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Person.swift; path = Buds/Model/Person/Person.swift; sourceTree = SOURCE_ROOT; };
-		BE41467622BA917C0009A738 /* PersonFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonFunctions.swift; sourceTree = "<group>"; };
 		BE41467822BA918A0009A738 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
-		BE41467A22BA91950009A738 /* ActivityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFunctions.swift; sourceTree = "<group>"; };
 		BE41467C22BA9CE50009A738 /* Birthday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Birthday.swift; sourceTree = "<group>"; };
 		BE41467E22BA9E180009A738 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		BE41468022BAD6A00009A738 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -434,7 +428,6 @@
 				BE41467322BA8F8A0009A738 /* Activity */,
 				BE41467222BA8F700009A738 /* Person */,
 				BE02A32222DCEF9A00431854 /* Network.swift */,
-				BE02A34122E6B7C500431854 /* CustomDateFormatter.swift */,
 				BE02A34322E6BD7D00431854 /* TimeHelper.swift */,
 				BE0A065722FB6F5F00C41B53 /* ModelController.swift */,
 				BEFB6FF7235B6151008805E5 /* Switcher.swift */,
@@ -446,7 +439,6 @@
 			isa = PBXGroup;
 			children = (
 				BE41467422BA91670009A738 /* Person.swift */,
-				BE41467622BA917C0009A738 /* PersonFunctions.swift */,
 				BE41467C22BA9CE50009A738 /* Birthday.swift */,
 				BE41467E22BA9E180009A738 /* Location.swift */,
 			);
@@ -457,7 +449,6 @@
 			isa = PBXGroup;
 			children = (
 				BE41467822BA918A0009A738 /* ActivityModel.swift */,
-				BE41467A22BA91950009A738 /* ActivityFunctions.swift */,
 			);
 			path = Activity;
 			sourceTree = "<group>";
@@ -728,9 +719,7 @@
 				BE747FC322CBD54B00D071FD /* NewActivityTableViewController.swift in Sources */,
 				BE41467F22BA9E180009A738 /* Location.swift in Sources */,
 				BE41467922BA918A0009A738 /* ActivityModel.swift in Sources */,
-				BE41467722BA917C0009A738 /* PersonFunctions.swift in Sources */,
 				BE747FC622CD1E9E00D071FD /* ActivityDetailsDelegate.swift in Sources */,
-				BE02A34222E6B7C500431854 /* CustomDateFormatter.swift in Sources */,
 				BE41467522BA91670009A738 /* Person.swift in Sources */,
 				BE02A32722DE61AB00431854 /* LocationSearchDelegate.swift in Sources */,
 				BE12BA91233A7621009FAD1D /* TableViewCell.swift in Sources */,
@@ -740,7 +729,6 @@
 				BE747FBB22CAAD9800D071FD /* NewActivityViewController.swift in Sources */,
 				BE02A32522DE557200431854 /* LocationSearchBarController.swift in Sources */,
 				BEFB6FF8235B6151008805E5 /* Switcher.swift in Sources */,
-				BE41467B22BA91950009A738 /* ActivityFunctions.swift in Sources */,
 				BE02A33E22E6436600431854 /* NewActivityLocationController.swift in Sources */,
 				BE02A34422E6BD7D00431854 /* TimeHelper.swift in Sources */,
 				BE41467D22BA9CE50009A738 /* Birthday.swift in Sources */,
