@@ -111,7 +111,7 @@ extension ActivityFeedController {
             if let photoURL = activities[indexPath.row].profilePictureURL {
                 
                 let storageRef = Storage.storage().reference(forURL: photoURL)
-                storageRef.getData(maxSize: 4*1024*1024, completion: { [weak self] (data, error) in
+                storageRef.getData(maxSize: 4*1024*1024, completion: { (data, error) in
                     
                     if let error = error {
                         print("There was an error getting the profile picture: \(error.localizedDescription)")

@@ -20,10 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set up Firebase App
         FirebaseApp.configure()
         
-        if StrainEffects.allEffects.count > 0 {
+        if StrainEffects.allEffects.count == 0 {
             Network.populateStrainEffects()
         }
-        if StrainTypes.allTypes.count > 0 {
+        if StrainTypes.allTypes.count == 0 {
             Network.populateStrainTypes()
         }
         

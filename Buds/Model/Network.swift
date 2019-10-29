@@ -127,7 +127,7 @@ class Network {
         complete(profilePicture!)
     }
     
-    
+    ///getUserStrainData
     static func getUserStrainData(userID: String, complete: @escaping ([String: Array<String>]) -> ()) {
         
         ref.child("users").child(userID).child("strain_data").observeSingleEvent(of: .value) { (snapshot) in
@@ -229,6 +229,7 @@ class Network {
     
     static func populateStrainTypes() {
         
+        
         Alamofire.request("http://strainapi.evanbusse.com/3HT8al6/searchdata/effects", method: .get).validate().responseJSON { (response) in
             
             if response.result.isSuccess {
@@ -256,12 +257,7 @@ class Network {
             
             if response.result.isSuccess {
                 print("success")
-                let adpJSON = JSON(response.result.value!)
-
-                // Now add all the Players to Realm
-                for item in adpJSON.arrayValue {
-                    //StrainTypes.positiveEffect
-                }
+                //let adpJSON = JSON(response.result.value!)
             }
             else {
                 print("Error \(String(describing: response.result.error))")
