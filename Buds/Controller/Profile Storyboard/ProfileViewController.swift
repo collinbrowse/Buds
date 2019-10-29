@@ -21,9 +21,9 @@ class ProfileViewController: UITableViewController {
     var user: User?
     var storedOffsets = [Int: CGFloat]()
     var userEffects = [String]()
-    var userStrains = [[String]]()
+    var userEffectsWithRelatedStrains = [[String]]()
     var randomEffects = [String]()
-    var randomStrains = [[String]]()
+    var randomEffectsWithRelatedStrains = [[String]]()
     var selectedStrain: String = ""
     
         
@@ -49,7 +49,7 @@ class ProfileViewController: UITableViewController {
             for (category, strains) in userInfo {
                 if (category == "favorite") {
                     self.userEffects.append(category + "s")
-                    self.userStrains.append(strains)
+                    self.userEffectsWithRelatedStrains.append(strains)
                     info.removeValue(forKey: "favorite")
                 }
             }
@@ -57,7 +57,7 @@ class ProfileViewController: UITableViewController {
             // Then add the rest
             for (category, strains) in info {
                 self.userEffects.append(category)
-                self.userStrains.append(strains)
+                self.userEffectsWithRelatedStrains.append(strains)
             }
             self.tableView.reloadData()
         }
@@ -97,10 +97,13 @@ class ProfileViewController: UITableViewController {
     
     func getRandomStrainData() {
         
-        for _ in 1...(5-userEffects.count) {
-            randomEffects.append(StrainEffects.allEffects.popFirst()!)
+        for i in 0...(5-userEffects.count-1) {
+            randomEffects.append(StrainEffects.allEffects[i])
         }
-        print("Array of Random Effects: \(randomEffects)")
+        
+        for array in StrainEffects.effectsWithRelatedStrains {
+            randomEffectsWithRelatedStrains.append(array)
+        }
     }
 
 }
@@ -218,7 +221,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     ///didSelectItemAt
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        selectedStrain = userStrains[collectionView.tag][indexPath.row].uppercased().replacingOccurrences(of: "_", with: " ")
+        selectedStrain = userEffectsWithRelatedStrains[collectionView.tag][indexPath.row].uppercased().replacingOccurrences(of: "_", with: " ")
         self.performSegue(withIdentifier: "goToStrainDetails", sender: self)
     }
     ///willDisplayCell
@@ -231,10 +234,10 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         let label = UILabel(frame: CGRect(x: 10, y: itemHeight - (top + bottom + 50 + 20), width: 130, height: 50))
         var labelText = ""
         
-        if userStrains.count == 0 {
-            labelText = randomEffects[indexPath.row]
+        if userEffectsWithRelatedStrains.count == 0 {
+            labelText = randomEffectsWithRelatedStrains[collectionView.tag][indexPath.row]
         } else {
-            labelText = userStrains[collectionView.tag][indexPath.row].uppercased()
+            labelText = userEffectsWithRelatedStrains[collectionView.tag][indexPath.row].uppercased()
         }
         label.text = labelText.replacingOccurrences(of: "_", with: " ")
         label.textAlignment = .center

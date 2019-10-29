@@ -206,7 +206,7 @@ class Network {
         }
     }
     
-    static func populateStrainEffects() {
+    static func populateRandomEffects() {
         
         Alamofire.request("http://strainapi.evanbusse.com/3HT8al6/searchdata/effects", method: .get).validate().responseJSON { (response) in
             
@@ -217,9 +217,10 @@ class Network {
                 for item in responseJSON.arrayValue {
 
                     if item["effect"].string != nil {
-                        StrainEffects.allEffects.insert(item["effect"].string!)
+                        StrainEffects.allEffects.append(item["effect"].string!)
                     }
                 }
+                Network.populateEffectsWithRelatedStrains()
             }
             else {
                 print("Error \(String(describing: response.result.error))")
@@ -246,6 +247,48 @@ class Network {
             else {
                 print("Error \(String(describing: response.result.error))")
             }
+        }
+    }
+    
+    static func populateEffectsWithRelatedStrains() {
+        
+        let myGroup = DispatchGroup()
+        
+        
+        
+        
+        for i in 0...StrainEffects.allEffects.count-1 {
+            myGroup.enter()
+            let effect = StrainEffects.allEffects[i]
+            
+            let api_url = "http://strainapi.evanbusse.com/3HT8al6/strains/search/effect/\(effect)"
+            print("Loop number: \(i)")
+            Alamofire.request(api_url, method: .get).validate().responseJSON { (response) in
+                if response.result.isSuccess {
+                    
+                    let responseJSON = JSON(response.result.value!)
+
+                    var tempArray = [String]()
+                    for j in 0...4 {
+                        tempArray.append(responseJSON[j]["name"].string!)
+                    }
+                    StrainEffects.effectsWithRelatedStrains.append(tempArray)
+                    print("We are in loop: \(i)")
+                    //print(StrainEffects.effectsWithRelatedStrains[i])
+                }
+                else {
+                    print("Error \(String(describing: response.result.error))")
+                }
+                print("Finished request \(i)")
+                myGroup.leave()
+                
+            }
+            
+            
+        }
+        
+        myGroup.notify(queue: .main) {
+            print("Finished all requests.")
         }
     }
     

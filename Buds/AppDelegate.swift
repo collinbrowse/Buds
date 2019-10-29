@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         if StrainEffects.allEffects.count == 0 {
-            Network.populateStrainEffects()
+            Network.populateRandomEffects()
         }
         if StrainTypes.allTypes.count == 0 {
             Network.populateStrainTypes()

@@ -54,5 +54,9 @@ struct StrainEffects {
     static let seizures = "Seizures"
     static let muscleSpasms = "Muscle Spasms"
     
-    static var allEffects = Set<String>()
+    static var allEffects = [String]()
+    
+    static var effectsWithRelatedStrains = [[String]]()
 }
+
+
