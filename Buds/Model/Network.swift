@@ -206,6 +206,47 @@ class Network {
         }
     }
     
+    static func populateStrainEffects() {
+        
+        Alamofire.request("http://strainapi.evanbusse.com/3HT8al6/searchdata/effects", method: .get).validate().responseJSON { (response) in
+            
+            if response.result.isSuccess {
+                
+                let responseJSON = JSON(response.result.value!)
+
+                for item in responseJSON.arrayValue {
+
+                    if item["effect"].string != nil {
+                        StrainEffects.allEffects.insert(item["effect"].string!)
+                    }
+                }
+            }
+            else {
+                print("Error \(String(describing: response.result.error))")
+            }
+        }
+    }
+    
+    static func populateStrainTypes() {
+        
+        Alamofire.request("http://strainapi.evanbusse.com/3HT8al6/searchdata/effects", method: .get).validate().responseJSON { (response) in
+            
+            if response.result.isSuccess {
+                
+                let responseJSON = JSON(response.result.value!)
+
+                for item in responseJSON.arrayValue {
+
+                    if item["type"].string != nil {
+                        StrainTypes.allTypes.insert(item["type"].string!)
+                    }
+                }
+            }
+            else {
+                print("Error \(String(describing: response.result.error))")
+            }
+        }
+    }
     
     
     

@@ -15,6 +15,7 @@ struct StrainTypes {
     static let negativeEffect = "negative"
     static let medicalEffect = "medical"
 
+    static var allTypes = Set<String>()
 }
 
 struct StrainEffects {
@@ -52,4 +53,6 @@ struct StrainEffects {
     static let spasticity = "Spacticity"
     static let seizures = "Seizures"
     static let muscleSpasms = "Muscle Spasms"
+    
+    static var allEffects = Set<String>()
 }
