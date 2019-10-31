@@ -24,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if StrainTypes.allTypes.count == 0 {
             Network.populateStrainInfo()
         }
+        //Network.testSemaphoresWithAlamofire()
+        
         
         Switcher.updateRootViewController()
         return true

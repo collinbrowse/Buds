@@ -39,6 +39,7 @@ class ProfileViewController: UITableViewController {
         // Connect to Realtime Database
         ref = Database.database().reference()
         
+        
         for (key, value) in StrainEffects.effectsDict {
             randomEffects.append(key)
             randomEffectsWithRelatedStrains.append(value)

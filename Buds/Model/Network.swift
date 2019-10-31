@@ -17,7 +17,10 @@ class Network {
 
     //Grab a connection to Realtime database
     static var ref = Database.database().reference()
+    
+    static let group = DispatchGroup()
 
+    
     deinit {
         Network.ref.removeAllObservers()
     }
@@ -230,9 +233,10 @@ class Network {
                 }
 
                 // Now find all the strains for these effects
-                let effect = StrainEffects.allEffects[0]
-                let api_url = "http://strainapi.evanbusse.com/3HT8al6/strains/search/effect/\(effect)"
-                Network.populateRandomEffects(count: 0, effect: effect, api_url: api_url)
+                //let effect = StrainEffects.allEffects[0]
+                //let api_url = "http://strainapi.evanbusse.com/3HT8al6/strains/search/effect/\(effect)"
+                //Network.populateRandomEffects(count: 0, effect: effect, api_url: api_url)
+                Network.populateRandomEffects()
             }
             else {
                 print("Error \(String(describing: response.result.error))")
@@ -245,32 +249,40 @@ class Network {
     // This is already populated in the Universal Constant StrainEffects.allEffects by the time we get here
     // After each call it takes only the first 5 strains that have that effect and
     // stores them in the Universal Constant StrainEffects.effectsDict
-    static func populateRandomEffects(count: Int, effect: String, api_url: String) {
+    static func populateRandomEffects() {
         
-        Alamofire.request(api_url, method: .get).validate().responseJSON { (response) in
-
-            if response.result.isSuccess {
+        func callAPI(effect: String) {
+            
+            let semaphore = DispatchSemaphore(value: 1)
+            let queue = DispatchQueue.global()
+            
+            queue.async {
                 
-                let responseJSON = JSON(response.result.value!)
+                semaphore.wait()
 
-                var tempArray = [String]()
-                for j in 0...4 {
-                    tempArray.append(responseJSON[j]["name"].string!)
+                Alamofire.request("http://strainapi.evanbusse.com/3HT8al6/strains/search/effect/\(effect)", method: .get).validate().responseJSON { (response) in
+                    
+                    if response.result.isSuccess {
+                        let responseJSON = JSON(response.result.value!)
+                        var tempArray = [String]()
+                        for j in 0...4 {
+                            tempArray.append(responseJSON[j]["name"].string!)
+                        }
+                        StrainEffects.effectsDict[effect] = tempArray
+                    }
+                    else {
+                        print("Errors \(String(describing: response.result.error))")
+                    }
+                    print(effect)
+                    semaphore.signal()
                 }
-                StrainEffects.effectsDict[effect] = tempArray
-                
-                // After storing the effect with the first 5 strains for that effect,
-                // if there are more effects, call the same method with that new effect
-                if count+1 < StrainEffects.allEffects.count {
-                    let newEffect = StrainEffects.allEffects[count+1]
-                    let new_api = "http://strainapi.evanbusse.com/3HT8al6/strains/search/effect/\(newEffect)"
-                    populateRandomEffects(count: count + 1, effect: newEffect, api_url: new_api)
-                }
-            }
-            else {
-                print("Error \(String(describing: response.result.error))")
             }
         }
+        
+        for i in 0...StrainEffects.allEffects.count-1 {
+            callAPI(effect: StrainEffects.allEffects[i])
+        }
+        
     }
     
 
