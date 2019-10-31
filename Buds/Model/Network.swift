@@ -9,12 +9,22 @@
 import Foundation
 import Firebase
 import FirebaseAuth
+import Alamofire
+import SwiftyJSON
+
 
 class Network {
 
     //Grab a connection to Realtime database
     static var ref = Database.database().reference()
+    
+    static let group = DispatchGroup()
 
+    
+    deinit {
+        Network.ref.removeAllObservers()
+    }
+    
     static func addNewActivity(userID: String, activityDetails: [String : String]) -> Bool {
         
         // Add the activity with the User's ID identifying it
@@ -24,13 +34,15 @@ class Network {
     }
     
     // Log In a User with Firebase Auth
-    static func logInUser(email: String, password: String, complete: @escaping (Person) -> ()) {
+    static func logInUser(email: String, password: String, complete: @escaping (Person?) -> ()) {
 
         Auth.auth().signIn(withEmail: email, password: password) { user, error in
             
             if let error = error {
                 // Indicates log in was not successful
-                print(error.localizedDescription)
+                print("There was an error signing in the user: \(error.localizedDescription)")
+                complete(nil)
+                return
             }
             else if user != nil {
                 
@@ -39,19 +51,29 @@ class Network {
                 }
                 
                 // Able to sign the user in, grab the rest of the info from Realtime Database
-                Network.getUserInfo(userID: userID, complete: { (userInfo) in
-                
-                    // First Grab the Profile Picture from FirebaseStorage
-                    Network.getProfilePicture(userID: userID, complete: { (profilePicture) in
-                        
-                        // Finally create the Person Object
-                        let loggedInUser = Person(id: userID, name: userInfo["name"]!, email: userInfo["email"]!, location: userInfo["location"]!, birthday: userInfo["birthday"]!, profilePictureURL: userInfo["profilePictureURL"]!, profilePicture: profilePicture)
-                        
-                        complete(loggedInUser)
-                    })
-                
+                Network.getUserInfo(userID: userID, complete: { userInfo in
+
+                    let loggedInUser = Person(id: userID, name: userInfo["name"]!, email: userInfo["email"]!, location: userInfo["location"]!, birthday: userInfo["birthday"]!, profilePictureURL: userInfo["profilePictureURL"]!)
+                    
+                    complete(loggedInUser)
                 })
             }
+        }
+    }
+    
+    static func logOutUser() {
+        
+        Switcher.setUserDefaultsIsSignIn(false)
+        Switcher.removeUserDefaultsModelController()
+    
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            Network.ref.child("activity").removeAllObservers()
+            Network.ref.child("users").removeAllObservers()
+            Switcher.updateRootViewController()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
         }
     }
     
@@ -68,7 +90,6 @@ class Network {
             information["location"] = value?["location"] as? String ?? ""
             information["username"] = value?["username"] as? String ?? ""
             information["profilePictureURL"] = value?["profilePictureURL"] as? String ?? ""
-            print("found the user's info in Realtime Database")
             complete(information)
         }
         
@@ -79,7 +100,7 @@ class Network {
     static func getProfilePicture(userID: String, complete: @escaping (UIImage) -> ()) {
 
         var profilePicture = UIImage(named: "person-icon")
-        print(userID)
+        
         // Step 1: Get access to the user in RealtimeDatabase
         ref.child("users").child(userID).observeSingleEvent(of: .value) { (snapshot) in
             
@@ -109,7 +130,7 @@ class Network {
         complete(profilePicture!)
     }
     
-    
+    ///getUserStrainData
     static func getUserStrainData(userID: String, complete: @escaping ([String: Array<String>]) -> ()) {
         
         ref.child("users").child(userID).child("strain_data").observeSingleEvent(of: .value) { (snapshot) in
@@ -151,8 +172,115 @@ class Network {
             for (descriptionType, description) in value ?? NSDictionary() {
                 data["\(descriptionType)"] = description as? String ?? ""
             }
-            print(data)
             complete(data)
         }
     }
+    
+    
+    ///displayActivityFeed
+    static func displayActivityFeed(userID: String, complete: @escaping([ActivityModel]) -> ()) {
+        
+        var activities = [ActivityModel]()
+        
+        // Only display activity from that user
+        ref.child("activity").queryOrdered(byChild: "user").queryEqual(toValue: userID).observe(.childAdded) { (snapshot) in
+
+            if let dictionary = snapshot.value as? [String: Any] {
+                
+                // Here we are creating an arrary of ActivityModel Objects.
+                // This is the best way to structure the information from firebase as we need
+                // an array to populate the table view
+                let activity = ActivityModel()
+                
+                activity.setValuesForKeys(dictionary)
+                activities.insert(activity, at: 0)
+            
+                // Firebase has all the information besides the User's actual name. Let's add that as well
+                self.ref.child("users").child(dictionary["user"] as! String).observeSingleEvent(of: .value) { (snapshot) in
+                    
+                    if let dict = snapshot.value as? [String: Any] {
+                        activity.name = dict["name"] as? String
+                        // Grab the URL of the Photo in Firebase Storage
+                        activity.profilePictureURL = dict["profilePicture"] as? String
+                    }
+                    complete(activities)
+                }
+            }
+        }
+    }
+    
+   
+    ///populateStrainInfo
+    // This function will first call the Strain API to get all the effects that cannabis has
+    // Once that is done, it will call Network.populateRandomEffects to get 5 strains for every cannabis effect
+    static func populateStrainInfo() {
+        
+        Alamofire.request("http://strainapi.evanbusse.com/3HT8al6/searchdata/effects", method: .get).validate().responseJSON { (response) in
+            
+            if response.result.isSuccess {
+                
+                let responseJSON = JSON(response.result.value!)
+
+                for item in responseJSON.arrayValue {
+
+                    if item["type"].string != nil {
+                        StrainTypes.allTypes.insert(item["type"].string!)
+                    }
+                    if item["effect"].string != nil && !item["effect"].string!.contains(" ") {
+                        StrainEffects.allEffects.append(item["effect"].string!)
+                        StrainEffects.effectsDict[item["effect"].string!] = []
+                    }
+                }
+
+                Network.populateRandomEffects()
+            }
+            else {
+                print("Error \(String(describing: response.result.error))")
+            }
+        }
+    }
+    
+    ///populateRandomEffects
+    // This method calls the Strain api on each effect that the strain api has.
+    // This is already populated in the Universal Constant StrainEffects.allEffects by the time we get here
+    // After each call it takes only the first 5 strains that have that effect and
+    // stores them in the Universal Constant StrainEffects.effectsDict
+    static func populateRandomEffects() {
+        
+        func callAPI(effect: String) {
+            
+            let semaphore = DispatchSemaphore(value: 1)
+            let queue = DispatchQueue.global()
+            
+            queue.async {
+                
+                semaphore.wait()
+
+                Alamofire.request("http://strainapi.evanbusse.com/3HT8al6/strains/search/effect/\(effect)", method: .get).validate().responseJSON { (response) in
+                    
+                    if response.result.isSuccess {
+                        let responseJSON = JSON(response.result.value!)
+                        var tempArray = [String]()
+                        for j in 0...4 {
+                            tempArray.append(responseJSON[j]["name"].string!)
+                        }
+                        StrainEffects.effectsDict[effect] = tempArray
+                    }
+                    else {
+                        print("Errors \(String(describing: response.result.error))")
+                    }
+                    
+                    UserDefaults.standard.set(StrainEffects.effectsDict, forKey: "effectsDict")
+                    semaphore.signal()
+                }
+            }
+        }
+        
+        for i in 0...StrainEffects.allEffects.count-1 {
+            callAPI(effect: StrainEffects.allEffects[i])
+        }
+        
+    }
+    
+
 }

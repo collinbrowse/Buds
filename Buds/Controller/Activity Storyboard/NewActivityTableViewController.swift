@@ -31,7 +31,7 @@ class NewActivityTableViewController: UITableViewController {
         // Small amount of information should be negligible on performance
         if dataToRetrieve != nil {
             ref.child(dataToRetrieve!).observeSingleEvent(of: .value, with: { (snapshot) in
-                print("snapshot \(snapshot)")
+                
                 if snapshot.exists() {
 
                     for child in snapshot.children.allObjects as! [DataSnapshot] {
@@ -85,7 +85,6 @@ class NewActivityTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selecteditem = detailsListArray[indexPath.row]
         delegate?.setSelectedDetail(detail: dataToRetrieve!, value: selecteditem)
-        print(selecteditem)
         self.navigationController?.popViewController(animated: true)
         
         

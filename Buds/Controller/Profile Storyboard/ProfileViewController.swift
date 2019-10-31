@@ -15,26 +15,35 @@ import SVProgressHUD
 class ProfileViewController: UITableViewController {
     
     //var tabBarController: UITabBarController?
-    var modelController: ModelController! {
-        willSet {
-            print("Printing the Model Controller Person's name from ProfileVC: \(newValue.person.name)")
-        }
-    }
+    var modelController: ModelController!
     var username: String?
     var ref: DatabaseReference!
     var user: User?
     var storedOffsets = [Int: CGFloat]()
-    var categories = [String]()
-    var strains = [[String]]()
+    var userEffects = [String]()
+    var userEffectsWithRelatedStrains = [[String]]()
     var selectedStrain: String = ""
     
+    var randomEffects = [String]()
+    var randomEffectsWithRelatedStrains = [[String]]()
         
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if Switcher.getUserDefaultsIsSignIn() {
+           modelController = Switcher.getUserDefaultsModelController()
+        } else {
+            Switcher.updateRootViewController()
+        }
+        
         // Connect to Realtime Database
         ref = Database.database().reference()
         
+        for (key, value) in StrainEffects.effectsDict {
+            randomEffects.append(key)
+            randomEffectsWithRelatedStrains.append(value)
+        }
+
         // Get User's Strain Data
         // Save data to populate table view and collection View
         Network.getUserStrainData(userID: modelController.person.id) { (userInfo) in
@@ -44,16 +53,16 @@ class ProfileViewController: UITableViewController {
             // First look for the Favorites
             for (category, strains) in userInfo {
                 if (category == "favorite") {
-                    self.categories.append(category + "s")
-                    self.strains.append(strains)
+                    self.userEffects.append(category + "s")
+                    self.userEffectsWithRelatedStrains.append(strains)
                     info.removeValue(forKey: "favorite")
                 }
             }
             
             // Then add the rest
             for (category, strains) in info {
-                self.categories.append(category)
-                self.strains.append(strains)
+                self.userEffects.append(category)
+                self.userEffectsWithRelatedStrains.append(strains)
             }
             self.tableView.reloadData()
         }
@@ -68,6 +77,8 @@ class ProfileViewController: UITableViewController {
             }
         }
     }
+    
+    
     ///prepareForSegue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? StrainDetailsViewController {
@@ -76,18 +87,14 @@ class ProfileViewController: UITableViewController {
         }
         if let vc = segue.destination as? NewActivityViewController {
             vc.modelController = modelController
-            print("prepare for segue as new activity view controller")
         }
     }
     
     @objc func noDataButtonAction(sender: UIButton!) {
-        UIView.transition(from: self.view, to: tabBarController!.viewControllers![2].view, duration: 0.3, options: [.transitionCrossDissolve], completion: nil)
-         tabBarController!.selectedIndex = 2
+        UIView.transition(from: self.view, to: tabBarController!.viewControllers![1].view, duration: 0.3, options: [.transitionCrossDissolve], completion: nil)
+         tabBarController!.selectedIndex = 1
     }
-    
-    func addGenericStrainData() {
-        
-    }
+
 }
 
 
@@ -115,36 +122,36 @@ extension ProfileViewController {
     }
     ///numberOfSectionsInTableView
     override func numberOfSections(in tableView: UITableView) -> Int {
-        if self.categories.count == 0 {
-             print("No Categories")
-            tableView.backgroundColor = .white
-            let noDataLabel: UILabel  = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 20))
-            noDataLabel.text          = "You haven't recorded any smoking experiences yet"
-            noDataLabel.textColor     = UIColor.black
-            noDataLabel.textAlignment = .center
-            
-            let noDataButton: UIButton = UIButton(frame: CGRect(x: 0, y: 26, width: tableView.bounds.size.width, height: 20))
-            noDataButton.setTitle("Add an Activity", for: .normal)
-            noDataButton.setTitleColor(.black, for: .normal)
-            noDataButton.addTarget(self, action: #selector(noDataButtonAction), for: .touchUpInside)
+//        if userEffects.count == 0 {
+//            tableView.backgroundColor = .white
+//            let noDataLabel: UILabel  = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 20))
+//            noDataLabel.text          = "You haven't recorded any smoking experiences yet"
+//            noDataLabel.textColor     = UIColor.black
+//            noDataLabel.textAlignment = .center
+//
+//            let noDataButton: UIButton = UIButton(frame: CGRect(x: 0, y: 26, width: tableView.bounds.size.width, height: 20))
+//            noDataButton.setTitle("Add an Activity", for: .normal)
+//            noDataButton.setTitleColor(.black, for: .normal)
+//            noDataButton.addTarget(self, action: #selector(noDataButtonAction), for: .touchUpInside)
+//
+//            tableView.addSubview(noDataLabel)
+//            tableView.addSubview(noDataButton)
+//        }
+        
+        return 5
+    }
 
-            tableView.addSubview(noDataLabel)
-            tableView.addSubview(noDataButton)
-            addGenericStrainData()
-        }
-        return strains.count
-    }
-    ///titleForHeaderInSection
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return categories[section].uppercased()
-    }
     ///viewForHeaderInSection
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         view.backgroundColor = .white
         
         let label = UILabel(frame: CGRect(x: 16, y: 10, width: tableView.bounds.width, height: 30))
-        label.text = categories[section].uppercased()
+        if (userEffects.count == 0) {
+            label.text = randomEffects[section]
+        } else {
+            label.text = userEffects[section].uppercased()
+        }
         label.font = UIFont(name: "Arvo-Italic", size: 17)
         label.textColor = .black
         
@@ -175,13 +182,32 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     ///numberOfItemsInSection
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        
+        // If there are any user stored effects, use that many, if not, use random effects
+        if userEffectsWithRelatedStrains.count > 0 {
+            return userEffectsWithRelatedStrains[collectionView.tag].count+1
+        } else {
+            return randomEffectsWithRelatedStrains[collectionView.tag].count
+        }
+        //return userEffectsWithRelatedStrains[collectionView.tag].count > 0 ? userEffectsWithRelatedStrains[collectionView.tag].count+1 : randomEffectsWithRelatedStrains[collectionView.tag].count
     }
     ///cellForItemAt
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-                
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        cell.backgroundView = UIImageView(image: UIImage(named: "weed_background.png"))
+        
+        if userEffectsWithRelatedStrains.count > 0 {
+            if indexPath.row >= userEffectsWithRelatedStrains[collectionView.tag].count  {
+                cell.backgroundColor = .white
+                cell.layer.borderWidth = 1.0
+                cell.layer.borderColor = UIColor.white.cgColor
+            } else {
+                cell.backgroundView = UIImageView(image: UIImage(named: "weed_background.png"))
+            }
+        } else {
+            cell.backgroundView = UIImageView(image: UIImage(named: "weed_background.png"))
+        }
+        
         cell.layer.cornerRadius = 20.0
         cell.layer.shadowOpacity = 0.9
         cell.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
@@ -192,19 +218,41 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     ///didSelectItemAt
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        selectedStrain = strains[collectionView.tag][indexPath.row].uppercased().replacingOccurrences(of: "_", with: " ")
-        print("Did Select Item At: \(selectedStrain)")
-        self.performSegue(withIdentifier: "goToStrainDetails", sender: self)
+        if (userEffectsWithRelatedStrains.count == 0) {
+            // Using random
+            selectedStrain = userEffectsWithRelatedStrains[collectionView.tag][indexPath.row].uppercased().replacingOccurrences(of: "_", with: " ")
+            self.performSegue(withIdentifier: "goToStrainDetails", sender: self)
+        
+        } else {
+            // Using the user's data
+            if indexPath.row == randomEffectsWithRelatedStrains[collectionView.tag].count {
+                // We selected the last collection view cell so we should segue to the new activity
+                UIView.transition(from: self.view, to: tabBarController!.viewControllers![1].view, duration: 0.3, options: [.transitionCrossDissolve], completion: nil)
+                tabBarController!.selectedIndex = 1
+            }
+        }
+        
+        
+        
     }
-    
+    ///willDisplayCell
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         
         let itemHeight = collectionView.bounds.height
         let collectionViewFlowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
         let top = collectionViewFlowLayout?.sectionInset.top ?? 0
         let bottom = collectionViewFlowLayout?.sectionInset.bottom ?? 0
-        let label = UILabel(frame: CGRect(x: 10, y: itemHeight - (top + bottom + 50 + 20), width: 130, height: 50))
-        let labelText = strains[collectionView.tag][indexPath.row].uppercased()
+        var label = UILabel(frame: CGRect(x: 10, y: itemHeight - (top + bottom + 50 + 20), width: 130, height: 50))
+        var labelText = ""
+        
+        if userEffectsWithRelatedStrains.count == 0 {
+            labelText = randomEffectsWithRelatedStrains[collectionView.tag][indexPath.row]
+        } else if indexPath.row >= userEffectsWithRelatedStrains[collectionView.tag].count {
+            label = UILabel(frame: CGRect(x: 10, y: 10, width: 130, height: itemHeight-20))
+            labelText = "You haven't smoked anything else for \(userEffects[collectionView.tag]). Add another activity"
+        } else {
+            labelText = userEffectsWithRelatedStrains[collectionView.tag][indexPath.row].uppercased()
+        }
         label.text = labelText.replacingOccurrences(of: "_", with: " ")
         label.textAlignment = .center
         label.font = UIFont(name: "Arvo-Bold", size: 13)

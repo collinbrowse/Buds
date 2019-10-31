@@ -10,13 +10,5 @@ import Foundation
 
 class ModelController {
     
-    enum State {
-        case unregistered
-        case loggedIn
-        case sessionExpired
-    }
-    
-    var state: State = .unregistered
-    
     var person: Person!
 }

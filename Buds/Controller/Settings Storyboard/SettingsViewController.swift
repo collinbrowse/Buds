@@ -21,6 +21,13 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if Switcher.getUserDefaultsIsSignIn() {
+           modelController = Switcher.getUserDefaultsModelController()
+        } else {
+            Switcher.updateRootViewController()
+        }
+        
+        
         // Do any additional setup after loading the view.
         logoutButton.layer.cornerRadius = 8
         logoutButton.showsTouchWhenHighlighted = true
@@ -32,15 +39,11 @@ class SettingsViewController: UIViewController {
         
     }
     
+    // Check for User's Logged In State
     override func viewWillAppear(_ animated: Bool) {
-        handle = Auth.auth().addStateDidChangeListener { auth, user in
-            if let user = user {
-                self.user = user
-            } else {
-                // No User is signed in.
-            }
-        }
+        
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         if handle != nil {
             Auth.auth().removeStateDidChangeListener(handle!)
@@ -49,30 +52,9 @@ class SettingsViewController: UIViewController {
     
     
     @IBAction func logoutButtonPressed(_ sender: Any) {
-
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            modelController = nil 
-            let storyboard = UIStoryboard(name: "Main", bundle: nil);
-            let viewController: UINavigationController = storyboard.instantiateViewController(withIdentifier: "welcomeNavigationController") as! UINavigationController;
-            present(viewController, animated: true, completion: nil)
-            
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
-        
+        view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        modelController = nil
+        Network.logOutUser()
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-
 }

@@ -19,21 +19,26 @@ class ActivityFeedController: UITableViewController {
     var ref: DatabaseReference!
     var activities = [ActivityModel]()
     var activitiesDictionary = [String: ActivityModel]()
-    var modelController: ModelController! {
-        willSet {
-            print("Printing the Model Controller Person's name from ActivityFeedVC: \(newValue.person.name)")
-        }
-    }
+    var modelController: ModelController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //UserDefaults.standard.set(false, forKey: "isSignIn")
+        
+        if Switcher.getUserDefaultsIsSignIn() {
+            modelController = Switcher.getUserDefaultsModelController()
+        } else {
+            Switcher.updateRootViewController()
+            return
+        }
+        
         // Get a reference to Firebase
         ref = Database.database().reference()
-        
+
         navigationItem.title = "Activity"
-        
-        // Set up the Table View
+
+         //Set up the Table View
         activityFeedTableView.delegate = self
         activityFeedTableView.dataSource = self
         activityFeedTableView.separatorStyle = .singleLine
@@ -42,31 +47,21 @@ class ActivityFeedController: UITableViewController {
         activityFeedTableView.estimatedRowHeight = 100
         activityFeedTableView.rowHeight = UITableView.automaticDimension
         
+        Network.displayActivityFeed(userID: modelController.person.id) { (activities) in
+            self.activities = activities
+            self.activityFeedTableView.reloadData()
+        }
         
     }
     
     // Check for User's Logged In State
     override func viewWillAppear(_ animated: Bool) {
-        handle = Auth.auth().addStateDidChangeListener{ (auth, user) in
-            // If we get a user object back
-            if let user = user {
-                self.user = user
-                SVProgressHUD.show()
-                self.displayActivityFeed()
-            }
-            else {
-                print("Unable to log in the user")
-            }
-        }
+        
     }
     
     // Release the Handle when the view leaves
     override func viewWillDisappear(_ animated: Bool) {
-        if handle != nil {
-            Auth.auth().removeStateDidChangeListener(handle!)
-        }
-        else {
-        }
+
     }
     
     func displayActivityFeed() {
@@ -75,40 +70,14 @@ class ActivityFeedController: UITableViewController {
         // This requires downloading all activites from firebase each time ths view is loaded
         // There is likely a better way
         activities.removeAll()
-        
-        if (user?.email != nil) {
-            
-            ref.child("activity").queryOrderedByKey().observe(.childAdded) { (snapshot) in
-                if let dictionary = snapshot.value as? [String: Any] {
-                    
-                    // Here we are creating an arrary of ActivityModel Objects.
-                    // This is the best way to structure the information from firebase as we need
-                    // an array to populate the table view
-                    let activity = ActivityModel()
-                    
-                    // Firebase has all the information besides the User's actual name. Let's add that as well
-                    activity.setValuesForKeys(dictionary)
-                    self.activities.insert(activity, at: 0)
-                
-                    // Get the Profile Information from Realtime Database
-                    self.ref.child("users").child(dictionary["user"] as! String).observeSingleEvent(of: .value) { (snapshot) in
-                        
-                        if let dict = snapshot.value as? [String: Any] {
-                            
-                            // Grab the URL of the Photo in Firebase Storage
-                            activity.profilePictureURL = dict["profilePicture"] as? String
-                            activity.name = dict["name"] as? String
-                            
-                            // Since we are currently in a completion handler and UI is done on main thread,
-                            // We have to use this method to perform an async call on the main thread
-                            DispatchQueue.main.async{ [weak self] in
-                                self?.activityFeedTableView.reloadData()
-                            }
-                        }
-                    }
-                }
-            }
-        }
+
+//        Network.displayActivityFeed(userID: modelController.person.id) { (activities) in
+//            // Populate the table view with text
+//            self.activities = activities
+//            self.activityFeedTableView.reloadData()
+//
+//            // Populate the table view with pictures
+//        }
         SVProgressHUD.dismiss()
     }
     
@@ -142,7 +111,7 @@ extension ActivityFeedController {
             if let photoURL = activities[indexPath.row].profilePictureURL {
                 
                 let storageRef = Storage.storage().reference(forURL: photoURL)
-                storageRef.getData(maxSize: 4*1024*1024, completion: { [weak self] (data, error) in
+                storageRef.getData(maxSize: 4*1024*1024, completion: { (data, error) in
                     
                     if let error = error {
                         print("There was an error getting the profile picture: \(error.localizedDescription)")

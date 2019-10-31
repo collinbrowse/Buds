@@ -28,11 +28,11 @@ class LogInViewController: UIViewController {
         ref = Database.database().reference()
     }
     
-    func application(_ application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        FirebaseApp.configure()
-        return true
-    }
+//    func application(_ application: UIApplication,
+//                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+//        FirebaseApp.configure()
+//        return true
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -42,19 +42,32 @@ class LogInViewController: UIViewController {
         passwordTextfield.isSecureTextEntry.toggle()
     }
     
-    @IBAction func logInPressed(_ sender: AnyObject) {
-    
+    @IBAction func logInPressed(_ sender: Any) {
+        
         SVProgressHUD.show()
         let email = emailTextfield.text
         var password = passwordTextfield.text
         passwordTextfield.text = nil
         
         if ( !password!.isEmpty && !email!.isEmpty) {
+            
             Network.logInUser(email: email!, password: password!) { (user) in
+                
+                password = nil // security
+                
+                // Check to make sure user was logged in Successfully,
+                // If not...
+                if user == nil {
+                    SVProgressHUD.dismiss()
+                    self.showAlert(alertMessage: "Incorrect Username/Password")
+                    return
+                }
+                
+                // If they were...
                 self.modelController.person = user
-                self.modelController.state = .loggedIn
-                password = nil
-                self.performSegue(withIdentifier: "goToHome", sender: self)
+                Switcher.setUserDefaultsIsSignIn(true)
+                Switcher.setUserDefaultsModelController(modelController: self.modelController)
+                Switcher.updateRootViewController()
             }
         }
         else {
@@ -65,7 +78,7 @@ class LogInViewController: UIViewController {
     }
     
     func showAlert(alertMessage: String) {
-        let alert = UIAlertController(title: "Unable to Register", message: alertMessage, preferredStyle: .alert)
+        let alert = UIAlertController(title: "There was an error", message: alertMessage, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
         SVProgressHUD.dismiss()
@@ -73,7 +86,7 @@ class LogInViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-        if segue.identifier == "goToHome" {
+        if segue.identifier == "goToHomeFromLogIn" {
         
             if let tabBarViewController = segue.destination as? UITabBarController {
             

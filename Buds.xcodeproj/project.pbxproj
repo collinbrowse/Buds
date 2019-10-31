@@ -39,7 +39,6 @@
 		BE02A33A22E2572F00431854 /* ActivityFeedCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE02A33922E2572F00431854 /* ActivityFeedCustomCell.xib */; };
 		BE02A33C22E2581800431854 /* ActivityFeedCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02A33B22E2581800431854 /* ActivityFeedCustomCell.swift */; };
 		BE02A33E22E6436600431854 /* NewActivityLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02A33D22E6436600431854 /* NewActivityLocationController.swift */; };
-		BE02A34222E6B7C500431854 /* CustomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02A34122E6B7C500431854 /* CustomDateFormatter.swift */; };
 		BE02A34422E6BD7D00431854 /* TimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02A34322E6BD7D00431854 /* TimeHelper.swift */; };
 		BE03D2A722C2676E0059B587 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03D2A622C2676E0059B587 /* WelcomeViewController.swift */; };
 		BE03D2A922C269060059B587 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03D2A822C269060059B587 /* LogInViewController.swift */; };
@@ -59,9 +58,7 @@
 		BE41465922BA718D0009A738 /* BudsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41465822BA718D0009A738 /* BudsTests.swift */; };
 		BE41466422BA718D0009A738 /* BudsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41466322BA718D0009A738 /* BudsUITests.swift */; };
 		BE41467522BA91670009A738 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41467422BA91670009A738 /* Person.swift */; };
-		BE41467722BA917C0009A738 /* PersonFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41467622BA917C0009A738 /* PersonFunctions.swift */; };
 		BE41467922BA918A0009A738 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41467822BA918A0009A738 /* ActivityModel.swift */; };
-		BE41467B22BA91950009A738 /* ActivityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41467A22BA91950009A738 /* ActivityFunctions.swift */; };
 		BE41467D22BA9CE50009A738 /* Birthday.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41467C22BA9CE50009A738 /* Birthday.swift */; };
 		BE41467F22BA9E180009A738 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41467E22BA9E180009A738 /* Location.swift */; };
 		BE41468122BAD6A00009A738 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE41468022BAD6A00009A738 /* GoogleService-Info.plist */; };
@@ -74,7 +71,10 @@
 		BE747FC622CD1E9E00D071FD /* ActivityDetailsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE747FC522CD1E9E00D071FD /* ActivityDetailsDelegate.swift */; };
 		BE747FC822D53BB300D071FD /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE747FC722D53BB300D071FD /* Settings.storyboard */; };
 		BE747FCA22D53C2600D071FD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE747FC922D53C2600D071FD /* SettingsViewController.swift */; };
+		BE87F794236768DD00A31AC8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE87F793236768DD00A31AC8 /* Constants.swift */; };
 		BEB7430823326089003B52DE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB7430723326089003B52DE /* CardView.swift */; };
+		BEFB6FF8235B6151008805E5 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFB6FF7235B6151008805E5 /* Switcher.swift */; };
+		BEFB6FFA235B659D008805E5 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEFB6FF9235B659D008805E5 /* TabBar.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,7 +131,6 @@
 		BE02A33922E2572F00431854 /* ActivityFeedCustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityFeedCustomCell.xib; sourceTree = "<group>"; };
 		BE02A33B22E2581800431854 /* ActivityFeedCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedCustomCell.swift; sourceTree = "<group>"; };
 		BE02A33D22E6436600431854 /* NewActivityLocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityLocationController.swift; sourceTree = "<group>"; };
-		BE02A34122E6B7C500431854 /* CustomDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateFormatter.swift; sourceTree = "<group>"; };
 		BE02A34322E6BD7D00431854 /* TimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHelper.swift; sourceTree = "<group>"; };
 		BE03D2A622C2676E0059B587 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		BE03D2A822C269060059B587 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -157,9 +156,7 @@
 		BE41466322BA718D0009A738 /* BudsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudsUITests.swift; sourceTree = "<group>"; };
 		BE41466522BA718D0009A738 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE41467422BA91670009A738 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Person.swift; path = Buds/Model/Person/Person.swift; sourceTree = SOURCE_ROOT; };
-		BE41467622BA917C0009A738 /* PersonFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonFunctions.swift; sourceTree = "<group>"; };
 		BE41467822BA918A0009A738 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
-		BE41467A22BA91950009A738 /* ActivityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFunctions.swift; sourceTree = "<group>"; };
 		BE41467C22BA9CE50009A738 /* Birthday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Birthday.swift; sourceTree = "<group>"; };
 		BE41467E22BA9E180009A738 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		BE41468022BAD6A00009A738 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -170,7 +167,11 @@
 		BE747FC522CD1E9E00D071FD /* ActivityDetailsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailsDelegate.swift; sourceTree = "<group>"; };
 		BE747FC722D53BB300D071FD /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		BE747FC922D53C2600D071FD /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		BE87F793236768DD00A31AC8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BEB7430723326089003B52DE /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		BEFB6FF7235B6151008805E5 /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
+		BEFB6FF9235B659D008805E5 /* TabBar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
+		BEFB6FFB235B65B3008805E5 /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = TabBar.storyboard; path = "/Users/collinbrowse/Documents/After College/Personal Development/Buds/Buds/Buds/View/TabBar.storyboard"; sourceTree = "<absolute>"; };
 		CE5601E64FE0FA1F69DE5776 /* Pods-Buds.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buds.debug.xcconfig"; path = "Target Support Files/Pods-Buds/Pods-Buds.debug.xcconfig"; sourceTree = "<group>"; };
 		F9E4C8A256D2C5A23E8D8B52 /* Pods-Buds.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buds.release.xcconfig"; path = "Target Support Files/Pods-Buds/Pods-Buds.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -336,6 +337,7 @@
 				BE747FBC22CBD36000D071FD /* Custom Cell */,
 				BE747FB622CA798300D071FD /* Profile.storyboard */,
 				BE41464722BA718C0009A738 /* Main.storyboard */,
+				BEFB6FFB235B65B3008805E5 /* TabBar.storyboard */,
 				BE747FB822CA7A5A00D071FD /* NewActivity.storyboard */,
 				BE02A32922DFBC4400431854 /* ActivityFeed.storyboard */,
 				BE747FC722D53BB300D071FD /* Settings.storyboard */,
@@ -428,9 +430,10 @@
 				BE41467322BA8F8A0009A738 /* Activity */,
 				BE41467222BA8F700009A738 /* Person */,
 				BE02A32222DCEF9A00431854 /* Network.swift */,
-				BE02A34122E6B7C500431854 /* CustomDateFormatter.swift */,
 				BE02A34322E6BD7D00431854 /* TimeHelper.swift */,
 				BE0A065722FB6F5F00C41B53 /* ModelController.swift */,
+				BEFB6FF7235B6151008805E5 /* Switcher.swift */,
+				BE87F793236768DD00A31AC8 /* Constants.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -439,7 +442,6 @@
 			isa = PBXGroup;
 			children = (
 				BE41467422BA91670009A738 /* Person.swift */,
-				BE41467622BA917C0009A738 /* PersonFunctions.swift */,
 				BE41467C22BA9CE50009A738 /* Birthday.swift */,
 				BE41467E22BA9E180009A738 /* Location.swift */,
 			);
@@ -450,7 +452,6 @@
 			isa = PBXGroup;
 			children = (
 				BE41467822BA918A0009A738 /* ActivityModel.swift */,
-				BE41467A22BA91950009A738 /* ActivityFunctions.swift */,
 			);
 			path = Activity;
 			sourceTree = "<group>";
@@ -458,6 +459,7 @@
 		BE747FBC22CBD36000D071FD /* Custom Cell */ = {
 			isa = PBXGroup;
 			children = (
+				BEFB6FF9235B659D008805E5 /* TabBar.storyboard */,
 			);
 			path = "Custom Cell";
 			sourceTree = "<group>";
@@ -598,6 +600,7 @@
 				BE00F0DC22FDB9C500B65AB5 /* PlayfairDisplaySC-Regular.otf in Resources */,
 				BE00F0D822FDB9C500B65AB5 /* PlayfairDisplay-BoldItalic.otf in Resources */,
 				BE41464922BA718C0009A738 /* Main.storyboard in Resources */,
+				BEFB6FFA235B659D008805E5 /* TabBar.storyboard in Resources */,
 				BE00F0DB22FDB9C500B65AB5 /* PlayfairDisplaySC-Italic.otf in Resources */,
 				BE00F0E922FDBD1500B65AB5 /* Coves Bold.otf in Resources */,
 				BE02A32A22DFBC4400431854 /* ActivityFeed.storyboard in Resources */,
@@ -719,9 +722,8 @@
 				BE747FC322CBD54B00D071FD /* NewActivityTableViewController.swift in Sources */,
 				BE41467F22BA9E180009A738 /* Location.swift in Sources */,
 				BE41467922BA918A0009A738 /* ActivityModel.swift in Sources */,
-				BE41467722BA917C0009A738 /* PersonFunctions.swift in Sources */,
+				BE87F794236768DD00A31AC8 /* Constants.swift in Sources */,
 				BE747FC622CD1E9E00D071FD /* ActivityDetailsDelegate.swift in Sources */,
-				BE02A34222E6B7C500431854 /* CustomDateFormatter.swift in Sources */,
 				BE41467522BA91670009A738 /* Person.swift in Sources */,
 				BE02A32722DE61AB00431854 /* LocationSearchDelegate.swift in Sources */,
 				BE12BA91233A7621009FAD1D /* TableViewCell.swift in Sources */,
@@ -730,7 +732,7 @@
 				BE02A33722E2562000431854 /* ActivityFeedController.swift in Sources */,
 				BE747FBB22CAAD9800D071FD /* NewActivityViewController.swift in Sources */,
 				BE02A32522DE557200431854 /* LocationSearchBarController.swift in Sources */,
-				BE41467B22BA91950009A738 /* ActivityFunctions.swift in Sources */,
+				BEFB6FF8235B6151008805E5 /* Switcher.swift in Sources */,
 				BE02A33E22E6436600431854 /* NewActivityLocationController.swift in Sources */,
 				BE02A34422E6BD7D00431854 /* TimeHelper.swift in Sources */,
 				BE41467D22BA9CE50009A738 /* Birthday.swift in Sources */,

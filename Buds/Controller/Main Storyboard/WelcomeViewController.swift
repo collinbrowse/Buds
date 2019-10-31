@@ -35,10 +35,8 @@ class WelcomeViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? RegisterViewController {
-            print("WelcomeViewController.modelController -> RegisterViewController")
             vc.modelController = modelController
         } else if let vc = segue.destination as? LogInViewController {
-            print("WelcomeViewController.modelController -> LogInViewController")
             vc.modelController = modelController
         }
     }
