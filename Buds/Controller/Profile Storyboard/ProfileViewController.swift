@@ -91,8 +91,8 @@ class ProfileViewController: UITableViewController {
     }
     
     @objc func noDataButtonAction(sender: UIButton!) {
-        UIView.transition(from: self.view, to: tabBarController!.viewControllers![2].view, duration: 0.3, options: [.transitionCrossDissolve], completion: nil)
-         tabBarController!.selectedIndex = 2
+        UIView.transition(from: self.view, to: tabBarController!.viewControllers![1].view, duration: 0.3, options: [.transitionCrossDissolve], completion: nil)
+         tabBarController!.selectedIndex = 1
     }
 
 }
@@ -218,8 +218,22 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     ///didSelectItemAt
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        selectedStrain = userEffectsWithRelatedStrains[collectionView.tag][indexPath.row].uppercased().replacingOccurrences(of: "_", with: " ")
-        self.performSegue(withIdentifier: "goToStrainDetails", sender: self)
+        if (userEffectsWithRelatedStrains.count == 0) {
+            // Using random
+            selectedStrain = userEffectsWithRelatedStrains[collectionView.tag][indexPath.row].uppercased().replacingOccurrences(of: "_", with: " ")
+            self.performSegue(withIdentifier: "goToStrainDetails", sender: self)
+        
+        } else {
+            // Using the user's data
+            if indexPath.row == randomEffectsWithRelatedStrains[collectionView.tag].count {
+                // We selected the last collection view cell so we should segue to the new activity
+                UIView.transition(from: self.view, to: tabBarController!.viewControllers![1].view, duration: 0.3, options: [.transitionCrossDissolve], completion: nil)
+                tabBarController!.selectedIndex = 1
+            }
+        }
+        
+        
+        
     }
     ///willDisplayCell
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -228,13 +242,14 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         let collectionViewFlowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
         let top = collectionViewFlowLayout?.sectionInset.top ?? 0
         let bottom = collectionViewFlowLayout?.sectionInset.bottom ?? 0
-        let label = UILabel(frame: CGRect(x: 10, y: itemHeight - (top + bottom + 50 + 20), width: 130, height: 50))
+        var label = UILabel(frame: CGRect(x: 10, y: itemHeight - (top + bottom + 50 + 20), width: 130, height: 50))
         var labelText = ""
         
         if userEffectsWithRelatedStrains.count == 0 {
             labelText = randomEffectsWithRelatedStrains[collectionView.tag][indexPath.row]
         } else if indexPath.row >= userEffectsWithRelatedStrains[collectionView.tag].count {
-            labelText = "This is the last cell"
+            label = UILabel(frame: CGRect(x: 10, y: 10, width: 130, height: itemHeight-20))
+            labelText = "You haven't smoked anything else for \(userEffects[collectionView.tag]). Add another activity"
         } else {
             labelText = userEffectsWithRelatedStrains[collectionView.tag][indexPath.row].uppercased()
         }
