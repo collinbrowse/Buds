@@ -232,10 +232,6 @@ class Network {
                     }
                 }
 
-                // Now find all the strains for these effects
-                //let effect = StrainEffects.allEffects[0]
-                //let api_url = "http://strainapi.evanbusse.com/3HT8al6/strains/search/effect/\(effect)"
-                //Network.populateRandomEffects(count: 0, effect: effect, api_url: api_url)
                 Network.populateRandomEffects()
             }
             else {
@@ -273,7 +269,8 @@ class Network {
                     else {
                         print("Errors \(String(describing: response.result.error))")
                     }
-                    print(effect)
+                    
+                    UserDefaults.standard.set(StrainEffects.effectsDict, forKey: "effectsDict")
                     semaphore.signal()
                 }
             }

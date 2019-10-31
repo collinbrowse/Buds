@@ -23,9 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Call an api for Strains and their Effects if we haven't already
         if StrainTypes.allTypes.count == 0 {
             Network.populateStrainInfo()
-        }
-        //Network.testSemaphoresWithAlamofire()
-        
+        }        
         
         Switcher.updateRootViewController()
         return true

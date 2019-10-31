@@ -39,7 +39,6 @@ class ProfileViewController: UITableViewController {
         // Connect to Realtime Database
         ref = Database.database().reference()
         
-        
         for (key, value) in StrainEffects.effectsDict {
             randomEffects.append(key)
             randomEffectsWithRelatedStrains.append(value)
@@ -183,13 +182,32 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     ///numberOfItemsInSection
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        
+        // If there are any user stored effects, use that many, if not, use random effects
+        if userEffectsWithRelatedStrains.count > 0 {
+            return userEffectsWithRelatedStrains[collectionView.tag].count+1
+        } else {
+            return randomEffectsWithRelatedStrains[collectionView.tag].count
+        }
+        //return userEffectsWithRelatedStrains[collectionView.tag].count > 0 ? userEffectsWithRelatedStrains[collectionView.tag].count+1 : randomEffectsWithRelatedStrains[collectionView.tag].count
     }
     ///cellForItemAt
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-                
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        cell.backgroundView = UIImageView(image: UIImage(named: "weed_background.png"))
+        
+        if userEffectsWithRelatedStrains.count > 0 {
+            if indexPath.row >= userEffectsWithRelatedStrains[collectionView.tag].count  {
+                cell.backgroundColor = .white
+                cell.layer.borderWidth = 1.0
+                cell.layer.borderColor = UIColor.white.cgColor
+            } else {
+                cell.backgroundView = UIImageView(image: UIImage(named: "weed_background.png"))
+            }
+        } else {
+            cell.backgroundView = UIImageView(image: UIImage(named: "weed_background.png"))
+        }
+        
         cell.layer.cornerRadius = 20.0
         cell.layer.shadowOpacity = 0.9
         cell.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
@@ -215,6 +233,8 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         if userEffectsWithRelatedStrains.count == 0 {
             labelText = randomEffectsWithRelatedStrains[collectionView.tag][indexPath.row]
+        } else if indexPath.row >= userEffectsWithRelatedStrains[collectionView.tag].count {
+            labelText = "This is the last cell"
         } else {
             labelText = userEffectsWithRelatedStrains[collectionView.tag][indexPath.row].uppercased()
         }
