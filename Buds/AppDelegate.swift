@@ -20,11 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set up Firebase App
         FirebaseApp.configure()
         
-        if StrainEffects.allEffects.count == 0 {
-            Network.populateRandomEffects()
-        }
+        // Call an api for Strains and their Effects if we haven't already
         if StrainTypes.allTypes.count == 0 {
-            Network.populateStrainTypes()
+            Network.populateStrainInfo()
         }
         
         Switcher.updateRootViewController()

@@ -206,30 +206,11 @@ class Network {
         }
     }
     
-    static func populateRandomEffects() {
-        
-        Alamofire.request("http://strainapi.evanbusse.com/3HT8al6/searchdata/effects", method: .get).validate().responseJSON { (response) in
-            
-            if response.result.isSuccess {
-                
-                let responseJSON = JSON(response.result.value!)
-
-                for item in responseJSON.arrayValue {
-
-                    if item["effect"].string != nil {
-                        StrainEffects.allEffects.append(item["effect"].string!)
-                    }
-                }
-                Network.populateEffectsWithRelatedStrains()
-            }
-            else {
-                print("Error \(String(describing: response.result.error))")
-            }
-        }
-    }
-    
-    static func populateStrainTypes() {
-        
+   
+    ///populateStrainInfo
+    // This function will first call the Strain API to get all the effects that cannabis has
+    // Once that is done, it will call Network.populateRandomEffects to get 5 strains for every cannabis effect
+    static func populateStrainInfo() {
         
         Alamofire.request("http://strainapi.evanbusse.com/3HT8al6/searchdata/effects", method: .get).validate().responseJSON { (response) in
             
@@ -242,95 +223,55 @@ class Network {
                     if item["type"].string != nil {
                         StrainTypes.allTypes.insert(item["type"].string!)
                     }
-                }
-            }
-            else {
-                print("Error \(String(describing: response.result.error))")
-            }
-        }
-    }
-    
-    static func populateEffectsWithRelatedStrains() {
-        
-        let myGroup = DispatchGroup()
-        
-        
-        
-        
-        for i in 0...StrainEffects.allEffects.count-1 {
-            myGroup.enter()
-            let effect = StrainEffects.allEffects[i]
-            
-            let api_url = "http://strainapi.evanbusse.com/3HT8al6/strains/search/effect/\(effect)"
-            print("Loop number: \(i)")
-            Alamofire.request(api_url, method: .get).validate().responseJSON { (response) in
-                if response.result.isSuccess {
-                    
-                    let responseJSON = JSON(response.result.value!)
-
-                    var tempArray = [String]()
-                    for j in 0...4 {
-                        tempArray.append(responseJSON[j]["name"].string!)
+                    if item["effect"].string != nil && !item["effect"].string!.contains(" ") {
+                        StrainEffects.allEffects.append(item["effect"].string!)
+                        StrainEffects.effectsDict[item["effect"].string!] = []
                     }
-                    StrainEffects.effectsWithRelatedStrains.append(tempArray)
-                    print("We are in loop: \(i)")
-                    //print(StrainEffects.effectsWithRelatedStrains[i])
                 }
-                else {
-                    print("Error \(String(describing: response.result.error))")
-                }
-                print("Finished request \(i)")
-                myGroup.leave()
-                
-            }
-            
-            
-        }
-        
-        myGroup.notify(queue: .main) {
-            print("Finished all requests.")
-        }
-    }
-    
-    
-    
-    static func testAPICall() {
-        print("testAPI CALL")
-        Alamofire.request("http://strainapi.evanbusse.com/3HT8al6/searchdata/effects", method: .get).validate().responseJSON { (response) in
-            
-            if response.result.isSuccess {
-                print("success")
-                //let adpJSON = JSON(response.result.value!)
+
+                // Now find all the strains for these effects
+                let effect = StrainEffects.allEffects[0]
+                let api_url = "http://strainapi.evanbusse.com/3HT8al6/strains/search/effect/\(effect)"
+                Network.populateRandomEffects(count: 0, effect: effect, api_url: api_url)
             }
             else {
                 print("Error \(String(describing: response.result.error))")
             }
         }
-//        let headers = [
-//            "x-rapidapi-host": "StrainraygorodskijV1.p.rapidapi.com",
-//            "x-rapidapi-key": "e8389a48ecmshad3d5db878de714p1b3d55jsnac359c89f9e7",
-//            "content-type": "application/x-www-form-urlencoded"
-//        ]
-//
-//        let postData = NSMutableData(data: "apiKey=3HT8al6".data(using: String.Encoding.utf8)!)
-//
-//        let request = NSMutableURLRequest(url: NSURL(string: "https://strainraygorodskijv1.p.rapidapi.com/getListAllEffects")! as URL,
-//                                                cachePolicy: .useProtocolCachePolicy,
-//                                            timeoutInterval: 10.0)
-//        request.httpMethod = "POST"
-//        request.allHTTPHeaderFields = headers
-//        request.httpBody = postData as Data
-//
-//        let session = URLSession.shared
-//        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
-//            if (error != nil) {
-//                print(error)
-//            } else {
-//                let httpResponse = response as? HTTPURLResponse
-//                print(httpResponse)
-//            }
-//        })
-//
-//        dataTask.resume()
     }
+    
+    ///populateRandomEffects
+    // This method calls the Strain api on each effect that the strain api has.
+    // This is already populated in the Universal Constant StrainEffects.allEffects by the time we get here
+    // After each call it takes only the first 5 strains that have that effect and
+    // stores them in the Universal Constant StrainEffects.effectsDict
+    static func populateRandomEffects(count: Int, effect: String, api_url: String) {
+        
+        Alamofire.request(api_url, method: .get).validate().responseJSON { (response) in
+
+            if response.result.isSuccess {
+                
+                let responseJSON = JSON(response.result.value!)
+
+                var tempArray = [String]()
+                for j in 0...4 {
+                    tempArray.append(responseJSON[j]["name"].string!)
+                }
+                StrainEffects.effectsDict[effect] = tempArray
+                
+                // After storing the effect with the first 5 strains for that effect,
+                // if there are more effects, call the same method with that new effect
+                if count+1 < StrainEffects.allEffects.count {
+                    let newEffect = StrainEffects.allEffects[count+1]
+                    let new_api = "http://strainapi.evanbusse.com/3HT8al6/strains/search/effect/\(newEffect)"
+                    populateRandomEffects(count: count + 1, effect: newEffect, api_url: new_api)
+                }
+            }
+            else {
+                print("Error \(String(describing: response.result.error))")
+            }
+        }
+    }
+    
+
 }

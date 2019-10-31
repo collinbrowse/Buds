@@ -22,10 +22,10 @@ class ProfileViewController: UITableViewController {
     var storedOffsets = [Int: CGFloat]()
     var userEffects = [String]()
     var userEffectsWithRelatedStrains = [[String]]()
-    var randomEffects = [String]()
-    var randomEffectsWithRelatedStrains = [[String]]()
     var selectedStrain: String = ""
     
+    var randomEffects = [String]()
+    var randomEffectsWithRelatedStrains = [[String]]()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +39,11 @@ class ProfileViewController: UITableViewController {
         // Connect to Realtime Database
         ref = Database.database().reference()
         
+        for (key, value) in StrainEffects.effectsDict {
+            randomEffects.append(key)
+            randomEffectsWithRelatedStrains.append(value)
+        }
+
         // Get User's Strain Data
         // Save data to populate table view and collection View
         Network.getUserStrainData(userID: modelController.person.id) { (userInfo) in
@@ -61,11 +66,6 @@ class ProfileViewController: UITableViewController {
             }
             self.tableView.reloadData()
         }
-        
-        // If there's no data in the user's profile, use random categories.
-        getRandomStrainData()
-        
-        
         
         // Add the User's Profile Picture to the nav bar
         if modelController.person.profilePicture != nil {
@@ -93,17 +93,6 @@ class ProfileViewController: UITableViewController {
     @objc func noDataButtonAction(sender: UIButton!) {
         UIView.transition(from: self.view, to: tabBarController!.viewControllers![2].view, duration: 0.3, options: [.transitionCrossDissolve], completion: nil)
          tabBarController!.selectedIndex = 2
-    }
-    
-    func getRandomStrainData() {
-        
-        for i in 0...(5-userEffects.count-1) {
-            randomEffects.append(StrainEffects.allEffects[i])
-        }
-        
-        for array in StrainEffects.effectsWithRelatedStrains {
-            randomEffectsWithRelatedStrains.append(array)
-        }
     }
 
 }
@@ -150,19 +139,8 @@ extension ProfileViewController {
 //        }
         
         return 5
-        //return userEffects.count
     }
-    ///titleForHeaderInSection
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        if section >= userEffects.count {
-            // Use a random category
-            return randomEffects[section]
-        }
-        else {
-            return userEffects[section].uppercased()
-        }
-    }
+
     ///viewForHeaderInSection
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()

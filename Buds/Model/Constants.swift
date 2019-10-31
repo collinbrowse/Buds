@@ -33,9 +33,7 @@ struct StrainEffects {
     static let creative = "Creative"
     static let energetic = "Energetic"
     static let talkative = "Talkative"
-    static let lackOfAppetit = "Lack of Appetite"
     static let nausea = "Nausea"
-    static let dryMouth = "Dry Mouth"
     static let headache = "Headache"
     static let uplifted = "Uplifted"
     static let tingly = "Tingly"
@@ -43,20 +41,17 @@ struct StrainEffects {
     static let sleepy = "Sleepy"
     static let fatigue = "Fatigue"
     static let headaches = "Headaches"
-    static let dryEyes = "Dry Eyes"
     static let focused = "Focused"
-    static let eyePressure = "Eye Pressure"
     static let anxious = "Anxious"
     static let giggle = "Giggly"
     static let aroused = "Aroused"
     static let inflammation = "inflammation"
     static let spasticity = "Spacticity"
     static let seizures = "Seizures"
-    static let muscleSpasms = "Muscle Spasms"
     
     static var allEffects = [String]()
-    
-    static var effectsWithRelatedStrains = [[String]]()
+        
+    static var effectsDict = [String: [String]]()
 }
 
 
