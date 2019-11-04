@@ -261,8 +261,9 @@ class Network {
                     if response.result.isSuccess {
                         let responseJSON = JSON(response.result.value!)
                         var tempArray = [String]()
-                        for j in 0...4 {
-                            tempArray.append(responseJSON[j]["name"].string!)
+                        for _ in 0...4 {
+                            let rand = Int.random(in: 0..<responseJSON.count-1)
+                            tempArray.append(responseJSON[rand]["name"].string!)
                         }
                         StrainEffects.effectsDict[effect] = tempArray
                     }

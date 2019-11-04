@@ -39,6 +39,8 @@ class ProfileViewController: UITableViewController {
         // Connect to Realtime Database
         ref = Database.database().reference()
         
+        // Get random Cannabis effects and strains with those effects if the
+        // user doesn't have any data
         for (key, value) in StrainEffects.effectsDict {
             randomEffects.append(key)
             randomEffectsWithRelatedStrains.append(value)
@@ -219,7 +221,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if (userEffectsWithRelatedStrains.count == 0) {
-            // Using random
+            // Using random strains instead of the user's data
             selectedStrain = userEffectsWithRelatedStrains[collectionView.tag][indexPath.row].uppercased().replacingOccurrences(of: "_", with: " ")
             self.performSegue(withIdentifier: "goToStrainDetails", sender: self)
         
