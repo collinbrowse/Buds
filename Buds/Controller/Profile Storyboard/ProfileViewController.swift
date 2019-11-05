@@ -42,7 +42,7 @@ class ProfileViewController: UITableViewController {
                 
         // Get random Cannabis effects and strains with those effects if the
         // user doesn't have any data
-        for (key, value) in StrainEffects.effectsDict {
+        for (key, value) in Constants.StrainEffects.effectsDict {
             randomEffects.append(key)
             randomEffectsWithRelatedStrains.append(value)
         }
@@ -128,13 +128,13 @@ extension ProfileViewController {
             let noDataButton: UIButton = UIButton()
             noDataButton.setTitle("Add an Activity", for: .normal)
             noDataButton.sizeToFit()
-            noDataButton.center = CGPoint(x: tableView.bounds.size.width / 2, y: 35)
+            noDataButton.center = CGPoint(x: tableView.bounds.size.width / 2, y: Constants.TableView.noDataHeight / 2)
             noDataButton.setTitleColor(.black, for: .normal)
             noDataButton.layer.borderColor = UIColor.red.cgColor
             noDataButton.layer.borderWidth = 1.0
             noDataButton.addTarget(self, action: #selector(noDataButtonAction), for: .touchUpInside)
 
-            let suggestionLabel: UILabel  = UILabel(frame: CGRect(x: 0, y: 50, width: tableView.bounds.size.width, height: 20))
+            let suggestionLabel: UILabel  = UILabel(frame: CGRect(x: 0, y: Constants.TableView.noDataHeight - (Constants.TableView.noDataHeight / 4), width: tableView.bounds.size.width, height: 20))
             suggestionLabel.text          = "Here are some Strains that help with certain issues"
             suggestionLabel.textColor     = UIColor.black
             suggestionLabel.textAlignment = .center
@@ -155,15 +155,15 @@ extension ProfileViewController {
         
         // If we are showing the message that there is no more user recorded activity to show...
         if indexPath.section == userEffects.count {
-            return 100
+            return Constants.TableView.noDataHeight
         }
         // Else if there is either user activity or random activity,
         else if (indexPath.section == 0) {
-            return 200
+            return Constants.TableView.favoritesHeight
         }
         // Else we are on any other row
         else {
-            return 120
+            return Constants.TableView.rowHeight
         }
     }
     ///numberOfSectionsInTableView
