@@ -30,6 +30,7 @@ class ProfileViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Make sure the user is signed in
         if Switcher.getUserDefaultsIsSignIn() {
            modelController = Switcher.getUserDefaultsModelController()
         } else {
@@ -46,8 +47,9 @@ class ProfileViewController: UITableViewController {
             randomEffectsWithRelatedStrains.append(value)
         }
 
-        
+        // Register our custom cell to our table view
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellIdentifier")
+        
         // Get User's Strain Data
         // Save data to populate table view and collection View
         Network.getUserStrainData(userID: modelController.person.id) { (userInfo) in
@@ -122,8 +124,11 @@ extension ProfileViewController {
             noDataLabel.textColor     = UIColor.black
             noDataLabel.textAlignment = .center
 
-            let noDataButton: UIButton = UIButton(frame: CGRect(x: 0, y: 26, width: tableView.bounds.size.width, height: 20))
+            //let noDataButton: UIButton = UIButton(frame: CGRect(x: 0, y: 26, width: tableView.bounds.size.width, height: 20))
+            let noDataButton: UIButton = UIButton()
             noDataButton.setTitle("Add an Activity", for: .normal)
+            noDataButton.sizeToFit()
+            noDataButton.center = CGPoint(x: tableView.bounds.size.width / 2, y: 35)
             noDataButton.setTitleColor(.black, for: .normal)
             noDataButton.layer.borderColor = UIColor.red.cgColor
             noDataButton.layer.borderWidth = 1.0
@@ -204,6 +209,10 @@ extension ProfileViewController {
     override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let tableViewCell = cell as? TableViewCell else { return }
         storedOffsets[indexPath.row] = tableViewCell.collectionViewOffset
+    }
+    ///didSelectRowAt
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
