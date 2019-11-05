@@ -252,18 +252,26 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     ///didSelectItemAt
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if (userEffectsWithRelatedStrains.count == 0) {
+        // If we are at the last cell in the row, it has a prompt to add more activity, so we transition to that tab
+        if (collectionView.tag < userEffectsWithRelatedStrains.count) && (indexPath.row >= userEffectsWithRelatedStrains[collectionView.tag].count) {
+            UIView.transition(from: self.view, to: tabBarController!.viewControllers![1].view, duration: 0.3, options: [.transitionCrossDissolve], completion: nil)
+            tabBarController!.selectedIndex = 1
+        }
+        // Else if we are at the user's data, segue to the strain details VC with that strain
+        else if userEffectsWithRelatedStrains.count > 0 && collectionView.tag < userEffectsWithRelatedStrains.count {
             // Using random strains instead of the user's data
             selectedStrain = userEffectsWithRelatedStrains[collectionView.tag][indexPath.row].uppercased().replacingOccurrences(of: "_", with: " ")
             self.performSegue(withIdentifier: "goToStrainDetails", sender: self)
-        
-        } else {
-            // Using the user's data
-            if indexPath.row == randomEffectsWithRelatedStrains[collectionView.tag].count {
-                // We selected the last collection view cell so we should segue to the new activity
-                UIView.transition(from: self.view, to: tabBarController!.viewControllers![1].view, duration: 0.3, options: [.transitionCrossDissolve], completion: nil)
-                tabBarController!.selectedIndex = 1
-            }
+        }
+        // Else we should send data from our random effets to the strain details VC
+        else {
+            selectedStrain = randomEffectsWithRelatedStrains[collectionView.tag][indexPath.row].uppercased().replacingOccurrences(of: "_", with: " ")
+            selectedStrain = selectedStrain.replacingOccurrences(of: ".", with: " ")
+            selectedStrain = selectedStrain.replacingOccurrences(of: "#", with: " ")
+            selectedStrain = selectedStrain.replacingOccurrences(of: "$", with: " ")
+            selectedStrain = selectedStrain.replacingOccurrences(of: "[", with: " ")
+            selectedStrain = selectedStrain.replacingOccurrences(of: "]", with: " ")
+            self.performSegue(withIdentifier: "goToStrainDetails", sender: self)
         }
         
     }
