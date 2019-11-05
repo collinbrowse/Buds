@@ -271,11 +271,15 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         
         let itemHeight = collectionView.bounds.height
+        //let itemWidth = collectionView.bounds.width
         let collectionViewFlowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
         let top = collectionViewFlowLayout?.sectionInset.top ?? 0
         let bottom = collectionViewFlowLayout?.sectionInset.bottom ?? 0
         var label = UILabel(frame: CGRect(x: 10, y: itemHeight - (top + bottom + 50 + 20), width: 130, height: 50))
         var labelText = ""
+        
+        label.font = UIFont(name: "Arvo-Bold", size: 13)
+        label.adjustsFontSizeToFitWidth = true
         
         
         // If the user has recorded activity and we are currently at a row where they have activity stored
@@ -288,7 +292,9 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             // Show a different message to indicate this
             else if (indexPath.row >= userEffectsWithRelatedStrains[collectionView.tag].count) {
                 label = UILabel(frame: CGRect(x: 10, y: 10, width: 130, height: itemHeight-20))
-                labelText = "You haven't smoked anything else for \(userEffects[collectionView.tag]). Add another activity"
+                label.font = UIFont(name: "Arvo-Bold", size: 50)
+                label.minimumScaleFactor = 1
+                labelText = "+"
             }
         }
         // Else Show data from random effects
@@ -298,10 +304,8 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         label.text = labelText.replacingOccurrences(of: "_", with: " ")
         label.textAlignment = .center
-        label.font = UIFont(name: "Arvo-Bold", size: 13)
         label.textColor = .white
         label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.1
         label.numberOfLines = 0 // = any number of lines
         label.baselineAdjustment = .alignCenters
         label.lineBreakMode = .byWordWrapping
