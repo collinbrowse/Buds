@@ -38,7 +38,7 @@ class ProfileViewController: UITableViewController {
         
         // Connect to Realtime Database
         ref = Database.database().reference()
-        
+                
         // Get random Cannabis effects and strains with those effects if the
         // user doesn't have any data
         for (key, value) in StrainEffects.effectsDict {
@@ -46,6 +46,8 @@ class ProfileViewController: UITableViewController {
             randomEffectsWithRelatedStrains.append(value)
         }
 
+        
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellIdentifier")
         // Get User's Strain Data
         // Save data to populate table view and collection View
         Network.getUserStrainData(userID: modelController.person.id) { (userInfo) in
@@ -111,35 +113,56 @@ extension ProfileViewController {
     }
     ///cellForRowAt
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewRow", for: indexPath)
-        return cell
+        
+        // if the section matches usereffects.count, then display the message
+        if indexPath.section == userEffects.count {
+            tableView.backgroundColor = .white
+            let noDataLabel: UILabel  = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 20))
+            noDataLabel.text          = "You haven't recorded any smoking experiences yet"
+            noDataLabel.textColor     = UIColor.black
+            noDataLabel.textAlignment = .center
+
+            let noDataButton: UIButton = UIButton(frame: CGRect(x: 0, y: 26, width: tableView.bounds.size.width, height: 20))
+            noDataButton.setTitle("Add an Activity", for: .normal)
+            noDataButton.setTitleColor(.black, for: .normal)
+            noDataButton.layer.borderColor = UIColor.red.cgColor
+            noDataButton.layer.borderWidth = 1.0
+            noDataButton.addTarget(self, action: #selector(noDataButtonAction), for: .touchUpInside)
+
+            let suggestionLabel: UILabel  = UILabel(frame: CGRect(x: 0, y: 50, width: tableView.bounds.size.width, height: 20))
+            suggestionLabel.text          = "Here are some Strains that help with certain issues"
+            suggestionLabel.textColor     = UIColor.black
+            suggestionLabel.textAlignment = .center
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cellIdentifier", for: indexPath)
+            cell.addSubview(noDataLabel)
+            cell.addSubview(noDataButton)
+            cell.addSubview(suggestionLabel)
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewRow", for: indexPath)
+            return cell
+        }
+        
     }
     ///heightForRowAt
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if (indexPath.section == 0) {
+        
+        // If we are showing the message that there is no more user recorded activity to show...
+        if indexPath.section == userEffects.count {
+            return 100
+        }
+        // Else if there is either user activity or random activity,
+        else if (indexPath.section == 0) {
             return 200
-        } else {
+        }
+        // Else we are on any other row
+        else {
             return 120
         }
     }
     ///numberOfSectionsInTableView
     override func numberOfSections(in tableView: UITableView) -> Int {
-//        if userEffects.count == 0 {
-//            tableView.backgroundColor = .white
-//            let noDataLabel: UILabel  = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 20))
-//            noDataLabel.text          = "You haven't recorded any smoking experiences yet"
-//            noDataLabel.textColor     = UIColor.black
-//            noDataLabel.textAlignment = .center
-//
-//            let noDataButton: UIButton = UIButton(frame: CGRect(x: 0, y: 26, width: tableView.bounds.size.width, height: 20))
-//            noDataButton.setTitle("Add an Activity", for: .normal)
-//            noDataButton.setTitleColor(.black, for: .normal)
-//            noDataButton.addTarget(self, action: #selector(noDataButtonAction), for: .touchUpInside)
-//
-//            tableView.addSubview(noDataLabel)
-//            tableView.addSubview(noDataButton)
-//        }
-        
         return 5
     }
 
@@ -148,17 +171,24 @@ extension ProfileViewController {
         let view = UIView()
         view.backgroundColor = .white
         
-        let label = UILabel(frame: CGRect(x: 16, y: 10, width: tableView.bounds.width, height: 30))
-        if (userEffects.count == 0) {
-            label.text = randomEffects[section]
-        } else {
-            label.text = userEffects[section].uppercased()
+        // If we are showing the message that there is no more user recorded activity to show...
+        if section == userEffects.count {
+            return view
         }
-        label.font = UIFont(name: "Arvo-Italic", size: 17)
-        label.textColor = .black
-        
-        view.addSubview(label)
-        return view
+        // Else show a custom header
+        else {
+            let label = UILabel(frame: CGRect(x: 16, y: 10, width: tableView.bounds.width, height: 30))
+            if (section >= userEffects.count) {
+                label.text = randomEffects[section]
+            } else {
+                label.text = userEffects[section].uppercased()
+            }
+            label.font = UIFont(name: "Arvo-Italic", size: 17)
+            label.textColor = .black
+            
+            view.addSubview(label)
+            return view
+        }
     }
     ///heightForHeaderInSection
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -184,36 +214,38 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     ///numberOfItemsInSection
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        // If there are any user stored effects, use that many, if not, use random effects
-        if userEffectsWithRelatedStrains.count > 0 {
-            return userEffectsWithRelatedStrains[collectionView.tag].count+1
-        } else {
+    
+        // If the user hasn't recorded any activity, show cells with random strains
+        if collectionView.tag >= userEffectsWithRelatedStrains.count {
             return randomEffectsWithRelatedStrains[collectionView.tag].count
         }
-        //return userEffectsWithRelatedStrains[collectionView.tag].count > 0 ? userEffectsWithRelatedStrains[collectionView.tag].count+1 : randomEffectsWithRelatedStrains[collectionView.tag].count
+        // If the user has recorded activity, show all the activity, plus one more cell to give an option of adding more
+        else {
+            return userEffectsWithRelatedStrains[collectionView.tag].count + 1
+        }
+        
     }
     ///cellForItemAt
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         
-        if userEffectsWithRelatedStrains.count > 0 {
-            if indexPath.row >= userEffectsWithRelatedStrains[collectionView.tag].count  {
-                cell.backgroundColor = .white
-                cell.layer.borderWidth = 1.0
-                cell.layer.borderColor = UIColor.white.cgColor
-            } else {
-                cell.backgroundView = UIImageView(image: UIImage(named: "weed_background.png"))
-            }
-        } else {
+        // If the user has recorded activity, but we are currently have no more to show,
+        // use a different background to show this
+        if (collectionView.tag < userEffectsWithRelatedStrains.count && indexPath.row >= userEffectsWithRelatedStrains[collectionView.tag].count) {
+            cell.backgroundView = nil
+            cell.layer.backgroundColor = UIColor.gray.cgColor
+        }
+        // Else show a picture as the background
+        else {
             cell.backgroundView = UIImageView(image: UIImage(named: "weed_background.png"))
         }
         
+        cell.layer.borderWidth = 1.0
+        cell.layer.borderColor = UIColor.white.cgColor
         cell.layer.cornerRadius = 20.0
         cell.layer.shadowOpacity = 0.9
         cell.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
-        cell.layer.backgroundColor = UIColor.gray.cgColor
         
         return cell
     }
@@ -234,8 +266,6 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             }
         }
         
-        
-        
     }
     ///willDisplayCell
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -247,14 +277,25 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         var label = UILabel(frame: CGRect(x: 10, y: itemHeight - (top + bottom + 50 + 20), width: 130, height: 50))
         var labelText = ""
         
-        if userEffectsWithRelatedStrains.count == 0 {
-            labelText = randomEffectsWithRelatedStrains[collectionView.tag][indexPath.row]
-        } else if indexPath.row >= userEffectsWithRelatedStrains[collectionView.tag].count {
-            label = UILabel(frame: CGRect(x: 10, y: 10, width: 130, height: itemHeight-20))
-            labelText = "You haven't smoked anything else for \(userEffects[collectionView.tag]). Add another activity"
-        } else {
-            labelText = userEffectsWithRelatedStrains[collectionView.tag][indexPath.row].uppercased()
+        
+        // If the user has recorded activity and we are currently at a row where they have activity stored
+        if (userEffectsWithRelatedStrains.count > 0 && collectionView.tag <= userEffectsWithRelatedStrains.count - 1) {
+            // And we are at a column where they have activity stored, Then use their activity for the Label Text
+            if (indexPath.row < userEffectsWithRelatedStrains[collectionView.tag].count) {
+                labelText = userEffectsWithRelatedStrains[collectionView.tag][indexPath.row].uppercased()
+            }
+            // Else if they have recorded activity but we have already shown all strains for that effect,
+            // Show a different message to indicate this
+            else if (indexPath.row >= userEffectsWithRelatedStrains[collectionView.tag].count) {
+                label = UILabel(frame: CGRect(x: 10, y: 10, width: 130, height: itemHeight-20))
+                labelText = "You haven't smoked anything else for \(userEffects[collectionView.tag]). Add another activity"
+            }
         }
+        // Else Show data from random effects
+        else {
+            labelText = randomEffectsWithRelatedStrains[collectionView.tag][indexPath.row]
+        }
+        
         label.text = labelText.replacingOccurrences(of: "_", with: " ")
         label.textAlignment = .center
         label.font = UIFont(name: "Arvo-Bold", size: 13)
