@@ -22,6 +22,16 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet var searchTableView: UITableView!
     
     var searchController = UISearchController(searchResultsController: nil)
+    var strains = Strain.strains()
+    var effects = ["All", "Dizzy", "Hungry", "Happy"]
+    var filteredStrains: [Strain] = []
+    var isSearchBarEmpty: Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    var isFiltering: Bool {
+        let searchBarScopeIsFiltering = searchController.searchBar.selectedScopeButtonIndex != 0
+        return searchController.isActive && (!isSearchBarEmpty || searchBarScopeIsFiltering)
+    }
     
     
     
@@ -47,6 +57,24 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         // Closes the search bar if the user navigates away
         definesPresentationContext = false
 
+        // Set up scope bar
+        searchController.searchBar.scopeButtonTitles = effects
+        searchController.searchBar.delegate = self
+    }
+    
+    func filterContent(_ searchText: String, searchEffect: String? = nil) {
+        
+        filteredStrains = strains.filter({ (strain: Strain) -> Bool in
+            let doesScopeBarMatch = strain.effect.rawValue == searchEffect
+            if isSearchBarEmpty {
+                return doesScopeBarMatch
+            } else {
+                return doesScopeBarMatch && strain.name.lowercased().contains(searchText.lowercased())
+            }
+        })
+        
+        searchTableView.reloadData()
+        
     }
     
  
@@ -57,9 +85,22 @@ extension SearchViewController: UISearchResultsUpdating {
     
     /// Allows you to respond to changes in a searchController
     func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        
+        filterContent(searchBar.text!, searchEffect: searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex])
+        
     }
     
     
+}
+
+// Scope Bar Methods
+extension SearchViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        let effect = searchBar.scopeButtonTitles![selectedScope]
+        filterContent(searchBar.text!, searchEffect: effect)
+    }
 }
 
 
@@ -67,13 +108,25 @@ extension SearchViewController: UISearchResultsUpdating {
 // Table View Methods
 extension SearchViewController {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if isFiltering {
+            return filteredStrains.count
+        } else {
+            return strains.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = searchTableView.dequeueReusableCell(withIdentifier: "searchTableViewCell", for: indexPath)
-        cell.textLabel?.text = "Strain"
-        cell.detailTextLabel?.text = "Effect"
+        
+        if isFiltering {
+            cell.textLabel?.text = filteredStrains[indexPath.row].name
+            cell.detailTextLabel?.text = filteredStrains[indexPath.row].effect.rawValue
+        } else {
+            cell.textLabel?.text = strains[indexPath.row].name
+            cell.detailTextLabel?.text = strains[indexPath.row].effect.rawValue
+        }
+        
         return cell
     }
     

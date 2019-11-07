@@ -1,0 +1,10 @@
+[
+  { "name": "Chocolate Bar", "effect": "Relaxed" },
+  { "name": "Chocolate Chip", "effect": "Dizzy" },
+  { "name": "Dark Chocolate", "effect": "Hungry" },
+  { "name": "Chocolate Coin", "effect": "Happy" },
+  { "name": "Chocolate Egg", "effect": "Happy" },
+  { "name": "Lollipop", "effect": "Hungry" },
+  { "name": "Jaw Breaker", "effect": "Dizzy" },
+  { "name": "Toffee Apple", "effect": "Relaxed" }
+]

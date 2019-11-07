@@ -24,7 +24,7 @@ struct Constants {
         
         static let relaxed = "Relaxed"
         static let dizzy = "Dizzy"
-        static let hungry = "hungry"
+        static let hungry = "Hungry"
         static let euphoric = "Euphoric"
         static let happy = "Happy"
         static let depression = "Depression"
@@ -47,8 +47,8 @@ struct Constants {
         static let anxious = "Anxious"
         static let giggle = "Giggly"
         static let aroused = "Aroused"
-        static let inflammation = "inflammation"
-        static let spasticity = "Spacticity"
+        static let inflammation = "Inflammation"
+        static let spasticity = "Spasticity"
         static let seizures = "Seizures"
         
         static var allEffects = [String]()

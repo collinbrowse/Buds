@@ -67,6 +67,8 @@
 		BE41468322BAD6A00009A738 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE41468022BAD6A00009A738 /* GoogleService-Info.plist */; };
 		BE604D77237369580026ECDA /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE604D76237369580026ECDA /* SearchViewController.swift */; };
 		BE604D7923747E3C0026ECDA /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE604D7823747E3C0026ECDA /* TabBar.storyboard */; };
+		BE604D7B2374AB0C0026ECDA /* Strain.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE604D7A2374AB0C0026ECDA /* Strain.swift */; };
+		BE604D7F2374AEC50026ECDA /* strains.json in Resources */ = {isa = PBXBuildFile; fileRef = BE604D7E2374AEC50026ECDA /* strains.json */; };
 		BE747FB722CA798300D071FD /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE747FB622CA798300D071FD /* Profile.storyboard */; };
 		BE747FB922CA7A5A00D071FD /* NewActivity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE747FB822CA7A5A00D071FD /* NewActivity.storyboard */; };
 		BE747FBB22CAAD9800D071FD /* NewActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE747FBA22CAAD9800D071FD /* NewActivityViewController.swift */; };
@@ -163,6 +165,8 @@
 		BE41468022BAD6A00009A738 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BE604D76237369580026ECDA /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		BE604D7823747E3C0026ECDA /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
+		BE604D7A2374AB0C0026ECDA /* Strain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strain.swift; sourceTree = "<group>"; };
+		BE604D7E2374AEC50026ECDA /* strains.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = strains.json; sourceTree = "<group>"; };
 		BE747FB622CA798300D071FD /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		BE747FB822CA7A5A00D071FD /* NewActivity.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewActivity.storyboard; sourceTree = "<group>"; };
 		BE747FBA22CAAD9800D071FD /* NewActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityViewController.swift; sourceTree = "<group>"; };
@@ -401,6 +405,7 @@
 				BE41464C22BA718D0009A738 /* LaunchScreen.storyboard */,
 				BE41464F22BA718D0009A738 /* Info.plist */,
 				BE41468022BAD6A00009A738 /* GoogleService-Info.plist */,
+				BE604D7E2374AEC50026ECDA /* strains.json */,
 				BE00F0CB22FDB92600B65AB5 /* Resources */,
 			);
 			path = Buds;
@@ -434,6 +439,7 @@
 				BE0A065722FB6F5F00C41B53 /* ModelController.swift */,
 				BEFB6FF7235B6151008805E5 /* Switcher.swift */,
 				BE87F793236768DD00A31AC8 /* Constants.swift */,
+				BE604D7A2374AB0C0026ECDA /* Strain.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -585,6 +591,7 @@
 				BE00F0F922FDD59200B65AB5 /* Proxima Nova Bold.otf in Resources */,
 				BE00F0F822FDD59200B65AB5 /* Proxima Nova Alt Light.otf in Resources */,
 				BE41464B22BA718D0009A738 /* Assets.xcassets in Resources */,
+				BE604D7F2374AEC50026ECDA /* strains.json in Resources */,
 				BE00F0DD22FDB9C500B65AB5 /* PlayfairDisplay-Regular.otf in Resources */,
 				BE00F0DF22FDB9C500B65AB5 /* PlayfairDisplay-Italic.otf in Resources */,
 				BE00F0E822FDBD1500B65AB5 /* Coves Light.otf in Resources */,
@@ -724,6 +731,7 @@
 				BE747FC322CBD54B00D071FD /* NewActivityTableViewController.swift in Sources */,
 				BE41467F22BA9E180009A738 /* Location.swift in Sources */,
 				BE41467922BA918A0009A738 /* ActivityModel.swift in Sources */,
+				BE604D7B2374AB0C0026ECDA /* Strain.swift in Sources */,
 				BE87F794236768DD00A31AC8 /* Constants.swift in Sources */,
 				BE747FC622CD1E9E00D071FD /* ActivityDetailsDelegate.swift in Sources */,
 				BE41467522BA91670009A738 /* Person.swift in Sources */,
