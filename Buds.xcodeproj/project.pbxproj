@@ -66,7 +66,7 @@
 		BE41468222BAD6A00009A738 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE41468022BAD6A00009A738 /* GoogleService-Info.plist */; };
 		BE41468322BAD6A00009A738 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE41468022BAD6A00009A738 /* GoogleService-Info.plist */; };
 		BE604D77237369580026ECDA /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE604D76237369580026ECDA /* SearchViewController.swift */; };
-		BE604D7923747E3C0026ECDA /* NewTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE604D7823747E3C0026ECDA /* NewTabBar.storyboard */; };
+		BE604D7923747E3C0026ECDA /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE604D7823747E3C0026ECDA /* TabBar.storyboard */; };
 		BE747FB722CA798300D071FD /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE747FB622CA798300D071FD /* Profile.storyboard */; };
 		BE747FB922CA7A5A00D071FD /* NewActivity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE747FB822CA7A5A00D071FD /* NewActivity.storyboard */; };
 		BE747FBB22CAAD9800D071FD /* NewActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE747FBA22CAAD9800D071FD /* NewActivityViewController.swift */; };
@@ -77,7 +77,6 @@
 		BE87F794236768DD00A31AC8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE87F793236768DD00A31AC8 /* Constants.swift */; };
 		BEB7430823326089003B52DE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB7430723326089003B52DE /* CardView.swift */; };
 		BEFB6FF8235B6151008805E5 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFB6FF7235B6151008805E5 /* Switcher.swift */; };
-		BEFB6FFA235B659D008805E5 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEFB6FF9235B659D008805E5 /* TabBar.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,7 +162,7 @@
 		BE41467E22BA9E180009A738 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		BE41468022BAD6A00009A738 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BE604D76237369580026ECDA /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		BE604D7823747E3C0026ECDA /* NewTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewTabBar.storyboard; sourceTree = "<group>"; };
+		BE604D7823747E3C0026ECDA /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		BE747FB622CA798300D071FD /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		BE747FB822CA7A5A00D071FD /* NewActivity.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewActivity.storyboard; sourceTree = "<group>"; };
 		BE747FBA22CAAD9800D071FD /* NewActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityViewController.swift; sourceTree = "<group>"; };
@@ -174,7 +173,6 @@
 		BE87F793236768DD00A31AC8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BEB7430723326089003B52DE /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		BEFB6FF7235B6151008805E5 /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
-		BEFB6FF9235B659D008805E5 /* TabBar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		DFBCFB9F69836A8C3EBC2D7A /* Pods_BudsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BudsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAF0EC6C295759166884503B /* Pods-Buds.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buds.release.xcconfig"; path = "Target Support Files/Pods-Buds/Pods-Buds.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -335,14 +333,13 @@
 		BE03D2A422C124A70059B587 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BE747FBC22CBD36000D071FD /* Custom Cell */,
 				BE747FB622CA798300D071FD /* Profile.storyboard */,
 				BE41464722BA718C0009A738 /* Main.storyboard */,
 				BE747FB822CA7A5A00D071FD /* NewActivity.storyboard */,
 				BE02A32922DFBC4400431854 /* ActivityFeed.storyboard */,
 				BE747FC722D53BB300D071FD /* Settings.storyboard */,
 				BE2F42AB2373606500D6BDF0 /* Search.storyboard */,
-				BE604D7823747E3C0026ECDA /* NewTabBar.storyboard */,
+				BE604D7823747E3C0026ECDA /* TabBar.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -465,14 +462,6 @@
 				BE604D76237369580026ECDA /* SearchViewController.swift */,
 			);
 			path = "Search Tab";
-			sourceTree = "<group>";
-		};
-		BE747FBC22CBD36000D071FD /* Custom Cell */ = {
-			isa = PBXGroup;
-			children = (
-				BEFB6FF9235B659D008805E5 /* TabBar.storyboard */,
-			);
-			path = "Custom Cell";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -602,7 +591,7 @@
 				BE00F0E122FDB9C500B65AB5 /* PlayfairDisplay-BlackItalic.otf in Resources */,
 				BE747FB722CA798300D071FD /* Profile.storyboard in Resources */,
 				BE00F0DA22FDB9C500B65AB5 /* PlayfairDisplaySC-BoldItalic.otf in Resources */,
-				BE604D7923747E3C0026ECDA /* NewTabBar.storyboard in Resources */,
+				BE604D7923747E3C0026ECDA /* TabBar.storyboard in Resources */,
 				BE00F0DE22FDB9C500B65AB5 /* PlayfairDisplay-Black.otf in Resources */,
 				BE00F0D922FDB9C500B65AB5 /* PlayfairDisplaySC-BlackItalic.otf in Resources */,
 				BE00F0E022FDB9C500B65AB5 /* PlayfairDisplay-Bold.otf in Resources */,
@@ -613,7 +602,6 @@
 				BE00F0DC22FDB9C500B65AB5 /* PlayfairDisplaySC-Regular.otf in Resources */,
 				BE00F0D822FDB9C500B65AB5 /* PlayfairDisplay-BoldItalic.otf in Resources */,
 				BE41464922BA718C0009A738 /* Main.storyboard in Resources */,
-				BEFB6FFA235B659D008805E5 /* TabBar.storyboard in Resources */,
 				BE00F0DB22FDB9C500B65AB5 /* PlayfairDisplaySC-Italic.otf in Resources */,
 				BE00F0E922FDBD1500B65AB5 /* Coves Bold.otf in Resources */,
 				BE02A32A22DFBC4400431854 /* ActivityFeed.storyboard in Resources */,
