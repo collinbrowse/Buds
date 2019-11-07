@@ -176,7 +176,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oje-eC-Ore"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="q8N-UT-p6a"/>
+                    <tabBarItem key="tabBarItem" id="q8N-UT-p6a"/>
                     <navigationItem key="navigationItem" id="trn-hR-DG3">
                         <barButtonItem key="backBarButtonItem" title="Back" id="oDC-QW-eOB"/>
                         <barButtonItem key="rightBarButtonItem" title="POST" id="LJQ-Nh-Xcc">

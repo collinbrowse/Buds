@@ -18,7 +18,7 @@ class Switcher {
         var rootViewController : UIViewController?
 
         if (status) {
-            let mainStoryBoard = UIStoryboard(name: "TabBar", bundle: nil)
+            let mainStoryBoard = UIStoryboard(name: "NewTabBar", bundle: nil)
             let mainTabBarController = mainStoryBoard.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
             rootViewController = mainTabBarController
         } else {
