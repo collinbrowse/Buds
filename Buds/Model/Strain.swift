@@ -13,6 +13,7 @@ struct Strain: Decodable {
     
     let name: String
     let effect: Effect
+    let category: Category
     
     enum Effect: Decodable {
         
@@ -44,12 +45,15 @@ struct Strain: Decodable {
         case inflammation
         case spasticity
         case seizures
-        
     }
     
-    
+    enum Category: Decodable {
+        case positive
+        case negative
+        case all
+    }
 }
-
+//extension Strain.Category: CaseIterable {}
 extension Strain.Effect: CaseIterable {}
 
 extension Strain.Effect: RawRepresentable {
@@ -60,7 +64,7 @@ extension Strain.Effect: RawRepresentable {
           case .dizzy: return "Dizzy"
           case .hungry: return "Hungry"
           case .happy: return "Happy"
-        default: return "Category"
+        default: return "Effect"
         }
     }
     
@@ -102,6 +106,29 @@ extension Strain.Effect: RawRepresentable {
     }
 }
 
+extension Strain.Category: RawRepresentable {
+
+    var rawValue: RawValue {
+        switch self {
+          case .positive: return "Positive"
+          case .negative: return "Negative"
+          case .all: return "All"
+        default: return "Category"
+        }
+    }
+
+    typealias RawValue = String
+
+    init?(rawValue: RawValue) {
+        switch rawValue {
+        case "Positive": self = .positive
+        case "Negative": self = .negative
+        case "All": self = .all
+        default: return nil
+        }
+    }
+}
+
 
 extension Strain {
   static func strains() -> [Strain] {
@@ -109,6 +136,7 @@ extension Strain {
       let url = Bundle.main.url(forResource: "strains", withExtension: "json"),
       let data = try? Data(contentsOf: url)
       else {
+        print("Error getting contents of JSON")
         return []
     }
     
@@ -116,7 +144,14 @@ extension Strain {
       let decoder = JSONDecoder()
       return try decoder.decode([Strain].self, from: data)
     } catch {
+        print("Error decoding JSON")
       return []
     }
   }
 }
+
+//extension Category {
+//    static func categories() -> [Category] {
+//        //return [Strain.Category.positive, Strain.Category.negative]
+//    }
+//}

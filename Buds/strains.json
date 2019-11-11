@@ -1,10 +1,20 @@
 [
-  { "name": "Chocolate Bar", "effect": "Relaxed" },
-  { "name": "Chocolate Chip", "effect": "Dizzy" },
-  { "name": "Dark Chocolate", "effect": "Hungry" },
-  { "name": "Chocolate Coin", "effect": "Happy" },
-  { "name": "Chocolate Egg", "effect": "Happy" },
-  { "name": "Lollipop", "effect": "Hungry" },
-  { "name": "Jaw Breaker", "effect": "Dizzy" },
-  { "name": "Toffee Apple", "effect": "Relaxed" }
+  { "name": "Chocolate Bar", "effect": "Relaxed", "category": "Positive"},
+  { "name": "Chocolate Chip", "effect": "Dizzy", "category": "Negative" },
+  { "name": "Dark Chocolate", "effect": "Hungry", "category": "Negative" },
+  { "name": "Chocolate Coin", "effect": "Happy", "category": "Positive" },
+  { "name": "Chocolate Egg", "effect": "Happy", "category": "Positive" },
+  { "name": "Lollipop", "effect": "Hungry", "category": "Negative" },
+  { "name": "Jaw Breaker", "effect": "Dizzy", "category": "Negative" },
+  { "name": "Toffee Apple", "effect": "Relaxed", "category": "Positive" },
+  { "name": "Toffee Apple", "effect": "Relaxed", "category": "Positive" },
+  { "name": "Toffee Apple", "effect": "Relaxed", "category": "Positive" },
+  { "name": "Toffee Apple", "effect": "Relaxed", "category": "Positive" },
+  { "name": "Toffee Apple", "effect": "Relaxed", "category": "Positive" },
+  { "name": "Toffee Apple", "effect": "Relaxed", "category": "Positive" },
+  { "name": "Toffee Apple", "effect": "Relaxed", "category": "Positive" },
+  { "name": "Toffee Apple", "effect": "Relaxed", "category": "Positive" },
+  { "name": "Toffee Apple", "effect": "Relaxed", "category": "Positive" },
+  { "name": "Toffee Apple", "effect": "Relaxed", "category": "Positive" },
+  { "name": "Toffee Apple", "effect": "Relaxed", "category": "Positive" }
 ]

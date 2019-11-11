@@ -21,9 +21,14 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet var searchTableView: UITableView!
     
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var tableView: UITableView!
+    
     var searchController = UISearchController(searchResultsController: nil)
     var strains = Strain.strains()
     var effects = ["All", "Dizzy", "Hungry", "Happy"]
+    var categories = ["All", "Positive", "Negative"]
+    var someStrains = ["Strain  1", "Strain 2", "Strain 3"]
     var filteredStrains: [Strain] = []
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
@@ -32,7 +37,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         let searchBarScopeIsFiltering = searchController.searchBar.selectedScopeButtonIndex != 0
         return searchController.isActive && (!isSearchBarEmpty || searchBarScopeIsFiltering)
     }
-    
+    lazy var filteredArray = effects
+   
     
     
     override func viewDidLoad() {
@@ -44,28 +50,61 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         } else {
             Switcher.updateRootViewController()
         }
-        
+                
         // Set up the table view
-        searchTableView.dataSource = self
+        //searchTableView.dataSource = self
     
+        tableView.dataSource = self
         // Set up the search Controller
         // Inform this class of changes in the search bar
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Strains, Effects..."
-        navigationItem.searchController = searchController
+        //searchController.searchResultsUpdater = self
+        //searchController.obscuresBackgroundDuringPresentation = false
+        //searchController.searchBar.placeholder = "Search Strains, Effects..."
+        //if #available(iOS 13, *) {}
+        //else { navigationItem.searchController = searchController }
+        navigationItem.title = "Strain Data"
+        navigationController?.navigationBar.prefersLargeTitles = true
         // Closes the search bar if the user navigates away
         definesPresentationContext = false
 
         // Set up scope bar
-        searchController.searchBar.scopeButtonTitles = effects
-        searchController.searchBar.delegate = self
+        //searchController.searchBar.scopeButtonTitles = categories
+        //searchController.searchBar.delegate = self
+        
+        
+        segmentedControl.selectedSegmentIndex = 0
+    }
+    @IBAction func segmentedControlDidChange(_ sender: Any) {
+        
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            filteredArray = effects
+        case 1:
+            filteredArray = categories
+        case 2:
+            filteredArray = someStrains
+        default:
+            filteredArray = effects
+        }
+        
+        tableView.reloadData()
     }
     
-    func filterContent(_ searchText: String, searchEffect: String? = nil) {
+    func swiped() {
+        print("swiped")
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        //if #available(iOS 13, *) {
+        //    navigationItem.searchController = searchController
+        //}
+    }
+    
+    func filterContent(_ searchText: String, searchCategory: String? = nil) {
         
         filteredStrains = strains.filter({ (strain: Strain) -> Bool in
-            let doesScopeBarMatch = strain.effect.rawValue == searchEffect
+            let doesScopeBarMatch = strain.category.rawValue == searchCategory || searchCategory == "All"
             if isSearchBarEmpty {
                 return doesScopeBarMatch
             } else {
@@ -76,8 +115,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         searchTableView.reloadData()
         
     }
-    
- 
 }
 
 // Search Bar Methods
@@ -87,7 +124,7 @@ extension SearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
         
-        filterContent(searchBar.text!, searchEffect: searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex])
+        filterContent(searchBar.text!, searchCategory: searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex])
         
     }
     
@@ -98,8 +135,8 @@ extension SearchViewController: UISearchResultsUpdating {
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        let effect = searchBar.scopeButtonTitles![selectedScope]
-        filterContent(searchBar.text!, searchEffect: effect)
+        let category = searchBar.scopeButtonTitles![selectedScope]
+        filterContent(searchBar.text!, searchCategory: category)
     }
 }
 
@@ -107,27 +144,45 @@ extension SearchViewController: UISearchBarDelegate {
 
 // Table View Methods
 extension SearchViewController {
+    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isFiltering {
-            return filteredStrains.count
+        
+        if tableView == searchTableView {
+            if isFiltering {
+                return filteredStrains.count
+            } else {
+                return strains.count
+            }
+        } else if tableView == self.tableView {
+            return filteredArray.count
         } else {
-            return strains.count
+            return 0
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = searchTableView.dequeueReusableCell(withIdentifier: "searchTableViewCell", for: indexPath)
         
-        if isFiltering {
-            cell.textLabel?.text = filteredStrains[indexPath.row].name
-            cell.detailTextLabel?.text = filteredStrains[indexPath.row].effect.rawValue
+        if tableView == searchTableView {
+            let cell = searchTableView.dequeueReusableCell(withIdentifier: "searchTableViewCell", for: indexPath)
+            
+            if isFiltering {
+                cell.textLabel?.text = filteredStrains[indexPath.row].name
+                cell.detailTextLabel?.text = filteredStrains[indexPath.row].effect.rawValue
+            } else {
+                cell.textLabel?.text = strains[indexPath.row].name
+                cell.detailTextLabel?.text = strains[indexPath.row].effect.rawValue
+            }
+            return cell
+        } else if tableView == self.tableView {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath)
+            cell.textLabel?.text = filteredArray[indexPath.row]
+            return cell
         } else {
-            cell.textLabel?.text = strains[indexPath.row].name
-            cell.detailTextLabel?.text = strains[indexPath.row].effect.rawValue
+            return UITableViewCell(style: .value1, reuseIdentifier: "Cell")
         }
-        
-        return cell
+            
     }
     
     
