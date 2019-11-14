@@ -43,9 +43,21 @@ class NewActivityEffectsViewController: UIViewController {
         // Set Up Navigation Bar
         navigationItem.title = dataToRetrieve?.capitalized
         self.segmentedControl.selectedSegmentIndex = 0
-        SVProgressHUD.show()
+        
         let ref = Database.database().reference()
-        self.getEffectsFromAPI()
+        
+        
+        SVProgressHUD.show()
+        Network.getEffectsFromAPI { (effectsDict) in
+            self.filteredEffectsDict = effectsDict
+            self.effectsDict = effectsDict
+            self.tableView.reloadData()
+            SVProgressHUD.dismiss()
+        }
+        
+        
+        
+        
         // Get all of the information from Firebase in ViewDidLoad
         // Small amount of information should be negligible on performance
         if dataToRetrieve != nil {
@@ -136,32 +148,3 @@ extension NewActivityEffectsViewController: UITableViewDelegate, UITableViewData
     
 }
 
-extension NewActivityEffectsViewController {
-    
-    
-    func getEffectsFromAPI() {
-        
-        Alamofire.request("http://strainapi.evanbusse.com/3HT8al6/searchdata/effects", method: .get).validate().responseJSON { (response) in
-            
-            if response.result.isSuccess {
-                let responseJSON = JSON(response.result.value!)
-                print(responseJSON)
-                for item in responseJSON.arrayValue {
-                    if item["type"].string != nil && item["effect"].string != nil {
-                        self.effectsDict.append([item["effect"].string! : item["type"].string!])
-                    }
-                }
-                self.filteredEffectsDict = self.effectsDict
-                self.tableView.reloadData()
-                SVProgressHUD.dismiss()
-            } else {
-                print("Unable to Get Strain effects from the evanbusse api")
-            }
-            
-        }
-        
-        
-    }
-    
-    
-}

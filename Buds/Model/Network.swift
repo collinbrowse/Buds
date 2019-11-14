@@ -283,5 +283,27 @@ class Network {
         
     }
     
+    
+    static func getEffectsFromAPI(complete: @escaping([[String: String]]) ->  ())  {
+     
+         Alamofire.request("http://strainapi.evanbusse.com/3HT8al6/searchdata/effects", method: .get).validate().responseJSON { (response) in
+            var effectsDict = [[String: String]]()
+            if response.result.isSuccess {
+                 let responseJSON = JSON(response.result.value!)
+                 print(responseJSON)
+                 for item in responseJSON.arrayValue {
+                     if item["type"].string != nil && item["effect"].string != nil {
+                         effectsDict.append([item["effect"].string! : item["type"].string!])
+                     }
+                 }
+                 complete(effectsDict)
+             } else {
+                 print("Unable to Get Strain effects from the evanbusse api")
+             }
+             
+         }
+     
+    }
+    
 
 }
