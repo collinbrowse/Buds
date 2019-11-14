@@ -127,6 +127,7 @@ class NewActivityViewController: UIViewController {
             nav.locationDelegate = self
         }
         else if let destinationVC = segue.destination as? NewActivityEffectsViewController {
+            destinationVC.delegate = self
             destinationVC.dataToRetrieve = "effects"
         }
     }
@@ -244,6 +245,7 @@ extension NewActivityViewController {
 extension NewActivityViewController: ActivityDetailsDelegate {
     
     func setSelectedDetail(detail: String, value: String) {
+        
         if detail == "smoking_styles" {
             smokingStyleButton.setTitle(value, for: .normal)
             smokingStyleButton.isSelected = true
@@ -264,7 +266,6 @@ extension NewActivityViewController: ActivityDetailsDelegate {
             effectsButton.setTitle(value, for: .normal)
             effectsButton.isSelected = true
             buttonStateChanged()
-            
         }
     }
     

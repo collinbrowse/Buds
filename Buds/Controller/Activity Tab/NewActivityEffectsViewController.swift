@@ -19,7 +19,6 @@ class NewActivityEffectsViewController: UIViewController {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     var ref: DatabaseReference!
-    var detailsListArray: [String] = []
     var effectsDict = [[String: String]]()
     lazy var filteredEffectsDict = effectsDict
     var dataToRetrieve: String?
@@ -44,8 +43,6 @@ class NewActivityEffectsViewController: UIViewController {
         navigationItem.title = dataToRetrieve?.capitalized
         self.segmentedControl.selectedSegmentIndex = 0
         
-        let ref = Database.database().reference()
-        
         
         SVProgressHUD.show()
         Network.getEffectsFromAPI { (effectsDict) in
@@ -54,39 +51,7 @@ class NewActivityEffectsViewController: UIViewController {
             self.tableView.reloadData()
             SVProgressHUD.dismiss()
         }
-        
-        
-        
-        
-        // Get all of the information from Firebase in ViewDidLoad
-        // Small amount of information should be negligible on performance
-        if dataToRetrieve != nil {
-            ref.child(dataToRetrieve!).observeSingleEvent(of: .value, with: { (snapshot) in
                 
-                if snapshot.exists() {
-
-                    for child in snapshot.children.allObjects as! [DataSnapshot] {
-
-                        if self.dataToRetrieve == "strain" {
-                            self.detailsListArray.append(child.key)
-                        } else if self.dataToRetrieve == "effects" {
-                            self.detailsListArray.append(child.key)
-                            //self.effectsDict.append([child.key : (child.value as? String)!])
-                        }
-                        else {
-                            self.detailsListArray.append(child.value as! String)
-                        }
-                    }
-                    //self.filteredEffectsDict = self.effectsDict
-                    
-                    self.tableView.reloadData()
-                } else {
-                    self.showAlert(alertMessage: "Unable to access Smoking Styles")
-                }
-            })
-        }
-        
-        
     }
 
     @IBAction func segmentedControlDidChange(_ sender: Any) {
@@ -139,9 +104,10 @@ extension NewActivityEffectsViewController: UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let selecteditem = detailsListArray[indexPath.row]
-//        delegate?.setSelectedDetail(detail: dataToRetrieve!, value: selecteditem)
-//        self.navigationController?.popViewController(animated: true)
+
+        let selecteditem = Array(filteredEffectsDict[indexPath.row])[0].key
+        delegate?.setSelectedDetail(detail: dataToRetrieve!, value: selecteditem)
+        self.navigationController?.popViewController(animated: true)
         
         
     }

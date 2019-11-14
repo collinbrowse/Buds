@@ -29,7 +29,7 @@ class NewActivityTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
-        let ref = Database.database().reference()
+        ref = Database.database().reference()
         
         // Get all of the information from Firebase in ViewDidLoad
         // Small amount of information should be negligible on performance
