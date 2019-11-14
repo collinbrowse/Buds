@@ -43,15 +43,22 @@ class NewActivityEffectsViewController: UIViewController {
         navigationItem.title = dataToRetrieve?.capitalized
         self.segmentedControl.selectedSegmentIndex = 0
         
-        
         SVProgressHUD.show()
-        Network.getEffectsFromAPI { (effectsDict) in
-            self.filteredEffectsDict = effectsDict
-            self.effectsDict = effectsDict
+        if UserDefaults.standard.value(forKey: "effects") != nil {
+            self.effectsDict = UserDefaults.standard.value(forKey: "effects") as! [[String : String]]
+            self.filteredEffectsDict = self.effectsDict
             self.tableView.reloadData()
             SVProgressHUD.dismiss()
+
+        } else {
+            Network.getEffectsFromAPI { (effectsDict) in
+                self.filteredEffectsDict = effectsDict
+                self.effectsDict = effectsDict
+                self.tableView.reloadData()
+                SVProgressHUD.dismiss()
+            }
         }
-                
+            
     }
 
     @IBAction func segmentedControlDidChange(_ sender: Any) {

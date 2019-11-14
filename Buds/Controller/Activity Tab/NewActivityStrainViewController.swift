@@ -20,8 +20,8 @@ class NewActivityStrainViewController: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     var ref: DatabaseReference!
-    var effectsDict = [[String: String]]()
-    lazy var filteredEffectsDict = effectsDict
+    var raceDict = [[String: String]]()
+    lazy var filteredRaceDict = raceDict
     var dataToRetrieve: String?
     var delegate: ActivityDetailsDelegate?
     var race = ["All", "Sativa", "Indica", "Hybrid"]
@@ -41,14 +41,14 @@ class NewActivityStrainViewController: UIViewController {
         
         SVProgressHUD.show()
         if UserDefaults.standard.value(forKey: "raceDict") != nil {
-            self.filteredEffectsDict = UserDefaults.standard.value(forKey: "raceDict") as! [[String : String]]
-            self.effectsDict = self.filteredEffectsDict
+            self.filteredRaceDict = UserDefaults.standard.value(forKey: "raceDict") as! [[String : String]]
+            self.raceDict = self.filteredRaceDict
             self.tableView.reloadData()
             SVProgressHUD.dismiss()
         } else {
             Network.getRaceFromAPI { (raceDict) in
-                self.filteredEffectsDict = raceDict
-                self.effectsDict = raceDict
+                self.filteredRaceDict = raceDict
+                self.raceDict = raceDict
                 self.tableView.reloadData()
                 SVProgressHUD.dismiss()
             }
@@ -64,7 +64,7 @@ class NewActivityStrainViewController: UIViewController {
     func filterContent(searchCategory: String) {
         
         // Filter Strains using a segmented Control
-        filteredEffectsDict = effectsDict.filter({ (dict: Dictionary) -> Bool in
+        filteredRaceDict = raceDict.filter({ (dict: Dictionary) -> Bool in
             
             let category = dict.values.first
             let doesSegmentedControlMatch = category?.lowercased() == searchCategory.lowercased() || searchCategory.lowercased() == Strain.Category.all.rawValue.lowercased()
@@ -88,7 +88,7 @@ class NewActivityStrainViewController: UIViewController {
 extension NewActivityStrainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredEffectsDict.count
+        return filteredRaceDict.count
     }
 
     
@@ -97,9 +97,9 @@ extension NewActivityStrainViewController: UITableViewDelegate, UITableViewDataS
         let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath)
 
         // Configure the cell...
-        if filteredEffectsDict.count > 0 {
-            cell.textLabel?.text = filteredEffectsDict[indexPath.row].keys.first
-            cell.detailTextLabel?.text = filteredEffectsDict[indexPath.row].values.first
+        if filteredRaceDict.count > 0 {
+            cell.textLabel?.text = filteredRaceDict[indexPath.row].keys.first
+            cell.detailTextLabel?.text = filteredRaceDict[indexPath.row].values.first
         }
 
         return cell
@@ -107,7 +107,7 @@ extension NewActivityStrainViewController: UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        let selecteditem = Array(filteredEffectsDict[indexPath.row])[0].key
+        let selecteditem = Array(filteredRaceDict[indexPath.row])[0].key
         delegate?.setSelectedDetail(detail: dataToRetrieve!, value: selecteditem)
         self.navigationController?.popViewController(animated: true)
         

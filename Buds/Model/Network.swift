@@ -297,6 +297,7 @@ class Network {
                          effectsDict.append([item["effect"].string! : item["type"].string!])
                      }
                  }
+                 UserDefaults.standard.set(effectsDict, forKey: "effects")
                  complete(effectsDict)
              } else {
                  print("Unable to Get Strain effects from the evanbusse api")
