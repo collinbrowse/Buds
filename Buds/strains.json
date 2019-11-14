@@ -1,0 +1,20 @@
+[
+  { "name": "Chocolate Bar", "effect": "Relaxed", "category": "Positive"},
+  { "name": "Chocolate Chip", "effect": "Dizzy", "category": "Negative" },
+  { "name": "Dark Chocolate", "effect": "Hungry", "category": "Negative" },
+  { "name": "Chocolate Coin", "effect": "Happy", "category": "Positive" },
+  { "name": "Chocolate Egg", "effect": "Happy", "category": "Positive" },
+  { "name": "Lollipop", "effect": "Hungry", "category": "Negative" },
+  { "name": "Jaw Breaker", "effect": "Dizzy", "category": "Negative" },
+  { "name": "Toffee Apple", "effect": "Depression", "category": "Medical" },
+  { "name": "Toffee Apple", "effect": "Insomnia", "category": "Medical" },
+  { "name": "Toffee Apple", "effect": "Pain", "category": "Medical" },
+  { "name": "Toffee Apple", "effect": "Stress", "category": "Medical" },
+  { "name": "Toffee Apple", "effect": "Cramps", "category": "Medical" },
+  { "name": "Toffee Apple", "effect": "Creative", "category": "Positive" },
+  { "name": "Toffee Apple", "effect": "Energetic", "category": "Positive" },
+  { "name": "Toffee Apple", "effect": "Talkative", "category": "Negative" },
+  { "name": "Toffee Apple", "effect": "Nausea", "category": "Negative" },
+  { "name": "Toffee Apple", "effect": "Headache", "category": "Negative" },
+  { "name": "Toffee Apple", "effect": "Uplifted", "category": "Positive" }
+]

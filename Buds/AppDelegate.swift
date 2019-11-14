@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         // Call an api for Strains and their Effects if we haven't already
-        if StrainTypes.allTypes.count == 0 {
+        if Constants.StrainTypes.allTypes.count == 0 {
             Network.populateStrainInfo()
         }        
         

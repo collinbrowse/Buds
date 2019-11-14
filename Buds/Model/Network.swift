@@ -224,11 +224,11 @@ class Network {
                 for item in responseJSON.arrayValue {
 
                     if item["type"].string != nil {
-                        StrainTypes.allTypes.insert(item["type"].string!)
+                        Constants.StrainTypes.allTypes.insert(item["type"].string!)
                     }
                     if item["effect"].string != nil && !item["effect"].string!.contains(" ") {
-                        StrainEffects.allEffects.append(item["effect"].string!)
-                        StrainEffects.effectsDict[item["effect"].string!] = []
+                        Constants.StrainEffects.allEffects.append(item["effect"].string!)
+                        Constants.StrainEffects.effectsDict[item["effect"].string!] = []
                     }
                 }
 
@@ -261,23 +261,24 @@ class Network {
                     if response.result.isSuccess {
                         let responseJSON = JSON(response.result.value!)
                         var tempArray = [String]()
-                        for j in 0...4 {
-                            tempArray.append(responseJSON[j]["name"].string!)
+                        for _ in 0...4 {
+                            let rand = Int.random(in: 0..<responseJSON.count-1)
+                            tempArray.append(responseJSON[rand]["name"].string!)
                         }
-                        StrainEffects.effectsDict[effect] = tempArray
+                        Constants.StrainEffects.effectsDict[effect] = tempArray
                     }
                     else {
                         print("Errors \(String(describing: response.result.error))")
                     }
                     
-                    UserDefaults.standard.set(StrainEffects.effectsDict, forKey: "effectsDict")
+                    UserDefaults.standard.set(Constants.StrainEffects.effectsDict, forKey: "effectsDict")
                     semaphore.signal()
                 }
             }
         }
         
-        for i in 0...StrainEffects.allEffects.count-1 {
-            callAPI(effect: StrainEffects.allEffects[i])
+        for i in 0...Constants.StrainEffects.allEffects.count-1 {
+            callAPI(effect: Constants.StrainEffects.allEffects[i])
         }
         
     }
