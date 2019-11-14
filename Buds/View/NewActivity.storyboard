@@ -225,6 +225,9 @@
                                     <segment title="Negative"/>
                                     <segment title="Medical"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentedControlDidChange:" destination="cwL-8V-lNj" eventType="valueChanged" id="IYU-Qb-alj"/>
+                                </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BgQ-za-IK9">
                                 <rect key="frame" x="0.0" y="75" width="414" height="650"/>
@@ -271,6 +274,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="e0k-tc-isf"/>
                     <connections>
+                        <outlet property="segmentedControl" destination="jyD-6L-IHt" id="02q-Fm-mxd"/>
                         <outlet property="tableView" destination="BgQ-za-IK9" id="HzK-NL-eyZ"/>
                     </connections>
                 </viewController>

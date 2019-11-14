@@ -40,9 +40,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     }
     var isSearchBarEmpty: Bool {
         let isEmpty = searchController.searchBar.text?.isEmpty ?? true
-        
-        
-        
         return isEmpty
     }
     var isFiltering: Bool {
