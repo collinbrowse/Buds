@@ -65,6 +65,7 @@
 		BE41468122BAD6A00009A738 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE41468022BAD6A00009A738 /* GoogleService-Info.plist */; };
 		BE41468222BAD6A00009A738 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE41468022BAD6A00009A738 /* GoogleService-Info.plist */; };
 		BE41468322BAD6A00009A738 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE41468022BAD6A00009A738 /* GoogleService-Info.plist */; };
+		BE58381D237CE4F9002160B8 /* NewActivityEffectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE58381C237CE4F9002160B8 /* NewActivityEffectsViewController.swift */; };
 		BE604D77237369580026ECDA /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE604D76237369580026ECDA /* SearchViewController.swift */; };
 		BE604D7923747E3C0026ECDA /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE604D7823747E3C0026ECDA /* TabBar.storyboard */; };
 		BE604D7B2374AB0C0026ECDA /* Strain.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE604D7A2374AB0C0026ECDA /* Strain.swift */; };
@@ -163,6 +164,7 @@
 		BE41467C22BA9CE50009A738 /* Birthday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Birthday.swift; sourceTree = "<group>"; };
 		BE41467E22BA9E180009A738 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		BE41468022BAD6A00009A738 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BE58381C237CE4F9002160B8 /* NewActivityEffectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityEffectsViewController.swift; sourceTree = "<group>"; };
 		BE604D76237369580026ECDA /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		BE604D7823747E3C0026ECDA /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		BE604D7A2374AB0C0026ECDA /* Strain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strain.swift; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 				BE02A33D22E6436600431854 /* NewActivityLocationController.swift */,
 				BE747FC122CBD54B00D071FD /* NewActivityTableViewController.swift */,
 				BE747FC522CD1E9E00D071FD /* ActivityDetailsDelegate.swift */,
+				BE58381C237CE4F9002160B8 /* NewActivityEffectsViewController.swift */,
 			);
 			path = "Activity Tab";
 			sourceTree = "<group>";
@@ -746,6 +749,7 @@
 				BE02A33E22E6436600431854 /* NewActivityLocationController.swift in Sources */,
 				BE02A34422E6BD7D00431854 /* TimeHelper.swift in Sources */,
 				BE41467D22BA9CE50009A738 /* Birthday.swift in Sources */,
+				BE58381D237CE4F9002160B8 /* NewActivityEffectsViewController.swift in Sources */,
 				BE12BA9C233D1CA8009FAD1D /* StrainDetailsViewController.swift in Sources */,
 				BE0A065822FB6F5F00C41B53 /* ModelController.swift in Sources */,
 				BEB7430823326089003B52DE /* CardView.swift in Sources */,

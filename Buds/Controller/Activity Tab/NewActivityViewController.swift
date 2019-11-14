@@ -122,14 +122,12 @@ class NewActivityViewController: UIViewController {
                     destinationVC.dataToRetrieve = "strain"
                 }
             }
-            else if segue.identifier == "goToEffects" {
-                if let destinationVC = segue.destination as? NewActivityTableViewController {
-                    destinationVC.dataToRetrieve = "effects"
-                }
-            }
         }
         else if let nav = segue.destination as? NewActivityLocationController {
             nav.locationDelegate = self
+        }
+        else if let destinationVC = segue.destination as? NewActivityEffectsViewController {
+            destinationVC.dataToRetrieve = "effects"
         }
     }
     

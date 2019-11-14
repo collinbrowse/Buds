@@ -1,8 +1,8 @@
 //
-//  TableViewController.swift
+//  NewActivityEffectsViewController.swift
 //  Buds
 //
-//  Created by Collin Browse on 7/2/19.
+//  Created by Collin Browse on 11/13/19.
 //  Copyright © 2019 Collin Browse. All rights reserved.
 //
 
@@ -11,7 +11,9 @@ import Firebase
 import FirebaseDatabase
 import SVProgressHUD
 
-class NewActivityTableViewController: UITableViewController {
+class NewActivityEffectsViewController: UIViewController {
+    
+    @IBOutlet weak var tableView: UITableView!
     
     var ref: DatabaseReference!
     var detailsListArray: [String] = []
@@ -22,7 +24,10 @@ class NewActivityTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
+        // Set Up TableView
+        tableView.dataSource = self
+        tableView.delegate = self
+        
         // Set Up Navigation Bar
         navigationItem.title = dataToRetrieve?.capitalized
         
@@ -67,14 +72,14 @@ class NewActivityTableViewController: UITableViewController {
         SVProgressHUD.dismiss()
     }
 }
-extension NewActivityTableViewController {
+extension NewActivityEffectsViewController: UITableViewDelegate, UITableViewDataSource {
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return detailsListArray.count
     }
 
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath)
 
@@ -87,7 +92,7 @@ extension NewActivityTableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selecteditem = detailsListArray[indexPath.row]
         delegate?.setSelectedDetail(detail: dataToRetrieve!, value: selecteditem)
         self.navigationController?.popViewController(animated: true)
