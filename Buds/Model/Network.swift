@@ -317,7 +317,7 @@ class Network {
                 for item in responseJSON.dictionaryValue {
                     raceDict.append([item.key: item.value["race"].string!])
                 }
-                
+                UserDefaults.standard.set(raceDict, forKey: "raceDict")
                 complete(raceDict)
              } else {
                  print("Unable to Get Strain effects from the evanbusse api")

@@ -40,11 +40,18 @@ class NewActivityStrainViewController: UIViewController {
         
         
         SVProgressHUD.show()
-        Network.getRaceFromAPI { (raceDict) in
-            self.filteredEffectsDict = raceDict
-            self.effectsDict = raceDict
+        if UserDefaults.standard.value(forKey: "raceDict") != nil {
+            self.filteredEffectsDict = UserDefaults.standard.value(forKey: "raceDict") as! [[String : String]]
+            self.effectsDict = self.filteredEffectsDict
             self.tableView.reloadData()
             SVProgressHUD.dismiss()
+        } else {
+            Network.getRaceFromAPI { (raceDict) in
+                self.filteredEffectsDict = raceDict
+                self.effectsDict = raceDict
+                self.tableView.reloadData()
+                SVProgressHUD.dismiss()
+            }
         }
                 
     }
