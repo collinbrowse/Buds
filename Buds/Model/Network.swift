@@ -306,5 +306,26 @@ class Network {
      
     }
     
+    static func getRaceFromAPI(complete: @escaping([[String: String]]) ->  ())  {
+     
+         Alamofire.request("http://strainapi.evanbusse.com/3HT8al6/strains/search/all", method: .get).validate().responseJSON { (response) in
+            var raceDict = [[String: String]]()
+            if response.result.isSuccess {
+                                
+                let responseJSON = JSON(response.result.value!)
+
+                for item in responseJSON.dictionaryValue {
+                    raceDict.append([item.key: item.value["race"].string!])
+                }
+                
+                complete(raceDict)
+             } else {
+                 print("Unable to Get Strain effects from the evanbusse api")
+             }
+             
+         }
+     
+    }
+    
 
 }

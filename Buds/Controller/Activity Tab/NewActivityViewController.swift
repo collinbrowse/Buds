@@ -117,11 +117,6 @@ class NewActivityViewController: UIViewController {
                     destinationVC.dataToRetrieve = "rating"
                 }
             }
-            else if segue.identifier == "goToStrain" {
-                if let destinationVC = segue.destination as? NewActivityTableViewController {
-                    destinationVC.dataToRetrieve = "strain"
-                }
-            }
         }
         else if let nav = segue.destination as? NewActivityLocationController {
             nav.locationDelegate = self
@@ -129,6 +124,10 @@ class NewActivityViewController: UIViewController {
         else if let destinationVC = segue.destination as? NewActivityEffectsViewController {
             destinationVC.delegate = self
             destinationVC.dataToRetrieve = "effects"
+        }
+        else if let destinationVC = segue.destination as? NewActivityStrainViewController {
+            destinationVC.delegate = self
+            destinationVC.dataToRetrieve = "strain"
         }
     }
     
