@@ -15,120 +15,45 @@ struct Strain: Decodable {
     let effect: Effect
     let category: Category
     
-    enum Effect: Decodable {
+    enum Effect: String, Decodable, CaseIterable {
         
-        case relaxed
-        case dizzy
-        case hungry
-        case euphoric
-        case happy
-        case depression
-        case insomnia
-        case pain
-        case stress
-        case cramps
-        case creative
-        case energetic
-        case talkative
-        case nausea
-        case headache
-        case uplifted
-        case tingly
-        case paranoid
-        case sleepy
-        case fatigue
-        case headaches
-        case focused
-        case anxious
-        case giggle
-        case aroused
-        case inflammation
-        case spasticity
-        case seizures
+        case relaxed = "Relaxed"
+        case dizzy = "Dizzy"
+        case hungry = "Hungry"
+        case euphoric = "Euphoric"
+        case happy = "Happy"
+        case depression = "Depression"
+        case insomnia = "Insomnia"
+        case pain = "Pain"
+        case stress = "Stress"
+        case cramps = "Cramps"
+        case creative = "Creative"
+        case energetic = "Energetic"
+        case talkative = "Talkative"
+        case nausea = "Nausea"
+        case headache = "Headache"
+        case uplifted = "Uplifted"
+        case tingly = "Tingly"
+        case paranoid = "Paranoid"
+        case sleepy = "Sleepy"
+        case fatigue = "Fatigue"
+        case headaches = "Headaches"
+        case focused = "Focused"
+        case anxious = "Anxious"
+        case giggle = "Giggle"
+        case aroused = "Aroused"
+        case inflammation = "Inflammation"
+        case spasticity = "Spasticity"
+        case seizures = "Seizures"
     }
     
-    enum Category: Decodable {
-        case positive
-        case negative
-        case all
+    enum Category: String, Decodable, CaseIterable {
+        case all = "All"
+        case positive = "Positive"
+        case negative = "Negative"
+        case medical = "Medical"
     }
 }
-//extension Strain.Category: CaseIterable {}
-extension Strain.Effect: CaseIterable {}
-
-extension Strain.Effect: RawRepresentable {
-    
-    var rawValue: RawValue {
-        switch self {
-          case .relaxed: return "Relaxed"
-          case .dizzy: return "Dizzy"
-          case .hungry: return "Hungry"
-          case .happy: return "Happy"
-        default: return "Effect"
-        }
-    }
-    
-    
-    typealias RawValue = String
-    
-    init?(rawValue: RawValue) {
-        switch rawValue {
-            case "Relaxed": self = .relaxed
-            case "Dizzy": self = .dizzy
-            case "Hungry": self = .hungry
-            case "Euphoric": self = .euphoric
-            case "Happy": self = .happy
-            case "Depression": self = .depression
-            case "Insomnia": self = .insomnia
-            case "Pain": self = .pain
-            case "Stress": self = .stress
-            case "Cramps": self = .cramps
-            case "Creative": self = .creative
-            case "Energetic": self = .energetic
-            case "Talkative": self = .talkative
-            case "Nausea": self = .nausea
-            case "Headache": self = .headache
-            case "Uplifted": self = .uplifted
-            case "Tingly": self = .tingly
-            case "Paranoid": self = .paranoid
-            case "Sleepy": self = .sleepy
-            case "Fatigue": self = .fatigue
-            case "Headaches": self = .headaches
-            case "Focused": self = .focused
-            case "Anxious": self = .anxious
-            case "Giggly": self = .giggle
-            case "Aroused": self = .aroused
-            case "Inflammation": self = .inflammation
-            case "Spasticity": self = .spasticity
-            case "Seizures": self = .seizures
-        default: return nil
-        }
-    }
-}
-
-extension Strain.Category: RawRepresentable {
-
-    var rawValue: RawValue {
-        switch self {
-          case .positive: return "Positive"
-          case .negative: return "Negative"
-          case .all: return "All"
-        default: return "Category"
-        }
-    }
-
-    typealias RawValue = String
-
-    init?(rawValue: RawValue) {
-        switch rawValue {
-        case "Positive": self = .positive
-        case "Negative": self = .negative
-        case "All": self = .all
-        default: return nil
-        }
-    }
-}
-
 
 extension Strain {
   static func strains() -> [Strain] {
@@ -149,6 +74,109 @@ extension Strain {
     }
   }
 }
+
+
+extension Strain {
+    static func categories() -> [Category] {
+        var array = [Category]()
+        for category in Category.allCases {
+            array.append(category)
+        }
+        return array
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//extension Strain.Effect: RawRepresentable {
+//
+//    var rawValue: RawValue {
+//        switch self {
+//          case .relaxed: return "Relaxed"
+//          case .dizzy: return "Dizzy"
+//          case .hungry: return "Hungry"
+//          case .happy: return "Happy"
+//        default: return "Effect"
+//        }
+//    }
+//
+//
+//    typealias RawValue = String
+//
+//    init?(rawValue: RawValue) {
+//        switch rawValue {
+//            case "Relaxed": self = .relaxed
+//            case "Dizzy": self = .dizzy
+//            case "Hungry": self = .hungry
+//            case "Euphoric": self = .euphoric
+//            case "Happy": self = .happy
+//            case "Depression": self = .depression
+//            case "Insomnia": self = .insomnia
+//            case "Pain": self = .pain
+//            case "Stress": self = .stress
+//            case "Cramps": self = .cramps
+//            case "Creative": self = .creative
+//            case "Energetic": self = .energetic
+//            case "Talkative": self = .talkative
+//            case "Nausea": self = .nausea
+//            case "Headache": self = .headache
+//            case "Uplifted": self = .uplifted
+//            case "Tingly": self = .tingly
+//            case "Paranoid": self = .paranoid
+//            case "Sleepy": self = .sleepy
+//            case "Fatigue": self = .fatigue
+//            case "Headaches": self = .headaches
+//            case "Focused": self = .focused
+//            case "Anxious": self = .anxious
+//            case "Giggly": self = .giggle
+//            case "Aroused": self = .aroused
+//            case "Inflammation": self = .inflammation
+//            case "Spasticity": self = .spasticity
+//            case "Seizures": self = .seizures
+//        default: return nil
+//        }
+//    }
+//}
+
+//extension Strain.Category: RawRepresentable {
+//
+//    var rawValue: RawValue {
+//        switch self {
+//          case .positive: return "Positive"
+//          case .negative: return "Negative"
+//          case .all: return "All"
+//        default: return "Category"
+//        }
+//    }
+//
+//    typealias RawValue = String
+//
+//    init?(rawValue: RawValue) {
+//        switch rawValue {
+//        case "Positive": self = .positive
+//        case "Negative": self = .negative
+//        case "All": self = .all
+//        default: return nil
+//        }
+//    }
+//}
+
+
 
 //extension Category {
 //    static func categories() -> [Category] {

@@ -30,6 +30,8 @@
         <scene sceneID="Ojx-QI-lsq">
             <objects>
                 <navigationController id="5Q1-TX-MFm" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="search" id="QpT-vM-1hU"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="D02-AL-32g">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -51,7 +53,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="wL6-Ni-Ikz">
-                                <rect key="frame" x="0.0" y="88" width="224" height="76"/>
+                                <rect key="frame" x="0.0" y="88" width="299" height="76"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="wRY-DR-gQv"/>
@@ -60,6 +62,7 @@
                                     <segment title="All"/>
                                     <segment title="Positive"/>
                                     <segment title="Negative"/>
+                                    <segment title=""/>
                                 </segments>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -70,7 +73,7 @@
                                 <rect key="frame" x="0.0" y="163" width="414" height="733"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tableViewCell" textLabel="dr7-Nt-aXB" detailTextLabel="N1C-v3-gNs" style="IBUITableViewCellStyleSubtitle" id="JNO-hW-GyE">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="searchTableViewCell" textLabel="dr7-Nt-aXB" detailTextLabel="N1C-v3-gNs" style="IBUITableViewCellStyleSubtitle" id="JNO-hW-GyE">
                                         <rect key="frame" x="0.0" y="28" width="414" height="55.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JNO-hW-GyE" id="U5C-vg-XMK">
@@ -110,8 +113,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="CoI-XR-nc4"/>
                     <connections>
+                        <outlet property="searchTableView" destination="be1-PO-aQh" id="78D-dX-slK"/>
                         <outlet property="segmentedControl" destination="wL6-Ni-Ikz" id="ap9-sY-acm"/>
-                        <outlet property="tableView" destination="be1-PO-aQh" id="78D-dX-slK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jyv-kk-SmP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -162,9 +165,6 @@
                         <viewLayoutGuide key="safeArea" id="3O2-Xc-wDt"/>
                     </view>
                     <navigationItem key="navigationItem" id="DfP-9P-9dG"/>
-                    <connections>
-                        <outlet property="searchTableView" destination="huZ-gq-kMj" id="CM1-od-qZ5"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0vd-jw-Guw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
