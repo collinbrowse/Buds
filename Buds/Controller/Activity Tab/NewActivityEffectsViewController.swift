@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import SVProgressHUD
+import Alamofire
+import SwiftyJSON
 
 class NewActivityEffectsViewController: UIViewController {
     
@@ -41,9 +43,9 @@ class NewActivityEffectsViewController: UIViewController {
         // Set Up Navigation Bar
         navigationItem.title = dataToRetrieve?.capitalized
         self.segmentedControl.selectedSegmentIndex = 0
-        
+        SVProgressHUD.show()
         let ref = Database.database().reference()
-        
+        self.getEffectsFromAPI()
         // Get all of the information from Firebase in ViewDidLoad
         // Small amount of information should be negligible on performance
         if dataToRetrieve != nil {
@@ -57,13 +59,14 @@ class NewActivityEffectsViewController: UIViewController {
                             self.detailsListArray.append(child.key)
                         } else if self.dataToRetrieve == "effects" {
                             self.detailsListArray.append(child.key)
-                            self.effectsDict.append([child.key : (child.value as? String)!])
+                            //self.effectsDict.append([child.key : (child.value as? String)!])
                         }
                         else {
                             self.detailsListArray.append(child.value as! String)
                         }
                     }
-                    self.filteredEffectsDict = self.effectsDict
+                    //self.filteredEffectsDict = self.effectsDict
+                    
                     self.tableView.reloadData()
                 } else {
                     self.showAlert(alertMessage: "Unable to access Smoking Styles")
@@ -101,6 +104,8 @@ class NewActivityEffectsViewController: UIViewController {
         SVProgressHUD.dismiss()
     }
 }
+
+
 extension NewActivityEffectsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -114,7 +119,6 @@ extension NewActivityEffectsViewController: UITableViewDelegate, UITableViewData
 
         // Configure the cell...
         if filteredEffectsDict.count > 0 {
-            //cell.textLabel?.text = "\(detailsListArray[indexPath.row])"
             cell.textLabel?.text = filteredEffectsDict[indexPath.row].keys.first
             cell.detailTextLabel?.text = filteredEffectsDict[indexPath.row].values.first
         }
@@ -129,5 +133,35 @@ extension NewActivityEffectsViewController: UITableViewDelegate, UITableViewData
         
         
     }
+    
+}
+
+extension NewActivityEffectsViewController {
+    
+    
+    func getEffectsFromAPI() {
+        
+        Alamofire.request("http://strainapi.evanbusse.com/3HT8al6/searchdata/effects", method: .get).validate().responseJSON { (response) in
+            
+            if response.result.isSuccess {
+                let responseJSON = JSON(response.result.value!)
+                print(responseJSON)
+                for item in responseJSON.arrayValue {
+                    if item["type"].string != nil && item["effect"].string != nil {
+                        self.effectsDict.append([item["effect"].string! : item["type"].string!])
+                    }
+                }
+                self.filteredEffectsDict = self.effectsDict
+                self.tableView.reloadData()
+                SVProgressHUD.dismiss()
+            } else {
+                print("Unable to Get Strain effects from the evanbusse api")
+            }
+            
+        }
+        
+        
+    }
+    
     
 }
