@@ -67,8 +67,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         // Set up the search Controller
         searchController.searchResultsUpdater = self
-        
-        
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.delegate = self
@@ -149,7 +147,7 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
                         self.segmentedControl.isHidden = true
                         self.view.layoutIfNeeded()
         }, completion: nil)
-        
+        print(-self.segmentedControl.frame.size.height)
         
         return true
     }
@@ -161,6 +159,7 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
         } else {
             topBarHeight = (self.navigationController?.navigationBar.frame.size.height)!
         }
+        
         UIView.animate(withDuration: 1,
                        delay: 0,
                        options: .curveEaseIn,

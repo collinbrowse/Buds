@@ -16,9 +16,10 @@ import SwiftyJSON
 class NewActivityEffectsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
     var ref: DatabaseReference!
+    var searchController = UISearchController(searchResultsController: nil)
     var effectsDict = [[String: String]]()
     lazy var filteredEffectsDict = effectsDict
     var dataToRetrieve: String?
@@ -30,6 +31,14 @@ class NewActivityEffectsViewController: UIViewController {
         }
         return array
     }
+    var isSearchBarEmpty: Bool {
+        let isEmpty = searchController.searchBar.text?.isEmpty ?? true
+        return isEmpty
+    }
+    var isFiltering: Bool {
+        let segmentedControlIsFiltering = segmentedControl.selectedSegmentIndex != 0
+        return searchController.isActive || segmentedControlIsFiltering
+    }
     
     
     override func viewDidLoad() {
@@ -38,10 +47,23 @@ class NewActivityEffectsViewController: UIViewController {
         // Set Up TableView
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.tableHeaderView = searchController.searchBar
+        tableView.contentOffset = CGPoint(x: 0, y: searchController.searchBar.frame.size.height);
+        
+        // Set up the search Controller
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = "Search Effects..."
+        definesPresentationContext = true
         
         // Set Up Navigation Bar
         navigationItem.title = dataToRetrieve?.capitalized
         self.segmentedControl.selectedSegmentIndex = 0
+        
+        // Set up the Segmented Control
+        segmentedControl.selectedSegmentIndex = 0
         
         SVProgressHUD.show()
         if UserDefaults.standard.value(forKey: "effects") != nil {
@@ -63,18 +85,22 @@ class NewActivityEffectsViewController: UIViewController {
 
     @IBAction func segmentedControlDidChange(_ sender: Any) {
                 
-        filterContent(searchCategory: categories[segmentedControl.selectedSegmentIndex])
+        filterContent(searchText: searchController.searchBar.text!, searchCategory: categories[segmentedControl.selectedSegmentIndex])
     }
     
-    func filterContent(searchCategory: String) {
+    func filterContent(searchText: String, searchCategory: String? = nil) {
         
         // Filter Strains using a segmented Control
         filteredEffectsDict = effectsDict.filter({ (dict: Dictionary) -> Bool in
             
             let category = dict.values.first
-            let doesSegmentedControlMatch = category?.lowercased() == searchCategory.lowercased() || searchCategory.lowercased() == Strain.Category.all.rawValue.lowercased()
-            
-            return doesSegmentedControlMatch
+            let strain = dict.keys.first
+            let doesSegmentedControlMatch = category?.lowercased() == searchCategory?.lowercased() || searchCategory?.lowercased() == Strain.Category.all.rawValue.lowercased()
+            if isSearchBarEmpty {
+                return doesSegmentedControlMatch
+            } else {
+                return doesSegmentedControlMatch && strain?.lowercased().contains(searchText.lowercased()) ?? false
+            }
         })
         
         tableView.reloadData()
@@ -93,7 +119,11 @@ class NewActivityEffectsViewController: UIViewController {
 extension NewActivityEffectsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredEffectsDict.count
+        if isFiltering {
+            return filteredEffectsDict.count
+        } else {
+            return effectsDict.count
+        }
     }
 
     
@@ -102,9 +132,12 @@ extension NewActivityEffectsViewController: UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath)
 
         // Configure the cell...
-        if filteredEffectsDict.count > 0 {
+        if isFiltering {
             cell.textLabel?.text = filteredEffectsDict[indexPath.row].keys.first
             cell.detailTextLabel?.text = filteredEffectsDict[indexPath.row].values.first
+        } else {
+            cell.textLabel?.text = effectsDict[indexPath.row].keys.first
+            cell.detailTextLabel?.text = effectsDict[indexPath.row].values.first
         }
 
         return cell
@@ -112,11 +145,65 @@ extension NewActivityEffectsViewController: UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        let selecteditem = Array(filteredEffectsDict[indexPath.row])[0].key
-        delegate?.setSelectedDetail(detail: dataToRetrieve!, value: selecteditem)
+        var selectedItem: String
+        if isFiltering {
+            selectedItem = Array(filteredEffectsDict[indexPath.row])[0].key
+        } else {
+            selectedItem = Array(effectsDict[indexPath.row])[0].key
+        }
+        delegate?.setSelectedDetail(detail: dataToRetrieve!, value: selectedItem)
         self.navigationController?.popViewController(animated: true)
         
         
+    }
+    
+}
+
+
+// Search Bar Methods
+extension NewActivityEffectsViewController: UISearchResultsUpdating, UISearchBarDelegate {
+    
+    /// Allows you to respond to changes in a searchController
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        let searchBar = searchController.searchBar
+        let category = categories[segmentedControl.selectedSegmentIndex]
+        filterContent(searchText: searchBar.text!, searchCategory: category)
+        
+    }
+
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        
+        UIView.animate(withDuration: 1,
+                       delay: 0,
+                       options: .curveEaseOut,
+                       animations: {
+                        self.segmentedControl.frame.origin.y = -self.segmentedControl.frame.size.height
+                        self.tableView.frame.origin.y -= self.segmentedControl.frame.size.height
+                        self.segmentedControl.isHidden = true
+                        self.view.layoutIfNeeded()
+        }, completion: nil)
+        print(-self.segmentedControl.frame.size.height)
+        return true
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        var topBarHeight = CGFloat(0.0)
+        if #available(iOS 13.0, *) {
+             topBarHeight = (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0) +
+                (self.navigationController?.navigationBar.frame.height ?? 0.0)
+        } else {
+            topBarHeight = (self.navigationController?.navigationBar.frame.size.height)!
+        }
+        
+        UIView.animate(withDuration: 1,
+                       delay: 0,
+                       options: .curveEaseIn,
+                       animations: {
+                        self.segmentedControl.frame.origin.y = topBarHeight
+                        self.tableView.frame.origin.y += 150
+                        self.segmentedControl.isHidden = false
+                        self.view.layoutIfNeeded()
+        }, completion: nil)
     }
     
 }
