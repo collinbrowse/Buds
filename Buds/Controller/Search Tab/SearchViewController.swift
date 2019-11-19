@@ -142,7 +142,7 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
                        delay: 0,
                        options: .curveEaseOut,
                        animations: {
-                        self.segmentedControl.frame.origin.y = -self.segmentedControl.frame.size.height
+                        //self.segmentedControl.frame.origin.y -= self.segmentedControl.frame.size.height
                         self.searchTableView.frame.origin.y -= 150
                         self.segmentedControl.isHidden = true
                         self.view.layoutIfNeeded()

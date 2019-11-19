@@ -56,7 +56,7 @@ class NewActivityEffectsViewController: UIViewController {
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Search Effects..."
-        definesPresentationContext = true
+        //definesPresentationContext = true
         
         // Set Up Navigation Bar
         navigationItem.title = dataToRetrieve?.capitalized
@@ -174,33 +174,25 @@ extension NewActivityEffectsViewController: UISearchResultsUpdating, UISearchBar
 
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         
-        UIView.animate(withDuration: 1,
+        UIView.animate(withDuration: 0.5,
                        delay: 0,
-                       options: .curveEaseOut,
+                       options: .curveEaseIn,
                        animations: {
                         self.segmentedControl.frame.origin.y = -self.segmentedControl.frame.size.height
                         self.tableView.frame.origin.y -= self.segmentedControl.frame.size.height
                         self.segmentedControl.isHidden = true
                         self.view.layoutIfNeeded()
         }, completion: nil)
-        print(-self.segmentedControl.frame.size.height)
         return true
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        var topBarHeight = CGFloat(0.0)
-        if #available(iOS 13.0, *) {
-             topBarHeight = (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0) +
-                (self.navigationController?.navigationBar.frame.height ?? 0.0)
-        } else {
-            topBarHeight = (self.navigationController?.navigationBar.frame.size.height)!
-        }
-        
-        UIView.animate(withDuration: 1,
+   
+        UIView.animate(withDuration: 0.5,
                        delay: 0,
                        options: .curveEaseIn,
                        animations: {
-                        self.segmentedControl.frame.origin.y = topBarHeight
-                        self.tableView.frame.origin.y += 150
+                        self.segmentedControl.frame.origin.y = 0
+                        self.tableView.frame.origin.y = self.segmentedControl.frame.size.height
                         self.segmentedControl.isHidden = false
                         self.view.layoutIfNeeded()
         }, completion: nil)
