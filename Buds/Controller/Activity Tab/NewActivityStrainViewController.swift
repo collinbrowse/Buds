@@ -20,11 +20,24 @@ class NewActivityStrainViewController: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     var ref: DatabaseReference!
+    var searchController = UISearchController(searchResultsController: nil)
     var raceDict = [[String: String]]()
     lazy var filteredRaceDict = raceDict
     var dataToRetrieve: String?
     var delegate: ActivityDetailsDelegate?
-    var race = ["All", "Sativa", "Indica", "Hybrid"]
+    var races: [String] {
+        return Strain.races().map { (race: Strain.Race) -> String in
+            return race.rawValue
+        }
+    }
+    var isSeearchBarEmpty: Bool {
+         return searchController.searchBar.text?.isEmpty ?? true
+    }
+    var isFiltering: Bool {
+        let segmentedControlIsFiltering = segmentedControl.selectedSegmentIndex != 0
+        return searchController.isActive || segmentedControlIsFiltering
+    }
+        
     
     
     override func viewDidLoad() {
@@ -33,11 +46,23 @@ class NewActivityStrainViewController: UIViewController {
         // Set Up TableView
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.tableHeaderView = searchController.searchBar
+        tableView.contentOffset = CGPoint(x: 0, y: searchController.searchBar.frame.size.height)
+        
+        // Set up the search controller
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = "Search Strains..."
+        extendedLayoutIncludesOpaqueBars = true
+        definesPresentationContext = true
         
         // Set Up Navigation Bar
         navigationItem.title = dataToRetrieve?.capitalized
-        self.segmentedControl.selectedSegmentIndex = 0
         
+        // Set up the Segmented Control
+        segmentedControl.selectedSegmentIndex = 0
         
         SVProgressHUD.show()
         if UserDefaults.standard.value(forKey: "raceDict") != nil {
@@ -55,21 +80,32 @@ class NewActivityStrainViewController: UIViewController {
         }
                 
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        for i in 0...races.count-1 {
+            segmentedControl.setTitle(races[i], forSegmentAt: i)
+        }
+    }
 
     @IBAction func segmentedControlDidChange(_ sender: Any) {
                 
-        filterContent(searchCategory: race[segmentedControl.selectedSegmentIndex])
+        filterContent(searchText: searchController.searchBar.text!, searchRace: races[segmentedControl.selectedSegmentIndex])
     }
     
-    func filterContent(searchCategory: String) {
+    func filterContent(searchText: String, searchRace: String? = nil) {
         
         // Filter Strains using a segmented Control
         filteredRaceDict = raceDict.filter({ (dict: Dictionary) -> Bool in
             
-            let category = dict.values.first
-            let doesSegmentedControlMatch = category?.lowercased() == searchCategory.lowercased() || searchCategory.lowercased() == Strain.Category.all.rawValue.lowercased()
+            let race = dict.values.first
+            let strain = dict.keys.first
+            let doesSegmentedControlMatch = race?.lowercased() == searchRace?.lowercased() || searchRace?.lowercased() == Strain.Category.all.rawValue.lowercased()
+            if isSeearchBarEmpty {
+                return doesSegmentedControlMatch
+            } else {
+                return doesSegmentedControlMatch && strain?.lowercased().contains(searchText.lowercased()) ?? false
+            }
             
-            return doesSegmentedControlMatch
         })
         
         tableView.reloadData()
@@ -82,13 +118,22 @@ class NewActivityStrainViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
         SVProgressHUD.dismiss()
     }
+    
+    func dismissSearchController() {
+        self.searchController.isActive = false
+        view.layoutIfNeeded()
+    }
 }
 
 
 extension NewActivityStrainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredRaceDict.count
+        if isFiltering {
+            return filteredRaceDict.count
+        } else {
+            return raceDict.count
+        }
     }
 
     
@@ -97,22 +142,78 @@ extension NewActivityStrainViewController: UITableViewDelegate, UITableViewDataS
         let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath)
 
         // Configure the cell...
-        if filteredRaceDict.count > 0 {
+        if isFiltering {
             cell.textLabel?.text = filteredRaceDict[indexPath.row].keys.first
             cell.detailTextLabel?.text = filteredRaceDict[indexPath.row].values.first
+        } else {
+            cell.textLabel?.text = raceDict[indexPath.row].keys.first
+            cell.detailTextLabel?.text = raceDict[indexPath.row].values.first
         }
 
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        let selecteditem = Array(filteredRaceDict[indexPath.row])[0].key
-        delegate?.setSelectedDetail(detail: dataToRetrieve!, value: selecteditem)
+        
+        var selectedItem: String
+        
+        if isFiltering {
+            selectedItem = Array(filteredRaceDict[indexPath.row])[0].key
+        } else {
+            selectedItem = Array(raceDict[indexPath.row])[0].key
+        }
+        dismissSearchController()
+        self.searchController.searchBar.resignFirstResponder()
+        self.searchController.resignFirstResponder()
+        delegate?.setSelectedDetail(detail: dataToRetrieve!, value: selectedItem)
         self.navigationController?.popViewController(animated: true)
         
         
     }
+    
+}
+
+extension NewActivityStrainViewController: UISearchResultsUpdating, UISearchBarDelegate {
+    
+
+    /// Allows you to respond to changes in a searchController
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        let currentRace = races[segmentedControl.selectedSegmentIndex]
+        filterContent(searchText: searchBar.text!, searchRace: currentRace)
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        
+        UIView.animate(withDuration: 0.5,
+                       delay: 0,
+                       options: .curveEaseIn,
+                       animations: {
+                        self.segmentedControl.frame.origin.y = -self.segmentedControl.frame.size.height
+                        self.tableView.frame.origin.y -= self.segmentedControl.frame.size.height
+                        //self.tableView.frame.size.height += self.segmentedControl.frame.size.height
+                        self.segmentedControl.isHidden = true
+                        self.view.layoutIfNeeded()
+                        
+        }, completion: nil)
+        return true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        UIView.animate(withDuration: 0.5,
+                       delay: 0,
+                       options: .curveEaseIn,
+                       animations: {
+                        self.segmentedControl.frame.origin.y = 0
+                        self.tableView.frame.origin.y = self.segmentedControl.frame.size.height
+                        self.tableView.frame.size.height -= self.segmentedControl.frame.size.height
+                        self.segmentedControl.isHidden = false
+                        self.view.layoutIfNeeded()
+        }, completion: nil)
+    }
+    
+    
+    
     
 }
 

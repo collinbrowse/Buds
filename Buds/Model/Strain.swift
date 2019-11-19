@@ -53,6 +53,13 @@ struct Strain: Decodable {
         case negative = "Negative"
         case medical = "Medical"
     }
+    
+    enum Race: String, Decodable, CaseIterable {
+        case all = "All"
+        case indica = "Indica"
+        case sativa = "Sativa"
+        case hybrid = "Hybrid"
+    }
 }
 
 extension Strain {
@@ -81,6 +88,13 @@ extension Strain {
         var array = [Category]()
         for category in Category.allCases {
             array.append(category)
+        }
+        return array
+    }
+    static func races() -> [Race] {
+        var array = [Race]()
+        for race in Race.allCases {
+            array.append(race)
         }
         return array
     }

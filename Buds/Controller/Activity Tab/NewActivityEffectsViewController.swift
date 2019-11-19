@@ -56,11 +56,11 @@ class NewActivityEffectsViewController: UIViewController {
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Search Effects..."
-        //definesPresentationContext = true
+        extendedLayoutIncludesOpaqueBars = true
+        definesPresentationContext = true
         
         // Set Up Navigation Bar
         navigationItem.title = dataToRetrieve?.capitalized
-        self.segmentedControl.selectedSegmentIndex = 0
         
         // Set up the Segmented Control
         segmentedControl.selectedSegmentIndex = 0

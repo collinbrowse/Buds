@@ -477,7 +477,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qdk-3v-pdF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3022" y="856"/>
+            <point key="canvasLocation" x="2352" y="856"/>
         </scene>
     </scenes>
     <color key="tintColor" red="0.0" green="0.28940463066101074" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
