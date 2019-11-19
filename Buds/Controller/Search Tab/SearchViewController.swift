@@ -138,13 +138,12 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
 
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         
-        UIView.animate(withDuration: 1,
+        UIView.animate(withDuration: 0.5,
                        delay: 0,
-                       options: .curveEaseOut,
+                       options: .curveEaseIn,
                        animations: {
-                        //self.segmentedControl.frame.origin.y -= self.segmentedControl.frame.size.height
-                        self.searchTableView.frame.origin.y -= 150
-                        self.segmentedControl.isHidden = true
+                        self.segmentedControl.frame.origin.y = -self.segmentedControl.frame.size.height
+                        self.searchTableView.frame.origin.y -= self.segmentedControl.frame.size.height
                         self.view.layoutIfNeeded()
         }, completion: nil)
         print(-self.segmentedControl.frame.size.height)
@@ -160,13 +159,12 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
             topBarHeight = (self.navigationController?.navigationBar.frame.size.height)!
         }
         
-        UIView.animate(withDuration: 1,
+        UIView.animate(withDuration: 0.5,
                        delay: 0,
                        options: .curveEaseIn,
                        animations: {
                         self.segmentedControl.frame.origin.y = topBarHeight
-                        self.searchTableView.frame.origin.y += 150
-                        self.segmentedControl.isHidden = false
+                        self.searchTableView.frame.origin.y = self.segmentedControl.frame.size.height + topBarHeight
                         self.view.layoutIfNeeded()
         }, completion: nil)
     }

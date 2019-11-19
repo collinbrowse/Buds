@@ -191,10 +191,7 @@ extension NewActivityStrainViewController: UISearchResultsUpdating, UISearchBarD
                        animations: {
                         self.segmentedControl.frame.origin.y = -self.segmentedControl.frame.size.height
                         self.tableView.frame.origin.y -= self.segmentedControl.frame.size.height
-                        //self.tableView.frame.size.height += self.segmentedControl.frame.size.height
-                        self.segmentedControl.isHidden = true
                         self.view.layoutIfNeeded()
-                        
         }, completion: nil)
         return true
     }
@@ -207,7 +204,6 @@ extension NewActivityStrainViewController: UISearchResultsUpdating, UISearchBarD
                         self.segmentedControl.frame.origin.y = 0
                         self.tableView.frame.origin.y = self.segmentedControl.frame.size.height
                         self.tableView.frame.size.height -= self.segmentedControl.frame.size.height
-                        self.segmentedControl.isHidden = false
                         self.view.layoutIfNeeded()
         }, completion: nil)
     }
