@@ -15,7 +15,6 @@ class NewActivityTableViewController: UITableViewController {
     
     var ref: DatabaseReference!
     var detailsListArray: [String] = []
-    var effectsDict = [String: String]()
     var dataToRetrieve: String?
     var delegate: ActivityDetailsDelegate?
     
@@ -31,30 +30,19 @@ class NewActivityTableViewController: UITableViewController {
         
         ref = Database.database().reference()
         
-        // Get all of the information from Firebase in ViewDidLoad
-        // Small amount of information should be negligible on performance
+        // Get the list of values from Firebase
         if dataToRetrieve != nil {
-            ref.child(dataToRetrieve!).observeSingleEvent(of: .value, with: { (snapshot) in
+            SVProgressHUD.show()
+            
+            Network.getFirebaseInfo(dataToRetrieve!) { (detailsArray) in
                 
-                if snapshot.exists() {
-
-                    for child in snapshot.children.allObjects as! [DataSnapshot] {
-
-                        if self.dataToRetrieve == "strain" {
-                            self.detailsListArray.append(child.key)
-                        } else if self.dataToRetrieve == "effects" {
-                            self.detailsListArray.append(child.key)
-                            self.effectsDict[child.key] = child.value as? String
-                        }
-                        else {
-                            self.detailsListArray.append(child.value as! String)
-                        }
-                    }
+                if let array = detailsArray {
+                    self.detailsListArray = array
                     self.tableView.reloadData()
-                } else {
-                    self.showAlert(alertMessage: "Unable to access Smoking Styles")
                 }
-            })
+                SVProgressHUD.dismiss()
+            }
+            
         }
     }
 
@@ -81,7 +69,7 @@ extension NewActivityTableViewController {
         // Configure the cell...
         if detailsListArray.count > 0 {
             cell.textLabel?.text = "\(detailsListArray[indexPath.row])"
-            cell.detailTextLabel?.text = effectsDict[detailsListArray[indexPath.row]]
+            //cell.detailTextLabel?.text = effectsDict[detailsListArray[indexPath.row]]
         }
 
         return cell

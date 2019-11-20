@@ -209,6 +209,25 @@ class Network {
         }
     }
     
+    /// Returns a list of possible values from Firebase database. Currently designed for "smoking_styles" or "rating" as dataToRetrieve
+    static func getFirebaseInfo(_ dataToRetrieve: String, complete: @escaping([String]?) -> ()) {
+        
+        var detailsListArray = [String]()
+        ref.child(dataToRetrieve).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if snapshot.exists() {
+                
+                for child in snapshot.children.allObjects as! [DataSnapshot] {
+                    detailsListArray.append(child.key)
+                }
+                
+                complete(detailsListArray)
+            } else {
+                complete([])
+            }
+        })
+    }
+    
    
     ///populateStrainInfo
     // This function will first call the Strain API to get all the effects that cannabis has
