@@ -26,8 +26,6 @@ struct StrainModel {
 struct StrainJSON: Decodable {
     
     var strain: [String: StrainDetails]
-    var name: String
-    var strainDetails: StrainDetails
     
     struct StrainDetails: Decodable {
         
@@ -60,34 +58,11 @@ struct StrainJSON: Decodable {
 
         let container = try decoder.container(keyedBy: NameKey.self)
         
-        name = ""
-        strainDetails = StrainDetails()
         strain = [String: StrainDetails]()
         for key in container.allKeys {
-                    
             if let strainDetails = try? container.decode(StrainDetails.self, forKey: key) {
                 strain[key.stringValue] = strainDetails
-                self.name = key.stringValue
-                self.strainDetails = strainDetails
-                
             }
         }
     }
-    
 }
-
-
-//struct Strain {
-//
-//    var name: String
-//    var id: Int
-//    var race: String
-//    var flavors: [String]
-//    var effects: Categories
-//
-//    struct Categories {
-//        var positive: [String]
-//        var negative: [String]
-//        var medical: [String]
-//    }
-//}

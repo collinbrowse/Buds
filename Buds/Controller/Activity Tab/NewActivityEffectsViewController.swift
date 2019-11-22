@@ -26,7 +26,7 @@ class NewActivityEffectsViewController: UIViewController {
     var delegate: ActivityDetailsDelegate?
     var categories: [String] {
         var array = [String]()
-        for category in Strain.categories() {
+        for category in Constants.categories() {
             array.append(category.rawValue)
         }
         return array
@@ -95,7 +95,7 @@ class NewActivityEffectsViewController: UIViewController {
             
             let category = dict.values.first
             let strain = dict.keys.first
-            let doesSegmentedControlMatch = category?.lowercased() == searchCategory?.lowercased() || searchCategory?.lowercased() == Strain.Category.all.rawValue.lowercased()
+            let doesSegmentedControlMatch = category?.lowercased() == searchCategory?.lowercased() || searchCategory?.lowercased() == Constants.Category.all.rawValue.lowercased()
             if isSearchBarEmpty {
                 return doesSegmentedControlMatch
             } else {

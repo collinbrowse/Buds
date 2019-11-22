@@ -69,7 +69,6 @@
 		BE58381D237CE4F9002160B8 /* NewActivityEffectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE58381C237CE4F9002160B8 /* NewActivityEffectsViewController.swift */; };
 		BE604D77237369580026ECDA /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE604D76237369580026ECDA /* SearchViewController.swift */; };
 		BE604D7923747E3C0026ECDA /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE604D7823747E3C0026ECDA /* TabBar.storyboard */; };
-		BE604D7B2374AB0C0026ECDA /* Strain.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE604D7A2374AB0C0026ECDA /* Strain.swift */; };
 		BE604D7F2374AEC50026ECDA /* strains.json in Resources */ = {isa = PBXBuildFile; fileRef = BE604D7E2374AEC50026ECDA /* strains.json */; };
 		BE6726072386129600261DB5 /* StrainJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6726062386129600261DB5 /* StrainJSON.swift */; };
 		BE747FB722CA798300D071FD /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE747FB622CA798300D071FD /* Profile.storyboard */; };
@@ -170,7 +169,6 @@
 		BE58381C237CE4F9002160B8 /* NewActivityEffectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityEffectsViewController.swift; sourceTree = "<group>"; };
 		BE604D76237369580026ECDA /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		BE604D7823747E3C0026ECDA /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
-		BE604D7A2374AB0C0026ECDA /* Strain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strain.swift; sourceTree = "<group>"; };
 		BE604D7E2374AEC50026ECDA /* strains.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = strains.json; sourceTree = "<group>"; };
 		BE6726062386129600261DB5 /* StrainJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrainJSON.swift; sourceTree = "<group>"; };
 		BE747FB622CA798300D071FD /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -447,7 +445,6 @@
 				BE0A065722FB6F5F00C41B53 /* ModelController.swift */,
 				BEFB6FF7235B6151008805E5 /* Switcher.swift */,
 				BE87F793236768DD00A31AC8 /* Constants.swift */,
-				BE604D7A2374AB0C0026ECDA /* Strain.swift */,
 				BE6726062386129600261DB5 /* StrainJSON.swift */,
 			);
 			path = Model;
@@ -740,7 +737,6 @@
 				BE747FC322CBD54B00D071FD /* NewActivityTableViewController.swift in Sources */,
 				BE41467F22BA9E180009A738 /* Location.swift in Sources */,
 				BE41467922BA918A0009A738 /* ActivityModel.swift in Sources */,
-				BE604D7B2374AB0C0026ECDA /* Strain.swift in Sources */,
 				BE87F794236768DD00A31AC8 /* Constants.swift in Sources */,
 				BE747FC622CD1E9E00D071FD /* ActivityDetailsDelegate.swift in Sources */,
 				BE41467522BA91670009A738 /* Person.swift in Sources */,

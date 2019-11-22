@@ -26,7 +26,7 @@ class NewActivityStrainViewController: UIViewController {
     var dataToRetrieve: String?
     var delegate: ActivityDetailsDelegate?
     var races: [String] {
-        return Strain.races().map { (race: Strain.Race) -> String in
+        return Constants.races().map { (race: Constants.Race) -> String in
             return race.rawValue
         }
     }
@@ -99,7 +99,7 @@ class NewActivityStrainViewController: UIViewController {
             
             let race = dict.values.first
             let strain = dict.keys.first
-            let doesSegmentedControlMatch = race?.lowercased() == searchRace?.lowercased() || searchRace?.lowercased() == Strain.Category.all.rawValue.lowercased()
+            let doesSegmentedControlMatch = race?.lowercased() == searchRace?.lowercased() || searchRace?.lowercased() == Constants.Category.all.rawValue.lowercased()
             if isSeearchBarEmpty {
                 return doesSegmentedControlMatch
             } else {

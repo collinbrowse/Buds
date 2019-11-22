@@ -29,14 +29,14 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     var filteredStrains = [StrainModel]()
     var categories: [String] {
         var array = [String]()
-        for category in Strain.categories() {
+        for category in Constants.categories() {
             array.append(category.rawValue)
         }
         return array
     }
     var races: [String] {
         var array = [String]()
-        for race in Strain.races() {
+        for race in Constants.races() {
             array.append(race.rawValue)
         }
         return array

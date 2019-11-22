@@ -61,5 +61,37 @@ struct Constants {
         static let noDataHeight = CGFloat(100.0)
         static let rowHeight = CGFloat(120.0)
     }
+    
+    enum Race: String, Decodable, CaseIterable {
+        case all = "All"
+        case indica = "Indica"
+        case sativa = "Sativa"
+        case hybrid = "Hybrid"
+    }
+    
+    enum Category: String, Decodable, CaseIterable {
+        case all = "All"
+        case positive = "Positive"
+        case negative = "Negative"
+        case medical = "Medical"
+    }
+    
+}
+
+extension Constants {
+    static func categories() -> [Category] {
+        var array = [Category]()
+        for category in Category.allCases {
+            array.append(category)
+        }
+        return array
+    }
+    static func races() -> [Race] {
+        var array = [Race]()
+        for race in Race.allCases {
+            array.append(race)
+        }
+        return array
+    }
 }
 
