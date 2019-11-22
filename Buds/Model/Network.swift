@@ -25,6 +25,7 @@ class Network {
         Network.ref.removeAllObservers()
     }
     
+    /// Stores a dictionary in Firebase based on userID. This is added as an activity in Firebase and has the userID to uniquely identify it
     static func addNewActivity(userID: String, activityDetails: [String : String]) -> Bool {
         
         // Add the activity with the User's ID identifying it
@@ -345,6 +346,38 @@ class Network {
              
          }
      
+    }
+    
+    /// Returns a complete dictionary of all strains accessible to the application. Strain data could come from either User Defaults or a network call to the Strain API.
+    /// This function returns a lot of data and if using the API can take a while to return
+    static func getAllStrains(complete: @escaping(JSON) -> ()) {
+
+        
+        if UserDefaults.standard.data(forKey: "allStrains") == nil {
+            
+            Alamofire.request("http://strainapi.evanbusse.com/3HT8al6/strains/search/all", method: .get).validate().responseJSON { (response) in
+               
+                if response.result.isSuccess {
+
+                    let responseJSON = JSON(response.result.value!)
+
+                    do {
+                        print("Called API")
+                        print(try responseJSON.rawData())
+                        UserDefaults.standard.set(try responseJSON.rawData(), forKey: "allStrains")
+                        complete(JSON(try responseJSON.rawData()))
+                    } catch {
+                    print("Didn't work")
+                    }
+                    
+                } else {
+                    print("Unable to Get Strain effects from the evanbusse api")
+                }
+            }
+        } else {
+            print("allStrains set in User Defaults")
+            complete(JSON(UserDefaults.standard.data(forKey: "allStrains")))
+        }
     }
     
 

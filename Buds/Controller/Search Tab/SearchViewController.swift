@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import MapKit
 import Alamofire
+import SwiftyJSON
 
 // A fantastic tutorial by Ray Wenderlich about implementing a search bar
 // on a table view with a scope bar
@@ -24,17 +25,19 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var searchTableView: UITableView!
     
     var searchController = UISearchController(searchResultsController: nil)
-    var strains = Strain.strains()
-    var effects = ["All", "Dizzy", "Hungry", "Happy"]
-    var someStrains = ["Strain  1", "Strain 2", "Strain 3"]
-    var filteredStrains: [Strain] = []
-    lazy var filteredArray = effects
-    var randomEffects = [String]()
-    var randomEffectsWithRelatedStrains = [[String]]()
+    var strains = [StrainModel]()
+    var filteredStrains = [StrainModel]()
     var categories: [String] {
         var array = [String]()
         for category in Strain.categories() {
             array.append(category.rawValue)
+        }
+        return array
+    }
+    var races: [String] {
+        var array = [String]()
+        for race in Strain.races() {
+            array.append(race.rawValue)
         }
         return array
     }
@@ -46,8 +49,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         let segmentedControlIsFiltering = segmentedControl.selectedSegmentIndex != 0
         return searchController.isActive || segmentedControlIsFiltering
     }
-    
-   
     
     
     override func viewDidLoad() {
@@ -81,11 +82,17 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         // Set up the Segmented Control
         segmentedControl.selectedSegmentIndex = 0
+        
+        // And finally lets populate our tableview with data
+        Network.getAllStrains { (response) in
+            self.decodeStrains(response)
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        for i in 0...categories.count-1 {
-            segmentedControl.setTitle(categories[i], forSegmentAt: i)
+        for i in 0...races.count-1 {
+            segmentedControl.setTitle(races[i], forSegmentAt: i)
         }
     }
     
@@ -94,28 +101,45 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
 
     }
     
+    func decodeStrains(_ response: JSON) {
+        if let jsonData = response.rawString()?.data(using: .utf8)! {
+            let result = try! JSONDecoder().decode(StrainJSON.self, from: jsonData)
+            var strainModel = StrainModel()
+            for item in result.strain {
+                strainModel.name = item.key
+                strainModel.id = item.value.id
+                strainModel.race = item.value.race
+                strainModel.flavors = item.value.flavors
+                strainModel.effects?.positive = item.value.effects?.positive
+                strainModel.effects?.negative = item.value.effects?.negative
+                strainModel.effects?.medical = item.value.effects?.medical
+                self.strains.append(strainModel)
+            }
+        }
+        self.filteredStrains = self.strains
+        self.searchTableView.reloadData()
+    }
 
     @IBAction func segmentedControlDidChange(_ sender: Any) {
         
         // Filter the data with the new Category
-        let category = categories[segmentedControl.selectedSegmentIndex]
-        filterContent(searchController.searchBar.text!, searchCategory: category)
+        let race = races[segmentedControl.selectedSegmentIndex]
+        filterContent(searchController.searchBar.text!, searchRace: race)
         
         // Show the new data by reloading the table view
         searchTableView.reloadData()
     }
     
     
-    func filterContent(_ searchText: String, searchCategory: String? = nil) {
+    func filterContent(_ searchText: String, searchRace: String? = nil) {
         
-        // Filter Strains using a segmented Control
-        filteredStrains = strains.filter({ (strain: Strain) -> Bool in
-            let doesSegmentedControlMatch = strain.category.rawValue == searchCategory || searchCategory == Strain.Category.all.rawValue
+        filteredStrains = strains.filter({ (strain: StrainModel) -> Bool in
+            let doesSegmendtedControlMatch = strain.race?.lowercased() == searchRace?.lowercased() || searchRace == "All"
             
             if isSearchBarEmpty {
-                return doesSegmentedControlMatch
+                return doesSegmendtedControlMatch
             } else {
-                return doesSegmentedControlMatch && strain.name.lowercased().contains(searchText.lowercased())
+                return doesSegmendtedControlMatch && strain.name?.lowercased().contains(searchText.lowercased()) ?? false
             }
         })
         
@@ -131,8 +155,8 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
         
         let searchBar = searchController.searchBar
-        let category = categories[segmentedControl.selectedSegmentIndex]
-        filterContent(searchBar.text!, searchCategory: category)
+        let race = races[segmentedControl.selectedSegmentIndex]
+        filterContent(searchBar.text!, searchRace: race)
         
     }
 
@@ -191,10 +215,10 @@ extension SearchViewController {
         
         if isFiltering {
             cell.textLabel?.text = filteredStrains[indexPath.row].name
-            cell.detailTextLabel?.text = filteredStrains[indexPath.row].effect.rawValue
+            cell.detailTextLabel?.text = filteredStrains[indexPath.row].race?.capitalized
         } else {
             cell.textLabel?.text = strains[indexPath.row].name
-            cell.detailTextLabel?.text = strains[indexPath.row].effect.rawValue
+            cell.detailTextLabel?.text = strains[indexPath.row].race?.capitalized
         }
         return cell
     }
