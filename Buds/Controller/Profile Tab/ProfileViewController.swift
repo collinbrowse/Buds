@@ -14,7 +14,6 @@ import SVProgressHUD
 
 class ProfileViewController: UITableViewController {
     
-    //var tabBarController: UITabBarController?
     var modelController: ModelController!
     var username: String?
     var ref: DatabaseReference!
@@ -124,7 +123,6 @@ extension ProfileViewController {
             noDataLabel.textColor     = UIColor.black
             noDataLabel.textAlignment = .center
 
-            //let noDataButton: UIButton = UIButton(frame: CGRect(x: 0, y: 26, width: tableView.bounds.size.width, height: 20))
             let noDataButton: UIButton = UIButton()
             noDataButton.setTitle("Add an Activity", for: .normal)
             noDataButton.sizeToFit()

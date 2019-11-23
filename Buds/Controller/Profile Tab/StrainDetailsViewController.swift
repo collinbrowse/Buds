@@ -12,23 +12,26 @@ import UIKit
 class StrainDetailsViewController: UIViewController {
     
     var modelController: ModelController!
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
+    
     @IBOutlet weak var strainBackgroundImage: UIImageView!
     @IBOutlet weak var youSaidLabel: UILabel!
     @IBOutlet weak var strainLabel: UILabel!
-    var strainLabelText: String?
     @IBOutlet weak var youDidntLikeDescriptionText: UILabel!
     @IBOutlet weak var youLikedDescriptionText: UILabel!
     @IBOutlet weak var generalNotesText: UILabel!
-    
+    var strainLabelText: String?
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         self.navigationController?.isNavigationBarHidden = true
         youSaidLabel.sizeToFit()
+        
         // Set up background Picture
         for constraint in strainBackgroundImage.constraints {
             if constraint.identifier == "strainBackgroundImageHeightConstraint" {
@@ -36,7 +39,7 @@ class StrainDetailsViewController: UIViewController {
             }
         }
         view.layoutIfNeeded()
-                strainLabel.text = strainLabelText
+        strainLabel.text = strainLabelText
         
         let strainLabelTextWithUnderscores = strainLabelText!.lowercased().replacingOccurrences(of: " ", with: "_")
         

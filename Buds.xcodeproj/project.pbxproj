@@ -69,8 +69,8 @@
 		BE58381D237CE4F9002160B8 /* NewActivityEffectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE58381C237CE4F9002160B8 /* NewActivityEffectsViewController.swift */; };
 		BE604D77237369580026ECDA /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE604D76237369580026ECDA /* SearchViewController.swift */; };
 		BE604D7923747E3C0026ECDA /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE604D7823747E3C0026ECDA /* TabBar.storyboard */; };
-		BE604D7F2374AEC50026ECDA /* strains.json in Resources */ = {isa = PBXBuildFile; fileRef = BE604D7E2374AEC50026ECDA /* strains.json */; };
 		BE6726072386129600261DB5 /* StrainJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6726062386129600261DB5 /* StrainJSON.swift */; };
+		BE67260923884E8300261DB5 /* StrainInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67260823884E8300261DB5 /* StrainInfoViewController.swift */; };
 		BE747FB722CA798300D071FD /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE747FB622CA798300D071FD /* Profile.storyboard */; };
 		BE747FB922CA7A5A00D071FD /* NewActivity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE747FB822CA7A5A00D071FD /* NewActivity.storyboard */; };
 		BE747FBB22CAAD9800D071FD /* NewActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE747FBA22CAAD9800D071FD /* NewActivityViewController.swift */; };
@@ -169,8 +169,8 @@
 		BE58381C237CE4F9002160B8 /* NewActivityEffectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityEffectsViewController.swift; sourceTree = "<group>"; };
 		BE604D76237369580026ECDA /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		BE604D7823747E3C0026ECDA /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
-		BE604D7E2374AEC50026ECDA /* strains.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = strains.json; sourceTree = "<group>"; };
 		BE6726062386129600261DB5 /* StrainJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrainJSON.swift; sourceTree = "<group>"; };
+		BE67260823884E8300261DB5 /* StrainInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrainInfoViewController.swift; sourceTree = "<group>"; };
 		BE747FB622CA798300D071FD /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		BE747FB822CA7A5A00D071FD /* NewActivity.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewActivity.storyboard; sourceTree = "<group>"; };
 		BE747FBA22CAAD9800D071FD /* NewActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityViewController.swift; sourceTree = "<group>"; };
@@ -411,7 +411,6 @@
 				BE41464C22BA718D0009A738 /* LaunchScreen.storyboard */,
 				BE41464F22BA718D0009A738 /* Info.plist */,
 				BE41468022BAD6A00009A738 /* GoogleService-Info.plist */,
-				BE604D7E2374AEC50026ECDA /* strains.json */,
 				BE00F0CB22FDB92600B65AB5 /* Resources */,
 			);
 			path = Buds;
@@ -472,6 +471,7 @@
 			isa = PBXGroup;
 			children = (
 				BE604D76237369580026ECDA /* SearchViewController.swift */,
+				BE67260823884E8300261DB5 /* StrainInfoViewController.swift */,
 			);
 			path = "Search Tab";
 			sourceTree = "<group>";
@@ -597,7 +597,6 @@
 				BE00F0F922FDD59200B65AB5 /* Proxima Nova Bold.otf in Resources */,
 				BE00F0F822FDD59200B65AB5 /* Proxima Nova Alt Light.otf in Resources */,
 				BE41464B22BA718D0009A738 /* Assets.xcassets in Resources */,
-				BE604D7F2374AEC50026ECDA /* strains.json in Resources */,
 				BE00F0DD22FDB9C500B65AB5 /* PlayfairDisplay-Regular.otf in Resources */,
 				BE00F0DF22FDB9C500B65AB5 /* PlayfairDisplay-Italic.otf in Resources */,
 				BE00F0E822FDBD1500B65AB5 /* Coves Light.otf in Resources */,
@@ -759,6 +758,7 @@
 				BEB7430823326089003B52DE /* CardView.swift in Sources */,
 				BE03D2A922C269060059B587 /* LogInViewController.swift in Sources */,
 				BE41464422BA718C0009A738 /* AppDelegate.swift in Sources */,
+				BE67260923884E8300261DB5 /* StrainInfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,6 +24,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var searchTableView: UITableView!
     
+    var didSelectStrain: String?
     var searchController = UISearchController(searchResultsController: nil)
     var strains = [StrainModel]()
     var filteredStrains = [StrainModel]()
@@ -50,7 +51,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         return searchController.isActive || segmentedControlIsFiltering
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -63,6 +63,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                 
         // Set up the table view
         searchTableView.dataSource = self
+        searchTableView.delegate = self
         searchTableView.tableHeaderView = searchController.searchBar
         searchTableView.contentOffset = CGPoint(x: 0, y: searchController.searchBar.frame.size.height);
         
@@ -75,8 +76,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         definesPresentationContext = true
         
         // Set up the Navigation bar
-        navigationController?.navigationBar.backgroundColor = .white
         let navigationBar = navigationController!.navigationBar
+        navigationBar.backgroundColor = .white
         navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationBar.shadowImage = UIImage()
         
@@ -88,9 +89,13 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             self.decodeStrains(response)
         }
         
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+
         for i in 0...races.count-1 {
             segmentedControl.setTitle(races[i], forSegmentAt: i)
         }
@@ -98,9 +103,16 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        // When the user navigates away the search controller should no long be active
+        searchController.isActive = false
+    }
+    override func viewDidAppear(_ animated: Bool) {
+    }
+    /// This function takes a Swifty JSON object and decodes it into a Strain Model Object. Then it translates it into
+    /// an array of StrainModel objects for use in a tableview
     func decodeStrains(_ response: JSON) {
         if let jsonData = response.rawString()?.data(using: .utf8)! {
             let result = try! JSONDecoder().decode(StrainJSON.self, from: jsonData)
@@ -118,6 +130,14 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         }
         self.filteredStrains = self.strains
         self.searchTableView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToStrainInfo" {
+            let vc = segue.destination as! StrainInfoViewController
+            vc.strain = didSelectStrain
+            vc.modelController = modelController
+        }
     }
 
     @IBAction func segmentedControlDidChange(_ sender: Any) {
@@ -170,10 +190,10 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
                         self.searchTableView.frame.origin.y -= self.segmentedControl.frame.size.height
                         self.view.layoutIfNeeded()
         }, completion: nil)
-        print(-self.segmentedControl.frame.size.height)
         
         return true
     }
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         var topBarHeight = CGFloat(0.0)
         if #available(iOS 13.0, *) {
@@ -223,5 +243,15 @@ extension SearchViewController {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        if isFiltering {
+            didSelectStrain = filteredStrains[indexPath.row].name!
+        } else {
+            didSelectStrain = strains[indexPath.row].name!
+        }
+        self.performSegue(withIdentifier: "goToStrainInfo", sender: self)
+    }
 }
 
