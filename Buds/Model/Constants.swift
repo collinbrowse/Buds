@@ -11,6 +11,10 @@ import UIKit
 
 struct Constants {
     
+    struct StrainAPI {
+        static let APIKey = "3HT8al6"
+    }
+    
     struct StrainTypes {
         
         static let positiveEffect = "positive"

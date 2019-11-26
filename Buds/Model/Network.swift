@@ -235,7 +235,7 @@ class Network {
     // Once that is done, it will call Network.populateRandomEffects to get 5 strains for every cannabis effect
     static func populateStrainInfo() {
         
-        Alamofire.request("http://strainapi.evanbusse.com/3HT8al6/searchdata/effects", method: .get).validate().responseJSON { (response) in
+        Alamofire.request("http://strainapi.evanbusse.com/\(Constants.StrainAPI.APIKey)/searchdata/effects", method: .get).validate().responseJSON { (response) in
             
             if response.result.isSuccess {
                 
@@ -276,7 +276,7 @@ class Network {
                 
                 semaphore.wait()
 
-                Alamofire.request("http://strainapi.evanbusse.com/3HT8al6/strains/search/effect/\(effect)", method: .get).validate().responseJSON { (response) in
+                Alamofire.request("http://strainapi.evanbusse.com/\(Constants.StrainAPI.APIKey)/strains/search/effect/\(effect)", method: .get).validate().responseJSON { (response) in
                     
                     if response.result.isSuccess {
                         let responseJSON = JSON(response.result.value!)
@@ -305,8 +305,8 @@ class Network {
     
     
     static func getEffectsFromAPI(complete: @escaping([[String: String]]) ->  ())  {
-     
-         Alamofire.request("http://strainapi.evanbusse.com/3HT8al6/searchdata/effects", method: .get).validate().responseJSON { (response) in
+        Constants.StrainAPI.APIKey
+         Alamofire.request("http://strainapi.evanbusse.com/\(Constants.StrainAPI.APIKey)/searchdata/effects", method: .get).validate().responseJSON { (response) in
             var effectsDict = [[String: String]]()
             if response.result.isSuccess {
                  
@@ -329,7 +329,7 @@ class Network {
     
     static func getRaceFromAPI(complete: @escaping([[String: String]]) ->  ())  {
      
-         Alamofire.request("http://strainapi.evanbusse.com/3HT8al6/strains/search/all", method: .get).validate().responseJSON { (response) in
+         Alamofire.request("http://strainapi.evanbusse.com/\(Constants.StrainAPI.APIKey)/strains/search/all", method: .get).validate().responseJSON { (response) in
             var raceDict = [[String: String]]()
             if response.result.isSuccess {
                                 
@@ -355,7 +355,7 @@ class Network {
         
         if UserDefaults.standard.data(forKey: "allStrains") == nil {
             
-            Alamofire.request("http://strainapi.evanbusse.com/3HT8al6/strains/search/all", method: .get).validate().responseJSON { (response) in
+            Alamofire.request("http://strainapi.evanbusse.com/\(Constants.StrainAPI.APIKey)/strains/search/all", method: .get).validate().responseJSON { (response) in
                
                 if response.result.isSuccess {
 
