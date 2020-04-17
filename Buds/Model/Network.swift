@@ -362,12 +362,10 @@ class Network {
                     let responseJSON = JSON(response.result.value!)
 
                     do {
-                        print("Called API")
-                        print(try responseJSON.rawData())
                         UserDefaults.standard.set(try responseJSON.rawData(), forKey: "allStrains")
                         complete(JSON(try responseJSON.rawData()))
                     } catch {
-                    print("Didn't work")
+                        print("Didn't work")
                     }
                     
                 } else {
@@ -375,9 +373,34 @@ class Network {
                 }
             }
         } else {
-            print("allStrains set in User Defaults")
             complete(JSON(UserDefaults.standard.data(forKey: "allStrains")))
         }
+    }
+    
+    
+    /// Function to get the description of the strain from the Strain API based on it's STRAIN_ID
+    static func getStrainDescription(strainID: Int, complete: @escaping(JSON) -> ()) {
+        
+        Alamofire.request("http://strainapi.evanbusse.com/\(Constants.StrainAPI.APIKey)/strains/data/desc/\(strainID)", method: .get).validate().responseJSON { (response) in
+            
+            if response.result.isSuccess {
+                
+                let responseJSON = JSON(response.result.value!)
+                
+                print(responseJSON)
+                complete(responseJSON)
+                
+                
+                
+            } else {
+                print("Unable to get data from Strain API")
+            }
+            
+            
+        }
+        
+        
+        
     }
     
 

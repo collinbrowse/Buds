@@ -24,7 +24,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var searchTableView: UITableView!
     
-    var didSelectStrain: String?
+    var didSelectStrain: StrainModel?
     var searchController = UISearchController(searchResultsController: nil)
     var strains = [StrainModel]()
     var filteredStrains = [StrainModel]()
@@ -247,9 +247,9 @@ extension SearchViewController {
         
         tableView.deselectRow(at: indexPath, animated: true)
         if isFiltering {
-            didSelectStrain = filteredStrains[indexPath.row].name!
+            didSelectStrain = filteredStrains[indexPath.row]
         } else {
-            didSelectStrain = strains[indexPath.row].name!
+            didSelectStrain = strains[indexPath.row]
         }
         self.performSegue(withIdentifier: "goToStrainInfo", sender: self)
     }

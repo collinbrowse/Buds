@@ -10,6 +10,7 @@ import Foundation
 import SwiftyJSON
 
 struct StrainModel {
+    
     var name: String?
     var id: Int?
     var race: String?

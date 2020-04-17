@@ -142,6 +142,12 @@
                                     <action selector="backButtonPressed:" destination="THf-Jo-84b" eventType="touchUpInside" id="oz4-Ba-2bx"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Strain Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etm-2N-JXd">
+                                <rect key="frame" x="40" y="340" width="334" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -149,9 +155,12 @@
                             <constraint firstItem="KcA-TL-wTE" firstAttribute="trailing" secondItem="LRr-9a-yzg" secondAttribute="trailing" constant="40" id="8Cu-lI-HPe"/>
                             <constraint firstItem="cdG-WQ-1zC" firstAttribute="top" secondItem="KcA-TL-wTE" secondAttribute="top" id="NC2-sf-UIf"/>
                             <constraint firstItem="AOa-gY-bSb" firstAttribute="top" secondItem="2Md-KD-JsY" secondAttribute="top" id="Xbc-29-x68"/>
+                            <constraint firstItem="etm-2N-JXd" firstAttribute="leading" secondItem="KcA-TL-wTE" secondAttribute="leading" constant="40" id="c2x-1e-jbL"/>
                             <constraint firstItem="cdG-WQ-1zC" firstAttribute="leading" secondItem="KcA-TL-wTE" secondAttribute="leading" constant="20" id="eI5-Mb-lKj"/>
                             <constraint firstItem="LRr-9a-yzg" firstAttribute="leading" secondItem="KcA-TL-wTE" secondAttribute="leading" constant="40" id="fh6-nl-onm"/>
+                            <constraint firstItem="etm-2N-JXd" firstAttribute="top" secondItem="AOa-gY-bSb" secondAttribute="bottom" constant="40" id="iDo-MA-us7"/>
                             <constraint firstItem="AOa-gY-bSb" firstAttribute="trailing" secondItem="KcA-TL-wTE" secondAttribute="trailing" id="jUd-Ox-1mo"/>
+                            <constraint firstItem="KcA-TL-wTE" firstAttribute="trailing" secondItem="etm-2N-JXd" secondAttribute="trailing" constant="40" id="nsE-Rt-qu1"/>
                             <constraint firstItem="AOa-gY-bSb" firstAttribute="leading" secondItem="KcA-TL-wTE" secondAttribute="leading" id="wnh-Mq-gBh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KcA-TL-wTE"/>
@@ -160,12 +169,13 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="strainBackgroundImage" destination="AOa-gY-bSb" id="WVS-gv-U5k"/>
+                        <outlet property="strainDescription" destination="etm-2N-JXd" id="pRr-Fg-2Br"/>
                         <outlet property="strainLabel" destination="LRr-9a-yzg" id="Jgs-i3-Zf5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pvl-tG-h1W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1557" y="-358"/>
+            <point key="canvasLocation" x="1556.521739130435" y="-358.25892857142856"/>
         </scene>
     </scenes>
     <resources>

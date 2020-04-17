@@ -13,9 +13,23 @@ class StrainInfoViewController: UIViewController {
     
     var modelController: ModelController!
 
+    @IBOutlet weak var strainDescription: UILabel!
     @IBOutlet weak var strainBackgroundImage: UIImageView!
     @IBOutlet weak var strainLabel: UILabel!
-    var strain: String?
+    var strain: StrainModel? {
+        didSet {
+            
+            
+            
+            
+            // Test Call to get strain description
+            Network.getStrainDescription(strainID: (strain?.id)!) { (resultJSON) in
+                self.strainDescription.text = resultJSON["desc"].stringValue
+                self.strainDescription.sizeToFit()
+                self.strainDescription.numberOfLines = 0
+            }
+        }
+    }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -34,8 +48,9 @@ class StrainInfoViewController: UIViewController {
         // Let's hide the navigation Bar
         self.navigationController?.isNavigationBarHidden = true
 
+        
         // Add the strain's name
-        strainLabel.text = strain
+        strainLabel.text = strain?.name
         
         // Let's make the image 1/3 the height of the view
         for constraint in strainBackgroundImage.constraints {
@@ -43,6 +58,8 @@ class StrainInfoViewController: UIViewController {
                 constraint.constant = self.view.frame.size.height / 3
             }
         }
+        
+        
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
