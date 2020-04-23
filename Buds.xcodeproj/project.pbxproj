@@ -71,6 +71,8 @@
 		BE604D7923747E3C0026ECDA /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE604D7823747E3C0026ECDA /* TabBar.storyboard */; };
 		BE6726072386129600261DB5 /* StrainJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6726062386129600261DB5 /* StrainJSON.swift */; };
 		BE67260923884E8300261DB5 /* StrainInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE67260823884E8300261DB5 /* StrainInfoViewController.swift */; };
+		BE6B71A8244F9B75007BFB23 /* BudsBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6B71A7244F9B75007BFB23 /* BudsBodyLabel.swift */; };
+		BE6B71AB244F9F6A007BFB23 /* BudsDataLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6B71AA244F9F6A007BFB23 /* BudsDataLoadingVC.swift */; };
 		BE747FB722CA798300D071FD /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE747FB622CA798300D071FD /* Profile.storyboard */; };
 		BE747FB922CA7A5A00D071FD /* NewActivity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE747FB822CA7A5A00D071FD /* NewActivity.storyboard */; };
 		BE747FBB22CAAD9800D071FD /* NewActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE747FBA22CAAD9800D071FD /* NewActivityViewController.swift */; };
@@ -79,6 +81,9 @@
 		BE747FC822D53BB300D071FD /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE747FC722D53BB300D071FD /* Settings.storyboard */; };
 		BE747FCA22D53C2600D071FD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE747FC922D53C2600D071FD /* SettingsViewController.swift */; };
 		BE87F794236768DD00A31AC8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE87F793236768DD00A31AC8 /* Constants.swift */; };
+		BEA25001244A76B700086B55 /* StrainInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA25000244A76B700086B55 /* StrainInfoVC.swift */; };
+		BEA25004244A77A200086B55 /* BudsTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA25003244A77A200086B55 /* BudsTitleLabel.swift */; };
+		BEA25007244A79E000086B55 /* BudsHeaderImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA25006244A79E000086B55 /* BudsHeaderImageView.swift */; };
 		BEB7430823326089003B52DE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB7430723326089003B52DE /* CardView.swift */; };
 		BEFB6FF8235B6151008805E5 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFB6FF7235B6151008805E5 /* Switcher.swift */; };
 /* End PBXBuildFile section */
@@ -171,6 +176,8 @@
 		BE604D7823747E3C0026ECDA /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		BE6726062386129600261DB5 /* StrainJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrainJSON.swift; sourceTree = "<group>"; };
 		BE67260823884E8300261DB5 /* StrainInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrainInfoViewController.swift; sourceTree = "<group>"; };
+		BE6B71A7244F9B75007BFB23 /* BudsBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudsBodyLabel.swift; sourceTree = "<group>"; };
+		BE6B71AA244F9F6A007BFB23 /* BudsDataLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudsDataLoadingVC.swift; sourceTree = "<group>"; };
 		BE747FB622CA798300D071FD /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		BE747FB822CA7A5A00D071FD /* NewActivity.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewActivity.storyboard; sourceTree = "<group>"; };
 		BE747FBA22CAAD9800D071FD /* NewActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityViewController.swift; sourceTree = "<group>"; };
@@ -179,6 +186,9 @@
 		BE747FC722D53BB300D071FD /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		BE747FC922D53C2600D071FD /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		BE87F793236768DD00A31AC8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BEA25000244A76B700086B55 /* StrainInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrainInfoVC.swift; sourceTree = "<group>"; };
+		BEA25003244A77A200086B55 /* BudsTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudsTitleLabel.swift; sourceTree = "<group>"; };
+		BEA25006244A79E000086B55 /* BudsHeaderImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudsHeaderImageView.swift; sourceTree = "<group>"; };
 		BEB7430723326089003B52DE /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		BEFB6FF7235B6151008805E5 /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
 		DFBCFB9F69836A8C3EBC2D7A /* Pods_BudsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BudsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -403,6 +413,8 @@
 		BE41464222BA718C0009A738 /* Buds */ = {
 			isa = PBXGroup;
 			children = (
+				BEA25002244A778E00086B55 /* Custom Views */,
+				BEA24FFF244A767C00086B55 /* Screens */,
 				BE03D2A522C267410059B587 /* Controller */,
 				BE03D2A422C124A70059B587 /* View */,
 				BE41467122BA8F5F0009A738 /* Model */,
@@ -474,6 +486,41 @@
 				BE67260823884E8300261DB5 /* StrainInfoViewController.swift */,
 			);
 			path = "Search Tab";
+			sourceTree = "<group>";
+		};
+		BE6B71A9244F9F56007BFB23 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BE6B71AA244F9F6A007BFB23 /* BudsDataLoadingVC.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		BEA24FFF244A767C00086B55 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				BEA25000244A76B700086B55 /* StrainInfoVC.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		BEA25002244A778E00086B55 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				BE6B71A9244F9F56007BFB23 /* View Controllers */,
+				BEA25005244A79AA00086B55 /* Labels */,
+				BEA25006244A79E000086B55 /* BudsHeaderImageView.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		BEA25005244A79AA00086B55 /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				BEA25003244A77A200086B55 /* BudsTitleLabel.swift */,
+				BE6B71A7244F9B75007BFB23 /* BudsBodyLabel.swift */,
+			);
+			path = Labels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -731,10 +778,12 @@
 				BE03D2A722C2676E0059B587 /* WelcomeViewController.swift in Sources */,
 				BE03D2AB22C269730059B587 /* RegisterViewController.swift in Sources */,
 				BE02A32322DCEF9A00431854 /* Network.swift in Sources */,
+				BEA25001244A76B700086B55 /* StrainInfoVC.swift in Sources */,
 				BE604D77237369580026ECDA /* SearchViewController.swift in Sources */,
 				BE02A33C22E2581800431854 /* ActivityFeedCustomCell.swift in Sources */,
 				BE747FC322CBD54B00D071FD /* NewActivityTableViewController.swift in Sources */,
 				BE41467F22BA9E180009A738 /* Location.swift in Sources */,
+				BEA25004244A77A200086B55 /* BudsTitleLabel.swift in Sources */,
 				BE41467922BA918A0009A738 /* ActivityModel.swift in Sources */,
 				BE87F794236768DD00A31AC8 /* Constants.swift in Sources */,
 				BE747FC622CD1E9E00D071FD /* ActivityDetailsDelegate.swift in Sources */,
@@ -751,12 +800,15 @@
 				BEFB6FF8235B6151008805E5 /* Switcher.swift in Sources */,
 				BE02A33E22E6436600431854 /* NewActivityLocationController.swift in Sources */,
 				BE02A34422E6BD7D00431854 /* TimeHelper.swift in Sources */,
+				BE6B71AB244F9F6A007BFB23 /* BudsDataLoadingVC.swift in Sources */,
+				BE6B71A8244F9B75007BFB23 /* BudsBodyLabel.swift in Sources */,
 				BE41467D22BA9CE50009A738 /* Birthday.swift in Sources */,
 				BE58381D237CE4F9002160B8 /* NewActivityEffectsViewController.swift in Sources */,
 				BE12BA9C233D1CA8009FAD1D /* StrainDetailsViewController.swift in Sources */,
 				BE0A065822FB6F5F00C41B53 /* ModelController.swift in Sources */,
 				BEB7430823326089003B52DE /* CardView.swift in Sources */,
 				BE03D2A922C269060059B587 /* LogInViewController.swift in Sources */,
+				BEA25007244A79E000086B55 /* BudsHeaderImageView.swift in Sources */,
 				BE41464422BA718C0009A738 /* AppDelegate.swift in Sources */,
 				BE67260923884E8300261DB5 /* StrainInfoViewController.swift in Sources */,
 			);
@@ -937,6 +989,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 84XX2W7G34;
 				INFOPLIST_FILE = Buds/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -956,6 +1009,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 84XX2W7G34;
 				INFOPLIST_FILE = Buds/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

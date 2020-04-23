@@ -12,16 +12,9 @@ import UIKit
 class StrainInfoViewController: UIViewController {
     
     var modelController: ModelController!
-
-    @IBOutlet weak var strainDescription: UILabel!
-    @IBOutlet weak var strainBackgroundImage: UIImageView!
-    @IBOutlet weak var strainLabel: UILabel!
+    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
     var strain: StrainModel? {
         didSet {
-            
-            
-            
-            
             // Test Call to get strain description
             Network.getStrainDescription(strainID: (strain?.id)!) { (resultJSON) in
                 self.strainDescription.text = resultJSON["desc"].stringValue
@@ -30,9 +23,21 @@ class StrainInfoViewController: UIViewController {
             }
         }
     }
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+    
+    
+    
+    @IBOutlet weak var strainDescription: UILabel!
+    @IBOutlet weak var strainBackgroundImage: UIImageView!
+    @IBOutlet weak var strainLabel: UILabel!
+    
+    @IBAction func testButtonTapped(_ sender: Any) {
+        let destVC = StrainInfoVC()
+        if strain != nil {
+            destVC.strain = strain
+        }
+        navigationController?.pushViewController(destVC, animated: true)
     }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +51,10 @@ class StrainInfoViewController: UIViewController {
         
         
         // Let's hide the navigation Bar
-        self.navigationController?.isNavigationBarHidden = true
+        //self.navigationController?.isNavigationBarHidden = true
+        navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController!.navigationBar.shadowImage = UIImage()
+        //navigationController!.navigationBar.isTranslucent = true
 
         
         // Add the strain's name
@@ -58,9 +66,9 @@ class StrainInfoViewController: UIViewController {
                 constraint.constant = self.view.frame.size.height / 3
             }
         }
-        
-        
     }
+    
+    
     
     @IBAction func backButtonPressed(_ sender: Any) {
         navigationController?.popViewController(animated: true)
