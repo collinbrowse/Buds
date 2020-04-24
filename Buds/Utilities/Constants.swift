@@ -6,12 +6,11 @@
 //  Copyright © 2019 Collin Browse. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 enum Images {
     
-    static let headerOneImageView = UIImage(named: "background1")
+    static let defaultHeaderImageView = UIImage(named: "background1")
 }
 
 

@@ -9,7 +9,8 @@
 import Foundation
 import SwiftyJSON
 
-struct StrainModel {
+
+struct StrainModel : Hashable {
     
     var name: String?
     var id: Int?
@@ -17,7 +18,7 @@ struct StrainModel {
     var flavors: [String]?
     var effects: Categories?
     
-    struct Categories: Decodable {
+    struct Categories: Decodable, Hashable {
         var positive: [String]?
         var negative: [String]?
         var medical: [String]?

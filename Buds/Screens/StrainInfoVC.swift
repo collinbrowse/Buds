@@ -10,7 +10,7 @@ import UIKit
 
 class StrainInfoVC: BudsDataLoadingVC {
 
-    let headerImage = BudsHeaderImageView(image: UIImage(named: "background1"))
+    let headerImage = BudsHeaderImageView(image: Images.defaultHeaderImageView)
     let headerTitle = BudsTitleLabel(textAlignment: .right, fontSize: 34)
     var strainDescriptionLabel = BudsBodyLabel(textAlignment: .natural)
     let strainDescriptionContainerVC = BudsDataLoadingVC()
@@ -21,6 +21,7 @@ class StrainInfoVC: BudsDataLoadingVC {
         super.viewDidLoad()
         
         configureViewController()
+        configureNavigationBar()
         layoutUI()
         getStrainDescription()
     }
@@ -30,14 +31,15 @@ class StrainInfoVC: BudsDataLoadingVC {
         
         if #available(iOS 13.0, *)  { view.backgroundColor = .systemBackground }
         else                        { view.backgroundColor = .white }
-        
-        #warning("TODO - Make NavigationBar clear") 
+
+        headerTitle.text = strain.name
+    }
+    
+    func configureNavigationBar() {
         navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController!.navigationBar.shadowImage = UIImage()
         navigationController!.navigationBar.isTranslucent = true
-        
-        
-        headerTitle.text = strain.name
+        navigationController!.navigationBar.tintColor = .white
     }
     
     

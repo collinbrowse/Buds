@@ -33,6 +33,7 @@ class BudsTitleLabel: UILabel {
         adjustsFontSizeToFitWidth = true
         minimumScaleFactor = 0.6
         lineBreakMode = .byWordWrapping
+        numberOfLines = 0
         translatesAutoresizingMaskIntoConstraints = false
     }
     

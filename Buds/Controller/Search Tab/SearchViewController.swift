@@ -75,6 +75,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         searchController.searchBar.placeholder = "Search Strains, Effects..."
         definesPresentationContext = true
         
+        title = "Search"
+        
         // Set up the Segmented Control
         segmentedControl.selectedSegmentIndex = 0
         
@@ -238,13 +240,18 @@ extension SearchViewController {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        var selectedStrain : StrainModel
         tableView.deselectRow(at: indexPath, animated: true)
+        
         if isFiltering {
-            didSelectStrain = filteredStrains[indexPath.row]
+            selectedStrain = filteredStrains[indexPath.row]
         } else {
-            didSelectStrain = strains[indexPath.row]
+            selectedStrain = strains[indexPath.row]
         }
+        
+        let destVC = SearchVC()
+        //destVC.strain = selectedStrain
+        navigationController?.pushViewController(destVC, animated: true)
         //self.performSegue(withIdentifier: "goToStrainInfo", sender: self)
     }
 }
