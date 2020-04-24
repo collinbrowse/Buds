@@ -75,12 +75,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         searchController.searchBar.placeholder = "Search Strains, Effects..."
         definesPresentationContext = true
         
-        // Set up the Navigation bar
-        let navigationBar = navigationController!.navigationBar
-        navigationBar.backgroundColor = .white
-        navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationBar.shadowImage = UIImage()
-        
         // Set up the Segmented Control
         segmentedControl.selectedSegmentIndex = 0
         
@@ -251,7 +245,7 @@ extension SearchViewController {
         } else {
             didSelectStrain = strains[indexPath.row]
         }
-        self.performSegue(withIdentifier: "goToStrainInfo", sender: self)
+        //self.performSegue(withIdentifier: "goToStrainInfo", sender: self)
     }
 }
 
