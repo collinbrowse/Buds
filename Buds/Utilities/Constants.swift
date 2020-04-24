@@ -9,6 +9,12 @@
 import Foundation
 import UIKit
 
+enum Images {
+    
+    static let headerOneImageView = UIImage(named: "background1")
+}
+
+
 struct Constants {
     
     struct StrainAPI {
