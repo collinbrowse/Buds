@@ -14,6 +14,24 @@ enum Images {
 }
 
 
+enum StrainAPI {
+    
+    static let baseAPI = "http://strainapi.evanbusse.com"
+    static let APIKey = "/3HT8al6"
+    static let allStrains = "/strains/search/all"
+    static let allEffects = "/searchdata/effects"
+    static let allFlavors = "/searchdata/flavors"
+    static let searchForStrainsByName = "/strains/search/name/"
+    static let searchForStrainsByRace = "/strains/search/race/"
+    static let searchForStrainsByEffect = "/strains/search/effect/"
+    static let searchForStrainsByFlavor = "/strains/search/flavor/"
+    static let searchForDescById = "/strains/data/desc/"
+    static let searchForEffectById = "/strains/data/effects/"
+    static let searchForFlavorById = "/strains/data/flavors/"
+    
+}
+
+
 struct Constants {
     
     struct StrainAPI {

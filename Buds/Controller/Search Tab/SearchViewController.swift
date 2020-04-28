@@ -112,9 +112,9 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     func decodeStrains(_ response: JSON) {
         if let jsonData = response.rawString()?.data(using: .utf8)! {
             let result = try! JSONDecoder().decode(StrainJSON.self, from: jsonData)
-            var strainModel = StrainModel()
+            
             for item in result.strain {
-                strainModel.name = item.key
+                var strainModel = StrainModel(name: item.key)
                 strainModel.id = item.value.id
                 strainModel.race = item.value.race
                 strainModel.flavors = item.value.flavors
@@ -155,7 +155,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             if isSearchBarEmpty {
                 return doesSegmendtedControlMatch
             } else {
-                return doesSegmendtedControlMatch && strain.name?.lowercased().contains(searchText.lowercased()) ?? false
+                return doesSegmendtedControlMatch && strain.name.lowercased().contains(searchText.lowercased()) ?? false
             }
         })
         

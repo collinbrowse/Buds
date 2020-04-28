@@ -29,14 +29,6 @@ class StrainInfoViewController: UIViewController {
     @IBOutlet weak var strainDescription: UILabel!
     @IBOutlet weak var strainBackgroundImage: UIImageView!
     @IBOutlet weak var strainLabel: UILabel!
-    
-    @IBAction func testButtonTapped(_ sender: Any) {
-        let destVC = StrainInfoVC()
-        if strain != nil {
-            destVC.strain = strain
-        }
-        navigationController?.pushViewController(destVC, animated: true)
-    }
 
     
     override func viewDidLoad() {

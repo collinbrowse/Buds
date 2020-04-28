@@ -26,7 +26,7 @@ class StrainCell: UICollectionViewCell {
     }
     
     
-    func set(strain: StrainModel) {
+    func set(strain: Strain) {
         strainNameLabel.text = strain.name
         
         if      strain.race == "hybrid" { strainImageView.setBackgroundColor(with: .green) }

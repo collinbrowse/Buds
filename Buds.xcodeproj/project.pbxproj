@@ -90,6 +90,7 @@
 		BEA25004244A77A200086B55 /* BudsTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA25003244A77A200086B55 /* BudsTitleLabel.swift */; };
 		BEA25007244A79E000086B55 /* BudsHeaderImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA25006244A79E000086B55 /* BudsHeaderImageView.swift */; };
 		BEB7430823326089003B52DE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB7430723326089003B52DE /* CardView.swift */; };
+		BEBEFBFF2458A1F200084294 /* Strain.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBEFBFE2458A1F200084294 /* Strain.swift */; };
 		BEFB6FF8235B6151008805E5 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFB6FF7235B6151008805E5 /* Switcher.swift */; };
 /* End PBXBuildFile section */
 
@@ -200,6 +201,7 @@
 		BEA25003244A77A200086B55 /* BudsTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudsTitleLabel.swift; sourceTree = "<group>"; };
 		BEA25006244A79E000086B55 /* BudsHeaderImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudsHeaderImageView.swift; sourceTree = "<group>"; };
 		BEB7430723326089003B52DE /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		BEBEFBFE2458A1F200084294 /* Strain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strain.swift; sourceTree = "<group>"; };
 		BEFB6FF7235B6151008805E5 /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
 		DFBCFB9F69836A8C3EBC2D7A /* Pods_BudsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BudsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAF0EC6C295759166884503B /* Pods-Buds.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buds.release.xcconfig"; path = "Target Support Files/Pods-Buds/Pods-Buds.release.xcconfig"; sourceTree = "<group>"; };
@@ -468,6 +470,7 @@
 				BE0A065722FB6F5F00C41B53 /* ModelController.swift */,
 				BEFB6FF7235B6151008805E5 /* Switcher.swift */,
 				BE6726062386129600261DB5 /* StrainJSON.swift */,
+				BEBEFBFE2458A1F200084294 /* Strain.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -858,6 +861,7 @@
 				BE58DEC524537A68003A4239 /* UIView+Ext.swift in Sources */,
 				BE12BA9C233D1CA8009FAD1D /* StrainDetailsViewController.swift in Sources */,
 				BE0A065822FB6F5F00C41B53 /* ModelController.swift in Sources */,
+				BEBEFBFF2458A1F200084294 /* Strain.swift in Sources */,
 				BEB7430823326089003B52DE /* CardView.swift in Sources */,
 				BE03D2A922C269060059B587 /* LogInViewController.swift in Sources */,
 				BEA25007244A79E000086B55 /* BudsHeaderImageView.swift in Sources */,

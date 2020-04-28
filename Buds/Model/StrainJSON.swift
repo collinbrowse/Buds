@@ -12,7 +12,7 @@ import SwiftyJSON
 
 struct StrainModel : Hashable {
     
-    var name: String?
+    var name: String
     var id: Int?
     var race: String?
     var flavors: [String]?

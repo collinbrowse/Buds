@@ -7,13 +7,16 @@
 //
 
 import UIKit
+import Alamofire
 
 class SearchVC: BudsDataLoadingVC {
 
     enum Section { case main }
     var collectionView : UICollectionView!
-    var dataSource : UICollectionViewDiffableDataSource<Section, StrainModel>!
-    var strains : [StrainModel] = []
+    var dataSource : UICollectionViewDiffableDataSource<Section, Strain>!
+    var strains : [Strain] = []
+    var filteredStrains : [Strain] = []
+    var isSearching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +25,7 @@ class SearchVC: BudsDataLoadingVC {
         configureSearchController()
         configureCollectionView()
         configureDataSource()
-        getStrains()
+        getStrainsByName()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,30 +77,33 @@ class SearchVC: BudsDataLoadingVC {
     }
     
     
-    func getStrains() {
-        // And finally lets populate our tableview with data
-        Network.getAllStrains { (response) in
-            if let jsonData = response.rawString()?.data(using: .utf8)! {
-                let result = try! JSONDecoder().decode(StrainJSON.self, from: jsonData)
-                var strainModel = StrainModel()
-                for item in result.strain {
-                    strainModel.name = item.key
-                    strainModel.id = item.value.id
-                    strainModel.race = item.value.race
-                    strainModel.flavors = item.value.flavors
-                    strainModel.effects?.positive = item.value.effects?.positive
-                    strainModel.effects?.negative = item.value.effects?.negative
-                    strainModel.effects?.medical = item.value.effects?.medical
-                    self.strains.append(strainModel)
+    func getStrainsByName() {
+        
+        Alamofire.request(StrainAPI.baseAPI + StrainAPI.APIKey + StrainAPI.searchForStrainsByName + "Tangie").validate().responseJSON { (response) in
+            
+            if response.result.isSuccess {
+                
+                do {
+                    let decoder = JSONDecoder()
+                    self.strains = try decoder.decode([Strain].self, from: response.data!)
+                    self.updateData(on: self.strains)
+                } catch {
+                    //completed(.failure(.invalidData))
+                    print(error)
                 }
+
+            } else {
+                print("Unable to parse strains")
             }
-            self.updateData(on: self.strains)
+            
         }
+
     }
     
-    func updateData(on strain: [StrainModel]) {
+    
+    func updateData(on strains: [Strain]) {
         
-        var snapshot = NSDiffableDataSourceSnapshot<Section, StrainModel>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Strain>()
         snapshot.appendSections([.main])
         snapshot.appendItems(strains)
         DispatchQueue.main.async {
@@ -111,8 +117,10 @@ class SearchVC: BudsDataLoadingVC {
 extension SearchVC : UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // if filtering
-        let strain = strains[indexPath.row]
+        
+        let activeArray = isSearching ? filteredStrains : strains
+        let strain = activeArray[indexPath.row]
+        
         let destVC = StrainInfoVC()
         destVC.strain = strain
         navigationController?.pushViewController(destVC, animated: true)
@@ -126,6 +134,16 @@ extension SearchVC : UISearchResultsUpdating {
         
         // Goal: Grab the text from the search bar and update the view
         //searchController.searchBar.text
+        guard let searchText = searchController.searchBar.text, !searchText.isEmpty else {
+            filteredStrains.removeAll()
+            isSearching = false
+            updateData(on: strains)
+            return
+        }
+        
+        isSearching = true
+        filteredStrains = strains.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+        updateData(on: filteredStrains)
     }
 
 }

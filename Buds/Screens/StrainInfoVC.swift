@@ -14,7 +14,7 @@ class StrainInfoVC: BudsDataLoadingVC {
     let headerTitle = BudsTitleLabel(textAlignment: .right, fontSize: 34)
     var strainDescriptionLabel = BudsBodyLabel(textAlignment: .natural)
     let strainDescriptionContainerVC = BudsDataLoadingVC()
-    var strain : StrainModel!
+    var strain : Strain!
     
     
     override func viewDidLoad() {
@@ -74,7 +74,7 @@ class StrainInfoVC: BudsDataLoadingVC {
         
         strainDescriptionContainerVC.showLoadingView()
         
-        Network.getStrainDescription(strainID: (strain?.id)!) { (resultJSON) in
+        Network.getStrainDescription(strainID: strain.id) { (resultJSON) in
             self.strainDescriptionLabel.text = resultJSON["desc"].stringValue
             self.strainDescriptionContainerVC.dismissLoadingView()
         }

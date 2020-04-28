@@ -305,7 +305,7 @@ class Network {
     
     
     static func getEffectsFromAPI(complete: @escaping([[String: String]]) ->  ())  {
-        Constants.StrainAPI.APIKey
+        
          Alamofire.request("http://strainapi.evanbusse.com/\(Constants.StrainAPI.APIKey)/searchdata/effects", method: .get).validate().responseJSON { (response) in
             var effectsDict = [[String: String]]()
             if response.result.isSuccess {
