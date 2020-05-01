@@ -13,7 +13,7 @@ class StrainInfoViewController: UIViewController {
     
     var modelController: ModelController!
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
-    var strain: StrainModel? {
+    var strain: Strain? {
         didSet {
             // Test Call to get strain description
             Network.getStrainDescription(strainID: (strain?.id)!) { (resultJSON) in

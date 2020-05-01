@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 
 
-struct StrainModel : Hashable {
+struct Strain : Hashable {
     
     var name: String
     var id: Int?

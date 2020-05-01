@@ -25,7 +25,7 @@ class SearchVC: BudsDataLoadingVC {
         configureSearchController()
         configureCollectionView()
         configureDataSource()
-        getStrainsByName()
+        getAllStrains()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,29 +76,49 @@ class SearchVC: BudsDataLoadingVC {
         })
     }
     
-    
-    func getStrainsByName() {
+    func getAllStrains() {
         
-        Alamofire.request(StrainAPI.baseAPI + StrainAPI.APIKey + StrainAPI.searchForStrainsByName + "Tangie").validate().responseJSON { (response) in
+        Network.getAllStrains { (response) in
             
-            if response.result.isSuccess {
-                
-                do {
-                    let decoder = JSONDecoder()
-                    self.strains = try decoder.decode([Strain].self, from: response.data!)
-                    self.updateData(on: self.strains)
-                } catch {
-                    //completed(.failure(.invalidData))
-                    print(error)
-                }
-
-            } else {
-                print("Unable to parse strains")
+            let result = try! JSONDecoder().decode(StrainJSON.self, from: response.rawData())
+            
+            for item in result.strain {
+                var strainModel = Strain(name: item.key)
+                strainModel.id = item.value.id
+                strainModel.race = item.value.race
+                strainModel.flavors = item.value.flavors
+                strainModel.effects?.positive = item.value.effects?.positive
+                strainModel.effects?.negative = item.value.effects?.negative
+                strainModel.effects?.medical = item.value.effects?.medical
+                self.strains.append(strainModel)
             }
-            
+            self.updateData(on: self.strains)
         }
-
     }
+    
+    
+//    func getStrainsByName() {
+//
+//        Alamofire.request(StrainAPI.baseAPI + StrainAPI.APIKey + StrainAPI.searchForStrainsByName + "Tangie").validate().responseJSON { (response) in
+//
+//            if response.result.isSuccess {
+//
+//                do {
+//                    let decoder = JSONDecoder()
+//                    self.strains = try decoder.decode([Strain].self, from: response.data!)
+//                    self.updateData(on: self.strains)
+//                } catch {
+//                    //completed(.failure(.invalidData))
+//                    print(error)
+//                }
+//
+//            } else {
+//                print("Unable to parse strains")
+//            }
+//
+//        }
+//
+//    }
     
     
     func updateData(on strains: [Strain]) {

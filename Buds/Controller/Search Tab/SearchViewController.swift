@@ -24,10 +24,10 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var searchTableView: UITableView!
     
-    var didSelectStrain: StrainModel?
+    var didSelectStrain: Strain?
     var searchController = UISearchController(searchResultsController: nil)
-    var strains = [StrainModel]()
-    var filteredStrains = [StrainModel]()
+    var strains = [Strain]()
+    var filteredStrains = [Strain]()
     var categories: [String] {
         var array = [String]()
         for category in Constants.categories() {
@@ -114,7 +114,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             let result = try! JSONDecoder().decode(StrainJSON.self, from: jsonData)
             
             for item in result.strain {
-                var strainModel = StrainModel(name: item.key)
+                var strainModel = Strain(name: item.key)
                 strainModel.id = item.value.id
                 strainModel.race = item.value.race
                 strainModel.flavors = item.value.flavors
@@ -149,7 +149,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     func filterContent(_ searchText: String, searchRace: String? = nil) {
         
-        filteredStrains = strains.filter({ (strain: StrainModel) -> Bool in
+        filteredStrains = strains.filter({ (strain: Strain) -> Bool in
             let doesSegmendtedControlMatch = strain.race?.lowercased() == searchRace?.lowercased() || searchRace == "All"
             
             if isSearchBarEmpty {
@@ -240,7 +240,7 @@ extension SearchViewController {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var selectedStrain : StrainModel
+        var selectedStrain : Strain
         tableView.deselectRow(at: indexPath, animated: true)
         
         if isFiltering {

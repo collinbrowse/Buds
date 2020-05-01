@@ -13,7 +13,7 @@ class StrainCell: UICollectionViewCell {
     static let reuseID = String(describing: StrainCell.self)
     
     let strainImageView = BudsStrainImageView(frame: .zero)
-    let strainNameLabel = BudsTitleLabel(textAlignment: .center, fontSize: 20)
+    let strainNameLabel = BudsTitleLabel(textAlignment: .center, fontSize: DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 16 : 20)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,7 +37,7 @@ class StrainCell: UICollectionViewCell {
     private func configure() {
         addSubviews(strainImageView, strainNameLabel)
         
-        let padding : CGFloat = 8
+        let padding : CGFloat = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 0 : 8
         
         NSLayoutConstraint.activate([
             strainImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
