@@ -25,10 +25,14 @@ class StrainInfoVC: BudsDataLoadingVC {
         super.viewDidLoad()
         
         configureViewController()
-        configureScrollView()
-        configureNavigationBar()
         layoutUI()
         getStrainDescription()
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavigationBar()
     }
 
     
@@ -43,29 +47,16 @@ class StrainInfoVC: BudsDataLoadingVC {
     }
     
     
-    func configureScrollView() {
-        
-        
-        
-        NSLayoutConstraint.activate([
-            
-        ])
-        
-    }
-    
-    
     func configureNavigationBar() {
         
         navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController!.navigationBar.shadowImage = UIImage()
-        navigationController!.navigationBar.isTranslucent = true
         navigationController!.navigationBar.tintColor = .white
         
     }
     
     
     func layoutUI() {
-        
         
         view.addSubview(headerImage)
         view.addSubview(headerTitle)
@@ -105,9 +96,6 @@ class StrainInfoVC: BudsDataLoadingVC {
             strainDescriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
             strainDescriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding)
         ])
-        
-        
-        
         
     }
     

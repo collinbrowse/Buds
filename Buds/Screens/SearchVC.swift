@@ -18,6 +18,7 @@ class SearchVC: BudsDataLoadingVC {
     var filteredStrains : [Strain] = []
     var isSearching = false
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,18 +29,29 @@ class SearchVC: BudsDataLoadingVC {
         getAllStrains()
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        title = "Strains"
+        configureNavigationBar()
+    }
+    
+    
+    func configureNavigationBar() {
+        
         navigationController?.navigationBar.tintColor = .label
         navigationController?.navigationBar.prefersLargeTitles = true
-        title = "Strains"
+        navigationController!.navigationBar.setBackgroundImage(nil, for: .default)
+        navigationController!.navigationBar.shadowImage = nil
+        navigationController!.navigationBar.tintColor = nil
+        
     }
     
     
     func configureViewController() {
         
         view.backgroundColor = .systemBackground
-  
     }
     
     
