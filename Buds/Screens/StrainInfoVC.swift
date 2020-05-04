@@ -40,7 +40,7 @@ class StrainInfoVC: BudsDataLoadingVC {
         
         if #available(iOS 13.0, *)  { view.backgroundColor = .systemBackground }
         else                        { view.backgroundColor = .white }
-
+        
         headerTitle.text = strain.name
         headerTitle.numberOfLines = 2
         headerTitle.lineBreakMode = .byTruncatingTail
@@ -52,7 +52,6 @@ class StrainInfoVC: BudsDataLoadingVC {
         navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController!.navigationBar.shadowImage = UIImage()
         navigationController!.navigationBar.tintColor = .white
-        
     }
     
     
@@ -102,17 +101,20 @@ class StrainInfoVC: BudsDataLoadingVC {
     
     private func getStrainDescription() {
         
-        strainDescriptionContainerVC.showLoadingView()
+        showLoadingView()
         
-        Network.getStrainDescription(strainID: strain.id!) { (resultJSON) in
+        Network.getStrainDescription(strainID: strain.id!) { [weak self] (resultJSON) in
+            guard let self = self else { return }
+            self.dismissLoadingView()
+            
             guard let description = resultJSON["desc"].string else {
-                // Ghost Bubba
+                let message = "Sorry, we couldn't find any details for " + self.headerTitle.text!
+                self.showEmptyStateView(with: message, in: self.contentView)
                 return
             }
-            self.strainDescriptionLabel.text = resultJSON["desc"].stringValue
-            self.strainDescriptionContainerVC.dismissLoadingView()
+            
+            self.strainDescriptionLabel.text = description
         }
     }
-    
     
 }

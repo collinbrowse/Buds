@@ -18,25 +18,22 @@ class BudsDataLoadingVC: UIViewController {
         super.viewDidLoad()
     }
     
-    func showLoadingView(with bounds: CGRect) {
-        
-    }
     
     func showLoadingView() {
         
         containerView = UIView(frame: view.bounds)
-        view.addSubview(containerView)
-        if #available(iOS 13.0, *)  { containerView.backgroundColor = .systemBackground }
-        else                        { containerView.backgroundColor = .white }
+        containerView.backgroundColor = .systemBackground
         containerView.alpha = 0
+        view.addSubview(containerView)
+
         UIView.animate(withDuration: 0.25) {
             self.containerView.alpha = 0.25
         }
         
         let activityIndicator = UIActivityIndicatorView()
-        if #available(iOS 13.0, *)  { activityIndicator.style = .large }
-        containerView.addSubview(activityIndicator)
+        activityIndicator.style = .large
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(activityIndicator)
         NSLayoutConstraint.activate([
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
@@ -51,6 +48,13 @@ class BudsDataLoadingVC: UIViewController {
             self.containerView.removeFromSuperview()
             self.containerView = nil
         }
+    }
+    
+    
+    func showEmptyStateView(with message: String, in view: UIView) {
+        let emptyStateView = BudsEmptyStateView(message: message)
+        emptyStateView.frame = view.bounds
+        view.addSubview(emptyStateView)
     }
     
 

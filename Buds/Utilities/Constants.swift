@@ -11,6 +11,7 @@ import UIKit
 enum Images {
     
     static let defaultHeaderImageView = UIImage(named: "background1")
+    static let emptyStateBackgroundImageView = UIImage(named: "cannabis_color_icon")
 }
 
 

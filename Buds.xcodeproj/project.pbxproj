@@ -51,6 +51,7 @@
 		BE12BA99233BA5CF009FAD1D /* ArvoItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE12BA95233BA5CE009FAD1D /* ArvoItalic.ttf */; };
 		BE12BA9A233BA5CF009FAD1D /* ArvoBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE12BA96233BA5CF009FAD1D /* ArvoBold.ttf */; };
 		BE12BA9C233D1CA8009FAD1D /* StrainDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE12BA9B233D1CA8009FAD1D /* StrainDetailsViewController.swift */; };
+		BE2D4C13245CD16D0008D7C6 /* BudsEmptySateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2D4C12245CD16D0008D7C6 /* BudsEmptySateView.swift */; };
 		BE2F42AC2373606500D6BDF0 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE2F42AB2373606500D6BDF0 /* Search.storyboard */; };
 		BE41464422BA718C0009A738 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41464322BA718C0009A738 /* AppDelegate.swift */; };
 		BE41464922BA718C0009A738 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE41464722BA718C0009A738 /* Main.storyboard */; };
@@ -157,6 +158,7 @@
 		BE12BA95233BA5CE009FAD1D /* ArvoItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ArvoItalic.ttf; sourceTree = "<group>"; };
 		BE12BA96233BA5CF009FAD1D /* ArvoBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ArvoBold.ttf; sourceTree = "<group>"; };
 		BE12BA9B233D1CA8009FAD1D /* StrainDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrainDetailsViewController.swift; sourceTree = "<group>"; };
+		BE2D4C12245CD16D0008D7C6 /* BudsEmptySateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudsEmptySateView.swift; sourceTree = "<group>"; };
 		BE2F42AB2373606500D6BDF0 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		BE41464022BA718C0009A738 /* Buds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Buds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE41464322BA718C0009A738 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -398,6 +400,14 @@
 			path = Arvo;
 			sourceTree = "<group>";
 		};
+		BE2D4C11245CD15B0008D7C6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BE2D4C12245CD16D0008D7C6 /* BudsEmptySateView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		BE41463722BA718C0009A738 = {
 			isa = PBXGroup;
 			children = (
@@ -553,6 +563,7 @@
 		BEA25002244A778E00086B55 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				BE2D4C11245CD15B0008D7C6 /* Views */,
 				BE58DEC82453910C003A4239 /* ImageViews */,
 				BE58DEC024537712003A4239 /* Cells */,
 				BE6B71A9244F9F56007BFB23 /* ViewControllers */,
@@ -839,6 +850,7 @@
 				BE02A32722DE61AB00431854 /* LocationSearchDelegate.swift in Sources */,
 				BE58DEBF245374A1003A4239 /* UIHelper.swift in Sources */,
 				BE12BA91233A7621009FAD1D /* TableViewCell.swift in Sources */,
+				BE2D4C13245CD16D0008D7C6 /* BudsEmptySateView.swift in Sources */,
 				BE58DEC224537735003A4239 /* StrainCell.swift in Sources */,
 				BE747FCA22D53C2600D071FD /* SettingsViewController.swift in Sources */,
 				BE4795E0237DD99200FB0874 /* NewActivityStrainViewController.swift in Sources */,
