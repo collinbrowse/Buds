@@ -13,7 +13,7 @@ class StrainCell: UICollectionViewCell {
     static let reuseID = String(describing: StrainCell.self)
     
     let strainImageView = BudsStrainImageView(frame: .zero)
-    let strainNameLabel = BudsTitleLabel(textAlignment: .center, fontSize: DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 16 : 20)
+    let strainNameLabel = BudsStrainTitleLabel(textAlignment: .center, fontSize: DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 16 : 20)
     
     override init(frame: CGRect) {
         super.init(frame: frame)

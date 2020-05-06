@@ -11,7 +11,7 @@ import UIKit
 class StrainInfoVC: BudsDataLoadingVC {
 
     let headerImage = BudsHeaderImageView(image: Images.defaultHeaderImageView)
-    let headerTitle = BudsTitleLabel(textAlignment: .right, fontSize: 34)
+    let headerTitle = BudsStrainTitleLabel(textAlignment: .right, fontSize: 34)
     var strainDescriptionLabel = BudsBodyLabel(textAlignment: .natural)
     
     let strainDescriptionContainerVC = BudsDataLoadingVC()

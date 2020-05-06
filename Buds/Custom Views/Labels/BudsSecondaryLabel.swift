@@ -1,5 +1,5 @@
 //
-//  BudsTitleLabel.swift
+//  BudsSecondaryLabel.swift
 //  Buds
 //
 //  Created by Collin Browse on 5/5/20.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class BudsTitleLabel: UILabel {
+class BudsSecondaryLabel: UILabel {
 
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -22,17 +22,15 @@ class BudsTitleLabel: UILabel {
     }
     
     
-    convenience init(textAlignment: NSTextAlignment, fontSize: CGFloat) {
+    convenience init(fontSize: CGFloat, weight: UIFont.Weight) {
         self.init(frame: .zero)
-        self.font = UIFont(name: "Arvo-Bold", size: fontSize)
-        self.textAlignment = textAlignment
+        font = UIFont.systemFont(ofSize: 14, weight: .medium)
     }
     
-    func configure() {
-        textColor = .label
-        adjustsFontSizeToFitWidth = true
+    
+    private func configure() {
+        textColor = UIColor.secondaryLabel
         lineBreakMode = .byTruncatingTail
         translatesAutoresizingMaskIntoConstraints = false
     }
-    
 }

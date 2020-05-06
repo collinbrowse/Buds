@@ -2,13 +2,13 @@
 //  BudsTitleLabel.swift
 //  Buds
 //
-//  Created by Collin Browse on 5/5/20.
+//  Created by Collin Browse on 4/17/20.
 //  Copyright © 2020 Collin Browse. All rights reserved.
 //
 
 import UIKit
 
-class BudsTitleLabel: UILabel {
+class BudsStrainTitleLabel: UILabel {
 
     
     override init(frame: CGRect) {
@@ -29,9 +29,11 @@ class BudsTitleLabel: UILabel {
     }
     
     func configure() {
-        textColor = .label
+        textColor = .white
         adjustsFontSizeToFitWidth = true
-        lineBreakMode = .byTruncatingTail
+        minimumScaleFactor = 0.6
+        lineBreakMode = .byWordWrapping
+        numberOfLines = 0
         translatesAutoresizingMaskIntoConstraints = false
     }
     

@@ -179,9 +179,9 @@ class Network {
     
     
     ///displayActivityFeed
-    static func displayActivityFeed(userID: String, complete: @escaping([ActivityModel]) -> ()) {
+    static func displayActivityFeed(userID: String, complete: @escaping([Activity]) -> ()) {
         
-        var activities = [ActivityModel]()
+        var activities = [Activity]()
         
         // Only display activity from that user
         ref.child("activity").queryOrdered(byChild: "user").queryEqual(toValue: userID).observe(.childAdded) { (snapshot) in
@@ -191,9 +191,11 @@ class Network {
                 // Here we are creating an arrary of ActivityModel Objects.
                 // This is the best way to structure the information from firebase as we need
                 // an array to populate the table view
-                let activity = ActivityModel()
+                let activity = Activity()
                 
                 activity.setValuesForKeys(dictionary)
+                #warning("Manually Setting consumption for activity as a placeholder")
+                activity.consumptionMethod = .edible
                 activities.insert(activity, at: 0)
             
                 // Firebase has all the information besides the User's actual name. Let's add that as well

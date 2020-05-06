@@ -12,6 +12,25 @@ enum Images {
     
     static let defaultHeaderImageView = UIImage(named: "background1")
     static let emptyStateBackgroundImageView = UIImage(named: "cannabis_color_icon")
+    static let avatarImageView = UIImage(named: "cadets_generic_avatar")
+    
+}
+
+enum Icons {
+    static let defaultStrainIcon = UIImage(named: "cannabis_color_icon")
+    static let defaultCannabisIcon = UIImage(named: "icons8-cannabis")
+    static let jointIcon = UIImage(named: "icons8-joint-100")
+    static let bluntIcon = UIImage(named: "icons8-joint-100")
+    static let bowlIcon = UIImage(named: "cannabis-bowl-icon")
+    static let bongIcon = UIImage(named: "icons8-bong-100")
+    static let edibleIcon = UIImage(named: "icons8-cookie-100")
+    static let concentrateIcon = UIImage(named: "cannabis_oil_icon")
+    static let vapeIcon = UIImage(named: "vape_pen_icon")
+    
+}
+
+enum SFSymbols {
+    static let starIcon = UIImage(systemName: "star.fill")
 }
 
 
@@ -29,6 +48,10 @@ enum StrainAPI {
     static let searchForDescById = "/strains/data/desc/"
     static let searchForEffectById = "/strains/data/effects/"
     static let searchForFlavorById = "/strains/data/flavors/"
+    
+}
+
+enum Firebase {
     
 }
 

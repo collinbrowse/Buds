@@ -17,8 +17,8 @@ class ActivityFeedController: UITableViewController {
     var handle: AuthStateDidChangeListenerHandle?
     var user: User?
     var ref: DatabaseReference!
-    var activities = [ActivityModel]()
-    var activitiesDictionary = [String: ActivityModel]()
+    var activities = [Activity]()
+    var activitiesDictionary = [String: Activity]()
     var modelController: ModelController!
     
     override func viewDidLoad() {
@@ -51,6 +51,10 @@ class ActivityFeedController: UITableViewController {
             self.activities = activities
             self.activityFeedTableView.reloadData()
         }
+        
+        let destVC = ActivityFeedVC()
+        destVC.modelController = modelController
+        navigationController?.pushViewController(destVC, animated: true)
         
     }
     

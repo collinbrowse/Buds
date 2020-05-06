@@ -10,7 +10,7 @@ import UIKit
 
 class BudsEmptyStateView : UIView {
     
-    let messageLabel = BudsTitleLabel(textAlignment: .center, fontSize: 24)
+    let messageLabel = BudsStrainTitleLabel(textAlignment: .center, fontSize: 24)
     let backgroundImageView = UIImageView()
     
     
