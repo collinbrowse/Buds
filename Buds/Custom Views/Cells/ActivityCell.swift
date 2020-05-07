@@ -87,14 +87,11 @@ class ActivityCell: UITableViewCell {
     }
     
     func set(activity: Activity) {
-        // Let's convert the string from Firebase to a Date object
-        // This allows us to see how long ago a post was made
-        let timeAgoDateObject = TimeHelper.getDateFromString(dateString: activity.time!) // Returns a Date Object
                    
         strainIcon.image = Icons.defaultStrainIcon
         strainLabel.text = activity.strain
         locationLabel.text = activity.location
-        timeLabel.text = timeAgoDateObject.timeAgoString()
+        timeLabel.text = activity.date?.timeAgoString()
         detailsLabel.text = activity.note
         setIcons(activity: activity, withConsumptionMethod: activity.consumptionMethod!)
     }

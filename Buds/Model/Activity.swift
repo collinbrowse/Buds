@@ -21,6 +21,7 @@ class Activity: NSObject {
     var smoking_style: String?
     var strain: String?
     var time: String?
+    var date: Date?
     var user: String?
     var name: String?
     var profilePictureURL: String?

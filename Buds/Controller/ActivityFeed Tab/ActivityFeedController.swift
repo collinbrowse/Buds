@@ -47,10 +47,10 @@ class ActivityFeedController: UITableViewController {
         activityFeedTableView.estimatedRowHeight = 100
         activityFeedTableView.rowHeight = UITableView.automaticDimension
         
-        Network.displayActivityFeed(userID: modelController.person.id) { (activities) in
-            self.activities = activities
-            self.activityFeedTableView.reloadData()
-        }
+//        Network.displayActivityFeed(userID: modelController.person.id) { (activities) in
+//            self.activities = activities
+//            self.activityFeedTableView.reloadData()
+//        }
         
         let destVC = ActivityFeedVC()
         destVC.modelController = modelController
@@ -68,23 +68,6 @@ class ActivityFeedController: UITableViewController {
 
     }
     
-    func displayActivityFeed() {
-        
-        // Reset our list of activities
-        // This requires downloading all activites from firebase each time ths view is loaded
-        // There is likely a better way
-        activities.removeAll()
-
-//        Network.displayActivityFeed(userID: modelController.person.id) { (activities) in
-//            // Populate the table view with text
-//            self.activities = activities
-//            self.activityFeedTableView.reloadData()
-//
-//            // Populate the table view with pictures
-//        }
-        SVProgressHUD.dismiss()
-    }
-    
 }
 
 extension ActivityFeedController {
@@ -97,15 +80,10 @@ extension ActivityFeedController {
         // Add information to each cell
         if activities.count > 0 {
             
-            // Let's convert the string from Firebase to a Date object
-            // This allows us to see how long ago a post was made
-            let timeAgoDateObject = TimeHelper.getDateFromString(dateString: activities[indexPath.row].time!) // Returns a Date Object
-            
-            
             // Populate each cell with information
             cell.nameTextView.text = activities[indexPath.row].name
             cell.locationLabel.text = activities[indexPath.row].location
-            cell.timeTextView.text = timeAgoDateObject.timeAgoString()
+            cell.timeTextView.text = activities[indexPath.row].date?.timeAgoString()
             cell.strainTextView.text = activities[indexPath.row].strain
             cell.ratingTextView.text = activities[indexPath.row].rating
             cell.smokingStyleTextView.text = activities[indexPath.row].smoking_style

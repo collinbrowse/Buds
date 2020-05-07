@@ -14,7 +14,7 @@ class ActivityFeedVC: BudsDataLoadingVC {
     let tableView = UITableView()
     var activities : [Activity] = []
     var modelController : ModelController!
-    
+    var count = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,26 +42,26 @@ class ActivityFeedVC: BudsDataLoadingVC {
         
         view.addSubview(tableView)
         tableView.frame = view.bounds
-        tableView.rowHeight = 80 // This will have to be variable some how
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ActivityCell.self, forCellReuseIdentifier: ActivityCell.reuseID)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 74
+        tableView.separatorStyle = .none
+        tableView.allowsSelection = false
     }
     
     
     func getActivities() {
-        
-        Network.displayActivityFeed(userID: modelController.person.id) { (activities) in
+        showLoadingView()
+        Network.displayActivityFeed(userID: modelController.person.id) { [weak self] (activities) in
+            guard let self = self else { return }
+            self.dismissLoadingView()
             self.activities = activities
+            self.tableView.separatorStyle = .singleLine
             self.tableView.reloadData()
         }
     }
-    
-    
-    
-
 }
 
 

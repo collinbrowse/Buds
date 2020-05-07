@@ -23,15 +23,16 @@ class BudsDataLoadingVC: UIViewController {
         
         containerView = UIView(frame: view.bounds)
         containerView.backgroundColor = .systemBackground
-        containerView.alpha = 0
+        containerView.alpha = 0.25
         view.addSubview(containerView)
 
-        UIView.animate(withDuration: 0.25) {
-            self.containerView.alpha = 0.25
+        UIView.animate(withDuration: 0.5) {
+            self.containerView.alpha = 0.5
         }
         
         let activityIndicator = UIActivityIndicatorView()
         activityIndicator.style = .large
+        activityIndicator.color = .systemGreen
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(activityIndicator)
         NSLayoutConstraint.activate([
