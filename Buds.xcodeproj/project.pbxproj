@@ -100,6 +100,8 @@
 		BEACFF1B24645ED800F705EB /* NewActivityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEACFF1A24645ED800F705EB /* NewActivityVC.swift */; };
 		BEACFF1D246463A100F705EB /* NavigationBar+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEACFF1C246463A100F705EB /* NavigationBar+Ext.swift */; };
 		BEACFF1F2464641100F705EB /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEACFF1E2464641100F705EB /* String+Ext.swift */; };
+		BEACFF232464AD9B00F705EB /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEACFF222464AD9B00F705EB /* TagCell.swift */; };
+		BEACFF28246B103200F705EB /* HorizontalCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEACFF27246B103200F705EB /* HorizontalCollectionView.swift */; };
 		BEB7430823326089003B52DE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB7430723326089003B52DE /* CardView.swift */; };
 		BEFB6FF8235B6151008805E5 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFB6FF7235B6151008805E5 /* Switcher.swift */; };
 /* End PBXBuildFile section */
@@ -221,6 +223,8 @@
 		BEACFF1A24645ED800F705EB /* NewActivityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityVC.swift; sourceTree = "<group>"; };
 		BEACFF1C246463A100F705EB /* NavigationBar+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationBar+Ext.swift"; sourceTree = "<group>"; };
 		BEACFF1E2464641100F705EB /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		BEACFF222464AD9B00F705EB /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
+		BEACFF27246B103200F705EB /* HorizontalCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalCollectionView.swift; sourceTree = "<group>"; };
 		BEB7430723326089003B52DE /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		BEFB6FF7235B6151008805E5 /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
 		DFBCFB9F69836A8C3EBC2D7A /* Pods_BudsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BudsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -504,8 +508,8 @@
 				BE41467222BA8F700009A738 /* Person */,
 				BE02A32222DCEF9A00431854 /* Network.swift */,
 				BE02A34322E6BD7D00431854 /* TimeHelper.swift */,
-				BE0A065722FB6F5F00C41B53 /* ModelController.swift */,
 				BEFB6FF7235B6151008805E5 /* Switcher.swift */,
+				BE0A065722FB6F5F00C41B53 /* ModelController.swift */,
 				BE6726062386129600261DB5 /* StrainJSON.swift */,
 				BE2D4C1D2461B4370008D7C6 /* Activity.swift */,
 			);
@@ -527,6 +531,7 @@
 			children = (
 				BE58DEC124537735003A4239 /* StrainCell.swift */,
 				BE2D4C1F2461B7100008D7C6 /* ActivityCell.swift */,
+				BEACFF222464AD9B00F705EB /* TagCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -591,6 +596,7 @@
 		BEA25002244A778E00086B55 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				BEACFF26246B101800F705EB /* CollectionViews */,
 				BE2D4C11245CD15B0008D7C6 /* Views */,
 				BE58DEC82453910C003A4239 /* ImageViews */,
 				BE58DEC024537712003A4239 /* Cells */,
@@ -609,6 +615,14 @@
 				BEACFF162462149300F705EB /* BudsTitleLabel.swift */,
 			);
 			path = Labels;
+			sourceTree = "<group>";
+		};
+		BEACFF26246B101800F705EB /* CollectionViews */ = {
+			isa = PBXGroup;
+			children = (
+				BEACFF27246B103200F705EB /* HorizontalCollectionView.swift */,
+			);
+			path = CollectionViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -894,6 +908,7 @@
 				BE02A32522DE557200431854 /* LocationSearchBarController.swift in Sources */,
 				BEFB6FF8235B6151008805E5 /* Switcher.swift in Sources */,
 				BE2D4C1A2460A8660008D7C6 /* NetworkManager.swift in Sources */,
+				BEACFF232464AD9B00F705EB /* TagCell.swift in Sources */,
 				BE2D4C172460A7DC0008D7C6 /* BudsAvatarImageView.swift in Sources */,
 				BE02A33E22E6436600431854 /* NewActivityLocationController.swift in Sources */,
 				BE02A34422E6BD7D00431854 /* TimeHelper.swift in Sources */,
@@ -903,6 +918,7 @@
 				BEACFF1B24645ED800F705EB /* NewActivityVC.swift in Sources */,
 				BE41467D22BA9CE50009A738 /* Birthday.swift in Sources */,
 				BE2D4C152460A46B0008D7C6 /* ActivityFeedVC.swift in Sources */,
+				BEACFF28246B103200F705EB /* HorizontalCollectionView.swift in Sources */,
 				BE58381D237CE4F9002160B8 /* NewActivityEffectsViewController.swift in Sources */,
 				BE58DEC524537A68003A4239 /* UIView+Ext.swift in Sources */,
 				BEACFF1F2464641100F705EB /* String+Ext.swift in Sources */,

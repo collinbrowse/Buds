@@ -109,30 +109,6 @@ class SearchVC: BudsDataLoadingVC {
     }
     
     
-//    func getStrainsByName() {
-//
-//        Alamofire.request(StrainAPI.baseAPI + StrainAPI.APIKey + StrainAPI.searchForStrainsByName + "Tangie").validate().responseJSON { (response) in
-//
-//            if response.result.isSuccess {
-//
-//                do {
-//                    let decoder = JSONDecoder()
-//                    self.strains = try decoder.decode([Strain].self, from: response.data!)
-//                    self.updateData(on: self.strains)
-//                } catch {
-//                    //completed(.failure(.invalidData))
-//                    print(error)
-//                }
-//
-//            } else {
-//                print("Unable to parse strains")
-//            }
-//
-//        }
-//
-//    }
-    
-    
     func updateData(on strains: [Strain]) {
         
         var snapshot = NSDiffableDataSourceSnapshot<Section, Strain>()
@@ -164,8 +140,6 @@ extension SearchVC : UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         
-        // Goal: Grab the text from the search bar and update the view
-        //searchController.searchBar.text
         guard let searchText = searchController.searchBar.text, !searchText.isEmpty else {
             filteredStrains.removeAll()
             isSearching = false

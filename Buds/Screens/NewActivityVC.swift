@@ -25,6 +25,11 @@ class NewActivityVC: UIViewController {
     var effectsLabel = BudsTitleLabel(textAlignment: .left, fontSize: 20)
     var locationLabel = BudsTitleLabel(textAlignment: .left, fontSize: 20)
     
+    var ratingWrapperView = UIView()
+    var consumptionMethodWrapperView = UIView()
+    var effectsWrapperView = UIView()
+    var locationWrapperView = UIView()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,11 +60,9 @@ class NewActivityVC: UIViewController {
     
     
     private func configureViewController() {
-        
         view.backgroundColor = .systemBackground
-        
     }
-    
+
     
     private func configureStrainIcon() {
         strainIcon.image = Icons.defaultStrainIcon
@@ -83,18 +86,17 @@ class NewActivityVC: UIViewController {
         noteTextField.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         noteTextField.textColor = .systemGray
         noteTextField.attributedPlaceholder = NSAttributedString(string: "How was it? Leave a note for later", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
-
-
     }
     
     
     private func configureLabels() {
         labelsView.translatesAutoresizingMaskIntoConstraints = false
         ratingLabel.text = "Rating"
-        consumptionMethodLabel.text = "Consumption Method"
+        consumptionMethodLabel.text = "Method"
         effectsLabel.text = "Effects"
         locationLabel.text = "Location"
     }
+    
     
     
     private func layoutUI() {
@@ -127,32 +129,50 @@ class NewActivityVC: UIViewController {
             
             labelsView.topAnchor.constraint(equalTo: noteTextField.bottomAnchor),
             labelsView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            labelsView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            labelsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             labelsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         
-        
+        let wrapperViews = [ratingWrapperView, consumptionMethodWrapperView, effectsWrapperView, locationWrapperView]
         let labels = [ratingLabel, consumptionMethodLabel, effectsLabel, locationLabel]
         
-        for label in labels {
-            labelsView.addSubview(label)
-            label.translatesAutoresizingMaskIntoConstraints = false
+        for i in 0...wrapperViews.count-1 {
+            
+            let collectionView = HorizontalCollectionView(frame: wrapperViews[i].frame)
+            let labelData = ["Bong", "Blunt", "Bowl", "Vape", "Joint", "Concentrate", "Edible", "Something", "Something1", "Something2"]
+            collectionView.updateData(on: labelData)
+            
+            labelsView.addSubview(wrapperViews[i])
+            wrapperViews[i].addSubview(labels[i])
+            wrapperViews[i].addSubview(collectionView)
+            wrapperViews[i].translatesAutoresizingMaskIntoConstraints = false
+            collectionView.translatesAutoresizingMaskIntoConstraints = false
+            
+            if i == 0 {
+                wrapperViews[i].topAnchor.constraint(equalTo: labelsView.topAnchor).isActive = true
+            } else {
+                wrapperViews[i].topAnchor.constraint(equalTo: wrapperViews[i-1].bottomAnchor).isActive = true
+            }
+            
             NSLayoutConstraint.activate([
-                label.leadingAnchor.constraint(equalTo: labelsView.leadingAnchor),
-                label.trailingAnchor.constraint(equalTo: labelsView.trailingAnchor),
-                label.heightAnchor.constraint(equalToConstant: 50)
+                wrapperViews[i].leadingAnchor.constraint(equalTo: labelsView.leadingAnchor),
+                wrapperViews[i].trailingAnchor.constraint(equalTo: labelsView.trailingAnchor),
+                wrapperViews[i].heightAnchor.constraint(equalToConstant: 50),
+                
+                labels[i].topAnchor.constraint(equalTo: wrapperViews[i].topAnchor),
+                labels[i].bottomAnchor.constraint(equalTo: wrapperViews[i].bottomAnchor),
+                labels[i].leadingAnchor.constraint(equalTo: wrapperViews[i].leadingAnchor),
+                labels[i].widthAnchor.constraint(equalToConstant: labels[i].intrinsicContentSize.width + 6),
+                
+                collectionView.topAnchor.constraint(equalTo: wrapperViews[i].topAnchor),
+                collectionView.leadingAnchor.constraint(equalTo: labels[i].trailingAnchor, constant: padding),
+                collectionView.bottomAnchor.constraint(equalTo: wrapperViews[i].bottomAnchor),
+                collectionView.trailingAnchor.constraint(equalTo: wrapperViews[i].trailingAnchor)
             ])
         }
-        
-        NSLayoutConstraint.activate([
-            ratingLabel.topAnchor.constraint(equalTo: labelsView.topAnchor),
-            consumptionMethodLabel.topAnchor.constraint(equalTo: ratingLabel.bottomAnchor),
-            effectsLabel.topAnchor.constraint(equalTo: consumptionMethodLabel.bottomAnchor),
-            locationLabel.topAnchor.constraint(equalTo: effectsLabel.bottomAnchor)
-        ])
-        
     }
+    
+    
 }
-
 
 
