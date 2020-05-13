@@ -54,8 +54,14 @@ class NewActivityVC: UIViewController {
         navigationItem.scrollEdgeAppearance = appearance
         
         title = "New Activity"
-        navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.tintColor = .white
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        navigationItem.rightBarButtonItem = addButton
+    }
+    
+    
+    @objc func addButtonTapped() {
+        print("Tapped")
     }
     
     
