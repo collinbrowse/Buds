@@ -45,24 +45,8 @@ class NewActivityVC: BudsDataLoadingVC {
     }
     
     
-    private func configureNavigationBar() {
-        let appearance = UINavigationBarAppearance()
-        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .systemGreen
-        navigationItem.standardAppearance = appearance
-        navigationItem.scrollEdgeAppearance = appearance
-        
-        title = "New Activity"
-        navigationController?.navigationBar.tintColor = .white
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
-        navigationItem.rightBarButtonItem = addButton
-    }
-    
-    
     @objc func addButtonTapped() {
-
+        
         let userID = modelController.person.id
         var activityDetailsDict                 = [String : String]()
         activityDetailsDict["user"]             = modelController.person.id
@@ -85,10 +69,26 @@ class NewActivityVC: BudsDataLoadingVC {
                 print("No tagType selected")
             }
         }
-
+        
         showLoadingView()
         print(Network.addNewActivity(userID: userID, activityDetails: activityDetailsDict))
         dismissLoadingView()
+    }
+    
+    
+    private func configureNavigationBar() {
+        let appearance = UINavigationBarAppearance()
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .systemGreen
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+        
+        title = "New Activity"
+        navigationController?.navigationBar.tintColor = .white
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        navigationItem.rightBarButtonItem = addButton
     }
     
     
@@ -117,7 +117,7 @@ class NewActivityVC: BudsDataLoadingVC {
         noteTextField.translatesAutoresizingMaskIntoConstraints = false
         noteTextField.placeholder = "How was it? Leave a note for later"
         noteTextField.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        noteTextField.textColor = .systemGray
+        noteTextField.textColor = .label
         noteTextField.attributedPlaceholder = NSAttributedString(string: "How was it? Leave a note for later", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
         noteTextField.becomeFirstResponder()
     }
