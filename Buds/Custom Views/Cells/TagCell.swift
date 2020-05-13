@@ -29,7 +29,7 @@ class TagCell: UICollectionViewCell {
     
     private func configure() {
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 16, weight: .light)
+        label.font = UIFont.systemFont(ofSize: 17, weight: .light)
         label.textColor = .black
         label.lineBreakMode = .byTruncatingTail
     }

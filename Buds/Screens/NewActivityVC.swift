@@ -159,8 +159,8 @@ class NewActivityVC: UIViewController {
                 wrapperViews[i].trailingAnchor.constraint(equalTo: labelsView.trailingAnchor),
                 wrapperViews[i].heightAnchor.constraint(equalToConstant: 50),
                 
-                labels[i].topAnchor.constraint(equalTo: wrapperViews[i].topAnchor),
-                labels[i].bottomAnchor.constraint(equalTo: wrapperViews[i].bottomAnchor),
+                labels[i].centerYAnchor.constraint(equalTo: wrapperViews[i].centerYAnchor),
+                labels[i].heightAnchor.constraint(equalTo: wrapperViews[i].heightAnchor),
                 labels[i].leadingAnchor.constraint(equalTo: wrapperViews[i].leadingAnchor),
                 labels[i].widthAnchor.constraint(equalToConstant: labels[i].intrinsicContentSize.width + 6),
                 

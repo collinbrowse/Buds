@@ -14,6 +14,7 @@ class HorizontalCollectionView: UICollectionView {
     enum Section { case main }
     var diffableDataSource : UICollectionViewDiffableDataSource<Section, String>!
     
+    
     convenience init(frame: CGRect) {
         self.init(frame: frame, collectionViewLayout: UIHelper.createHorizontalFlowLayout())
     }
