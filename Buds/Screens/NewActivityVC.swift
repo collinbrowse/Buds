@@ -92,6 +92,7 @@ class NewActivityVC: UIViewController {
         noteTextField.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         noteTextField.textColor = .systemGray
         noteTextField.attributedPlaceholder = NSAttributedString(string: "How was it? Leave a note for later", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
+        noteTextField.becomeFirstResponder()
     }
     
     
