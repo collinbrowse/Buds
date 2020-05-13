@@ -13,7 +13,7 @@ class HorizontalCollectionView: UICollectionView {
     
     enum Section { case main }
     var diffableDataSource : UICollectionViewDiffableDataSource<Section, String>!
-    
+    var data : [String] = []
     
     convenience init(frame: CGRect) {
         self.init(frame: frame, collectionViewLayout: UIHelper.createHorizontalFlowLayout())
@@ -34,6 +34,7 @@ class HorizontalCollectionView: UICollectionView {
     
     
     private func configureCollectionView() {
+        delegate = self
         backgroundColor = .systemBackground
         showsHorizontalScrollIndicator = false
         showsVerticalScrollIndicator = false
@@ -60,6 +61,16 @@ class HorizontalCollectionView: UICollectionView {
         DispatchQueue.main.async {
             self.diffableDataSource.apply(snapshot, animatingDifferences: true, completion: nil)
         }
+        self.data = data
+    }
+    
+}
+
+extension HorizontalCollectionView : UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! TagCell
+        cell.isSelected.toggle()
     }
 }
 
