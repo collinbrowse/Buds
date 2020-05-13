@@ -16,7 +16,7 @@ class TagCell: UICollectionViewCell {
     var label = UILabel()
     override var isSelected: Bool {
         didSet {
-            if self.isSelected {
+            if isSelected {
                 backgroundColor = .systemGreen
                 label.textColor = .label
             }

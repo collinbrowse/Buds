@@ -61,7 +61,8 @@ class NewActivityVC: UIViewController {
     
     
     @objc func addButtonTapped() {
-        print("Tapped")
+        // Need to be able to get access to each collection view here
+        // Once I have that, then I have collectionView.selectedData and I can upload all that
     }
     
     
@@ -142,12 +143,12 @@ class NewActivityVC: UIViewController {
         
         let wrapperViews = [ratingWrapperView, consumptionMethodWrapperView, effectsWrapperView, locationWrapperView]
         let labels = [ratingLabel, consumptionMethodLabel, effectsLabel, locationLabel]
+        let tagTypes = TagTypes.allCases
         
-        for i in 0...wrapperViews.count-1 {
+        for i in 0...3 {
             
-            let collectionView = HorizontalCollectionView(frame: wrapperViews[i].frame)
-            let labelData = ["Bong", "Blunt", "Bowl", "Vape", "Joint", "Concentrate", "Edible", "Something", "Something1", "Something2"]
-            collectionView.updateData(on: labelData)
+            let collectionView = HorizontalCollectionView(frame: wrapperViews[i].frame, tag: tagTypes[i])
+            
             
             labelsView.addSubview(wrapperViews[i])
             wrapperViews[i].addSubview(labels[i])

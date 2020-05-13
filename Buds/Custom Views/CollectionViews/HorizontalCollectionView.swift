@@ -8,25 +8,32 @@
 
 import UIKit
 
+
+
+
 class HorizontalCollectionView: UICollectionView {
 
     
     enum Section { case main }
     var diffableDataSource : UICollectionViewDiffableDataSource<Section, String>!
     var data : [String] = []
+    var currentTag : TagTypes!
+    var selectedData : Set<String> = []
     
-    convenience init(frame: CGRect) {
+    convenience init(frame: CGRect, tag: TagTypes) {
         self.init(frame: frame, collectionViewLayout: UIHelper.createHorizontalFlowLayout())
-    }
-    
-    
-    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
-        super.init(frame: frame, collectionViewLayout: layout)
+        currentTag = tag
         configureCollectionView()
         configureDataSource()
+        getData()
     }
     
     
+    private override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
+        super.init(frame: frame, collectionViewLayout: layout)
+        
+    }
+
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -64,13 +71,40 @@ class HorizontalCollectionView: UICollectionView {
         self.data = data
     }
     
+    
+    func getData() {
+        switch currentTag {
+        case .effect:
+            allowsMultipleSelection = true
+            Network.getEffectsFromAPI { (effectsDict) in
+                let effectsArray = effectsDict.map { $0.keys.first! }
+                self.updateData(on: effectsArray)
+            }
+        case .location:
+            print()
+        case .method:
+            updateData(on: TagTypes.methods)
+        case .rating:
+            updateData(on: TagTypes.ratings)
+        case .none:
+            print("No tag set")
+        }
+    }
+    
 }
 
 extension HorizontalCollectionView : UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! TagCell
-        cell.isSelected.toggle()
+        
+        selectedData.insert(data[indexPath.row])
     }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
+        selectedData.remove(data[indexPath.row])
+    }
+    
 }
 

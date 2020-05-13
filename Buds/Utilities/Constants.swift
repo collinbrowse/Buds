@@ -34,6 +34,17 @@ enum SFSymbols {
 }
 
 
+enum TagTypes : CaseIterable {
+    case rating, method, effect, location
+    
+    static let ratings = ["⭐️5/5", "⭐️4/5", "⭐️3/5", "⭐️2/5", "⭐️1/5"]
+    static let methods = ["Bong", "Blunt", "Bowl", "Vape", "Joint", "Concentrate", "Edible"]
+}
+
+
+
+
+
 enum StrainAPI {
     
     static let baseAPI = "http://strainapi.evanbusse.com"
