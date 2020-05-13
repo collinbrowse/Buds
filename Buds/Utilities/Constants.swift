@@ -17,6 +17,7 @@ enum Images {
 }
 
 enum Icons {
+    
     static let defaultStrainIcon = UIImage(named: "cannabis_color_icon")
     static let defaultCannabisIcon = UIImage(named: "icons8-cannabis")
     static let jointIcon = UIImage(named: "icons8-joint-100")
@@ -37,10 +38,26 @@ enum SFSymbols {
 enum TagTypes : CaseIterable {
     case rating, method, effect, location
     
+    var value: String {
+        switch self {
+        case .rating:
+            return "rating"
+        case .method:
+            return "method"
+        case .effect:
+            return "effect"
+        case .location:
+            return "location"
+        }
+    }
+}
+
+
+enum TagValues {
+    
     static let ratings = ["⭐️5/5", "⭐️4/5", "⭐️3/5", "⭐️2/5", "⭐️1/5"]
     static let methods = ["Bong", "Blunt", "Bowl", "Vape", "Joint", "Concentrate", "Edible"]
 }
-
 
 
 

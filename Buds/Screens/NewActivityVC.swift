@@ -9,26 +9,27 @@
 import UIKit
 
 
-class NewActivityVC: UIViewController {
+class NewActivityVC: BudsDataLoadingVC {
     
     override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
+    
+    var modelController: ModelController!
     
     var strain : Strain!
     
     var strainIcon = UIImageView(frame: .zero)
     var strainLabel = BudsTitleLabel(textAlignment: .left, fontSize: 20)
     var raceLabel = BudsSecondaryLabel(fontSize: 16, weight: .medium)
+    
     var noteTextField = UITextField(frame: .zero)
     var labelsView = UIView()
+    var collectionViews : [HorizontalCollectionView] = []
     var ratingLabel = BudsTitleLabel(textAlignment: .left, fontSize: 20)
     var consumptionMethodLabel = BudsTitleLabel(textAlignment: .left, fontSize: 20)
     var effectsLabel = BudsTitleLabel(textAlignment: .left, fontSize: 20)
     var locationLabel = BudsTitleLabel(textAlignment: .left, fontSize: 20)
     
-    var ratingWrapperView = UIView()
-    var consumptionMethodWrapperView = UIView()
-    var effectsWrapperView = UIView()
-    var locationWrapperView = UIView()
+    
     
     
     override func viewDidLoad() {
@@ -61,8 +62,33 @@ class NewActivityVC: UIViewController {
     
     
     @objc func addButtonTapped() {
-        // Need to be able to get access to each collection view here
-        // Once I have that, then I have collectionView.selectedData and I can upload all that
+
+        let userID = modelController.person.id
+        var activityDetailsDict                 = [String : String]()
+        activityDetailsDict["user"]             = modelController.person.id
+        activityDetailsDict["time"]             = TimeHelper.getTodayString()
+        activityDetailsDict["strain"]           = strainLabel.text
+        activityDetailsDict["note"]             = noteTextField.text
+        
+        for collectionView in collectionViews {
+            switch collectionView.currentTag {
+            case .effect:
+                //activityDetailsDict[collectionView.currentTag.value] = collectionView.selectedData.first
+                print()
+            case .location:
+                activityDetailsDict[collectionView.currentTag.value] = "Steamboat Springs"
+            case .method:
+                activityDetailsDict["smoking_style"] = collectionView.selectedData.first
+            case .rating:
+                activityDetailsDict[collectionView.currentTag.value] = collectionView.selectedData.first
+            case .none:
+                print("No tagType selected")
+            }
+        }
+
+        showLoadingView()
+        print(Network.addNewActivity(userID: userID, activityDetails: activityDetailsDict))
+        dismissLoadingView()
     }
     
     
@@ -141,15 +167,14 @@ class NewActivityVC: UIViewController {
             labelsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         
-        let wrapperViews = [ratingWrapperView, consumptionMethodWrapperView, effectsWrapperView, locationWrapperView]
+        let wrapperViews = [UIView(), UIView(), UIView(), UIView()]
         let labels = [ratingLabel, consumptionMethodLabel, effectsLabel, locationLabel]
         let tagTypes = TagTypes.allCases
         
         for i in 0...3 {
             
             let collectionView = HorizontalCollectionView(frame: wrapperViews[i].frame, tag: tagTypes[i])
-            
-            
+            collectionViews.append(collectionView)
             labelsView.addSubview(wrapperViews[i])
             wrapperViews[i].addSubview(labels[i])
             wrapperViews[i].addSubview(collectionView)

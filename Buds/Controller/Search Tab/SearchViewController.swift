@@ -251,6 +251,7 @@ extension SearchViewController {
         
         let destVC = NewActivityVC()
         destVC.strain = selectedStrain
+        destVC.modelController = self.modelController
         //destVC.strain = selectedStrain
         navigationController?.pushViewController(destVC, animated: true)
         //self.performSegue(withIdentifier: "goToStrainInfo", sender: self)

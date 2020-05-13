@@ -8,9 +8,6 @@
 
 import UIKit
 
-
-
-
 class HorizontalCollectionView: UICollectionView {
 
     
@@ -83,9 +80,9 @@ class HorizontalCollectionView: UICollectionView {
         case .location:
             print()
         case .method:
-            updateData(on: TagTypes.methods)
+            updateData(on: TagValues.methods)
         case .rating:
-            updateData(on: TagTypes.ratings)
+            updateData(on: TagValues.ratings)
         case .none:
             print("No tag set")
         }
