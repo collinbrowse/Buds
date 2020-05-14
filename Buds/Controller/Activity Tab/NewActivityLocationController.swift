@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Foundation
 import MapKit
 
 class NewActivityLocationController: UITableViewController {
@@ -19,6 +18,7 @@ class NewActivityLocationController: UITableViewController {
     // MapKit AutoCompleter
     var searchCompleter = MKLocalSearchCompleter()
     var searchResults = [MKLocalSearchCompletion]()
+    var locationManager = CLLocationManager()
     
     // Delegate to receive the location data
     var locationDelegate: LocationSearchDelegate?
@@ -27,7 +27,11 @@ class NewActivityLocationController: UITableViewController {
     override func viewDidLoad() {
         searchCompleter.delegate = self
         newActivityLocationSearchBar.delegate = self
-        searchCompleter.filterType = .locationsOnly
+        searchCompleter.resultTypes = .pointOfInterest
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
         newActivityLocationSearchBar.becomeFirstResponder()
         newActivityLocationTableView.separatorStyle = .none
     }
@@ -94,5 +98,25 @@ extension NewActivityLocationController {
         
         // Head back to view controller that got us here
         self.navigationController?.popViewController(animated: true)
+    }
+}
+
+
+extension NewActivityLocationController: CLLocationManagerDelegate {
+ 
+    
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        locations.first
+    }
+    
+    private func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            locationManager.requestLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Failed with error: \(error)")
     }
 }

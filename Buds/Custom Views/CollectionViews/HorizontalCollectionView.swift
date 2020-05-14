@@ -83,8 +83,8 @@ class HorizontalCollectionView: UICollectionView {
             updateData(on: TagValues.methods)
         case .rating:
             updateData(on: TagValues.ratings)
-        case .none:
-            print("No tag set")
+        default:
+            break
         }
     }
     

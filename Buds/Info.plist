@@ -75,5 +75,7 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>To access nearby locations, Buds needs to use location services</string>
 </dict>
 </plist>

@@ -65,8 +65,8 @@ class NewActivityVC: BudsDataLoadingVC {
                 activityDetailsDict["smoking_style"] = collectionView.selectedData.first
             case .rating:
                 activityDetailsDict[collectionView.currentTag.value] = collectionView.selectedData.first
-            case .none:
-                print("No tagType selected")
+            default:
+                break
             }
         }
         
