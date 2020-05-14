@@ -7,18 +7,19 @@
 //
 
 import UIKit
-
+import MapKit
 
 class NetworkManager {
     
     static let shared = NetworkManager()
-    let cache = NSCache<NSString, UIImage>()
+    let imageCache = NSCache<NSString, UIImage>()
+    let placemarkCache = NSCache<NSString, CLPlacemark>()
     
     
     func downloadImage(from urlString: String, completed: @escaping(UIImage?) -> Void) {
         
         let cacheKey = NSString(string: urlString)
-        if let image = cache.object(forKey: cacheKey) {
+        if let image = imageCache.object(forKey: cacheKey) {
             completed(image)
             return
         }
@@ -38,10 +39,35 @@ class NetworkManager {
                     return
             }
             
-            self.cache.setObject(image, forKey: cacheKey)
+            self.imageCache.setObject(image, forKey: cacheKey)
             
             completed(image)
         }
         task.resume()
     }
+    
+    
+    
+    func getReverseGeocodeLocation(fromLocation loc: CLLocation, completed: @escaping(Result<CLPlacemark, BudsError>) -> Void) {
+        
+        let locationString = loc.coordinate.latitude.description + loc.coordinate.longitude.description
+        let cacheKey = NSString(string: locationString)
+        
+        if let placemark = placemarkCache.object(forKey: cacheKey) {
+            completed(.success(placemark))
+            return
+        }
+        
+        CLGeocoder().reverseGeocodeLocation(loc) { [weak self] (placemark, error) in
+            
+            guard let mark = placemark?.first, error == nil, let self = self else {
+                completed(.failure(.noLocationStored))
+                return
+            }
+            
+            self.placemarkCache.setObject(mark, forKey: cacheKey)
+            completed(.success(mark))
+        }
+    }
+    
 }

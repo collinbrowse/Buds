@@ -12,7 +12,7 @@ class BudsAvatarImageView : UIImageView {
     
     
     var placeholderImage = Images.avatarImageView
-    let cache = NetworkManager.shared.cache
+    let cache = NetworkManager.shared.imageCache
     
     override init(frame: CGRect) {
         super.init(frame: frame)

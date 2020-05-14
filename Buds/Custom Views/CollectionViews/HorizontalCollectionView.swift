@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class HorizontalCollectionView: UICollectionView {
 
@@ -16,6 +17,7 @@ class HorizontalCollectionView: UICollectionView {
     var data : [String] = []
     var currentTag : TagTypes!
     var selectedData : Set<String> = []
+    var locationManager = CLLocationManager()
     
     convenience init(frame: CGRect, tag: TagTypes) {
         self.init(frame: frame, collectionViewLayout: UIHelper.createHorizontalFlowLayout())
@@ -57,6 +59,36 @@ class HorizontalCollectionView: UICollectionView {
         })
     }
     
+    func getLocationData() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
+    }
+    
+    
+    func setLocationTags(placemark: CLPlacemark) {
+        var locationData = Set<String>()
+        
+        // Add the parts of the placemark that are not nil
+        if let locality = placemark.locality { locationData.insert(locality) }
+        if let subLocality = placemark.subLocality { locationData.insert(subLocality) }
+        if let subAdministrativeArea = placemark.subAdministrativeArea { locationData.insert(subAdministrativeArea) }
+        if let administrativeArea = placemark.administrativeArea { locationData.insert(administrativeArea) }
+        if let name = placemark.name { locationData.insert(name) }
+        
+        self.updateData(on: Array(locationData))
+    }
+    
+    
+    func getEffectData() {
+        allowsMultipleSelection = true
+        Network.getEffectsFromAPI { (effectsDict) in
+            let effectsArray = effectsDict.map { $0.keys.first! }
+            self.updateData(on: effectsArray)
+        }
+    }
+    
     
     func updateData(on data: [String]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, String>()
@@ -72,13 +104,9 @@ class HorizontalCollectionView: UICollectionView {
     func getData() {
         switch currentTag {
         case .effect:
-            allowsMultipleSelection = true
-            Network.getEffectsFromAPI { (effectsDict) in
-                let effectsArray = effectsDict.map { $0.keys.first! }
-                self.updateData(on: effectsArray)
-            }
+            getEffectData()
         case .location:
-            print()
+            getLocationData()
         case .method:
             updateData(on: TagValues.methods)
         case .rating:
@@ -103,5 +131,36 @@ extension HorizontalCollectionView : UICollectionViewDelegate {
         selectedData.remove(data[indexPath.row])
     }
     
+}
+
+
+extension HorizontalCollectionView: CLLocationManagerDelegate {
+ 
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        guard let location = locations.first else { return }
+        
+        NetworkManager.shared.getReverseGeocodeLocation(fromLocation: location) { result in
+            switch result {
+            case .success(let placemark):
+                self.setLocationTags(placemark: placemark)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    
+    private func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            locationManager.requestLocation()
+        }
+    }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Failed with error: \(error)")
+    }
 }
 

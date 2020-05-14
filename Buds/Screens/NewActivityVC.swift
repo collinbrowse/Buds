@@ -60,7 +60,7 @@ class NewActivityVC: BudsDataLoadingVC {
                 //activityDetailsDict[collectionView.currentTag.value] = collectionView.selectedData.first
                 print()
             case .location:
-                activityDetailsDict[collectionView.currentTag.value] = "Steamboat Springs"
+                activityDetailsDict[collectionView.currentTag.value] = collectionView.selectedData.first
             case .method:
                 activityDetailsDict["smoking_style"] = collectionView.selectedData.first
             case .rating:
