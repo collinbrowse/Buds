@@ -16,7 +16,6 @@ target 'Buds' do
   pod 'Firebase'
   pod 'CryptoSwift'
   pod 'KMPlaceholderTextView'
-  pod 'GoogleMaps'
   
   target 'BudsTests' do
     inherit! :search_paths

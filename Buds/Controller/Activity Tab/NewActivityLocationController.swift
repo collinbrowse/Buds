@@ -24,6 +24,11 @@ class NewActivityLocationController: UITableViewController {
     var locationDelegate: LocationSearchDelegate?
     
     
+    // Google Maps
+    
+    //let dataProvider = Dat
+    let searchRadius: Double = 1000
+    
     override func viewDidLoad() {
         searchCompleter.delegate = self
         newActivityLocationSearchBar.delegate = self
@@ -107,7 +112,8 @@ extension NewActivityLocationController: CLLocationManagerDelegate {
     
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        locations.first
+        
+        locationManager.stopUpdatingLocation()
     }
     
     private func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
