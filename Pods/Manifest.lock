@@ -69,6 +69,11 @@ PODS:
   - GoogleDataTransportCCTSupport (1.2.0):
     - GoogleDataTransport (~> 3.0)
     - nanopb (~> 0.3.901)
+  - GoogleMaps (3.8.0):
+    - GoogleMaps/Maps (= 3.8.0)
+  - GoogleMaps/Base (3.8.0)
+  - GoogleMaps/Maps (3.8.0):
+    - GoogleMaps/Base
   - GoogleUtilities/AppDelegateSwizzler (6.3.1):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -106,6 +111,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Database
   - Firebase/Storage
+  - GoogleMaps
   - KMPlaceholderTextView
   - SVProgressHUD
   - SwiftyJSON
@@ -127,6 +133,7 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
+    - GoogleMaps
     - GoogleUtilities
     - GTMSessionFetcher
     - KMPlaceholderTextView
@@ -151,6 +158,7 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 434cc7be25e71dc04b8d0e3079125127b330e84a
   GoogleDataTransport: f6fe28f43e3a300736854260961ad485b473edc5
   GoogleDataTransportCCTSupport: 862418a8cdda520c4dd4af83a756d04efe4a6990
+  GoogleMaps: 7c8d66d70e4e8c300f43a7219d8fdaad7b325a9a
   GoogleUtilities: f895fde57977df4e0233edda0dbeac490e3703b6
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
   KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
@@ -159,6 +167,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 98baaed7065b58948b305d5504d2f6ea55ba5ec5
+PODFILE CHECKSUM: 5f9872e690893b18bb4a960f758de45b2c42a075
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.9.1
