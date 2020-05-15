@@ -259,6 +259,12 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     ///didSelectItemAt
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        
+        let destVC = FavoritesVC()
+        navigationController?.pushViewController(destVC, animated: true)
+        return
+        
+        
         // If we are at the last cell in the row, it has a prompt to add more activity, so we transition to that tab
         if (collectionView.tag < userEffectsWithRelatedStrains.count) && (indexPath.row >= userEffectsWithRelatedStrains[collectionView.tag].count) {
             UIView.transition(from: self.view, to: tabBarController!.viewControllers![1].view, duration: 0.3, options: [.transitionCrossDissolve], completion: nil)

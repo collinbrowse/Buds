@@ -27,7 +27,7 @@ enum UIHelper {
     }
     
     
-    static func createHorizontalFlowLayout() -> UICollectionViewFlowLayout {
+    static func createTagsFlowLayout() -> UICollectionViewFlowLayout {
         
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
@@ -37,4 +37,20 @@ enum UIHelper {
         
         return flowLayout
     }
+    
+    
+    static func createHorizontalFlowLayout() -> UICollectionViewFlowLayout {
+        
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.itemSize = CGSize(width: 100, height: 100)
+        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.minimumInteritemSpacing = 10.0
+        
+        return flowLayout
+        
+    }
+    
+    
+    
 }

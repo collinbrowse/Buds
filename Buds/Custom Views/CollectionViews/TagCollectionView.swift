@@ -9,18 +9,18 @@
 import UIKit
 import MapKit
 
-class HorizontalCollectionView: UICollectionView {
+class TagCollectionView: UICollectionView {
 
     
     enum Section { case main }
-    var diffableDataSource : UICollectionViewDiffableDataSource<Section, String>!
-    var data : [String] = []
-    var currentTag : TagTypes!
-    var selectedData : Set<String> = []
+    var diffableDataSource: UICollectionViewDiffableDataSource<Section, String>!
+    var data: [String] = []
+    var currentTag: TagTypes!
+    var selectedData: Set<String> = []
     var locationManager = CLLocationManager()
     
     convenience init(frame: CGRect, tag: TagTypes) {
-        self.init(frame: frame, collectionViewLayout: UIHelper.createHorizontalFlowLayout())
+        self.init(frame: frame, collectionViewLayout: UIHelper.createTagsFlowLayout())
         currentTag = tag
         configureCollectionView()
         configureDataSource()
@@ -118,7 +118,7 @@ class HorizontalCollectionView: UICollectionView {
     
 }
 
-extension HorizontalCollectionView : UICollectionViewDelegate {
+extension TagCollectionView : UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -134,7 +134,7 @@ extension HorizontalCollectionView : UICollectionViewDelegate {
 }
 
 
-extension HorizontalCollectionView: CLLocationManagerDelegate {
+extension TagCollectionView: CLLocationManagerDelegate {
  
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

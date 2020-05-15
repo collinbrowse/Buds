@@ -23,7 +23,7 @@ class NewActivityVC: BudsDataLoadingVC {
     
     var noteTextField = UITextField(frame: .zero)
     var labelsView = UIView()
-    var collectionViews : [HorizontalCollectionView] = []
+    var collectionViews : [TagCollectionView] = []
     var ratingLabel = BudsTitleLabel(textAlignment: .left, fontSize: 20)
     var consumptionMethodLabel = BudsTitleLabel(textAlignment: .left, fontSize: 20)
     var effectsLabel = BudsTitleLabel(textAlignment: .left, fontSize: 20)
@@ -173,7 +173,7 @@ class NewActivityVC: BudsDataLoadingVC {
         
         for i in 0...3 {
             
-            let collectionView = HorizontalCollectionView(frame: wrapperViews[i].frame, tag: tagTypes[i])
+            let collectionView = TagCollectionView(frame: wrapperViews[i].frame, tag: tagTypes[i])
             collectionViews.append(collectionView)
             labelsView.addSubview(wrapperViews[i])
             wrapperViews[i].addSubview(labels[i])

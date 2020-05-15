@@ -74,6 +74,9 @@
 		BE4795E0237DD99200FB0874 /* NewActivityStrainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4795DF237DD99200FB0874 /* NewActivityStrainViewController.swift */; };
 		BE53E7B1246DA8EE00226A2C /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53E7B0246DA8EE00226A2C /* PersistenceManager.swift */; };
 		BE53E7B3246DAB6700226A2C /* BudsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53E7B2246DAB6700226A2C /* BudsError.swift */; };
+		BE53E7B5246DC8F500226A2C /* StrainCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53E7B4246DC8F500226A2C /* StrainCollectionView.swift */; };
+		BE53E7B7246DCDAF00226A2C /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53E7B6246DCDAF00226A2C /* FavoritesVC.swift */; };
+		BE53E7B9246ED51100226A2C /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53E7B8246ED51100226A2C /* FavoriteCell.swift */; };
 		BE58381D237CE4F9002160B8 /* NewActivityEffectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE58381C237CE4F9002160B8 /* NewActivityEffectsViewController.swift */; };
 		BE58DEBD24537275003A4239 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE58DEBC24537275003A4239 /* SearchVC.swift */; };
 		BE58DEBF245374A1003A4239 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE58DEBE245374A1003A4239 /* UIHelper.swift */; };
@@ -103,7 +106,7 @@
 		BEACFF1D246463A100F705EB /* NavigationBar+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEACFF1C246463A100F705EB /* NavigationBar+Ext.swift */; };
 		BEACFF1F2464641100F705EB /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEACFF1E2464641100F705EB /* String+Ext.swift */; };
 		BEACFF232464AD9B00F705EB /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEACFF222464AD9B00F705EB /* TagCell.swift */; };
-		BEACFF28246B103200F705EB /* HorizontalCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEACFF27246B103200F705EB /* HorizontalCollectionView.swift */; };
+		BEACFF28246B103200F705EB /* TagCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEACFF27246B103200F705EB /* TagCollectionView.swift */; };
 		BEB7430823326089003B52DE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB7430723326089003B52DE /* CardView.swift */; };
 		BEFB6FF8235B6151008805E5 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFB6FF7235B6151008805E5 /* Switcher.swift */; };
 /* End PBXBuildFile section */
@@ -199,6 +202,9 @@
 		BE4795DF237DD99200FB0874 /* NewActivityStrainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityStrainViewController.swift; sourceTree = "<group>"; };
 		BE53E7B0246DA8EE00226A2C /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		BE53E7B2246DAB6700226A2C /* BudsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudsError.swift; sourceTree = "<group>"; };
+		BE53E7B4246DC8F500226A2C /* StrainCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrainCollectionView.swift; sourceTree = "<group>"; };
+		BE53E7B6246DCDAF00226A2C /* FavoritesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
+		BE53E7B8246ED51100226A2C /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		BE58381C237CE4F9002160B8 /* NewActivityEffectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityEffectsViewController.swift; sourceTree = "<group>"; };
 		BE58DEBC24537275003A4239 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		BE58DEBE245374A1003A4239 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
@@ -228,7 +234,7 @@
 		BEACFF1C246463A100F705EB /* NavigationBar+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationBar+Ext.swift"; sourceTree = "<group>"; };
 		BEACFF1E2464641100F705EB /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		BEACFF222464AD9B00F705EB /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
-		BEACFF27246B103200F705EB /* HorizontalCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalCollectionView.swift; sourceTree = "<group>"; };
+		BEACFF27246B103200F705EB /* TagCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionView.swift; sourceTree = "<group>"; };
 		BEB7430723326089003B52DE /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		BEFB6FF7235B6151008805E5 /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
 		DFBCFB9F69836A8C3EBC2D7A /* Pods_BudsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BudsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -537,6 +543,7 @@
 				BE58DEC124537735003A4239 /* StrainCell.swift */,
 				BE2D4C1F2461B7100008D7C6 /* ActivityCell.swift */,
 				BEACFF222464AD9B00F705EB /* TagCell.swift */,
+				BE53E7B8246ED51100226A2C /* FavoriteCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -595,6 +602,7 @@
 				BE58DEBC24537275003A4239 /* SearchVC.swift */,
 				BE2D4C142460A46B0008D7C6 /* ActivityFeedVC.swift */,
 				BEACFF1A24645ED800F705EB /* NewActivityVC.swift */,
+				BE53E7B6246DCDAF00226A2C /* FavoritesVC.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -626,7 +634,8 @@
 		BEACFF26246B101800F705EB /* CollectionViews */ = {
 			isa = PBXGroup;
 			children = (
-				BEACFF27246B103200F705EB /* HorizontalCollectionView.swift */,
+				BEACFF27246B103200F705EB /* TagCollectionView.swift */,
+				BE53E7B4246DC8F500226A2C /* StrainCollectionView.swift */,
 			);
 			path = CollectionViews;
 			sourceTree = "<group>";
@@ -883,6 +892,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE53E7B5246DC8F500226A2C /* StrainCollectionView.swift in Sources */,
 				BE03D2A722C2676E0059B587 /* WelcomeViewController.swift in Sources */,
 				BE03D2AB22C269730059B587 /* RegisterViewController.swift in Sources */,
 				BE02A32322DCEF9A00431854 /* Network.swift in Sources */,
@@ -914,6 +924,7 @@
 				BE747FBB22CAAD9800D071FD /* NewActivityViewController.swift in Sources */,
 				BE02A32522DE557200431854 /* LocationSearchBarController.swift in Sources */,
 				BEFB6FF8235B6151008805E5 /* Switcher.swift in Sources */,
+				BE53E7B7246DCDAF00226A2C /* FavoritesVC.swift in Sources */,
 				BE2D4C1A2460A8660008D7C6 /* NetworkManager.swift in Sources */,
 				BE53E7B1246DA8EE00226A2C /* PersistenceManager.swift in Sources */,
 				BEACFF232464AD9B00F705EB /* TagCell.swift in Sources */,
@@ -923,10 +934,11 @@
 				BE6B71AB244F9F6A007BFB23 /* BudsDataLoadingVC.swift in Sources */,
 				BE6B71A8244F9B75007BFB23 /* BudsBodyLabel.swift in Sources */,
 				BE58DEC7245390EF003A4239 /* BudsStrainImageView.swift in Sources */,
+				BE53E7B9246ED51100226A2C /* FavoriteCell.swift in Sources */,
 				BEACFF1B24645ED800F705EB /* NewActivityVC.swift in Sources */,
 				BE41467D22BA9CE50009A738 /* Birthday.swift in Sources */,
 				BE2D4C152460A46B0008D7C6 /* ActivityFeedVC.swift in Sources */,
-				BEACFF28246B103200F705EB /* HorizontalCollectionView.swift in Sources */,
+				BEACFF28246B103200F705EB /* TagCollectionView.swift in Sources */,
 				BE58381D237CE4F9002160B8 /* NewActivityEffectsViewController.swift in Sources */,
 				BE58DEC524537A68003A4239 /* UIView+Ext.swift in Sources */,
 				BEACFF1F2464641100F705EB /* String+Ext.swift in Sources */,
