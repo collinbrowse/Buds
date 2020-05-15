@@ -108,6 +108,7 @@
 		BEACFF232464AD9B00F705EB /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEACFF222464AD9B00F705EB /* TagCell.swift */; };
 		BEACFF28246B103200F705EB /* TagCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEACFF27246B103200F705EB /* TagCollectionView.swift */; };
 		BEB7430823326089003B52DE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB7430723326089003B52DE /* CardView.swift */; };
+		BEEE2170246F54FD00DDF6A5 /* GreenNavigationBarAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEE216F246F54FD00DDF6A5 /* GreenNavigationBarAppearance.swift */; };
 		BEFB6FF8235B6151008805E5 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFB6FF7235B6151008805E5 /* Switcher.swift */; };
 /* End PBXBuildFile section */
 
@@ -236,6 +237,7 @@
 		BEACFF222464AD9B00F705EB /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		BEACFF27246B103200F705EB /* TagCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionView.swift; sourceTree = "<group>"; };
 		BEB7430723326089003B52DE /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		BEEE216F246F54FD00DDF6A5 /* GreenNavigationBarAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenNavigationBarAppearance.swift; sourceTree = "<group>"; };
 		BEFB6FF7235B6151008805E5 /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
 		DFBCFB9F69836A8C3EBC2D7A /* Pods_BudsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BudsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAF0EC6C295759166884503B /* Pods-Buds.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buds.release.xcconfig"; path = "Target Support Files/Pods-Buds/Pods-Buds.release.xcconfig"; sourceTree = "<group>"; };
@@ -480,6 +482,7 @@
 				BE2D4C182460A84E0008D7C6 /* Managers */,
 				BE58DEC324537A48003A4239 /* Extensions */,
 				BE6C717C24536C2700FC5CFB /* Utilities */,
+				BEEE216E246F547C00DDF6A5 /* Custom Objects */,
 				BEA25002244A778E00086B55 /* Custom Views */,
 				BEA24FFF244A767C00086B55 /* Screens */,
 				BE03D2A522C267410059B587 /* Controller */,
@@ -638,6 +641,14 @@
 				BE53E7B4246DC8F500226A2C /* StrainCollectionView.swift */,
 			);
 			path = CollectionViews;
+			sourceTree = "<group>";
+		};
+		BEEE216E246F547C00DDF6A5 /* Custom Objects */ = {
+			isa = PBXGroup;
+			children = (
+				BEEE216F246F54FD00DDF6A5 /* GreenNavigationBarAppearance.swift */,
+			);
+			path = "Custom Objects";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -927,6 +938,7 @@
 				BE53E7B7246DCDAF00226A2C /* FavoritesVC.swift in Sources */,
 				BE2D4C1A2460A8660008D7C6 /* NetworkManager.swift in Sources */,
 				BE53E7B1246DA8EE00226A2C /* PersistenceManager.swift in Sources */,
+				BEEE2170246F54FD00DDF6A5 /* GreenNavigationBarAppearance.swift in Sources */,
 				BEACFF232464AD9B00F705EB /* TagCell.swift in Sources */,
 				BE2D4C172460A7DC0008D7C6 /* BudsAvatarImageView.swift in Sources */,
 				BE02A33E22E6436600431854 /* NewActivityLocationController.swift in Sources */,

@@ -14,7 +14,6 @@ class NewActivityVC: BudsDataLoadingVC {
     override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
     
     var modelController: ModelController!
-    
     var strain : Strain!
     
     var strainIcon = UIImageView(frame: .zero)
@@ -77,11 +76,8 @@ class NewActivityVC: BudsDataLoadingVC {
     
     
     private func configureNavigationBar() {
-        let appearance = UINavigationBarAppearance()
-        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .systemGreen
+        
+        let appearance = GreenNavigationBarAppearance()
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
         

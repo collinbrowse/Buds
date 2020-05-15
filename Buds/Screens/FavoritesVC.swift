@@ -26,18 +26,20 @@ class FavoritesVC: BudsDataLoadingVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        title = "Favorites"
         configureNavigationBar()
     }
         
         
     func configureNavigationBar() {
-        navigationController?.navigationBar.tintColor = .systemGreen
+        
+        let appearance = GreenNavigationBarAppearance(idiom: .unspecified)
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+        
+        title = "Favorites"
+        navigationController?.navigationBar.tintColor = .white
+        
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController!.navigationBar.setBackgroundImage(nil, for: .default)
-        navigationController!.navigationBar.shadowImage = nil
-        navigationController!.navigationBar.tintColor = nil
     }
     
     
