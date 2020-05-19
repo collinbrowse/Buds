@@ -261,6 +261,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         
         let destVC = FavoritesVC()
+        destVC.modelController = self.modelController
         navigationController?.pushViewController(destVC, animated: true)
         return
         

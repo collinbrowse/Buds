@@ -12,15 +12,20 @@ class FavoritesVC: BudsDataLoadingVC {
     
     var tableView = UITableView()
     var strains: [Strain] = []
+    var highestRatedStrains = [Strain]()
+    var mostUsedStrains = [Strain]()
+    var strainsCountDictionary = [Strain: Int]()
+    var strainsRatingDictionary = [Strain: String]()
     var sections: [String] = ["Highest Rated", "Most Activity"]
-    
+    var modelController : ModelController!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureViewController()
         configureTableView()
         layoutUI()
-        getAllStrains()
+        getFavoriteStrains()
     }
     
     
@@ -35,11 +40,10 @@ class FavoritesVC: BudsDataLoadingVC {
         let appearance = GreenNavigationBarAppearance(idiom: .unspecified)
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.prefersLargeTitles = true
         
         title = "Favorites"
-        navigationController?.navigationBar.tintColor = .white
-        
-        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     
@@ -69,26 +73,124 @@ class FavoritesVC: BudsDataLoadingVC {
     }
     
     
-    func getAllStrains() {
+    func getFavoriteStrains() {
         
-        Network.getAllStrains { (response) in
+        //showLoadingView()
+        Network.displayActivityFeed(userID: modelController.person.id) { [weak self] (activities) in
+            guard let self = self else { return }
+            self.getHighestRatedStrains(activities: activities)
+            self.getMostUsedStrains(activities: activities)
+        }
+
+    }
+    
+    
+    func getHighestRatedStrains(activities: [Activity]) {
+        
+        
+        let dispatchGroup = DispatchGroup()
+        var strainsRatings = [String : String]()
+        
+        for i in 0...activities.count - 1 {
             
-            let result = try! JSONDecoder().decode(StrainJSON.self, from: response.rawData())
-            
-            for item in result.strain {
-                var strainModel = Strain(name: item.key)
-                strainModel.id = item.value.id
-                strainModel.race = item.value.race
-                strainModel.flavors = item.value.flavors
-                strainModel.effects?.positive = item.value.effects?.positive
-                strainModel.effects?.negative = item.value.effects?.negative
-                strainModel.effects?.medical = item.value.effects?.medical
-                self.strains.append(strainModel)
+            if let strainName = activities[i].strain, let rating = activities[i].rating {
+                
+                dispatchGroup.enter()
+                Network.getStrain(name: strainName) { [weak self] result in
+                    guard let self = self else { return }
+                    
+                    switch result {
+                    case .success(let resultJSON):
+                        let strain = Strain(name: strainName, id: resultJSON[0]["id"].int, race: resultJSON[0]["race"].stringValue, flavors: nil, effects: nil)
+                        strainsRatings = self.addRatingToAverage(strain: strain, rating: rating, strainsRatings: strainsRatings)
+                    case .failure(let error):
+                        print(error.localizedDescription) // Don't display strain if there was an error
+                    }
+                    
+                    dispatchGroup.leave()
+                }
             }
         }
-        tableView.reloadData()
+        
+        
+        dispatchGroup.notify(queue: .main) {
+            //self.dismissLoadingView()
+            self.highestRatedStrains = Array(self.strainsRatingDictionary.keys).sorted(by: { self.strainsRatingDictionary[$0]! > self.strainsRatingDictionary[$1]! })
+            self.tableView.reloadData()
+        }
     }
+    
+    
+    func addRatingToAverage(strain: Strain, rating: String, strainsRatings: [String: String]) -> [String: String] {
+        
+        var strainsRatings = strainsRatings
+        if strainsRatings.keys.contains(strain.name) {
+            #warning("Add new rating to average")
+            strainsRatings[strain.name] = rating
+            self.strainsRatingDictionary[strain] = rating
+        } else {
+            strainsRatings[strain.name] = rating
+            self.strainsRatingDictionary[strain] = rating
+        }
+        
+        return strainsRatings
+        
+    }
+    
+    
+    
+    func getMostUsedStrains(activities: [Activity]) {
+        
+        let dispatchGroup = DispatchGroup()
+        var strainsCount = [String : Int]()
+        
+        for i in 0...activities.count - 1 {
+            
+            if let strainName = activities[i].strain {
+                
+                dispatchGroup.enter()
+                Network.getStrain(name: strainName) { [weak self] result in
+                    guard let self = self else { return }
+                    
+                    switch result {
+                    case .success(let resultJSON):
+                        let strain = Strain(name: strainName, id: resultJSON[0]["id"].int, race: resultJSON[0]["race"].stringValue, flavors: nil, effects: nil)
+                        strainsCount = self.incrementStrainCount(strain: strain, strainsCount: strainsCount)
+                    case .failure(let error):
+                        print(error.localizedDescription)   // If there is an error we simply don't want to add the strain to the count
+                    }
+                    
+                    dispatchGroup.leave()
+                }
+            }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            //self.dismissLoadingView()
+            self.mostUsedStrains = Array(self.strainsCountDictionary.keys).sorted(by: {self.strainsCountDictionary[$0]! > self.strainsCountDictionary[$1]!} )
+            self.tableView.reloadData()
+        }
+    }
+    
+    
+    func incrementStrainCount(strain: Strain, strainsCount: [String: Int]) -> [String: Int] {
+        
+        var strainsCount = strainsCount
+        if strainsCount.keys.contains(strain.name) {
+            let count = strainsCount[strain.name]
+            strainsCount[strain.name] = count! + 1
+            self.strainsCountDictionary[strain] = count! + 1
+        } else {
+            strainsCount[strain.name] = 1
+            self.strainsCountDictionary[strain] = 1
+        }
+        return strainsCount
+    }
+    
 }
+
+
+    
 
 
 extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
@@ -110,7 +212,12 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.reuseID, for: indexPath) as! FavoriteCell
-        cell.set(strains: strains)
+        
+        if indexPath.section == 0 {
+            cell.set(strains: highestRatedStrains)
+        } else if indexPath.section == 1 {
+            cell.set(strains: mostUsedStrains)
+        }
         cell.set(delegate: self)
         return cell
     }

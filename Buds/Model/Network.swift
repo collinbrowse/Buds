@@ -400,5 +400,25 @@ class Network {
         
     }
     
+    
+    
+    
+    
+    static func getStrain(name: String, complete: @escaping(Swift.Result<JSON, BudsError>) -> ()) {
+        
+        let strain = name.replacingOccurrences(of: " ", with: "%20")
+        let requestURL = StrainAPI.baseAPI + StrainAPI.APIKey + StrainAPI.searchForStrainsByName + strain
+        
+        Alamofire.request(requestURL).validate().responseJSON { (response) in
+            
+            if response.result.isSuccess {
+                let responseJSON = JSON(response.result.value!)
+                complete(.success(responseJSON))
+            } else {
+                complete(.failure(BudsError.unableToGetStrain))
+            }
+        }
+        
+    }
 
 }

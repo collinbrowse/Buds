@@ -114,6 +114,14 @@ class StrainInfoVC: BudsDataLoadingVC {
             }
             
             self.strainDescriptionLabel.text = description
+            self.testFunc()
+        }
+    }
+    
+    
+    private func testFunc() {
+        Network.getStrain(name: "Mexican") { (resultJSON) in
+            //do something
         }
     }
     
