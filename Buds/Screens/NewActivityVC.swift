@@ -54,10 +54,14 @@ class NewActivityVC: BudsDataLoadingVC {
         activityDetailsDict["note"]             = noteTextField.text
         
         for collectionView in collectionViews {
+            guard !collectionView.selectedData.isEmpty else {
+                presentBudsAlertOnMainThread(title: "You have fields that are empty", message: "Please make sure a tag is selected for each field", buttonTitle: "OK")
+                return
+            }
             switch collectionView.currentTag {
             case .effect:
                 //activityDetailsDict[collectionView.currentTag.value] = collectionView.selectedData.first
-                print()
+                print("effect")
             case .location:
                 activityDetailsDict[collectionView.currentTag.value] = collectionView.selectedData.first
             case .method:
