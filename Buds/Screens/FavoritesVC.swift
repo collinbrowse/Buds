@@ -204,8 +204,19 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section]
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let titleLabel = UILabel(frame: CGRect(x: 20, y: 8, width:
+        tableView.bounds.size.width, height: tableView.bounds.size.height))
+        titleLabel.text = sections[section]
+        titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        titleLabel.textColor = .label
+        titleLabel.sizeToFit()
+        
+        let headerView = UIView()
+        headerView.backgroundColor = .systemBackground
+        headerView.addSubview(titleLabel)
+        return headerView
     }
     
     
