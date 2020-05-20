@@ -52,8 +52,17 @@ class StrainInfoVC: BudsDataLoadingVC {
         navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController!.navigationBar.shadowImage = UIImage()
         navigationController!.navigationBar.tintColor = .white
+        
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        navigationItem.rightBarButtonItem = addButton
     }
     
+    
+    @objc func addButtonTapped() {
+        let destVC = NewActivityVC()
+        destVC.strain = self.strain
+        navigationController?.pushViewController(destVC, animated: true)
+    }
     
     func layoutUI() {
         
@@ -114,15 +123,9 @@ class StrainInfoVC: BudsDataLoadingVC {
             }
             
             self.strainDescriptionLabel.text = description
-            self.testFunc()
         }
     }
     
     
-    private func testFunc() {
-        Network.getStrain(name: "Mexican") { (resultJSON) in
-            //do something
-        }
-    }
     
 }
