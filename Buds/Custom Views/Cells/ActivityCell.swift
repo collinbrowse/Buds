@@ -20,6 +20,7 @@ class ActivityCell: UITableViewCell {
     var iconsStackView = UIStackView()
     var iconsViewOne = BudsIconView()
     var iconsViewTwo = BudsIconView()
+    var iconsViewThree = BudsIconView()
 
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -36,9 +37,10 @@ class ActivityCell: UITableViewCell {
     
     private func configureStackView() {
         iconsStackView.axis = .horizontal
-        iconsStackView.distribution = .fillEqually
+        iconsStackView.distribution = .fillProportionally
         iconsStackView.addArrangedSubview(iconsViewOne)
         iconsStackView.addArrangedSubview(iconsViewTwo)
+        iconsStackView.addArrangedSubview(iconsViewThree)
         
     }
     
@@ -59,7 +61,7 @@ class ActivityCell: UITableViewCell {
 
             timeLabel.topAnchor.constraint(equalTo: strainIcon.topAnchor),
             timeLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
-            timeLabel.widthAnchor.constraint(equalToConstant: 30),
+            timeLabel.widthAnchor.constraint(equalToConstant: 38),
             timeLabel.heightAnchor.constraint(equalToConstant: 18),
 
             strainLabel.topAnchor.constraint(equalTo: strainIcon.topAnchor),
@@ -93,11 +95,12 @@ class ActivityCell: UITableViewCell {
         locationLabel.text = activity.location
         timeLabel.text = activity.date?.timeAgoString()
         detailsLabel.text = activity.note
-        setIcons(activity: activity, withConsumptionMethod: activity.consumptionMethod!)
+        setIcons(activity: activity)
     }
     
-    private func setIcons(activity: Activity, withConsumptionMethod method: ConsumptionMethod) {
-        iconsViewOne.setRating(withRating: "4.83")
+    private func setIcons(activity: Activity) {
+        iconsViewOne.setRating(withRating: String(activity.rating))
         iconsViewTwo.setConsumptionIcon(withConsumptionMethod: activity.consumptionMethod!)
+        iconsViewThree.setEffects(withEffects: activity.effects ?? [])
     }
 }

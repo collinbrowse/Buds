@@ -85,7 +85,7 @@ extension ActivityFeedController {
             cell.locationLabel.text = activities[indexPath.row].location
             cell.timeTextView.text = activities[indexPath.row].date?.timeAgoString()
             cell.strainTextView.text = activities[indexPath.row].strain
-            cell.ratingTextView.text = activities[indexPath.row].rating
+            cell.ratingTextView.text = String(activities[indexPath.row].rating)
             cell.smokingStyleTextView.text = activities[indexPath.row].smoking_style
             cell.noteTextView.text = activities[indexPath.row].note
             

@@ -16,15 +16,19 @@ enum ConsumptionMethod {
 @objcMembers
 class Activity: NSObject {
     
-    var location: String?
-    var rating: String?
-    var smoking_style: String?
-    var strain: String?
-    var time: String?
+    var strain: String!
+    var note: String?
+    var rating: Int!
+    var consumptionMethod: ConsumptionMethod?
+    var smoking_style: String!
+    var effects: [String]!
+    var location: String!
+    
+    var time: String!
     var date: Date?
     var user: String?
     var name: String?
     var profilePictureURL: String?
-    var note: String?
-    var consumptionMethod: ConsumptionMethod?
+    
+    
 }

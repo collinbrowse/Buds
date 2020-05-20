@@ -27,11 +27,12 @@ enum Icons {
     static let edibleIcon = UIImage(named: "icons8-cookie-100")
     static let concentrateIcon = UIImage(named: "cannabis_oil_icon")
     static let vapeIcon = UIImage(named: "vape_pen_icon")
-    
+    static let hashtagIcon = UIImage(named: "icons8-hashtag")
 }
 
 enum SFSymbols {
     static let starIcon = UIImage(systemName: "star.fill")
+    static let rightTriangle = UIImage(systemName: "arrowtriangle.right.fill")
 }
 
 
@@ -45,7 +46,7 @@ enum TagTypes : CaseIterable {
         case .method:
             return "method"
         case .effect:
-            return "effect"
+            return "effects"
         case .location:
             return "location"
         }
@@ -54,10 +55,9 @@ enum TagTypes : CaseIterable {
 
 
 enum TagValues {
-    static let ratings = ["⭐️5/5", "⭐️4/5", "⭐️3/5", "⭐️2/5", "⭐️1/5"]
+    static let ratings = ["⭐️5", "⭐️4", "⭐️3", "⭐️2", "⭐️1"]
     static let methods = ["Bowl", "Joint", "Vape", "Bong", "Blunt", "Concentrate", "Edible"]
 }
-
 
 
 

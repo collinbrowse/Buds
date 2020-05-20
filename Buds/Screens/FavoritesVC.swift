@@ -15,7 +15,7 @@ class FavoritesVC: BudsDataLoadingVC {
     var highestRatedStrains = [Strain]()
     var mostUsedStrains = [Strain]()
     var strainsCountDictionary = [Strain: Int]()
-    var strainsRatingDictionary = [Strain: String]()
+    var strainsRatingDictionary = [Strain: Int]()
     var sections: [String] = ["Highest Rated", "Most Activity"]
     var modelController : ModelController!
 
@@ -57,6 +57,7 @@ class FavoritesVC: BudsDataLoadingVC {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .systemBackground
+        tableView.separatorStyle = .none
         tableView.register(FavoriteCell.self, forCellReuseIdentifier: FavoriteCell.reuseID)
     }
     
@@ -87,9 +88,8 @@ class FavoritesVC: BudsDataLoadingVC {
     
     func getHighestRatedStrains(activities: [Activity]) {
         
-        
         let dispatchGroup = DispatchGroup()
-        var strainsRatings = [String : String]()
+        var strainsRatings = [String : Int]()
         
         for i in 0...activities.count - 1 {
             
@@ -102,7 +102,7 @@ class FavoritesVC: BudsDataLoadingVC {
                     switch result {
                     case .success(let resultJSON):
                         let strain = Strain(name: strainName, id: resultJSON[0]["id"].int, race: resultJSON[0]["race"].stringValue, flavors: nil, effects: nil)
-                        strainsRatings = self.addRatingToAverage(strain: strain, rating: rating, strainsRatings: strainsRatings)
+                        strainsRatings = self.setRatingForStrain(strain: strain, rating: rating, strainsRatings: strainsRatings)
                     case .failure(let error):
                         print(error.localizedDescription) // Don't display strain if there was an error
                     }
@@ -112,7 +112,6 @@ class FavoritesVC: BudsDataLoadingVC {
             }
         }
         
-        
         dispatchGroup.notify(queue: .main) {
             //self.dismissLoadingView()
             self.highestRatedStrains = Array(self.strainsRatingDictionary.keys).sorted(by: { self.strainsRatingDictionary[$0]! > self.strainsRatingDictionary[$1]! })
@@ -121,11 +120,12 @@ class FavoritesVC: BudsDataLoadingVC {
     }
     
     
-    func addRatingToAverage(strain: Strain, rating: String, strainsRatings: [String: String]) -> [String: String] {
+    
+    func setRatingForStrain(strain: Strain, rating: Int, strainsRatings: [String: Int]) -> [String: Int] {
         
         var strainsRatings = strainsRatings
-        if strainsRatings.keys.contains(strain.name) {
-            #warning("Add new rating to average")
+        
+        if strainsRatings.keys.contains(strain.name) && rating > strainsRatings[strain.name]! {
             strainsRatings[strain.name] = rating
             self.strainsRatingDictionary[strain] = rating
         } else {
@@ -134,7 +134,6 @@ class FavoritesVC: BudsDataLoadingVC {
         }
         
         return strainsRatings
-        
     }
     
     

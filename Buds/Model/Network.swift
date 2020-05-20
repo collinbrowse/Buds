@@ -26,9 +26,17 @@ class Network {
     }
     
     /// Stores a dictionary in Firebase based on userID. This is added as an activity in Firebase and has the userID to uniquely identify it
-    static func addNewActivity(userID: String, activityDetails: [String : String]) -> Bool {
+    static func addNewActivityTest(userID: String, activityDetails: [String : String]) -> Bool {
         
         // Add the activity with the User's ID identifying it
+        ref.child("activity").childByAutoId().setValue(activityDetails)
+        
+        return true
+    }
+    
+    
+    static func addNewActivity(userID: String, activityDetails: [String: Any]) -> Bool {
+        
         ref.child("activity").childByAutoId().setValue(activityDetails)
         
         return true
@@ -193,9 +201,15 @@ class Network {
                 
                 for firActivity in dictionary.values {
                     let activity = Activity()
-                    activity.setValuesForKeys(firActivity)
+                    activity.user = firActivity["user"] as? String
+                    activity.strain = firActivity["strain"] as? String
+                    activity.smoking_style = firActivity["smoking_style"] as? String
+                    activity.rating = firActivity["rating"] as? Int
+                    activity.note = firActivity["note"] as? String
+                    activity.effects = firActivity["effects"] as? [String]
+                    activity.location = firActivity["location"] as? String
                     activity.date = TimeHelper.getDateFromString(dateString: firActivity["time"] as! String)
-                    activity.consumptionMethod = .edible
+                    activity.consumptionMethod = self.parseConsumptionMethod(method: firActivity["smoking_style"] as! String)
                     activities.insert(activity, at: 0)
                 }
                 activities = activities.sorted(by: {
@@ -204,6 +218,26 @@ class Network {
                 complete(activities)
                 #warning("Manually Setting consumption for activity as a placeholder")
             }
+        }
+    }
+    
+    
+    //let methods = ["Bowl", "Joint", "Vape", "Bong", "Blunt", "Concentrate", "Edible"]
+    private static func parseConsumptionMethod(method: String) -> ConsumptionMethod {
+        if method == "Bowl" {
+            return .bowl
+        } else if method == "Joint" {
+            return .joint
+        } else if method == "Vape" {
+            return .vape
+        } else if method == "Bong" {
+            return .bong
+        } else if method == "Blunt" {
+            return .blunt
+        } else if method == "Concentrate" {
+            return .concentrate
+        } else {
+            return .edible
         }
     }
     

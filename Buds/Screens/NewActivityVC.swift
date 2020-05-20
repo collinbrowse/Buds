@@ -47,7 +47,7 @@ class NewActivityVC: BudsDataLoadingVC {
     @objc func addButtonTapped() {
         
         let userID = modelController.person.id
-        var activityDetailsDict                 = [String : String]()
+        var activityDetailsDict                 = [String : Any]()
         activityDetailsDict["user"]             = modelController.person.id
         activityDetailsDict["time"]             = TimeHelper.getTodayString()
         activityDetailsDict["strain"]           = strainLabel.text
@@ -60,14 +60,13 @@ class NewActivityVC: BudsDataLoadingVC {
             }
             switch collectionView.currentTag {
             case .effect:
-                //activityDetailsDict[collectionView.currentTag.value] = collectionView.selectedData.first
-                print("effect")
+                activityDetailsDict[collectionView.currentTag.value] = Array(collectionView.selectedData)
             case .location:
                 activityDetailsDict[collectionView.currentTag.value] = collectionView.selectedData.first
             case .method:
                 activityDetailsDict["smoking_style"] = collectionView.selectedData.first
             case .rating:
-                activityDetailsDict[collectionView.currentTag.value] = collectionView.selectedData.first
+                activityDetailsDict[collectionView.currentTag.value] = setSelectedRating(rating: collectionView.selectedData.first!)
             default:
                 break
             }
@@ -76,6 +75,22 @@ class NewActivityVC: BudsDataLoadingVC {
         showLoadingView()
         print(Network.addNewActivity(userID: userID, activityDetails: activityDetailsDict))
         dismissLoadingView()
+    }
+    
+    
+    private func setSelectedRating(rating: String) -> Int {
+        
+        if rating == "⭐️5" {
+            return 5
+        } else if rating == "⭐️4" {
+            return 4
+        } else if rating == "⭐️3" {
+            return 3
+        } else if rating == "⭐️2" {
+            return 2
+        } else {
+            return 1
+        }
     }
     
     
@@ -159,7 +174,7 @@ class NewActivityVC: BudsDataLoadingVC {
             noteTextField.topAnchor.constraint(equalTo: strainIcon.bottomAnchor, constant: padding),
             noteTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             noteTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            noteTextField.heightAnchor.constraint(equalToConstant: 50),
+            noteTextField.heightAnchor.constraint(equalToConstant: 75),
             
             labelsView.topAnchor.constraint(equalTo: noteTextField.bottomAnchor),
             labelsView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
