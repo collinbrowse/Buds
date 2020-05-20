@@ -92,7 +92,7 @@ class ActivityCell: UITableViewCell {
                    
         strainIcon.image = Icons.defaultStrainIcon
         strainLabel.text = activity.strain
-        locationLabel.text = activity.location
+        locationLabel.text = activity.location + ""
         timeLabel.text = activity.date?.timeAgoString()
         detailsLabel.text = activity.note
         setIcons(activity: activity)

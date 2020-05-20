@@ -35,6 +35,7 @@ class ActivityFeedVC: BudsDataLoadingVC {
         
         view.backgroundColor = .systemBackground
         title = "Buds"
+        navigationController?.navigationBar.tintColor = .systemGreen
     }
     
     

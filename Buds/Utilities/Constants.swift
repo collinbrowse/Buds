@@ -33,6 +33,7 @@ enum Icons {
 enum SFSymbols {
     static let starIcon = UIImage(systemName: "star.fill")
     static let rightTriangle = UIImage(systemName: "arrowtriangle.right.fill")
+    static let location = UIImage(systemName: "location")
 }
 
 
@@ -78,9 +79,6 @@ enum StrainAPI {
     
 }
 
-enum Firebase {
-    
-}
 
 
 struct Constants {
