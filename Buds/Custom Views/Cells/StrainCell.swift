@@ -29,9 +29,9 @@ class StrainCell: UICollectionViewCell {
     func set(strain: Strain) {
         strainNameLabel.text = strain.name
         
-        if      strain.race == "hybrid" { strainImageView.setBackgroundColor(with: .green) }
-        else if strain.race == "indica" { strainImageView.setBackgroundColor(with: .magenta) }
-        else if strain.race == "sativa" { strainImageView.setBackgroundColor(with: .cyan) }
+        if      strain.race == "hybrid" { strainImageView.setBackgroundColor(with: .systemGreen) }
+        else if strain.race == "indica" { strainImageView.setBackgroundColor(with: .systemPurple) }
+        else if strain.race == "sativa" { strainImageView.setBackgroundColor(with: .systemRed) }
     }
     
     private func configure() {

@@ -183,6 +183,7 @@ class FavoritesVC: BudsDataLoadingVC {
             strainsCount[strain.name] = 1
             self.strainsCountDictionary[strain] = 1
         }
+        print("Strains Count: \(strainsCount)")
         return strainsCount
     }
     
