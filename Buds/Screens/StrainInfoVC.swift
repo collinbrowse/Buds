@@ -46,6 +46,8 @@ class StrainInfoVC: BudsDataLoadingVC {
         headerTitle.text = strain.name
         headerTitle.numberOfLines = 2
         headerTitle.lineBreakMode = .byTruncatingTail
+        
+        
     }
     
     

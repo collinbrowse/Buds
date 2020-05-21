@@ -10,7 +10,7 @@ import UIKit
 
 enum Images {
     
-    static let defaultHeaderImageView = UIImage(named: "background1")
+    static let defaultHeaderImageView = UIImage(named: "weed_background-2")
     static let emptyStateBackgroundImageView = UIImage(named: "cannabis_color_icon")
     static let avatarImageView = UIImage(named: "cadets_generic_avatar")
     
