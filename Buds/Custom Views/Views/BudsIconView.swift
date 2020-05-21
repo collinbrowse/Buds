@@ -60,6 +60,7 @@ class BudsIconView: UIView {
     
     
     func setConsumptionIcon(withConsumptionMethod method: ConsumptionMethod) {
+        self.width = 1.5
         
         switch method {
         case .joint:
@@ -87,13 +88,13 @@ class BudsIconView: UIView {
     }
     
     func setEffects(withEffects effects: [String]) {
+        
         if !effects.isEmpty {
-            self.width = 3.0
+            self.width = 2.0
             var allEffects = ""
             for effect in effects {
                 allEffects +=  ", " + effect
             }
-            
             textLabel.text = allEffects[2...]
         }
     }

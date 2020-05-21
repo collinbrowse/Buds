@@ -76,7 +76,6 @@ class FavoritesVC: BudsDataLoadingVC {
     
     func getFavoriteStrains() {
         
-        //showLoadingView()
         Network.displayActivityFeed(userID: modelController.person.id) { [weak self] (activities) in
             guard let self = self else { return }
             self.getHighestRatedStrains(activities: activities)
@@ -113,7 +112,6 @@ class FavoritesVC: BudsDataLoadingVC {
         }
         
         dispatchGroup.notify(queue: .main) {
-            //self.dismissLoadingView()
             self.highestRatedStrains = Array(self.strainsRatingDictionary.keys).sorted(by: { self.strainsRatingDictionary[$0]! > self.strainsRatingDictionary[$1]! })
             self.tableView.reloadData()
         }
@@ -165,7 +163,6 @@ class FavoritesVC: BudsDataLoadingVC {
         }
         
         dispatchGroup.notify(queue: .main) {
-            //self.dismissLoadingView()
             self.mostUsedStrains = Array(self.strainsCountDictionary.keys).sorted(by: {self.strainsCountDictionary[$0]! > self.strainsCountDictionary[$1]!} )
             self.tableView.reloadData()
         }
@@ -183,7 +180,6 @@ class FavoritesVC: BudsDataLoadingVC {
             strainsCount[strain.name] = 1
             self.strainsCountDictionary[strain] = 1
         }
-        print("Strains Count: \(strainsCount)")
         return strainsCount
     }
     

@@ -26,12 +26,17 @@ class Network {
     }
     
     /// Stores a dictionary in Firebase based on userID. This is added as an activity in Firebase and has the userID to uniquely identify it
-    static func addNewActivityTest(userID: String, activityDetails: [String : String]) -> Bool {
+    static func addNewActivityTest(userID: String, activityDetails: [String : Any], complete: @escaping (BudsError?) -> ()) {
         
         // Add the activity with the User's ID identifying it
-        ref.child("activity").childByAutoId().setValue(activityDetails)
-        
-        return true
+        //ref.child("activity").childByAutoId().setValue(activityDetails)
+        ref.child("activity").childByAutoId().setValue(activityDetails) { (error, ref) in
+            if error == nil {
+                complete(nil)
+            } else {
+                complete(.unableToAddActivity)
+            }
+        }
     }
     
     
@@ -192,7 +197,7 @@ class Network {
         var activities = [Activity]()
         // Only display activity from that user
         ref.child("activity").queryOrdered(byChild: "user").queryEqual(toValue: userID).observe(.value) { (snapshot) in
-            
+            print("Observing activity Feed")
             if let dictionary = snapshot.value as? [String: [String: Any]] {
                 
                 // Here we are creating an arrary of ActivityModel Objects.
@@ -216,7 +221,6 @@ class Network {
                     $0.date!.compare($1.date!) == .orderedDescending
                 })
                 complete(activities)
-                #warning("Manually Setting consumption for activity as a placeholder")
             }
         }
     }
@@ -351,7 +355,7 @@ class Network {
                  UserDefaults.standard.set(effectsDict, forKey: "effects")
                  complete(effectsDict)
              } else {
-                 print("Unable to Get Strain effects from the evanbusse api")
+                 print("Unable to get strain effects from the evanbusse api")
              }
              
          }
@@ -372,7 +376,7 @@ class Network {
                 UserDefaults.standard.set(raceDict, forKey: "raceDict")
                 complete(raceDict)
              } else {
-                 print("Unable to Get Strain effects from the evanbusse api")
+                 print("Unable to get strain races from the evanbusse api")
              }
              
          }
@@ -400,7 +404,7 @@ class Network {
                     }
                     
                 } else {
-                    print("Unable to Get Strain effects from the evanbusse api")
+                    print("Unable to get all strains from the evanbusse api")
                 }
             }
         } else {

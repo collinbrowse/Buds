@@ -46,7 +46,6 @@ class NewActivityVC: BudsDataLoadingVC {
     
     @objc func addButtonTapped() {
         
-        let userID = modelController.person.id
         var activityDetailsDict                 = [String : Any]()
         activityDetailsDict["user"]             = modelController.person.id
         activityDetailsDict["time"]             = TimeHelper.getTodayString()
@@ -58,6 +57,7 @@ class NewActivityVC: BudsDataLoadingVC {
                 presentBudsAlertOnMainThread(title: "You have fields that are empty", message: "Please make sure a tag is selected for each field", buttonTitle: "OK")
                 return
             }
+            
             switch collectionView.currentTag {
             case .effect:
                 activityDetailsDict[collectionView.currentTag.value] = Array(collectionView.selectedData)
@@ -72,9 +72,25 @@ class NewActivityVC: BudsDataLoadingVC {
             }
         }
         
+        addActivity(activityDetails: activityDetailsDict)
+    }
+    
+    private func addActivity(activityDetails: [String: Any]) {
+        
         showLoadingView()
-        print(Network.addNewActivity(userID: userID, activityDetails: activityDetailsDict))
-        dismissLoadingView()
+        Network.addNewActivityTest(userID: modelController.person.id, activityDetails: activityDetails) { [weak self] (error) in
+            guard let self = self else { return }
+            
+            self.dismissLoadingView()
+            if error == nil {
+                let destVC = ActivityFeedVC()
+                destVC.modelController = self.modelController
+                self.navigationController?.popViewController(animated: true)
+                self.navigationController?.pushViewController(destVC, animated: true)
+            } else {
+                self.presentBudsAlertOnMainThread(title: "Unable to add Activity", message: error!.rawValue, buttonTitle: "OK")
+            }
+        }
     }
     
     

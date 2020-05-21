@@ -21,13 +21,12 @@ class ActivityFeedVC: BudsDataLoadingVC {
 
         configureViewController()
         configureTableView()
+        getActivities()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        getActivities()
     }
     
 
@@ -54,10 +53,9 @@ class ActivityFeedVC: BudsDataLoadingVC {
     
     
     func getActivities() {
-        showLoadingView()
+        
         Network.displayActivityFeed(userID: modelController.person.id) { [weak self] (activities) in
             guard let self = self else { return }
-            self.dismissLoadingView()
             self.activities = activities
             self.tableView.separatorStyle = .singleLine
             self.tableView.reloadData()
@@ -79,6 +77,5 @@ extension ActivityFeedVC : UITableViewDataSource, UITableViewDelegate {
         cell.set(activity: activities[indexPath.row])
         return cell
     }
-    
     
 }
