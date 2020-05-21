@@ -225,6 +225,7 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
         } else if indexPath.section == 1 {
             cell.set(strains: mostUsedStrains)
         }
+        cell.set(modelController: modelController)
         cell.set(delegate: self)
         return cell
     }
@@ -241,6 +242,7 @@ extension FavoritesVC: StrainCollectionViewDelegate {
     func didTapStrain(for strain: Strain) {
         let destVC = StrainInfoVC()
         destVC.strain = strain
+        destVC.modelController = modelController
         navigationController?.pushViewController(destVC, animated: true)
     }
 }

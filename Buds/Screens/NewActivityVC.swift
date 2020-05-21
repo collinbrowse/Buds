@@ -85,8 +85,11 @@ class NewActivityVC: BudsDataLoadingVC {
             if error == nil {
                 let destVC = ActivityFeedVC()
                 destVC.modelController = self.modelController
-                self.navigationController?.popViewController(animated: true)
-                self.navigationController?.pushViewController(destVC, animated: true)
+                
+                self.tabBarController?.selectedIndex = 0
+                self.navigationController?.popToRootViewController(animated: true)
+                //self.presentingViewController!.presentingViewController!.dismiss(animated: true, completion: {})
+
             } else {
                 self.presentBudsAlertOnMainThread(title: "Unable to add Activity", message: error!.rawValue, buttonTitle: "OK")
             }

@@ -421,24 +421,12 @@ class Network {
             if response.result.isSuccess {
                 
                 let responseJSON = JSON(response.result.value!)
-                
-                print(responseJSON)
                 complete(responseJSON)
-                
-                
-                
             } else {
                 print("Unable to get data from Strain API")
             }
-            
-            
         }
-        
-        
-        
     }
-    
-    
     
     
     

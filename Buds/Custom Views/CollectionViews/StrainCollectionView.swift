@@ -21,7 +21,7 @@ class StrainCollectionView: UICollectionView {
     var data: [Strain] = []
     weak var navigationController: UINavigationController?
     weak var strainDelegate: StrainCollectionViewDelegate?
-    
+    var modelController: ModelController!
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
@@ -90,6 +90,7 @@ extension StrainCollectionView: UICollectionViewDelegate {
         } else {
             let destVC = StrainInfoVC()
             destVC.strain = strain
+            destVC.modelController = modelController
             navigationController?.pushViewController(destVC, animated: true)
         }
     }

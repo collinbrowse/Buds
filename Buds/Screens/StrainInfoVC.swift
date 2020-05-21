@@ -20,6 +20,8 @@ class StrainInfoVC: BudsDataLoadingVC {
     
     var strain : Strain!
     
+    var modelController : ModelController!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +62,8 @@ class StrainInfoVC: BudsDataLoadingVC {
     
     @objc func addButtonTapped() {
         let destVC = NewActivityVC()
-        destVC.strain = self.strain
+        destVC.strain = strain
+        destVC.modelController = modelController
         navigationController?.pushViewController(destVC, animated: true)
     }
     

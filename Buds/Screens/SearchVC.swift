@@ -18,6 +18,7 @@ class SearchVC: BudsDataLoadingVC {
     var filteredStrains : [Strain] = []
     var isSearching = false
     
+    var modelController : ModelController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,6 +132,7 @@ extension SearchVC : UICollectionViewDelegate {
         
         let destVC = StrainInfoVC()
         destVC.strain = strain
+        destVC.modelController = self.modelController
         navigationController?.pushViewController(destVC, animated: true)
     }
 }

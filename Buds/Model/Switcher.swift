@@ -18,17 +18,22 @@ class Switcher {
         var rootViewController : UIViewController?
 
         if (status) {
+            
             let mainStoryBoard = UIStoryboard(name: "TabBar", bundle: nil)
             let mainTabBarController = mainStoryBoard.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
             rootViewController = mainTabBarController
+
+
         } else {
             let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
             let welcomeViewController = mainStoryBoard.instantiateViewController(withIdentifier: "welcomeNavigationController") as! UINavigationController
             rootViewController = welcomeViewController
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = rootViewController
         }
 
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = rootViewController
+        
 
     }
 

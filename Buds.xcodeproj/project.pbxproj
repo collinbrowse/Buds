@@ -63,6 +63,7 @@
 		BE314E8F24746EB200EC20B7 /* BudsAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE314E8E24746EB200EC20B7 /* BudsAlertVC.swift */; };
 		BE314E9124746EE800EC20B7 /* BudsAlertContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE314E9024746EE800EC20B7 /* BudsAlertContainerView.swift */; };
 		BE314E9424746F4100EC20B7 /* BudsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE314E9324746F4100EC20B7 /* BudsButton.swift */; };
+		BE3EBC202477107100494CD7 /* BudsTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3EBC1F2477107100494CD7 /* BudsTabBarController.swift */; };
 		BE41464422BA718C0009A738 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41464322BA718C0009A738 /* AppDelegate.swift */; };
 		BE41464922BA718C0009A738 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE41464722BA718C0009A738 /* Main.storyboard */; };
 		BE41464B22BA718D0009A738 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE41464A22BA718D0009A738 /* Assets.xcassets */; };
@@ -192,6 +193,7 @@
 		BE314E8E24746EB200EC20B7 /* BudsAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudsAlertVC.swift; sourceTree = "<group>"; };
 		BE314E9024746EE800EC20B7 /* BudsAlertContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudsAlertContainerView.swift; sourceTree = "<group>"; };
 		BE314E9324746F4100EC20B7 /* BudsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudsButton.swift; sourceTree = "<group>"; };
+		BE3EBC1F2477107100494CD7 /* BudsTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudsTabBarController.swift; sourceTree = "<group>"; };
 		BE41464022BA718C0009A738 /* Buds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Buds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE41464322BA718C0009A738 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE41464822BA718C0009A738 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -471,6 +473,16 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
+		BE3EBC23247714BD00494CD7 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				BE41464322BA718C0009A738 /* AppDelegate.swift */,
+				BE41464C22BA718D0009A738 /* LaunchScreen.storyboard */,
+				BE41464A22BA718D0009A738 /* Assets.xcassets */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		BE41463722BA718C0009A738 = {
 			isa = PBXGroup;
 			children = (
@@ -505,9 +517,7 @@
 				BE03D2A522C267410059B587 /* Controller */,
 				BE03D2A422C124A70059B587 /* View */,
 				BE41467122BA8F5F0009A738 /* Model */,
-				BE41464322BA718C0009A738 /* AppDelegate.swift */,
-				BE41464A22BA718D0009A738 /* Assets.xcassets */,
-				BE41464C22BA718D0009A738 /* LaunchScreen.storyboard */,
+				BE3EBC23247714BD00494CD7 /* Support */,
 				BE41464F22BA718D0009A738 /* Info.plist */,
 				BE41468022BAD6A00009A738 /* GoogleService-Info.plist */,
 				BE00F0CB22FDB92600B65AB5 /* Resources */,
@@ -603,6 +613,7 @@
 			children = (
 				BE6B71AA244F9F6A007BFB23 /* BudsDataLoadingVC.swift */,
 				BE314E8E24746EB200EC20B7 /* BudsAlertVC.swift */,
+				BE3EBC1F2477107100494CD7 /* BudsTabBarController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -957,6 +968,7 @@
 				BE314E8D24746E6E00EC20B7 /* UIViewController+Ext.swift in Sources */,
 				BEFB6FF8235B6151008805E5 /* Switcher.swift in Sources */,
 				BE53E7B7246DCDAF00226A2C /* FavoritesVC.swift in Sources */,
+				BE3EBC202477107100494CD7 /* BudsTabBarController.swift in Sources */,
 				BE2D4C1A2460A8660008D7C6 /* NetworkManager.swift in Sources */,
 				BE53E7B1246DA8EE00226A2C /* PersistenceManager.swift in Sources */,
 				BEEE2170246F54FD00DDF6A5 /* GreenNavigationBarAppearance.swift in Sources */,

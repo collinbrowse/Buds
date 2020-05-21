@@ -12,17 +12,24 @@ class FavoriteCell: UITableViewCell {
 
     static let reuseID = String(describing: FavoriteCell.self)
     
+    var modelController : ModelController!
     let collectionView = StrainCollectionView(frame: .zero, collectionViewLayout: UIHelper.createHorizontalFlowLayout())
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         configure()
     }
     
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    func set(modelController: ModelController) {
+        self.modelController = modelController
     }
     
     
