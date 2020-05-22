@@ -64,25 +64,25 @@ class BudsIconView: UIView {
         
         switch method {
         case .joint:
-            symbolImageView.image = Icons.jointIcon
+            //symbolImageView.image = Icons.jointIcon
             textLabel.text = "Joint"
         case .blunt:
-            symbolImageView.image = Icons.jointIcon
+            //symbolImageView.image = Icons.jointIcon
             textLabel.text = "Blunt"
         case .bowl:
-            symbolImageView.image = Icons.bowlIcon
+            //symbolImageView.image = Icons.bowlIcon
             textLabel.text = "Bowl"
         case .bong:
-            symbolImageView.image = Icons.bongIcon
+            //symbolImageView.image = Icons.bongIcon
             textLabel.text = "Bong"
         case .concentrate:
-            symbolImageView.image = Icons.concentrateIcon
+            //symbolImageView.image = Icons.concentrateIcon
             textLabel.text = "Concentrate"
         case .edible:
-            symbolImageView.image = Icons.edibleIcon
+            //symbolImageView.image = Icons.edibleIcon
             textLabel.text = "Edible"
         case .vape:
-            symbolImageView.image = Icons.vapeIcon
+            //symbolImageView.image = Icons.vapeIcon
             textLabel.text = "Vape"
         }
     }
