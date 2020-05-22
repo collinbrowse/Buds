@@ -10,6 +10,9 @@ import UIKit
 
 class BudsTitleLabel: UILabel {
 
+    var fixedPreferredContentSizeCategory: UIContentSizeCategory {
+        return .medium
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,7 +27,7 @@ class BudsTitleLabel: UILabel {
     
     convenience init(textAlignment: NSTextAlignment, fontSize: CGFloat) {
         self.init(frame: .zero)
-        self.font = UIFont(name: "Arvo-Bold", size: fontSize)
+        self.font = UIFont.systemFont(ofSize: fontSize, weight: .semibold)
         self.textAlignment = textAlignment
     }
     

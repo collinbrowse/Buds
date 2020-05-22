@@ -24,9 +24,10 @@ class BudsStrainTitleLabel: UILabel {
     
     convenience init(textAlignment: NSTextAlignment, fontSize: CGFloat) {
         self.init(frame: .zero)
-        self.font = UIFont(name: "Arvo-Bold", size: fontSize)
+        self.font = UIFont.systemFont(ofSize: fontSize, weight: .semibold)
         self.textAlignment = textAlignment
     }
+    
     
     func configure() {
         textColor = .white

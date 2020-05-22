@@ -206,7 +206,7 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
         let titleLabel = UILabel(frame: CGRect(x: 20, y: 8, width:
         tableView.bounds.size.width, height: tableView.bounds.size.height))
         titleLabel.text = sections[section]
-        titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        titleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         titleLabel.textColor = .label
         titleLabel.sizeToFit()
         

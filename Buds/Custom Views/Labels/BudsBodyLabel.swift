@@ -29,8 +29,7 @@ class BudsBodyLabel: UILabel {
     
     
     private func configure() {
-        
-        font = UIFont.preferredFont(forTextStyle: .body)
+        font = UIFont.systemFont(ofSize: 15, weight: .medium)
         numberOfLines = 0
         lineBreakMode = .byWordWrapping
         translatesAutoresizingMaskIntoConstraints = false

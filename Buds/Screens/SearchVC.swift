@@ -116,6 +116,7 @@ class SearchVC: BudsDataLoadingVC {
         snapshot.appendSections([.main])
         snapshot.appendItems(strains)
         DispatchQueue.main.async {
+            self.view.layoutIfNeeded()
             self.dataSource.apply(snapshot, animatingDifferences: true, completion: nil)
         }
     }
