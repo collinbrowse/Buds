@@ -83,7 +83,9 @@ class TagCollectionView: UICollectionView {
     
     func getEffectData() {
         allowsMultipleSelection = true
-        Network.getEffectsFromAPI { (effectsDict) in
+        Network.getEffectsFromAPI { [weak self] (effectsDict) in
+            guard let self = self else { return }
+            
             let effectsArray = effectsDict.map { $0.keys.first! }
             self.updateData(on: effectsArray)
         }
@@ -141,7 +143,9 @@ extension TagCollectionView: CLLocationManagerDelegate {
         
         guard let location = locations.first else { return }
         
-        NetworkManager.shared.getReverseGeocodeLocation(fromLocation: location) { result in
+        NetworkManager.shared.getReverseGeocodeLocation(fromLocation: location) { [weak self] result in
+            guard let self = self else { return }
+            
             switch result {
             case .success(let placemark):
                 self.setLocationTags(placemark: placemark)

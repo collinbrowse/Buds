@@ -77,7 +77,6 @@
 		BE41468222BAD6A00009A738 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE41468022BAD6A00009A738 /* GoogleService-Info.plist */; };
 		BE41468322BAD6A00009A738 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE41468022BAD6A00009A738 /* GoogleService-Info.plist */; };
 		BE4795E0237DD99200FB0874 /* NewActivityStrainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4795DF237DD99200FB0874 /* NewActivityStrainViewController.swift */; };
-		BE53E7B1246DA8EE00226A2C /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53E7B0246DA8EE00226A2C /* PersistenceManager.swift */; };
 		BE53E7B3246DAB6700226A2C /* BudsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53E7B2246DAB6700226A2C /* BudsError.swift */; };
 		BE53E7B5246DC8F500226A2C /* StrainCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53E7B4246DC8F500226A2C /* StrainCollectionView.swift */; };
 		BE53E7B7246DCDAF00226A2C /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53E7B6246DCDAF00226A2C /* FavoritesVC.swift */; };
@@ -211,7 +210,6 @@
 		BE41467E22BA9E180009A738 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		BE41468022BAD6A00009A738 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BE4795DF237DD99200FB0874 /* NewActivityStrainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityStrainViewController.swift; sourceTree = "<group>"; };
-		BE53E7B0246DA8EE00226A2C /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		BE53E7B2246DAB6700226A2C /* BudsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudsError.swift; sourceTree = "<group>"; };
 		BE53E7B4246DC8F500226A2C /* StrainCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrainCollectionView.swift; sourceTree = "<group>"; };
 		BE53E7B6246DCDAF00226A2C /* FavoritesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
@@ -460,7 +458,6 @@
 			isa = PBXGroup;
 			children = (
 				BE2D4C192460A8660008D7C6 /* NetworkManager.swift */,
-				BE53E7B0246DA8EE00226A2C /* PersistenceManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -970,7 +967,6 @@
 				BE53E7B7246DCDAF00226A2C /* FavoritesVC.swift in Sources */,
 				BE3EBC202477107100494CD7 /* BudsTabBarController.swift in Sources */,
 				BE2D4C1A2460A8660008D7C6 /* NetworkManager.swift in Sources */,
-				BE53E7B1246DA8EE00226A2C /* PersistenceManager.swift in Sources */,
 				BEEE2170246F54FD00DDF6A5 /* GreenNavigationBarAppearance.swift in Sources */,
 				BEACFF232464AD9B00F705EB /* TagCell.swift in Sources */,
 				BE2D4C172460A7DC0008D7C6 /* BudsAvatarImageView.swift in Sources */,

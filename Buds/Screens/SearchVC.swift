@@ -91,7 +91,8 @@ class SearchVC: BudsDataLoadingVC {
     
     func getAllStrains() {
         
-        Network.getAllStrains { (response) in
+        Network.getAllStrains { [weak self] (response) in
+            guard let self = self else { return }
             
             let result = try! JSONDecoder().decode(StrainJSON.self, from: response.rawData())
             

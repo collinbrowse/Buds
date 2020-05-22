@@ -35,7 +35,9 @@ class BudsAvatarImageView : UIImageView {
     
     func downloadImage(fromURL urlString: String) {
         
-        NetworkManager.shared.downloadImage(from: urlString) { (image) in
+        NetworkManager.shared.downloadImage(from: urlString) { [weak self] (image) in
+            guard let self = self else { return }
+            
             if let image = image {
                 DispatchQueue.main.async {
                     self.image = image

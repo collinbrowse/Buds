@@ -40,7 +40,6 @@ class BudsIconView: UIView {
         
         NSLayoutConstraint.activate([
             symbolImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            //symbolImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: -12),
             symbolImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 4),
             symbolImageView.widthAnchor.constraint(equalToConstant: 18),
             symbolImageView.heightAnchor.constraint(equalToConstant: 18),

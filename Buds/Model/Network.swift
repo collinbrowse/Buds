@@ -226,7 +226,6 @@ class Network {
     }
     
     
-    //let methods = ["Bowl", "Joint", "Vape", "Bong", "Blunt", "Concentrate", "Edible"]
     private static func parseConsumptionMethod(method: String) -> ConsumptionMethod {
         if method == "Bowl" {
             return .bowl
