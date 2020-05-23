@@ -71,12 +71,7 @@ class NewActivityStrainViewController: UIViewController {
             self.tableView.reloadData()
             SVProgressHUD.dismiss()
         } else {
-            Network.getRaceFromAPI { (raceDict) in
-                self.filteredRaceDict = raceDict
-                self.raceDict = raceDict
-                self.tableView.reloadData()
-                SVProgressHUD.dismiss()
-            }
+            
         }
                 
     }

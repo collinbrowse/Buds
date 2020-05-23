@@ -63,7 +63,6 @@ enum TagValues {
 
 
 enum StrainAPI {
-    
     static let baseAPI = "http://strainapi.evanbusse.com"
     static let APIKey = "/3HT8al6"
     static let allStrains = "/strains/search/all"
@@ -76,6 +75,10 @@ enum StrainAPI {
     static let searchForDescById = "/strains/data/desc/"
     static let searchForEffectById = "/strains/data/effects/"
     static let searchForFlavorById = "/strains/data/flavors/"
+}
+
+
+enum UserDefaultsKeys {
     
 }
 

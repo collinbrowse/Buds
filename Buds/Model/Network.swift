@@ -17,7 +17,7 @@ class Network {
 
     //Grab a connection to Realtime database
     static var ref = Database.database().reference()
-    
+    static let defaults = UserDefaults.standard
     static let group = DispatchGroup()
 
     
@@ -47,6 +47,7 @@ class Network {
         return true
     }
     
+    
     // Log In a User with Firebase Auth
     static func logInUser(email: String, password: String, complete: @escaping (Person?) -> ()) {
 
@@ -75,6 +76,7 @@ class Network {
         }
     }
     
+    
     static func logOutUser() {
         
         Switcher.setUserDefaultsIsSignIn(false)
@@ -90,6 +92,7 @@ class Network {
             print ("Error signing out: %@", signOutError)
         }
     }
+    
     
     // Get a User's Info with Realtime Database
     private static func getUserInfo(userID: String, complete: @escaping ([String: String]) -> ()) {
@@ -108,6 +111,7 @@ class Network {
         }
         
     }
+    
     
     // Retrieves the User's profile picture with id: userID from FirebaseStorage
     // If none is available, then a default image is used
@@ -143,6 +147,7 @@ class Network {
         }
         complete(profilePicture!)
     }
+    
     
     ///getUserStrainData
     static func getUserStrainData(userID: String, complete: @escaping ([String: Array<String>]) -> ()) {
@@ -200,10 +205,6 @@ class Network {
             print("Observing activity Feed")
             if let dictionary = snapshot.value as? [String: [String: Any]] {
                 
-                // Here we are creating an arrary of ActivityModel Objects.
-                // This is the best way to structure the information from firebase as we need
-                // an array to populate the table view
-                
                 for firActivity in dictionary.values {
                     let activity = Activity()
                     activity.user = firActivity["user"] as? String
@@ -244,6 +245,7 @@ class Network {
         }
     }
     
+    
     /// Returns a list of possible values from Firebase database. Currently designed for "smoking_styles" or "rating" as dataToRetrieve
     static func getFirebaseInfo(_ dataToRetrieve: String, complete: @escaping([String]?) -> ()) {
         
@@ -269,7 +271,8 @@ class Network {
     // Once that is done, it will call Network.populateRandomEffects to get 5 strains for every cannabis effect
     static func populateStrainInfo() {
         
-        Alamofire.request("http://strainapi.evanbusse.com/\(Constants.StrainAPI.APIKey)/searchdata/effects", method: .get).validate().responseJSON { (response) in
+        let requestURL = StrainAPI.baseAPI + StrainAPI.APIKey + StrainAPI.allEffects
+        Alamofire.request(requestURL).validate().responseJSON { (response) in
             
             if response.result.isSuccess {
                 
@@ -294,6 +297,7 @@ class Network {
         }
     }
     
+    
     ///populateRandomEffects
     // This method calls the Strain api on each effect that the strain api has.
     // This is already populated in the Universal Constant StrainEffects.allEffects by the time we get here
@@ -307,10 +311,10 @@ class Network {
             let queue = DispatchQueue.global()
             
             queue.async {
-                
                 semaphore.wait()
-
-                Alamofire.request("http://strainapi.evanbusse.com/\(Constants.StrainAPI.APIKey)/strains/search/effect/\(effect)", method: .get).validate().responseJSON { (response) in
+                
+                let requestURL = StrainAPI.baseAPI + StrainAPI.APIKey + StrainAPI.searchForStrainsByEffect + effect
+                Alamofire.request(requestURL).validate().responseJSON { (response) in
                     
                     if response.result.isSuccess {
                         let responseJSON = JSON(response.result.value!)
@@ -325,7 +329,7 @@ class Network {
                         print("Errors \(String(describing: response.result.error))")
                     }
                     
-                    UserDefaults.standard.set(Constants.StrainEffects.effectsDict, forKey: "effectsDict")
+                    defaults.set(Constants.StrainEffects.effectsDict, forKey: "effectsDict")
                     semaphore.signal()
                 }
             }
@@ -334,69 +338,47 @@ class Network {
         for i in 0...Constants.StrainEffects.allEffects.count-1 {
             callAPI(effect: Constants.StrainEffects.allEffects[i])
         }
-        
     }
     
     
     static func getEffectsFromAPI(complete: @escaping([[String: String]]) ->  ())  {
         
-         Alamofire.request("http://strainapi.evanbusse.com/\(Constants.StrainAPI.APIKey)/searchdata/effects", method: .get).validate().responseJSON { (response) in
+        let requestURL = StrainAPI.baseAPI + StrainAPI.APIKey + StrainAPI.allEffects
+        Alamofire.request(requestURL).validate().responseJSON { (response) in
+            
             var effectsDict = [[String: String]]()
             if response.result.isSuccess {
-                 
+                
                 let responseJSON = JSON(response.result.value!)
-
+                
                 for item in responseJSON.arrayValue {
-                     if item["type"].string != nil && item["effect"].string != nil {
-                         effectsDict.append([item["effect"].string! : item["type"].string!])
-                     }
-                 }
-                 UserDefaults.standard.set(effectsDict, forKey: "effects")
-                 complete(effectsDict)
-             } else {
-                 print("Unable to get strain effects from the evanbusse api")
-             }
-             
-         }
-     
+                    if item["type"].string != nil && item["effect"].string != nil {
+                        effectsDict.append([item["effect"].string! : item["type"].string!])
+                    }
+                }
+                defaults.set(effectsDict, forKey: "effects")
+                complete(effectsDict)
+            } else {
+                print("Unable to get strain effects from the evanbusse api")
+            }
+        }
     }
     
-    static func getRaceFromAPI(complete: @escaping([[String: String]]) ->  ())  {
-     
-         Alamofire.request("http://strainapi.evanbusse.com/\(Constants.StrainAPI.APIKey)/strains/search/all", method: .get).validate().responseJSON { (response) in
-            var raceDict = [[String: String]]()
-            if response.result.isSuccess {
-                                
-                let responseJSON = JSON(response.result.value!)
-
-                for item in responseJSON.dictionaryValue {
-                    raceDict.append([item.key: item.value["race"].string!])
-                }
-                UserDefaults.standard.set(raceDict, forKey: "raceDict")
-                complete(raceDict)
-             } else {
-                 print("Unable to get strain races from the evanbusse api")
-             }
-             
-         }
-     
-    }
     
     /// Returns a complete dictionary of all strains accessible to the application. Strain data could come from either User Defaults or a network call to the Strain API.
     /// This function returns a lot of data and if using the API can take a while to return
     static func getAllStrains(complete: @escaping(JSON) -> ()) {
 
+        if defaults.data(forKey: "allStrains") == nil {
         
-        if UserDefaults.standard.data(forKey: "allStrains") == nil {
-            
-            Alamofire.request("http://strainapi.evanbusse.com/\(Constants.StrainAPI.APIKey)/strains/search/all", method: .get).validate().responseJSON { (response) in
+            let requestURL = StrainAPI.baseAPI + StrainAPI.APIKey + StrainAPI.allStrains
+            Alamofire.request(requestURL).validate().responseJSON { (response) in
                
                 if response.result.isSuccess {
-
                     let responseJSON = JSON(response.result.value!)
 
                     do {
-                        UserDefaults.standard.set(try responseJSON.rawData(), forKey: "allStrains")
+                        defaults.set(try responseJSON.rawData(), forKey: "allStrains")
                         complete(JSON(try responseJSON.rawData()))
                     } catch {
                         print("Didn't work")
@@ -407,7 +389,7 @@ class Network {
                 }
             }
         } else {
-            complete(JSON(UserDefaults.standard.data(forKey: "allStrains")))
+            complete(JSON(defaults.data(forKey: "allStrains")))
         }
     }
     
@@ -415,7 +397,8 @@ class Network {
     /// Function to get the description of the strain from the Strain API based on it's STRAIN_ID
     static func getStrainDescription(strainID: Int, complete: @escaping(JSON) -> ()) {
         
-        Alamofire.request("http://strainapi.evanbusse.com/\(Constants.StrainAPI.APIKey)/strains/data/desc/\(strainID)", method: .get).validate().responseJSON { (response) in
+        let requestURL = StrainAPI.baseAPI + StrainAPI.APIKey + StrainAPI.searchForDescById + String(strainID)
+        Alamofire.request(requestURL).validate().responseJSON { (response) in
             
             if response.result.isSuccess {
                 
@@ -426,7 +409,6 @@ class Network {
             }
         }
     }
-    
     
     
     static func getStrain(name: String, complete: @escaping(Swift.Result<JSON, BudsError>) -> ()) {
