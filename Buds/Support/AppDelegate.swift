@@ -20,21 +20,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set up Firebase App
         FirebaseApp.configure()
         
-        // Call an api for Strains and their Effects if we haven't already
-//        if Constants.StrainTypes.allTypes.count == 0 {
-//            Network.populateStrainInfo()
-//        }
-        
         if UserDefaults.standard.bool(forKey: "isSignIn") {
             window = UIWindow()
             window?.rootViewController = BudsTabBarController()
             window?.makeKeyAndVisible()
         } else {
-            Switcher.updateRootViewController()
+            let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+            let welcomeViewController = mainStoryBoard.instantiateViewController(withIdentifier: "welcomeNavigationController") as! UINavigationController
+            window = UIWindow()
+            window?.rootViewController = welcomeViewController
+            window?.makeKeyAndVisible()
         }
         
         return true
-        
     }
     
     

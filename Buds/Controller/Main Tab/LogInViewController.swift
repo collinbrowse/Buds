@@ -67,7 +67,10 @@ class LogInViewController: UIViewController {
                 self.modelController.person = user
                 Switcher.setUserDefaultsIsSignIn(true)
                 Switcher.setUserDefaultsModelController(modelController: self.modelController)
-                Switcher.updateRootViewController()
+                
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.window?.rootViewController = BudsTabBarController()
+                appDelegate.window?.makeKeyAndVisible()
             }
         }
         else {

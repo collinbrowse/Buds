@@ -229,8 +229,12 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                                             var person = Person(id: Auth.auth().currentUser!.providerID, name: name, email: email, location: location, birthday: birthday, profilePictureURL: "self.profilePictureImageView.image!")
                                             person.profilePicture = self.profilePictureImageView.image!
                                             self.modelController.person = person
+                                            Switcher.setUserDefaultsModelController(modelController: self.modelController)
                                             SVProgressHUD.dismiss()
-                                            self.performSegue(withIdentifier: "goToHomeFromRegister", sender: self)
+                                            
+                                            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                            appDelegate.window?.rootViewController = BudsTabBarController()
+                                            appDelegate.window?.makeKeyAndVisible()
                                         }
                                     }
                                     
