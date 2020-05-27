@@ -41,9 +41,9 @@ class Network {
     
     
 //    static func addNewActivity(userID: String, activityDetails: [String: Any]) -> Bool {
-//        
+//
 //        ref.child("activity").childByAutoId().setValue(activityDetails)
-//        
+//
 //        return true
 //    }
     
@@ -202,25 +202,31 @@ class Network {
         var activities = [Activity]()
         
         ref.child("activity").queryOrdered(byChild: "user").queryEqual(toValue: userID).observe(.value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String: [String: Any]] {
+            
+            if snapshot.exists() {
                 
-                for firActivity in dictionary.values {
-                    let activity = Activity()
-                    activity.user = firActivity["user"] as? String
-                    activity.strain = firActivity["strain"] as? String
-                    activity.smoking_style = firActivity["smoking_style"] as? String
-                    activity.rating = firActivity["rating"] as? Int
-                    activity.note = firActivity["note"] as? String
-                    activity.effects = firActivity["effects"] as? [String]
-                    activity.location = firActivity["location"] as? String
-                    activity.date = TimeHelper.getDateFromString(dateString: firActivity["time"] as! String)
-                    activity.consumptionMethod = self.parseConsumptionMethod(method: firActivity["smoking_style"] as! String)
-                    activities.insert(activity, at: 0)
+                if let dictionary = snapshot.value as? [String: [String: Any]] {
+                    
+                    for firActivity in dictionary.values {
+                        let activity = Activity()
+                        activity.user = firActivity["user"] as? String
+                        activity.strain = firActivity["strain"] as? String
+                        activity.smoking_style = firActivity["smoking_style"] as? String
+                        activity.rating = firActivity["rating"] as? Int
+                        activity.note = firActivity["note"] as? String
+                        activity.effects = firActivity["effects"] as? [String]
+                        activity.location = firActivity["location"] as? String
+                        activity.date = TimeHelper.getDateFromString(dateString: firActivity["time"] as! String)
+                        activity.consumptionMethod = self.parseConsumptionMethod(method: firActivity["smoking_style"] as! String)
+                        activities.insert(activity, at: 0)
+                    }
+                    activities = activities.sorted(by: {
+                        $0.date!.compare($1.date!) == .orderedDescending
+                    })
+                    complete(.success(activities))
                 }
-                activities = activities.sorted(by: {
-                    $0.date!.compare($1.date!) == .orderedDescending
-                })
-                complete(.success(activities))
+            } else {
+                complete(.failure(BudsError.noActivities))
             }
         }) { (error) in
             complete(.failure(BudsError(rawValue: error.localizedDescription)!))

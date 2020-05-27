@@ -59,12 +59,25 @@ class ActivityFeedVC: BudsDataLoadingVC {
             
             switch result {
             case .success(let activities):
-                self.activities = activities
-                self.tableView.separatorStyle = .singleLine
-                self.tableView.reloadData()
+                self.updateUI(with: activities)
             case .failure(let error):
-                self.presentBudsAlertOnMainThread(title: "Unable to get recent activity", message: error.rawValue, buttonTitle: "OK")
+                if case BudsError.noActivities = error {
+                    self.showEmptyStateView(with: error.rawValue, in: self.view)
+                } else {
+                    self.presentBudsAlertOnMainThread(title: "Unable to get recent activity", message: error.rawValue, buttonTitle: "OK")
+                }
             }
+        }
+    }
+    
+    
+    func updateUI(with activities: [Activity]) {
+        
+        self.activities = activities
+        DispatchQueue.main.async {
+            self.tableView.separatorStyle = .singleLine
+            self.tableView.reloadData()
+            self.view.bringSubviewToFront(self.tableView)
         }
     }
 }

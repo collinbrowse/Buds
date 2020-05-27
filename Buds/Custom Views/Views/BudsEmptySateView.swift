@@ -35,7 +35,7 @@ class BudsEmptyStateView : UIView {
     
     func configureMessageLabel() {
         
-        messageLabel.numberOfLines = 3
+        messageLabel.numberOfLines = 0
         messageLabel.textColor = .secondaryLabel
         messageLabel.text = "Some text"
         addSubview(messageLabel)
@@ -45,7 +45,7 @@ class BudsEmptyStateView : UIView {
             messageLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: padding),
             messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
             messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
-            messageLabel.heightAnchor.constraint(equalToConstant: 125)
+            messageLabel.heightAnchor.constraint(equalToConstant: 250)
         ])
     }
     

@@ -230,6 +230,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                                             person.profilePicture = self.profilePictureImageView.image!
                                             self.modelController.person = person
                                             Switcher.setUserDefaultsModelController(modelController: self.modelController)
+                                            Switcher.setUserDefaultsIsSignIn(true)
                                             SVProgressHUD.dismiss()
                                             
                                             let appDelegate = UIApplication.shared.delegate as! AppDelegate
