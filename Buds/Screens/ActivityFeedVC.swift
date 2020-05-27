@@ -54,11 +54,17 @@ class ActivityFeedVC: BudsDataLoadingVC {
     
     func getActivities() {
         
-        Network.displayActivityFeed(userID: modelController.person.id) { [weak self] (activities) in
+        Network.displayActivityFeed(userID: modelController.person.id) { [weak self] (result) in
             guard let self = self else { return }
-            self.activities = activities
-            self.tableView.separatorStyle = .singleLine
-            self.tableView.reloadData()
+            
+            switch result {
+            case .success(let activities):
+                self.activities = activities
+                self.tableView.separatorStyle = .singleLine
+                self.tableView.reloadData()
+            case .failure(let error):
+                self.presentBudsAlertOnMainThread(title: "Unable to get recent activity", message: error.rawValue, buttonTitle: "OK")
+            }
         }
     }
 }

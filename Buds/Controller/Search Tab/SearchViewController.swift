@@ -81,9 +81,9 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         segmentedControl.selectedSegmentIndex = 0
         
         // And finally lets populate our tableview with data
-        Network.getAllStrains { (response) in
-            self.decodeStrains(response)
-        }
+//        Network.getAllStrains { (response) in
+//            self.decodeStrains(response)
+//        }
         
         
     }

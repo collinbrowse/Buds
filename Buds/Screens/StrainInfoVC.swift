@@ -121,7 +121,7 @@ class StrainInfoVC: BudsDataLoadingVC {
             guard let self = self else { return }
             self.dismissLoadingView()
             
-            guard let description = resultJSON["desc"].string else {
+            guard let description = resultJSON?["desc"].string else {
                 let message = "Sorry, we couldn't find any details for " + self.headerTitle.text!
                 self.showEmptyStateView(with: message, in: self.contentView)
                 return

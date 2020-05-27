@@ -32,16 +32,16 @@ class NewActivityTableViewController: UITableViewController {
         
         // Get the list of values from Firebase
         if dataToRetrieve != nil {
-            SVProgressHUD.show()
-            
-            Network.getFirebaseInfo(dataToRetrieve!) { (detailsArray) in
-                
-                if let array = detailsArray {
-                    self.detailsListArray = array
-                    self.tableView.reloadData()
-                }
-                SVProgressHUD.dismiss()
-            }
+//            SVProgressHUD.show()
+//            
+//            Network.getFirebaseInfo(dataToRetrieve!) { (detailsArray) in
+//                
+//                if let array = detailsArray {
+//                    self.detailsListArray = array
+//                    self.tableView.reloadData()
+//                }
+//                SVProgressHUD.dismiss()
+//            }
             
         }
     }

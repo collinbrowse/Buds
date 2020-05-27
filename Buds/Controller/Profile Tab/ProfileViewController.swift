@@ -51,26 +51,26 @@ class ProfileViewController: UITableViewController {
         
         // Get User's Strain Data
         // Save data to populate table view and collection View
-        Network.getUserStrainData(userID: modelController.person.id) { (userInfo) in
-            
-            var info = userInfo
-            
-            // First look for the Favorites
-            for (category, strains) in userInfo {
-                if (category == "favorite") {
-                    self.userEffects.append(category + "s")
-                    self.userEffectsWithRelatedStrains.append(strains)
-                    info.removeValue(forKey: "favorite")
-                }
-            }
-            
-            // Then add the rest
-            for (category, strains) in info {
-                self.userEffects.append(category)
-                self.userEffectsWithRelatedStrains.append(strains)
-            }
-            self.tableView.reloadData()
-        }
+//        Network.getUserStrainData(userID: modelController.person.id) { (userInfo) in
+//            
+//            var info = userInfo
+//            
+//            // First look for the Favorites
+//            for (category, strains) in userInfo {
+//                if (category == "favorite") {
+//                    self.userEffects.append(category + "s")
+//                    self.userEffectsWithRelatedStrains.append(strains)
+//                    info.removeValue(forKey: "favorite")
+//                }
+//            }
+//            
+//            // Then add the rest
+//            for (category, strains) in info {
+//                self.userEffects.append(category)
+//                self.userEffectsWithRelatedStrains.append(strains)
+//            }
+//            self.tableView.reloadData()
+//        }
         
         // Add the User's Profile Picture to the nav bar
         if modelController.person.profilePicture != nil {

@@ -59,11 +59,42 @@ class TagCollectionView: UICollectionView {
         })
     }
     
+    
+    func getData() {
+        switch currentTag {
+        case .effect:
+            getEffectData()
+        case .location:
+            getLocationData()
+        case .method:
+            updateData(on: TagValues.methods)
+        case .rating:
+            updateData(on: TagValues.ratings)
+        default:
+            break
+        }
+    }
+    
+    
     func getLocationData() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
+    }
+    
+    
+    func getEffectData() {
+        allowsMultipleSelection = true
+        
+        Network.getEffectsFromAPI { [weak self] (effectsDict) in
+            guard let self = self else { return }
+            
+            if let effectsDict = effectsDict {
+                let effectsArray = effectsDict.map { $0.keys.first! }
+                self.updateData(on: effectsArray)
+            }
+        }
     }
     
     
@@ -81,17 +112,6 @@ class TagCollectionView: UICollectionView {
     }
     
     
-    func getEffectData() {
-        allowsMultipleSelection = true
-        Network.getEffectsFromAPI { [weak self] (effectsDict) in
-            guard let self = self else { return }
-            
-            let effectsArray = effectsDict.map { $0.keys.first! }
-            self.updateData(on: effectsArray)
-        }
-    }
-    
-    
     func updateData(on data: [String]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, String>()
         snapshot.appendSections([.main])
@@ -103,20 +123,7 @@ class TagCollectionView: UICollectionView {
     }
     
     
-    func getData() {
-        switch currentTag {
-        case .effect:
-            getEffectData()
-        case .location:
-            getLocationData()
-        case .method:
-            updateData(on: TagValues.methods)
-        case .rating:
-            updateData(on: TagValues.ratings)
-        default:
-            break
-        }
-    }
+    
     
 }
 

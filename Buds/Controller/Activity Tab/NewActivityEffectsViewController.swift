@@ -73,12 +73,12 @@ class NewActivityEffectsViewController: UIViewController {
             SVProgressHUD.dismiss()
 
         } else {
-            Network.getEffectsFromAPI { (effectsDict) in
-                self.filteredEffectsDict = effectsDict
-                self.effectsDict = effectsDict
-                self.tableView.reloadData()
-                SVProgressHUD.dismiss()
-            }
+//            Network.getEffectsFromAPI { (effectsDict) in
+//                self.filteredEffectsDict = effectsDict
+//                self.effectsDict = effectsDict
+//                self.tableView.reloadData()
+//                SVProgressHUD.dismiss()
+//            }
         }
             
     }

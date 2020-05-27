@@ -17,7 +17,7 @@ class StrainInfoViewController: UIViewController {
         didSet {
             // Test Call to get strain description
             Network.getStrainDescription(strainID: (strain?.id)!) { (resultJSON) in
-                self.strainDescription.text = resultJSON["desc"].stringValue
+                self.strainDescription.text = resultJSON?["desc"].stringValue
                 self.strainDescription.sizeToFit()
                 self.strainDescription.numberOfLines = 0
             }

@@ -18,7 +18,7 @@ class BudsEmptyStateView : UIView {
         super.init(frame: frame)
         
         configureMessageLabel()
-        configureBackgroundImageView()
+        //configureBackgroundImageView()
     }
     
     

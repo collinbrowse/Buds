@@ -44,26 +44,26 @@ class StrainDetailsViewController: UIViewController {
         let strainLabelTextWithUnderscores = strainLabelText!.lowercased().replacingOccurrences(of: " ", with: "_")
         
         // Get the user generated data for that strain
-        Network.getStrainDetailsForUser(userID: modelController.person.id, strain: strainLabelTextWithUnderscores) { (userStrainData) in
-            
-            
-            // Info is contained in userStrainData as [String : String]
-            if let desc = userStrainData["personal_positive_experience"] {
-                    self.youLikedDescriptionText.text = desc
-            } else {
-                self.youLikedDescriptionText.text = "You didn't add anything you liked"
-            }
-            if let desc = userStrainData["personal_negative_experience"] {
-                self.youDidntLikeDescriptionText.text = desc
-            } else {
-                self.youDidntLikeDescriptionText.text = "You didn't add anything you liked"
-            }
-            if let desc = userStrainData["general_notes"] {
-                    self.generalNotesText.text = desc
-            } else {
-                self.generalNotesText.text = "You didn't add anything you liked"
-            }
-        }
+//        Network.getStrainDetailsForUser(userID: modelController.person.id, strain: strainLabelTextWithUnderscores) { (userStrainData) in
+//            
+//            
+//            // Info is contained in userStrainData as [String : String]
+//            if let desc = userStrainData["personal_positive_experience"] {
+//                    self.youLikedDescriptionText.text = desc
+//            } else {
+//                self.youLikedDescriptionText.text = "You didn't add anything you liked"
+//            }
+//            if let desc = userStrainData["personal_negative_experience"] {
+//                self.youDidntLikeDescriptionText.text = desc
+//            } else {
+//                self.youDidntLikeDescriptionText.text = "You didn't add anything you liked"
+//            }
+//            if let desc = userStrainData["general_notes"] {
+//                    self.generalNotesText.text = desc
+//            } else {
+//                self.generalNotesText.text = "You didn't add anything you liked"
+//            }
+//        }
         
     }
     

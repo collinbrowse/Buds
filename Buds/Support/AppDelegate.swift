@@ -21,9 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         // Call an api for Strains and their Effects if we haven't already
-        if Constants.StrainTypes.allTypes.count == 0 {
-            Network.populateStrainInfo()
-        }
+//        if Constants.StrainTypes.allTypes.count == 0 {
+//            Network.populateStrainInfo()
+//        }
         
         if UserDefaults.standard.bool(forKey: "isSignIn") {
             window = UIWindow()

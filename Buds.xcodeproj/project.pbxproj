@@ -515,9 +515,9 @@
 				BE03D2A422C124A70059B587 /* View */,
 				BE41467122BA8F5F0009A738 /* Model */,
 				BE3EBC23247714BD00494CD7 /* Support */,
+				BE00F0CB22FDB92600B65AB5 /* Resources */,
 				BE41464F22BA718D0009A738 /* Info.plist */,
 				BE41468022BAD6A00009A738 /* GoogleService-Info.plist */,
-				BE00F0CB22FDB92600B65AB5 /* Resources */,
 			);
 			path = Buds;
 			sourceTree = "<group>";

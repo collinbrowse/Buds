@@ -146,25 +146,25 @@ class NewActivityViewController: UIViewController {
         let userID = modelController.person.id 
         
         // Submit the Activity
-        let didAddActivity = Network.addNewActivity(userID: userID, activityDetails: activityDetailsDict)
-        
-        if (didAddActivity) {
-            
-            // Move to the activity feed after adding
-            tabBarController?.selectedIndex = 1
-            
-            // Clear selected values
-            let newActivityStoryboard = UIStoryboard(name: "NewActivity", bundle: nil)
-            let vc = newActivityStoryboard.instantiateViewController(withIdentifier: "newActivityViewController")
-            var viewControllers = self.navigationController?.viewControllers
-            viewControllers?.removeLast()
-            viewControllers?.append(vc)
-            self.navigationController?.setViewControllers(viewControllers!, animated: true)
-            
-        }
-        else {
-            showAlert(success: didAddActivity, alertMessage: "Please Try Again")
-        }
+//        let didAddActivity = Network.addNewActivity(userID: userID, activityDetails: activityDetailsDict)
+//        
+//        if (didAddActivity) {
+//            
+//            // Move to the activity feed after adding
+//            tabBarController?.selectedIndex = 1
+//            
+//            // Clear selected values
+//            let newActivityStoryboard = UIStoryboard(name: "NewActivity", bundle: nil)
+//            let vc = newActivityStoryboard.instantiateViewController(withIdentifier: "newActivityViewController")
+//            var viewControllers = self.navigationController?.viewControllers
+//            viewControllers?.removeLast()
+//            viewControllers?.append(vc)
+//            self.navigationController?.setViewControllers(viewControllers!, animated: true)
+//            
+//        }
+//        else {
+//            showAlert(success: didAddActivity, alertMessage: "Please Try Again")
+//        }
     }
     
     func buttonStateChanged() {

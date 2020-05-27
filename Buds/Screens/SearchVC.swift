@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class SearchVC: BudsDataLoadingVC {
 
@@ -27,7 +28,6 @@ class SearchVC: BudsDataLoadingVC {
         configureSearchController()
         configureCollectionView()
         configureDataSource()
-        getAllStrains()
     }
     
     
@@ -36,6 +36,7 @@ class SearchVC: BudsDataLoadingVC {
         
         title = "Strains"
         configureNavigationBar()
+        getAllStrains()
     }
     
     
@@ -91,23 +92,36 @@ class SearchVC: BudsDataLoadingVC {
     
     func getAllStrains() {
         
-        Network.getAllStrains { [weak self] (response) in
-            guard let self = self else { return }
-            
-            let result = try! JSONDecoder().decode(StrainJSON.self, from: response.rawData())
-            
-            for item in result.strain {
-                var strainModel = Strain(name: item.key)
-                strainModel.id = item.value.id
-                strainModel.race = item.value.race
-                strainModel.flavors = item.value.flavors
-                strainModel.effects?.positive = item.value.effects?.positive
-                strainModel.effects?.negative = item.value.effects?.negative
-                strainModel.effects?.medical = item.value.effects?.medical
-                self.strains.append(strainModel)
+        if strains.isEmpty {
+        
+            Network.getAllStrains { [weak self] (result) in
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let responseJSON):
+                    self.setStrainData(json: responseJSON)
+                case .failure(let error):
+                    self.presentBudsAlertOnMainThread(title: "Unable to load Strains", message: error.rawValue, buttonTitle: "OK")
+                }
             }
-            self.updateData(on: self.strains)
         }
+    }
+    
+    
+    func setStrainData(json: JSON) {
+        let result = try! JSONDecoder().decode(StrainJSON.self, from: json.rawData())
+        
+        for item in result.strain {
+            var strainModel = Strain(name: item.key)
+            strainModel.id = item.value.id
+            strainModel.race = item.value.race
+            strainModel.flavors = item.value.flavors
+            strainModel.effects?.positive = item.value.effects?.positive
+            strainModel.effects?.negative = item.value.effects?.negative
+            strainModel.effects?.medical = item.value.effects?.medical
+            self.strains.append(strainModel)
+        }
+        self.updateData(on: self.strains)
     }
     
     

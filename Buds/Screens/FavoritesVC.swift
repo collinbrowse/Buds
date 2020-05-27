@@ -76,10 +76,16 @@ class FavoritesVC: BudsDataLoadingVC {
     
     func getFavoriteStrains() {
         
-        Network.displayActivityFeed(userID: modelController.person.id) { [weak self] (activities) in
+        Network.displayActivityFeed(userID: modelController.person.id) { [weak self] (result) in
             guard let self = self else { return }
-            self.getHighestRatedStrains(activities: activities)
-            self.getMostUsedStrains(activities: activities)
+            
+            switch result {
+            case .success(let activities):
+                self.getHighestRatedStrains(activities: activities)
+                self.getMostUsedStrains(activities: activities)
+            case .failure(let error):
+                self.presentBudsAlertOnMainThread(title: "Unable to get recent activity", message: error.rawValue, buttonTitle: "OK")
+            }
         }
 
     }
