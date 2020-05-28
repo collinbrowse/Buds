@@ -87,7 +87,11 @@ class Network {
             try firebaseAuth.signOut()
             Network.ref.child("activity").removeAllObservers()
             Network.ref.child("users").removeAllObservers()
-            Switcher.updateRootViewController()
+            let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+            let welcomeViewController = mainStoryBoard.instantiateViewController(withIdentifier: "welcomeNavigationController") as! UINavigationController
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = welcomeViewController
+            appDelegate.window?.makeKeyAndVisible()
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }

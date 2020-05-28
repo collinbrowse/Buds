@@ -28,6 +28,7 @@ enum Icons {
     static let concentrateIcon = UIImage(named: "cannabis_oil_icon")
     static let vapeIcon = UIImage(named: "vape_pen_icon")
     static let hashtagIcon = UIImage(named: "icons8-hashtag")
+    static let exitIcon = UIImage(named: "icons8-exit")
 }
 
 enum SFSymbols {

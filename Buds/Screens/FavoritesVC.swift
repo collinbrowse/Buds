@@ -37,12 +37,13 @@ class FavoritesVC: BudsDataLoadingVC {
         
     func configureNavigationBar() {
         
+        let logoutButton = UIBarButtonItem(image: Icons.exitIcon, style: .plain, target: self, action: #selector(logoutButtonTapped))
         let appearance = GreenNavigationBarAppearance(idiom: .unspecified)
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
+        navigationItem.rightBarButtonItem = logoutButton
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.prefersLargeTitles = true
-        
         title = "Favorites"
     }
     
@@ -74,6 +75,20 @@ class FavoritesVC: BudsDataLoadingVC {
     }
     
     
+    @objc func logoutButtonTapped() {
+        
+        let alert = UIAlertController(title: "Would you like to logout?", message: "Your information is saved for the next time you log in", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Logout", style: .destructive, handler: { (action) in
+            self.modelController = nil
+            Network.logOutUser()
+        }))
+        
+        self.present(alert, animated: true)
+    }
+    
+    
     func getFavoriteStrains() {
         
         Network.displayActivityFeed(userID: modelController.person.id) { [weak self] (result) in
@@ -85,11 +100,8 @@ class FavoritesVC: BudsDataLoadingVC {
                 self.getMostUsedStrains(activities: activities)
             case .failure(let error):
                 self.presentBudsAlertOnMainThread(title: "Unable to get recent activity", message: error.rawValue, buttonTitle: "OK")
-                //xself.showEmptyStateView(with: "No activities added yet", in: self.view)
-                
             }
         }
-
     }
     
     
