@@ -30,7 +30,7 @@ class Network {
         
         // Add the activity with the User's ID identifying it
         //ref.child("activity").childByAutoId().setValue(activityDetails)
-        ref.child("activity").childByAutoId().setValue(activityDetails) { (error, ref) in
+        ref.child(FirebaseKeys.activity).childByAutoId().setValue(activityDetails) { (error, ref) in
             if error == nil {
                 complete(nil)
             } else {
@@ -85,8 +85,8 @@ class Network {
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
-            Network.ref.child("activity").removeAllObservers()
-            Network.ref.child("users").removeAllObservers()
+            Network.ref.child(FirebaseKeys.activity).removeAllObservers()
+            Network.ref.child(FirebaseKeys.users).removeAllObservers()
             let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
             let welcomeViewController = mainStoryBoard.instantiateViewController(withIdentifier: "welcomeNavigationController") as! UINavigationController
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -101,7 +101,7 @@ class Network {
     // Get a User's Info with Realtime Database
     private static func getUserInfo(userID: String, complete: @escaping ([String: String]) -> ()) {
         
-        ref.child("users").child(userID).observeSingleEvent(of: .value) { (snapshot) in
+        ref.child(FirebaseKeys.users).child(userID).observeSingleEvent(of: .value) { (snapshot) in
             
             let value = snapshot.value as? NSDictionary
             var information = [String: String]()
@@ -121,10 +121,10 @@ class Network {
     // If none is available, then a default image is used
     static func getProfilePicture(userID: String, complete: @escaping (UIImage) -> ()) {
 
-        var profilePicture = UIImage(named: "person-icon")
+        var profilePicture = Images.avatarProfilePicture
         
         // Step 1: Get access to the user in RealtimeDatabase
-        ref.child("users").child(userID).observeSingleEvent(of: .value) { (snapshot) in
+        ref.child(FirebaseKeys.users).child(userID).observeSingleEvent(of: .value) { (snapshot) in
             
             // Step 2: Get that users Profile Picture URL
             let value = snapshot.value as? NSDictionary
@@ -205,7 +205,7 @@ class Network {
         
         var activities = [Activity]()
         
-        ref.child("activity").queryOrdered(byChild: "user").queryEqual(toValue: userID).observe(.value, with: { (snapshot) in
+        ref.child(FirebaseKeys.activity).queryOrdered(byChild: FirebaseKeys.user).queryEqual(toValue: userID).observe(.value, with: { (snapshot) in
             
             if snapshot.exists() {
                 

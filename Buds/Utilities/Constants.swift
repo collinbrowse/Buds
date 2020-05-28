@@ -13,7 +13,7 @@ enum Images {
     static let defaultHeaderImageView = UIImage(named: "weed_background-2")
     static let emptyStateBackgroundImageView = UIImage(named: "cannabis_color_icon")
     static let avatarImageView = UIImage(named: "cadets_generic_avatar")
-    
+    static let avatarProfilePicture = UIImage(named: "person-icon")
 }
 
 enum Icons {
@@ -76,6 +76,13 @@ enum StrainAPI {
     static let searchForDescById = "/strains/data/desc/"
     static let searchForEffectById = "/strains/data/effects/"
     static let searchForFlavorById = "/strains/data/flavors/"
+}
+
+
+enum FirebaseKeys {
+    static let activity = "activity"
+    static let users = "users"
+    static let user = "user"
 }
 
 
