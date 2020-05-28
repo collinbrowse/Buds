@@ -16,6 +16,7 @@ class ActivityFeedVC: BudsDataLoadingVC {
     var modelController : ModelController!
     var count = 0
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

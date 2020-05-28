@@ -34,7 +34,7 @@ class BudsTabBarController: UITabBarController {
         let activityFeedVC = ActivityFeedVC()
         activityFeedVC.title = "Buds"
         activityFeedVC.modelController = modelController
-        activityFeedVC.tabBarItem = UITabBarItem(tabBarSystemItem: .mostRecent, tag: 0)
+        activityFeedVC.tabBarItem = UITabBarItem(tabBarSystemItem: .mostRecent, tag: TabBarIndices.ActivityFeedVC)
         
         return UINavigationController(rootViewController: activityFeedVC)
     }
@@ -45,7 +45,7 @@ class BudsTabBarController: UITabBarController {
         let searchVC = SearchVC()
         searchVC.title = "Search"
         searchVC.modelController = modelController
-        searchVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 1)
+        searchVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: TabBarIndices.SearchVC)
         
         return UINavigationController(rootViewController: searchVC)
     }
@@ -56,7 +56,7 @@ class BudsTabBarController: UITabBarController {
         let favoritesVC = FavoritesVC()
         favoritesVC.title = "Favorites"
         favoritesVC.modelController = modelController
-        favoritesVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 2)
+        favoritesVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: TabBarIndices.FavoritesVC)
         
         return UINavigationController(rootViewController: favoritesVC)
     }

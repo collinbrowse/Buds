@@ -75,22 +75,31 @@ class NewActivityVC: BudsDataLoadingVC {
         addActivity(activityDetails: activityDetailsDict)
     }
     
+    
     private func addActivity(activityDetails: [String: Any]) {
         
         showLoadingView()
         Network.addNewActivity(userID: modelController.person.id, activityDetails: activityDetails) { [weak self] (error) in
             guard let self = self else { return }
-            
             self.dismissLoadingView()
+            
             if error == nil {
-                let destVC = ActivityFeedVC()
-                destVC.modelController = self.modelController
-                
-                self.tabBarController?.selectedIndex = 0
-                self.navigationController?.popToRootViewController(animated: true)
+                self.moveToTabBarController(index: TabBarIndices.ActivityFeedVC)
             } else {
                 self.presentBudsAlertOnMainThread(title: "Unable to add Activity", message: error!.rawValue, buttonTitle: "OK")
             }
+        }
+    }
+    
+    
+    private func moveToTabBarController(index: Int) {
+        DispatchQueue.main.async {
+            let navC = self.tabBarController?.viewControllers![index] as! UINavigationController
+            let destVC = navC.viewControllers.first as! ActivityFeedVC
+            destVC.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            destVC.tableView.reloadData()
+            self.tabBarController?.selectedViewController = navC
+            self.navigationController?.popToRootViewController(animated: true)
         }
     }
     
@@ -152,7 +161,6 @@ class NewActivityVC: BudsDataLoadingVC {
         noteTextField.textColor = .label
         noteTextField.attributedPlaceholder = NSAttributedString(string: "How was it? Leave a note for later", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
         noteTextField.becomeFirstResponder()
-        noteTextField.autocorrectionType = .no
         noteTextField.returnKeyType = .done
         noteTextField.delegate = self
     }
@@ -239,7 +247,6 @@ class NewActivityVC: BudsDataLoadingVC {
             ])
         }
     }
-    
     
 }
 

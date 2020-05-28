@@ -8,6 +8,13 @@
 
 import UIKit
 
+
+enum TabBarIndices {
+    static let ActivityFeedVC = 0
+    static let SearchVC = 1
+    static let FavoritesVC = 2
+}
+
 enum Images {
     
     static let defaultHeaderImageView = UIImage(named: "weed_background-2")
