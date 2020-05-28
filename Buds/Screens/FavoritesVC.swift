@@ -85,6 +85,8 @@ class FavoritesVC: BudsDataLoadingVC {
                 self.getMostUsedStrains(activities: activities)
             case .failure(let error):
                 self.presentBudsAlertOnMainThread(title: "Unable to get recent activity", message: error.rawValue, buttonTitle: "OK")
+                //xself.showEmptyStateView(with: "No activities added yet", in: self.view)
+                
             }
         }
 
@@ -224,6 +226,7 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.reuseID, for: indexPath) as! FavoriteCell
         
         if indexPath.section == 0 {
@@ -234,6 +237,7 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
         cell.set(modelController: modelController)
         cell.set(delegate: self)
         return cell
+        
     }
     
     
