@@ -152,6 +152,9 @@ class NewActivityVC: BudsDataLoadingVC {
         noteTextField.textColor = .label
         noteTextField.attributedPlaceholder = NSAttributedString(string: "How was it? Leave a note for later", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
         noteTextField.becomeFirstResponder()
+        noteTextField.autocorrectionType = .no
+        noteTextField.returnKeyType = .done
+        noteTextField.delegate = self
     }
     
     
@@ -240,4 +243,12 @@ class NewActivityVC: BudsDataLoadingVC {
     
 }
 
+
+extension NewActivityVC : UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
 
