@@ -240,21 +240,27 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.reuseID, for: indexPath) as! FavoriteCell
+        cell.set(modelController: modelController)
+        cell.set(delegate: self)
+        cell.selectionStyle = .none
         
         if indexPath.section == 0 {
             cell.set(strains: highestRatedStrains)
         } else if indexPath.section == 1 {
             cell.set(strains: mostUsedStrains)
         }
-        cell.set(modelController: modelController)
-        cell.set(delegate: self)
+
         return cell
-        
     }
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 125.0
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 }
 

@@ -20,6 +20,7 @@ class ActivityFeedVC: BudsDataLoadingVC {
         super.viewDidLoad()
 
         configureViewController()
+        configureNavigationBar()
         configureTableView()
         getActivities()
     }
@@ -31,10 +32,18 @@ class ActivityFeedVC: BudsDataLoadingVC {
     
 
     func configureViewController() {
-        
         view.backgroundColor = .systemBackground
+    }
+    
+    
+    func configureNavigationBar() {
+        
+        let appearance = GreenNavigationBarAppearance(idiom: .unspecified)
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.prefersLargeTitles = true
         title = "Buds"
-        navigationController?.navigationBar.tintColor = .systemGreen
     }
     
     
