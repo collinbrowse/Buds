@@ -15,7 +15,7 @@ import CryptoSwift
 
 class LogInViewController: UIViewController {
     
-    //Textfields pre-linked with IBOutlets
+    
     @IBOutlet var passwordTextfield: UITextField!
     @IBOutlet weak var emailTextfield: UITextField!
     
@@ -23,24 +23,37 @@ class LogInViewController: UIViewController {
     var username: String!
     var modelController: ModelController!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         ref = Database.database().reference()
+        configureTextFields()
     }
     
-//    func application(_ application: UIApplication,
-//                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-//        FirebaseApp.configure()
-//        return true
-//    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    
+    func configureTextFields() {
+        emailTextfield.delegate = self
+        passwordTextfield.delegate = self
+        emailTextfield.overrideUserInterfaceStyle = .light
+        passwordTextfield.overrideUserInterfaceStyle = .light
+    }
+    
+    
     @IBAction func viewIconPressed(_ sender: Any) {
         passwordTextfield.isSecureTextEntry.toggle()
     }
+    
     
     @IBAction func logInPressed(_ sender: Any) {
         
@@ -80,12 +93,14 @@ class LogInViewController: UIViewController {
         }
     }
     
+    
     func showAlert(alertMessage: String) {
         let alert = UIAlertController(title: "There was an error", message: alertMessage, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
         SVProgressHUD.dismiss()
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
@@ -115,6 +130,19 @@ class LogInViewController: UIViewController {
         else {
             print("Unable to find the specified Segue")
         }
-        
+    }
+    
+}
+
+
+extension LogInViewController : UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailTextfield {
+            passwordTextfield.becomeFirstResponder()
+        } else if textField == passwordTextfield {
+            logInPressed(self)
+        }
+        return true
     }
 }

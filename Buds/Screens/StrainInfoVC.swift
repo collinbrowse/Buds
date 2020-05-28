@@ -40,8 +40,7 @@ class StrainInfoVC: BudsDataLoadingVC {
     
     func configureViewController() {
         
-        if #available(iOS 13.0, *)  { view.backgroundColor = .systemBackground }
-        else                        { view.backgroundColor = .white }
+        view.backgroundColor = .systemBackground
         
         headerTitle.text = strain.name
         headerTitle.numberOfLines = 2

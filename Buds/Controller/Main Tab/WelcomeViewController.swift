@@ -17,10 +17,11 @@ class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.tintColor = .label
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+     
         // If somehow the model controller isn't passed through from the App Delegate, create it here. 
         if modelController == nil {
             modelController = ModelController()
@@ -30,6 +31,7 @@ class WelcomeViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     
     @IBAction func myUnwindAction(segue: UIStoryboardSegue) {}
     
