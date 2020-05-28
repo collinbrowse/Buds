@@ -78,7 +78,7 @@ class NewActivityVC: BudsDataLoadingVC {
     private func addActivity(activityDetails: [String: Any]) {
         
         showLoadingView()
-        Network.addNewActivityTest(userID: modelController.person.id, activityDetails: activityDetails) { [weak self] (error) in
+        Network.addNewActivity(userID: modelController.person.id, activityDetails: activityDetails) { [weak self] (error) in
             guard let self = self else { return }
             
             self.dismissLoadingView()
