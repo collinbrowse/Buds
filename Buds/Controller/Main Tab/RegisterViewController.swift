@@ -194,22 +194,13 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     // Let's Handle some tasks before we perform the segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        // If the user tried to log in....
-        if segue.identifier == "goToHomeFromRegister" {
-            let tabBarViewController = segue.destination as? UITabBarController
-            if let destinationVC = tabBarViewController?.viewControllers![0] as? ProfileViewController {
-                destinationVC.username = self.username
-                destinationVC.modelController = modelController
-            }
-        }
         // If the user wants to enter a locations...
-        else if segue.identifier == "goToLocationSearch" {
+        if segue.identifier == "goToLocationSearch" {
             // Let LocationSearchBarController know that this class will handle any responses it has
             if let destinationVC = segue.destination as? LocationSearchBarController {
                 destinationVC.locationDelegate = self
             }
         }
-        
     }
     
     

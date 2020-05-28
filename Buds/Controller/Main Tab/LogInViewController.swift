@@ -100,37 +100,6 @@ class LogInViewController: UIViewController {
         SVProgressHUD.dismiss()
     }
     
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-        if segue.identifier == "goToHomeFromLogIn" {
-        
-            if let tabBarViewController = segue.destination as? UITabBarController {
-            
-                // FIX: Safely unwrap the tab Bar Controller
-                for n in 0...tabBarViewController.viewControllers!.count-1 {
-                    let navController = tabBarViewController.viewControllers![n] as! UINavigationController
-                    if navController.topViewController is ActivityFeedController {
-                        let vc = navController.topViewController as! ActivityFeedController
-                        vc.modelController = modelController
-                    } else if navController.topViewController is ProfileViewController {
-                        let vc = navController.topViewController as! ProfileViewController
-                        vc.modelController = modelController
-                    } else if navController.topViewController is NewActivityViewController {
-                        let vc = navController.topViewController as! NewActivityViewController
-                        vc.modelController = modelController
-                    } else if navController.topViewController is SettingsViewController {
-                        let vc = navController.topViewController as! SettingsViewController
-                        vc.modelController = modelController
-                    }
-                }
-            }
-        }
-        else {
-            print("Unable to find the specified Segue")
-        }
-    }
-    
 }
 
 
