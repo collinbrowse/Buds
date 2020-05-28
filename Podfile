@@ -14,8 +14,6 @@ target 'Buds' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
   pod 'Firebase'
-  pod 'CryptoSwift'
-  pod 'KMPlaceholderTextView'
   
   target 'BudsTests' do
     inherit! :search_paths

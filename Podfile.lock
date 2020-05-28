@@ -1,6 +1,5 @@
 PODS:
   - Alamofire (4.9.0)
-  - CryptoSwift (1.1.2)
   - Firebase (6.10.0):
     - Firebase/Core (= 6.10.0)
   - Firebase/Analytics (6.10.0):
@@ -88,7 +87,6 @@ PODS:
   - GoogleUtilities/UserDefaults (6.3.1):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.2)
-  - KMPlaceholderTextView (1.4.0)
   - leveldb-library (1.22)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
@@ -100,20 +98,17 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
-  - CryptoSwift
   - Firebase
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Database
   - Firebase/Storage
-  - KMPlaceholderTextView
   - SVProgressHUD
   - SwiftyJSON
 
 SPEC REPOS:
   trunk:
     - Alamofire
-    - CryptoSwift
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -129,7 +124,6 @@ SPEC REPOS:
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
     - GTMSessionFetcher
-    - KMPlaceholderTextView
     - leveldb-library
     - nanopb
     - SVProgressHUD
@@ -137,7 +131,6 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
-  CryptoSwift: 31dacd1f13427439ddae5b5cbaae4c8dbc43047e
   Firebase: 5e6b7b12bf9adb90986688edc06b156c37e109cd
   FirebaseAnalytics: 0e3ecff2c5d86070f7d4325e21f1edabfbd558dc
   FirebaseAuth: c66e990f79d1d3429165391f6cd70ace6143c25e
@@ -153,12 +146,11 @@ SPEC CHECKSUMS:
   GoogleDataTransportCCTSupport: 862418a8cdda520c4dd4af83a756d04efe4a6990
   GoogleUtilities: f895fde57977df4e0233edda0dbeac490e3703b6
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
-  KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 98baaed7065b58948b305d5504d2f6ea55ba5ec5
+PODFILE CHECKSUM: 8b57829665100dcb52ebae5669fd49811d7e31a0
 
 COCOAPODS: 1.9.1

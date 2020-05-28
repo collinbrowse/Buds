@@ -11,7 +11,6 @@ import UIKit
 import Firebase
 import FirebaseStorage
 import SVProgressHUD
-import CryptoSwift
 import MapKit
 
 class RegisterViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {

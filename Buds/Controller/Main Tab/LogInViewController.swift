@@ -11,7 +11,6 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import SVProgressHUD
-import CryptoSwift
 
 class LogInViewController: UIViewController {
     

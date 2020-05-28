@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dg6-2H-Y2E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dg6-2H-Y2E">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <array key="ArvoBold.ttf">
             <string>Arvo-Bold</string>
-        </array>
-        <array key="PlayfairDisplay-Regular.otf">
-            <string>PlayfairDisplay-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -109,18 +105,6 @@
                                             <constraint firstAttribute="trailing" secondItem="NNX-zj-6Bo" secondAttribute="trailing" id="py5-qG-WR6"/>
                                         </constraints>
                                     </view>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Us5-jj-LKM" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                                        <rect key="frame" x="0.0" y="220" width="374" height="44"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="uLI-nv-0b8"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="PlayfairDisplay-Regular" family="Playfair Display" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="What else would you like to say?"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </textView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="few-bq-Qma" userLabel="Wrapping Effects View">
                                         <rect key="frame" x="0.0" y="176" width="374" height="44"/>
                                         <subviews>
@@ -150,10 +134,8 @@
                                     <constraint firstAttribute="trailing" secondItem="4go-2Y-JYk" secondAttribute="trailing" id="DC6-zq-8bH"/>
                                     <constraint firstItem="qpq-DL-yXH" firstAttribute="leading" secondItem="pke-H8-bPg" secondAttribute="leading" id="EMt-LJ-0HL"/>
                                     <constraint firstItem="few-bq-Qma" firstAttribute="top" secondItem="qpq-DL-yXH" secondAttribute="bottom" id="FNS-70-Gnf"/>
-                                    <constraint firstItem="Us5-jj-LKM" firstAttribute="leading" secondItem="pke-H8-bPg" secondAttribute="leading" id="I4M-hS-RTV"/>
                                     <constraint firstAttribute="trailing" secondItem="few-bq-Qma" secondAttribute="trailing" id="Ia6-Ie-dPB"/>
                                     <constraint firstAttribute="trailing" secondItem="hAu-VG-3cI" secondAttribute="trailing" id="JkN-m4-z3O"/>
-                                    <constraint firstItem="Us5-jj-LKM" firstAttribute="top" secondItem="few-bq-Qma" secondAttribute="bottom" id="Kbn-jf-RLu"/>
                                     <constraint firstItem="4go-2Y-JYk" firstAttribute="leading" secondItem="pke-H8-bPg" secondAttribute="leading" id="PAg-Px-wdO"/>
                                     <constraint firstAttribute="trailing" secondItem="qpq-DL-yXH" secondAttribute="trailing" id="Rjo-GF-VXl"/>
                                     <constraint firstAttribute="trailing" secondItem="8QW-bx-ckq" secondAttribute="trailing" id="UW2-0U-ANV"/>
@@ -163,7 +145,6 @@
                                     <constraint firstItem="few-bq-Qma" firstAttribute="leading" secondItem="pke-H8-bPg" secondAttribute="leading" id="h3F-bg-1uA"/>
                                     <constraint firstItem="8QW-bx-ckq" firstAttribute="top" secondItem="pke-H8-bPg" secondAttribute="top" id="m4f-X4-EqJ"/>
                                     <constraint firstItem="qpq-DL-yXH" firstAttribute="top" secondItem="4go-2Y-JYk" secondAttribute="bottom" id="rV6-89-jWm"/>
-                                    <constraint firstAttribute="trailing" secondItem="Us5-jj-LKM" secondAttribute="trailing" id="suR-3M-00e"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -190,7 +171,6 @@
                         <outlet property="addBarButton" destination="LJQ-Nh-Xcc" id="VxD-8b-ICj"/>
                         <outlet property="effectsButton" destination="ypG-je-ypy" id="KtT-45-rNu"/>
                         <outlet property="locationButton" destination="NNX-zj-6Bo" id="MZK-LN-REI"/>
-                        <outlet property="noteTextView" destination="Us5-jj-LKM" id="6Id-Zz-YjS"/>
                         <outlet property="ratingButton" destination="6KM-Tf-G4o" id="idU-8j-lhC"/>
                         <outlet property="smokingStyleButton" destination="fJV-K1-SY3" id="Zbt-vR-y5R"/>
                         <outlet property="strainButton" destination="4eW-Pi-xvu" id="lfa-Kz-e3g"/>
