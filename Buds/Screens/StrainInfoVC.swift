@@ -21,8 +21,7 @@ class StrainInfoVC: BudsDataLoadingVC {
     var strain : Strain!
     
     var modelController : ModelController!
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,6 +34,11 @@ class StrainInfoVC: BudsDataLoadingVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavigationBar()
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.barStyle = .default
     }
 
     
@@ -51,10 +55,11 @@ class StrainInfoVC: BudsDataLoadingVC {
     
     
     func configureNavigationBar() {
-        
+    
         navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController!.navigationBar.shadowImage = UIImage()
         navigationController!.navigationBar.tintColor = .white
+        navigationController?.navigationBar.barStyle = .black
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         navigationItem.rightBarButtonItem = addButton
@@ -129,7 +134,5 @@ class StrainInfoVC: BudsDataLoadingVC {
             self.strainDescriptionLabel.text = description
         }
     }
-    
-    
-    
+
 }

@@ -29,11 +29,8 @@ class NewActivityVC: BudsDataLoadingVC {
     var locationLabel = BudsTitleLabel(textAlignment: .left, fontSize: 20)
     
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationBar()
         configureViewController()
         configureStrainIcon()
         configureStrainLabel()
@@ -41,6 +38,16 @@ class NewActivityVC: BudsDataLoadingVC {
         configureNoteTextField()
         configureLabels()
         layoutUI()
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        configureNavigationBar()
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        removeNavigationBar()
     }
     
     
@@ -120,6 +127,8 @@ class NewActivityVC: BudsDataLoadingVC {
     }
     
     
+    
+    
     private func configureNavigationBar() {
         
         let appearance = GreenNavigationBarAppearance()
@@ -130,6 +139,12 @@ class NewActivityVC: BudsDataLoadingVC {
         navigationController?.navigationBar.tintColor = .white
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         navigationItem.rightBarButtonItem = addButton
+    }
+    
+    
+    private func removeNavigationBar() {
+        navigationItem.standardAppearance = nil
+        navigationItem.scrollEdgeAppearance = nil
     }
     
     
