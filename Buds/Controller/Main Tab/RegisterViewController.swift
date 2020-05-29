@@ -23,6 +23,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var emailTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
     @IBOutlet weak var profilePictureImageView: UIImageView!
+    @IBOutlet weak var infoTextView: UITextView!
     
     private var datePicker: UIDatePicker?
     var username: String!
@@ -45,6 +46,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         configureTextFields()
         configureDatePicker()
         configureProfilePictureImageView()
+        configureInfoTextView()
     }
     
     func application(_ application: UIApplication,
@@ -93,6 +95,27 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         // Add a Tap Gesture to allow the user to select a profile image
         let profilePictureTapGesture = UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped))
         profilePictureImageView.addGestureRecognizer(profilePictureTapGesture)
+    }
+    
+    
+    func configureInfoTextView() {
+        
+        let attributedString = NSMutableAttributedString(string: "View our privacy policy. Icons by Icons8")
+        let privacyURL = URL(string: "https://www.apple.com")!
+        let icons8URL = URL(string: "https://icons8.com")!
+
+        attributedString.setAttributes([.link: privacyURL], range: NSMakeRange(9, 14))
+        attributedString.setAttributes([.link: icons8URL], range: NSMakeRange(34, 6))
+
+        infoTextView.attributedText = attributedString
+        infoTextView.isUserInteractionEnabled = true
+        infoTextView.isEditable = false
+        infoTextView.textAlignment = .center
+        infoTextView.textColor = .white
+        infoTextView.linkTextAttributes = [
+            .foregroundColor: UIColor.white,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
     }
     
     
