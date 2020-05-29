@@ -26,7 +26,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>To access nearby locations, Buds needs to use location services</string>
+	<string>When adding a new activity, you should enter where it happened. Buds adds options automatically for you based on your current location</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>PlayfairDisplay-Black.otf</string>
