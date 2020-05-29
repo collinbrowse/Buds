@@ -100,12 +100,12 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     
     func configureInfoTextView() {
         
-        let attributedString = NSMutableAttributedString(string: "View our privacy policy. Icons by Icons8")
-        let privacyURL = URL(string: "https://www.apple.com")!
+        let attributedString = NSMutableAttributedString(string: "By registering, you agree to our privacy policy. Icons by Icons8")
+        let privacyURL = URL(string: "https://collin-browse.weebly.com/budsprivacypolicy.html")!
         let icons8URL = URL(string: "https://icons8.com")!
 
-        attributedString.setAttributes([.link: privacyURL], range: NSMakeRange(9, 14))
-        attributedString.setAttributes([.link: icons8URL], range: NSMakeRange(34, 6))
+        attributedString.setAttributes([.link: privacyURL], range: NSMakeRange(33, 14))
+        attributedString.setAttributes([.link: icons8URL], range: NSMakeRange(58, 6))
 
         infoTextView.attributedText = attributedString
         infoTextView.isUserInteractionEnabled = true
