@@ -81,6 +81,8 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         // Set up a DatePicker Field for the birthday
         datePicker = UIDatePicker()
         datePicker?.datePickerMode = .date
+        let ofAgeDate = Calendar.current.date(byAdding: .year, value: -21, to: Date())
+        datePicker?.maximumDate = ofAgeDate
         datePicker?.addTarget(self, action: #selector(RegisterViewController.dateChanged(datePicker:)), for: .valueChanged)
         
         // Add a Tap Gesture Recognizer to close the date picker if the user touches away
