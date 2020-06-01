@@ -148,13 +148,14 @@ class Network {
     ///displayActivityFeed
     static func displayActivityFeed(userID: String, complete: @escaping(Swift.Result<[Activity], BudsError>) -> ()) {
         
-        var activities = [Activity]()
         
         ref.child(FirebaseKeys.activity).queryOrdered(byChild: FirebaseKeys.user).queryEqual(toValue: userID).observe(.value, with: { (snapshot) in
             
             if snapshot.exists() {
                 
                 if let dictionary = snapshot.value as? [String: [String: Any]] {
+                    
+                    var activities = [Activity]()
                     
                     for firActivity in dictionary.values {
                         let activity = Activity()

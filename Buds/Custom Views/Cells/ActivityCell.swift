@@ -27,6 +27,7 @@ class ActivityCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configure()
         configureStackView()
+        configureDetailsLabel()
     }
     
     
@@ -41,7 +42,11 @@ class ActivityCell: UITableViewCell {
         iconsStackView.addArrangedSubview(iconsViewOne)
         iconsStackView.addArrangedSubview(iconsViewTwo)
         iconsStackView.addArrangedSubview(iconsViewThree)
-        
+    }
+    
+    
+    private func configureDetailsLabel() {
+        detailsLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
     }
     
     
