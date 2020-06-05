@@ -7,7 +7,7 @@ Allows you to track your activity with cannabis, which gives a personalized view
 
 ### Project Status
 
-Buds is being actively being updated. It was originally created as a fun side project to work on new skills. This past winter development was put on hold but has been resumed as of April 2020. Buds is currently being refactored to incorporate new techniques learned from recent professional experience and online courses. 
+Buds is being actively being updated. It was originally created as a fun side project to work on new skills. Version 1.0 was released on the App Store on June 1st, 2020. Buds is actively being improved to add new features and incorporate new techniques learned from recent professional experience and online courses. 
 
 ## Features
 
