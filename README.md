@@ -14,10 +14,12 @@ Buds is being actively being updated. It was originally created as a fun side pr
 * Create a new account with name, username, birthday, location, email, password and profile picture. User authentication and login/logout features implemented using FirebaseAuth. Profile Pictures are stored in Firebase Storage
 * Add a new activity with the following details: 
     * The strain
+    * A description of the experience
     * Your personal rating of the strain
     * The method of consumption (i.e. joint, bowl, edible etc)
+    * The effects you felt 
     * The location of the activity
-    * A description of the experience 
+ 
 * A feed of your most recent activity so you can quickly remember what you liked
 * Quick access to your favorite and most used strains 
 * The ability to discover and learn new strains
