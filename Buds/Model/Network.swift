@@ -224,21 +224,6 @@ class Network {
             case .failure(_):
                 complete(nil)
             }
-            
-//            if response.result.isSuccess {
-//
-//                let responseJSON = JSON(response.result.value!)
-//                
-//                for item in responseJSON.arrayValue {
-//                    if item["type"].string != nil && item["effect"].string != nil {
-//                        effectsDict.append([item["effect"].string! : item["type"].string!])
-//                    }
-//                }
-//                defaults.set(effectsDict, forKey: "effects")
-//                complete(effectsDict)
-//            } else {
-//                complete(nil)
-//            }
         }
     }
     
@@ -264,21 +249,6 @@ class Network {
                 case .failure(_):
                     complete(.failure(BudsError.unableToGetAllStrains))
                 }
-                
-                
-//                if response.result.isSuccess {
-//                    let responseJSON = JSON(response.result.value!)
-//
-//                    do {
-//                        defaults.set(try responseJSON.rawData(), forKey: "allStrains")
-//                        complete(.success(JSON(try responseJSON.rawData())))
-//                    } catch {
-//                        complete(.failure(BudsError.unableToGetAllStrains))
-//                    }
-//
-//                } else {
-//                    complete(.failure(BudsError.unableToGetAllStrains))
-//                }
             }
         } else {
             complete(.success(JSON(defaults.data(forKey: "allStrains") as Any)))
@@ -298,14 +268,6 @@ class Network {
             case .failure(_):
                 complete(nil)
             }
-            
-            
-//            if response.result.isSuccess {
-//                let responseJSON = JSON(response.result.value!)
-//                complete(responseJSON)
-//            } else {
-//                complete(nil)
-//            }
         }
     }
     
@@ -323,15 +285,7 @@ class Network {
             case .failure(_):
                 complete(.failure(BudsError.unableToGetStrain))
             }
-            
-//            if response.result.isSuccess {
-//                let responseJSON = JSON(response.result.value!)
-//                complete(.success(responseJSON))
-//            } else {
-//                complete(.failure(BudsError.unableToGetStrain))
-//            }
-        }
-        
+        }     
     }
 
 }
