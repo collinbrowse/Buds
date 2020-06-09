@@ -46,12 +46,20 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weed_background" translatesAutoresizingMaskIntoConstraints="NO" id="cg1-X2-25c">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="772"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3tQ-nR-1UP">
+                                <rect key="frame" x="177" y="433" width="60" height="30"/>
+                                <state key="normal" title="Onboard"/>
+                                <connections>
+                                    <action selector="onBoardUser:" destination="gy3-1R-faf" eventType="touchUpInside" id="8NR-dY-dNB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.18823529411764706" green="0.35686274509803922" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="vho-6j-keN" firstAttribute="bottom" secondItem="K9C-ra-NjX" secondAttribute="bottom" id="1gP-bq-ZQQ"/>
                             <constraint firstItem="cg1-X2-25c" firstAttribute="leading" secondItem="vho-6j-keN" secondAttribute="leading" id="3DY-3B-yHI"/>
                             <constraint firstItem="K9C-ra-NjX" firstAttribute="leading" secondItem="vho-6j-keN" secondAttribute="leading" id="5e9-ZZ-cev"/>
+                            <constraint firstItem="3tQ-nR-1UP" firstAttribute="centerY" secondItem="mun-kR-yy1" secondAttribute="centerY" id="6AL-4p-38E"/>
                             <constraint firstItem="vho-6j-keN" firstAttribute="trailing" secondItem="K9C-ra-NjX" secondAttribute="trailing" id="CJV-bm-4EX"/>
                             <constraint firstItem="K9C-ra-NjX" firstAttribute="top" secondItem="wSx-4P-iES" secondAttribute="bottom" id="NKj-NO-O8l"/>
                             <constraint firstItem="cg1-X2-25c" firstAttribute="top" secondItem="mun-kR-yy1" secondAttribute="top" id="ZZU-pT-4Bc"/>
@@ -60,6 +68,7 @@
                             <constraint firstItem="wSx-4P-iES" firstAttribute="top" secondItem="cg1-X2-25c" secondAttribute="bottom" id="jGn-Ym-Cqi"/>
                             <constraint firstItem="wSx-4P-iES" firstAttribute="leading" secondItem="vho-6j-keN" secondAttribute="leading" id="ml0-va-pNU"/>
                             <constraint firstItem="vho-6j-keN" firstAttribute="trailing" secondItem="wSx-4P-iES" secondAttribute="trailing" id="sfm-Sd-XEB"/>
+                            <constraint firstItem="3tQ-nR-1UP" firstAttribute="centerX" secondItem="mun-kR-yy1" secondAttribute="centerX" id="wke-FZ-pPv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vho-6j-keN"/>
                     </view>

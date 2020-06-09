@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import OnboardKit
 
 
 class WelcomeViewController: UIViewController {
@@ -42,5 +42,27 @@ class WelcomeViewController: UIViewController {
             vc.modelController = modelController
         }
     }
+    
+    
+    
+    @IBAction func onBoardUser(_ sender: Any) {
+        
+        // Testing the onboarding screens
+        let pageOne = OnboardPage(title: "Welcome to OnboardKit",
+                               imageName: "weed_background-2",
+                               description: "OnboardKit helps you add onboarding to your iOS app")
+        let pageTwo = OnboardPage(title: "Welcome to OnboardKit",
+                                imageName: "weed_background-2",
+                                description: "OnboardKit helps you add onboarding to your iOS app")
+        
+        let pageThree = OnboardPage(title: "Welcome to OnboardKit",
+                                imageName: "weed_background-2",
+                                description: "OnboardKit helps you add onboarding to your iOS app")
+        
+        let onboardingViewController = OnboardViewController(pageItems: [pageOne, pageTwo, pageThree])
+        
+        onboardingViewController.presentFrom(self, animated: true)
+    }
+    
     
 }
