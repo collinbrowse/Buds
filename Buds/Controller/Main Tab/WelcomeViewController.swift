@@ -59,7 +59,16 @@ class WelcomeViewController: UIViewController {
                                 imageName: "weed_background-2",
                                 description: "OnboardKit helps you add onboarding to your iOS app")
         
-        let onboardingViewController = OnboardViewController(pageItems: [pageOne, pageTwo, pageThree])
+        let appearance = OnboardViewController.AppearanceConfiguration(tintColor: .orange,
+        titleColor: .red,
+        textColor: .white,
+        backgroundColor: .black,
+        imageContentMode: .scaleAspectFit,
+        titleFont: UIFont.boldSystemFont(ofSize: 32.0),
+        textFont: UIFont.boldSystemFont(ofSize: 17.0))
+        
+        let pages = [pageOne, pageTwo, pageThree]
+        let onboardingViewController = OnboardViewController(pageItems: pages, appearanceConfiguration: appearance)
         
         onboardingViewController.presentFrom(self, animated: true)
     }

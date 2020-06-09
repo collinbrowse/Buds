@@ -14,15 +14,25 @@ final public class OnboardViewController: UIViewController {
                                                             options: nil)
   private let pageItems: [OnboardPage]
   private let appearanceConfiguration: AppearanceConfiguration
+  private let completion: (() -> Void)?
 
   required public init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
+  /// Initializes a new `OnboardViewController` to be presented
+  /// The onboard view controller encapsulates the whole onboarding flow
+  ///
+  /// - Parameters:
+  ///   - pageItems: An array of `OnboardPage` items
+  ///   - appearanceConfiguration: An optional configuration struct for appearance customization
+  ///   - completion: An optional completion block that gets executed when the onboarding VC is dismissed
   public init(pageItems: [OnboardPage],
-              appearanceConfiguration: AppearanceConfiguration = AppearanceConfiguration()) {
+              appearanceConfiguration: AppearanceConfiguration = AppearanceConfiguration(),
+              completion: (() -> Void)? = nil) {
     self.pageItems = pageItems
     self.appearanceConfiguration = appearanceConfiguration
+    self.completion = completion
     super.init(nibName: nil, bundle: nil)
   }
 
@@ -31,7 +41,7 @@ final public class OnboardViewController: UIViewController {
   }
 
   override public func loadView() {
-    super.loadView()
+    view = UIView(frame: CGRect.zero)
     view.backgroundColor = appearanceConfiguration.backgroundColor
     pageViewController.setViewControllers([pageViwControllerFor(pageIndex: 0)!],
                                           direction: .forward,
@@ -74,7 +84,11 @@ final public class OnboardViewController: UIViewController {
 public extension OnboardViewController {
 
   /// Presents the configured `OnboardViewController`
-  public func presentFrom(_ viewController: UIViewController, animated: Bool) {
+  ///
+  /// - Parameters:
+  ///   - viewController: the presenting view controller
+  ///   - animated: Defines if the presentation should be animated
+  func presentFrom(_ viewController: UIViewController, animated: Bool) {
     viewController.present(self, animated: animated)
   }
 }
@@ -127,7 +141,7 @@ extension OnboardViewController: OnboardPageViewControllerDelegate {
 
   func pageViewController(_ pageVC: OnboardPageViewController, advanceTappedAt index: Int) {
     if index == pageItems.count - 1 {
-      dismiss(animated: true, completion: nil)
+      dismiss(animated: true, completion: self.completion)
     } else {
       advanceToPageWithIndex(index + 1)
     }
@@ -136,13 +150,21 @@ extension OnboardViewController: OnboardPageViewControllerDelegate {
 
 // MARK: - AppearanceConfiguration
 public extension OnboardViewController {
+
+  typealias ButtonStyling = ((UIButton) -> Void)
+
   struct AppearanceConfiguration {
     /// The color used for the page indicator and buttons
     ///
     /// - note: Defualts to the blue tint color used troughout iOS
     let tintColor: UIColor
 
-    /// The color used for the title and description text
+    /// The color used for the title text
+    ///
+    /// - note: If not specified, defualts to whatever `textColor` is
+    let titleColor: UIColor
+
+    /// The color used for the description text (and title text `titleColor` if not set)
     ///
     /// - note: Defualts to `.darkText`
     let textColor: UIColor
@@ -151,6 +173,11 @@ public extension OnboardViewController {
     ///
     /// - note: Defualts to white
     let backgroundColor: UIColor
+
+    /// The `contentMode` used for the slide imageView
+    ///
+    /// - note: Defualts to white
+    let imageContentMode: UIView.ContentMode
 
     /// The font used for the title and action button
     ///
@@ -162,16 +189,34 @@ public extension OnboardViewController {
     /// - note: Defualts to preferred text style `.body` (supports dinamyc type)
     let textFont: UIFont
 
+    /// A Swift closure used to expose and customize the button used to advance to the next page
+    ///
+    /// - note: Defualts to nil. If not used, the button will be customized based on the tint and text properties
+    let advanceButtonStyling: ButtonStyling?
+
+    /// A Swift closure used to expose and customize the button used to trigger page specific action
+    ///
+    /// - note: Defualts to nil. If not used, the button will be customized based on the title properties
+    let actionButtonStyling: ButtonStyling?
+
     public init(tintColor: UIColor = UIColor(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0),
+                titleColor: UIColor? = nil,
                 textColor: UIColor = .darkText,
                 backgroundColor: UIColor = .white,
+                imageContentMode: UIView.ContentMode = .center,
                 titleFont: UIFont = UIFont.preferredFont(forTextStyle: .title1),
-                textFont: UIFont = UIFont.preferredFont(forTextStyle: .body)) {
+                textFont: UIFont = UIFont.preferredFont(forTextStyle: .body),
+                advanceButtonStyling: ButtonStyling? = nil,
+                actionButtonStyling: ButtonStyling? = nil) {
       self.tintColor = tintColor
+      self.titleColor = titleColor ?? textColor
       self.textColor = textColor
       self.backgroundColor = backgroundColor
+      self.imageContentMode = imageContentMode
       self.titleFont = titleFont
       self.textFont = textFont
+      self.advanceButtonStyling = advanceButtonStyling
+      self.actionButtonStyling = actionButtonStyling
     }
   }
 }

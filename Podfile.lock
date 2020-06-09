@@ -95,7 +95,7 @@ PODS:
     - nanopb/encode (= 1.30905.0)
   - nanopb/decode (1.30905.0)
   - nanopb/encode (1.30905.0)
-  - OnboardKit (1.0.0)
+  - OnboardKit (1.5.0)
   - PromisesObjC (1.2.9)
   - SVProgressHUD (2.2.5)
   - SwiftyJSON (5.0.0)
@@ -107,7 +107,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Database
   - Firebase/Storage
-  - OnboardKit
+  - OnboardKit (~> 1.5.0)
   - SVProgressHUD
   - SwiftyJSON
 
@@ -155,11 +155,11 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
-  OnboardKit: 6828f2a4cd8a0f5451f7ebcaa308f84a29df3d1e
+  OnboardKit: 73a4e9c9a1ae88afee0514ac3f2bc4f82126b66e
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 5750c03f471bd7e68b7c5e88211a3afaaaf802a0
+PODFILE CHECKSUM: 6522afaa4037d39c1793d8c2cc4b4174c8857f90
 
 COCOAPODS: 1.9.1
