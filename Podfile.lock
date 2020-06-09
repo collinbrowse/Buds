@@ -107,7 +107,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Database
   - Firebase/Storage
-  - OnboardKit (~> 1.5.0)
+  - OnboardKit
   - SVProgressHUD
   - SwiftyJSON
 
@@ -160,6 +160,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 6522afaa4037d39c1793d8c2cc4b4174c8857f90
+PODFILE CHECKSUM: 5750c03f471bd7e68b7c5e88211a3afaaaf802a0
 
 COCOAPODS: 1.9.1

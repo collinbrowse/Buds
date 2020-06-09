@@ -54,7 +54,6 @@ class WelcomeViewController: UIViewController {
         let pageTwo = OnboardPage(title: "Welcome to OnboardKit",
                                 imageName: "weed_background-2",
                                 description: "OnboardKit helps you add onboarding to your iOS app")
-        
         let pageThree = OnboardPage(title: "Welcome to OnboardKit",
                                 imageName: "weed_background-2",
                                 description: "OnboardKit helps you add onboarding to your iOS app")
@@ -65,7 +64,9 @@ class WelcomeViewController: UIViewController {
         backgroundColor: .black,
         imageContentMode: .scaleAspectFit,
         titleFont: UIFont.boldSystemFont(ofSize: 32.0),
-        textFont: UIFont.boldSystemFont(ofSize: 17.0))
+        textFont: UIFont.boldSystemFont(ofSize: 17.0),
+        advanceButtonStyling: .none,
+        actionButtonStyling: .none)
         
         let pages = [pageOne, pageTwo, pageThree]
         let onboardingViewController = OnboardViewController(pageItems: pages, appearanceConfiguration: appearance)
