@@ -27,7 +27,7 @@ internal final class OnboardPageViewController: UIViewController {
   private lazy var pageStackView: UIStackView = {
     let stackView = UIStackView()
     stackView.translatesAutoresizingMaskIntoConstraints = false
-    stackView.spacing = 16.0
+    stackView.spacing = 8.0
     stackView.axis = .vertical
     stackView.alignment = .center
     return stackView
@@ -50,7 +50,7 @@ internal final class OnboardPageViewController: UIViewController {
   private lazy var descriptionLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
-    label.font = UIFont.preferredFont(forTextStyle: .title3)
+    label.font = UIFont.preferredFont(forTextStyle: .body)
     label.numberOfLines = 0
     label.textAlignment = .center
     return label
@@ -162,7 +162,7 @@ internal final class OnboardPageViewController: UIViewController {
   private func configureImageView(_ imageName: String?) {
     if let imageName = imageName, let image = UIImage(named: imageName) {
       imageView.image = image
-      imageView.heightAnchor.constraint(equalTo: pageStackView.heightAnchor, multiplier: 0.5).isActive = true
+      imageView.heightAnchor.constraint(equalTo: pageStackView.heightAnchor, multiplier: 0.6).isActive = true
     } else {
       imageView.isHidden = true
     }
@@ -173,7 +173,7 @@ internal final class OnboardPageViewController: UIViewController {
       descriptionLabel.text = pageDescription
       NSLayoutConstraint.activate([
         descriptionLabel.heightAnchor.constraint(greaterThanOrEqualTo: pageStackView.heightAnchor, multiplier: 0.2),
-        descriptionLabel.widthAnchor.constraint(equalTo: pageStackView.widthAnchor, multiplier: 0.8)
+        descriptionLabel.widthAnchor.constraint(equalTo: pageStackView.widthAnchor, multiplier: 0.95)
         ])
     } else {
       descriptionLabel.isHidden = true

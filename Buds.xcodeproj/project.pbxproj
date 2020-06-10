@@ -90,6 +90,7 @@
 		BEACFF1F2464641100F705EB /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEACFF1E2464641100F705EB /* String+Ext.swift */; };
 		BEACFF232464AD9B00F705EB /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEACFF222464AD9B00F705EB /* TagCell.swift */; };
 		BEACFF28246B103200F705EB /* TagCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEACFF27246B103200F705EB /* TagCollectionView.swift */; };
+		BEB6CA5D249129EA0039C3DD /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB6CA5C249129EA0039C3DD /* PersistenceManager.swift */; };
 		BEEE2170246F54FD00DDF6A5 /* GreenNavigationBarAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEE216F246F54FD00DDF6A5 /* GreenNavigationBarAppearance.swift */; };
 		BEFB6FF8235B6151008805E5 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFB6FF7235B6151008805E5 /* Switcher.swift */; };
 /* End PBXBuildFile section */
@@ -201,6 +202,7 @@
 		BEACFF1E2464641100F705EB /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		BEACFF222464AD9B00F705EB /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		BEACFF27246B103200F705EB /* TagCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionView.swift; sourceTree = "<group>"; };
+		BEB6CA5C249129EA0039C3DD /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		BEEE216F246F54FD00DDF6A5 /* GreenNavigationBarAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenNavigationBarAppearance.swift; sourceTree = "<group>"; };
 		BEFB6FF7235B6151008805E5 /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
 		C136BAA623F64FDD85F1FA18 /* Pods-BudsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BudsTests.release.xcconfig"; path = "Target Support Files/Pods-BudsTests/Pods-BudsTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -299,13 +301,6 @@
 			path = "Proxima Nova";
 			sourceTree = "<group>";
 		};
-		BE02A32D22DFBD8100431854 /* Profile Tab */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Profile Tab";
-			sourceTree = "<group>";
-		};
 		BE02A32E22DFBD9800431854 /* Main Tab */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,27 +311,6 @@
 				BE02A32422DE557200431854 /* LocationSearchBarController.swift */,
 			);
 			path = "Main Tab";
-			sourceTree = "<group>";
-		};
-		BE02A32F22DFBDA900431854 /* Activity Tab */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Activity Tab";
-			sourceTree = "<group>";
-		};
-		BE02A33022DFBDB000431854 /* ActivityFeed Tab */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "ActivityFeed Tab";
-			sourceTree = "<group>";
-		};
-		BE02A33122DFBDBC00431854 /* Settings Tab */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Settings Tab";
 			sourceTree = "<group>";
 		};
 		BE03D2A422C124A70059B587 /* View */ = {
@@ -350,12 +324,7 @@
 		BE03D2A522C267410059B587 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				BE67DDE72373647400378901 /* Search Tab */,
-				BE02A33122DFBDBC00431854 /* Settings Tab */,
-				BE02A33022DFBDB000431854 /* ActivityFeed Tab */,
-				BE02A32F22DFBDA900431854 /* Activity Tab */,
 				BE02A32E22DFBD9800431854 /* Main Tab */,
-				BE02A32D22DFBD8100431854 /* Profile Tab */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -385,6 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				BE2D4C192460A8660008D7C6 /* NetworkManager.swift */,
+				BEB6CA5C249129EA0039C3DD /* PersistenceManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -521,13 +491,6 @@
 				BE2D4C162460A7DC0008D7C6 /* BudsAvatarImageView.swift */,
 			);
 			path = ImageViews;
-			sourceTree = "<group>";
-		};
-		BE67DDE72373647400378901 /* Search Tab */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Search Tab";
 			sourceTree = "<group>";
 		};
 		BE6B71A9244F9F56007BFB23 /* ViewControllers */ = {
@@ -859,6 +822,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE53E7B5246DC8F500226A2C /* StrainCollectionView.swift in Sources */,
+				BEB6CA5D249129EA0039C3DD /* PersistenceManager.swift in Sources */,
 				BE03D2A722C2676E0059B587 /* WelcomeViewController.swift in Sources */,
 				BE03D2AB22C269730059B587 /* RegisterViewController.swift in Sources */,
 				BE02A32322DCEF9A00431854 /* Network.swift in Sources */,

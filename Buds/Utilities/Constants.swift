@@ -94,7 +94,7 @@ enum FirebaseKeys {
 
 
 enum UserDefaultsKeys {
-    
+    static let hasLaunched = "isFirstLaunch"
 }
 
 
