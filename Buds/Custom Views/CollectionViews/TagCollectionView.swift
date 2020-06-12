@@ -18,12 +18,14 @@ class TagCollectionView: UICollectionView {
     var currentTag: TagTypes!
     var selectedData: Set<String> = []
     var locationManager = CLLocationManager()
+    let indicator = UIActivityIndicatorView()
     
     convenience init(frame: CGRect, tag: TagTypes) {
         self.init(frame: frame, collectionViewLayout: UIHelper.createTagsFlowLayout())
         currentTag = tag
         configureCollectionView()
         configureDataSource()
+        addActivityIndicator()
         getData()
     }
     
@@ -77,6 +79,7 @@ class TagCollectionView: UICollectionView {
     
     
     func getLocationData() {
+        indicator.startAnimating()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         locationManager.requestWhenInUseAuthorization()
@@ -84,9 +87,23 @@ class TagCollectionView: UICollectionView {
     }
     
     
+    func addActivityIndicator() {
+        
+        addSubview(indicator)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            indicator.topAnchor.constraint(equalTo: topAnchor),
+            indicator.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
+            indicator.bottomAnchor.constraint(equalTo: bottomAnchor),
+            indicator.heightAnchor.constraint(equalTo: heightAnchor)
+        ])
+    }
+    
+    
     func getEffectData() {
         allowsMultipleSelection = true
         
+        indicator.startAnimating()
         Network.getEffectsFromAPI { [weak self] (effectsDict) in
             guard let self = self else { return }
             
@@ -113,6 +130,8 @@ class TagCollectionView: UICollectionView {
     
     
     func updateData(on data: [String]) {
+        indicator.stopAnimating()
+        
         var snapshot = NSDiffableDataSourceSnapshot<Section, String>()
         snapshot.appendSections([.main])
         snapshot.appendItems(data)
@@ -121,9 +140,6 @@ class TagCollectionView: UICollectionView {
         }
         self.data = data
     }
-    
-    
-    
     
 }
 
