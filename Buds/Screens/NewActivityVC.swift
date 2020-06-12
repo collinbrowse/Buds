@@ -231,7 +231,7 @@ class NewActivityVC: BudsDataLoadingVC {
         
         for i in 0...3 {
             
-            let collectionView = TagCollectionView(frame: wrapperViews[i].frame, tag: tagTypes[i])
+            let collectionView = TagCollectionView(frame: wrapperViews[i].frame, tag: tagTypes[i], delegate: self)
             collectionViews.append(collectionView)
             labelsView.addSubview(wrapperViews[i])
             wrapperViews[i].addSubview(labels[i])
@@ -274,3 +274,25 @@ extension NewActivityVC : UITextFieldDelegate {
     }
 }
 
+
+
+extension NewActivityVC : LocationPermissionDelegate {
+    
+    func askForLocationPermissionAgain() {
+        let alertController = UIAlertController(title: "Unable to find your location", message: "Buds requires your location so you can add a new activity", preferredStyle: .alert)
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in })
+             }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alertController.addAction(cancelAction)
+        alertController.addAction(settingsAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    
+}

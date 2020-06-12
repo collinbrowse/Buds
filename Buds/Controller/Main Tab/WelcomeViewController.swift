@@ -56,7 +56,7 @@ class WelcomeViewController: UIViewController {
                                       description: "Buds keeps your data synced to any device you sign into. \n\nIf privacy is a concern for you, enter an alias. \nYou must be 21+ to use Buds.")
             let pageThree = OnboardPage(title: "Search for a strain",
                                         imageName: "new_activity_mockup",
-                                        description: "Then enter the details of your activity. \n\nThen your activity show in your Feed and Favorites!",
+                                        description: "Then enter the details of your activity. \n\nThen your activity shows in your Feed and Favorites!",
                                         advanceButtonTitle: "Done"
             )
             

@@ -9,6 +9,12 @@
 import UIKit
 import MapKit
 
+
+protocol LocationPermissionDelegate: class {
+    func askForLocationPermissionAgain()
+}
+
+
 class TagCollectionView: UICollectionView {
 
     
@@ -19,10 +25,12 @@ class TagCollectionView: UICollectionView {
     var selectedData: Set<String> = []
     var locationManager = CLLocationManager()
     let indicator = UIActivityIndicatorView()
+    weak var locationPermissionDelegate : LocationPermissionDelegate?
     
-    convenience init(frame: CGRect, tag: TagTypes) {
+    convenience init(frame: CGRect, tag: TagTypes, delegate: LocationPermissionDelegate) {
         self.init(frame: frame, collectionViewLayout: UIHelper.createTagsFlowLayout())
         currentTag = tag
+        locationPermissionDelegate = delegate
         configureCollectionView()
         configureDataSource()
         addActivityIndicator()
@@ -79,11 +87,22 @@ class TagCollectionView: UICollectionView {
     
     
     func getLocationData() {
-        indicator.startAnimating()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestLocation()
+        
+        // check the permission status
+        switch(CLLocationManager.authorizationStatus()) {
+        case .authorizedAlways, .authorizedWhenInUse, .notDetermined:
+            indicator.startAnimating()
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.requestLocation()
+        case .restricted, .denied:
+            locationPermissionDelegate?.askForLocationPermissionAgain()
+            
+        @unknown default:
+            print("Fatal Error")
+        }
+        
     }
     
     
