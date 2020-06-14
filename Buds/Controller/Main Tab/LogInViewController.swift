@@ -11,11 +11,10 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import SVProgressHUD
-import CryptoSwift
 
 class LogInViewController: UIViewController {
     
-    //Textfields pre-linked with IBOutlets
+    
     @IBOutlet var passwordTextfield: UITextField!
     @IBOutlet weak var emailTextfield: UITextField!
     
@@ -23,24 +22,37 @@ class LogInViewController: UIViewController {
     var username: String!
     var modelController: ModelController!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         ref = Database.database().reference()
+        configureTextFields()
     }
     
-//    func application(_ application: UIApplication,
-//                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-//        FirebaseApp.configure()
-//        return true
-//    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    
+    func configureTextFields() {
+        emailTextfield.delegate = self
+        passwordTextfield.delegate = self
+        emailTextfield.overrideUserInterfaceStyle = .light
+        passwordTextfield.overrideUserInterfaceStyle = .light
+    }
+    
+    
     @IBAction func viewIconPressed(_ sender: Any) {
         passwordTextfield.isSecureTextEntry.toggle()
     }
+    
     
     @IBAction func logInPressed(_ sender: Any) {
         
@@ -67,7 +79,10 @@ class LogInViewController: UIViewController {
                 self.modelController.person = user
                 Switcher.setUserDefaultsIsSignIn(true)
                 Switcher.setUserDefaultsModelController(modelController: self.modelController)
-                Switcher.updateRootViewController()
+                
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.window?.rootViewController = BudsTabBarController()
+                appDelegate.window?.makeKeyAndVisible()
             }
         }
         else {
@@ -77,6 +92,7 @@ class LogInViewController: UIViewController {
         }
     }
     
+    
     func showAlert(alertMessage: String) {
         let alert = UIAlertController(title: "There was an error", message: alertMessage, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -84,34 +100,17 @@ class LogInViewController: UIViewController {
         SVProgressHUD.dismiss()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+}
 
-        if segue.identifier == "goToHomeFromLogIn" {
-        
-            if let tabBarViewController = segue.destination as? UITabBarController {
-            
-                // FIX: Safely unwrap the tab Bar Controller
-                for n in 0...tabBarViewController.viewControllers!.count-1 {
-                    let navController = tabBarViewController.viewControllers![n] as! UINavigationController
-                    if navController.topViewController is ActivityFeedController {
-                        let vc = navController.topViewController as! ActivityFeedController
-                        vc.modelController = modelController
-                    } else if navController.topViewController is ProfileViewController {
-                        let vc = navController.topViewController as! ProfileViewController
-                        vc.modelController = modelController
-                    } else if navController.topViewController is NewActivityViewController {
-                        let vc = navController.topViewController as! NewActivityViewController
-                        vc.modelController = modelController
-                    } else if navController.topViewController is SettingsViewController {
-                        let vc = navController.topViewController as! SettingsViewController
-                        vc.modelController = modelController
-                    }
-                }
-            }
+
+extension LogInViewController : UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailTextfield {
+            passwordTextfield.becomeFirstResponder()
+        } else if textField == passwordTextfield {
+            logInPressed(self)
         }
-        else {
-            print("Unable to find the specified Segue")
-        }
-        
+        return true
     }
 }

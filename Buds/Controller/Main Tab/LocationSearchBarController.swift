@@ -27,21 +27,18 @@ class LocationSearchBarController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // The Search Completer knows this class is where to send its data
         searchCompleter.delegate = self
-        // The search bar knows this class responds to the protocol
+        searchCompleter.resultTypes = .address
         searchBar.delegate = self
-        // Remove Points of interest from the search bar
-        searchCompleter.filterType = .locationsOnly
-        // Make the search Bar in focus / first responder
         searchBar.becomeFirstResponder()
+        
         let backgroundImage = UIImage(named: "weed_background")
         let backgroundView = UIImageView(image: backgroundImage)
         searchResultsTableView.backgroundView = backgroundView
-
         searchResultsTableView.separatorStyle = .none
     }
 }
+
 
 // Extension for the Search Bar
 // Says that this class conforms to the UISearchBar Protocol
@@ -54,6 +51,7 @@ extension LocationSearchBarController: UISearchBarDelegate {
         }
     }
 }
+
 
 // Extension for MKLocalSearchCompleter
 // An MKLocalSearchCompleter object allows you to retreive autocomplete suggestions
@@ -72,6 +70,7 @@ extension LocationSearchBarController: MKLocalSearchCompleterDelegate {
         print("There was an error")
     }
 }
+
 
 // Extension for TableView Methods
 extension LocationSearchBarController {

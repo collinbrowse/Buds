@@ -11,20 +11,19 @@ import UIKit
 import Firebase
 import FirebaseStorage
 import SVProgressHUD
-import CryptoSwift
 import MapKit
 
 class RegisterViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
-    //Pre-linked IBOutlets
     @IBOutlet weak var nameTextfield: UITextField!
     @IBOutlet weak var locationTextField: UITextField!
-    @IBOutlet weak var birthdayTextfield: UITextField! // This will be converted to a date picked in the future
+    @IBOutlet weak var birthdayTextfield: UITextField!
     @IBOutlet weak var usernameTextfield: UITextField!
     @IBOutlet weak var emailTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
     @IBOutlet weak var profilePictureImageView: UIImageView!
+    @IBOutlet weak var infoTextView: UITextView!
     
     private var datePicker: UIDatePicker?
     var username: String!
@@ -32,10 +31,8 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     var ref: DatabaseReference!
     var modelController: ModelController!
     
-    //Location Search MapKit
     var searchCompleter = MKLocalSearchCompleter()
     var searchResults = [MKLocalSearchCompletion]()
-    // Location Search UI elements
     @IBOutlet weak var searchResultsTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -45,25 +42,11 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         // Firebase Realtime Database
         ref = Database.database().reference()
         
-        // Set up a DatePicker Field for the birthday
-        datePicker = UIDatePicker()
-        datePicker?.datePickerMode = .date
-        datePicker?.addTarget(self,
-                              action: #selector(RegisterViewController.dateChanged(datePicker:)),
-                              for: .valueChanged)
-        
-        // Add a Tap Gesture Recognizer to close the date picker if the user touches away
-        let datePickerTapGesture = UITapGestureRecognizer(target: self,
-                                                action: #selector(RegisterViewController.viewTapped(gestureRecognizer: )))
-        view.addGestureRecognizer(datePickerTapGesture)
-        birthdayTextfield.inputView = datePicker
-        
-        
-        // Add a Tap Gesture to allow the user to select a profile image
-        let profilePictureTapGesture = UITapGestureRecognizer(target: self,
-                                                action: #selector(profilePictureTapped))
-        profilePictureImageView.addGestureRecognizer(profilePictureTapGesture)
-        
+        configureDelegates()
+        configureTextFields()
+        configureDatePicker()
+        configureProfilePictureImageView()
+        configureInfoTextView()
     }
     
     func application(_ application: UIApplication,
@@ -72,10 +55,77 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         return true
     }
     
+    
+    func configureDelegates() {
+        nameTextfield.delegate = self
+        locationTextField.delegate = self
+        birthdayTextfield.delegate = self
+        usernameTextfield.delegate = self
+        emailTextfield.delegate = self
+        passwordTextfield.delegate = self
+    }
+    
+    
+    func configureTextFields() {
+        nameTextfield.overrideUserInterfaceStyle = .light
+        locationTextField.overrideUserInterfaceStyle = .light
+        birthdayTextfield.overrideUserInterfaceStyle = .light
+        usernameTextfield.overrideUserInterfaceStyle = .light
+        emailTextfield.overrideUserInterfaceStyle = .light
+        passwordTextfield.overrideUserInterfaceStyle = .light
+    }
+    
+    
+    func configureDatePicker() {
+        
+        // Set up a DatePicker Field for the birthday
+        datePicker = UIDatePicker()
+        datePicker?.datePickerMode = .date
+        let ofAgeDate = Calendar.current.date(byAdding: .year, value: -21, to: Date())
+        datePicker?.maximumDate = ofAgeDate
+        datePicker?.addTarget(self, action: #selector(RegisterViewController.dateChanged(datePicker:)), for: .valueChanged)
+        
+        // Add a Tap Gesture Recognizer to close the date picker if the user touches away
+        let datePickerTapGesture = UITapGestureRecognizer(target: self, action: #selector(RegisterViewController.viewTapped(gestureRecognizer: )))
+        view.addGestureRecognizer(datePickerTapGesture)
+        birthdayTextfield.inputView = datePicker
+    }
+    
+    
+    func configureProfilePictureImageView() {
+        
+        // Add a Tap Gesture to allow the user to select a profile image
+        let profilePictureTapGesture = UITapGestureRecognizer(target: self, action: #selector(profilePictureTapped))
+        profilePictureImageView.addGestureRecognizer(profilePictureTapGesture)
+    }
+    
+    
+    func configureInfoTextView() {
+        
+        let attributedString = NSMutableAttributedString(string: "By registering, you agree to our privacy policy. Icons by Icons8")
+        let privacyURL = URL(string: "https://collin-browse.weebly.com/budsprivacypolicy.html")!
+        let icons8URL = URL(string: "https://icons8.com")!
+
+        attributedString.setAttributes([.link: privacyURL], range: NSMakeRange(33, 14))
+        attributedString.setAttributes([.link: icons8URL], range: NSMakeRange(58, 6))
+
+        infoTextView.attributedText = attributedString
+        infoTextView.isUserInteractionEnabled = true
+        infoTextView.isEditable = false
+        infoTextView.textAlignment = .center
+        infoTextView.textColor = .white
+        infoTextView.linkTextAttributes = [
+            .foregroundColor: UIColor.white,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
+    }
+    
+    
     // Selector: Action to perform when user touches away from date picker
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
         view.endEditing(true)
     }
+    
     
     // Selector: Action to perform when the date changes
     @objc func dateChanged(datePicker: UIDatePicker) {
@@ -84,6 +134,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         birthdayTextfield.text = dateFormatter.string(from: datePicker.date)
     }
     
+    
     // Selector: Action to perform when the profile image is clicked
     @objc func profilePictureTapped() {
         let picker = UIImagePickerController()
@@ -91,6 +142,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         picker.allowsEditing = true
         present(picker, animated: true, completion: nil)
     }
+    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
@@ -110,14 +162,17 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         dismiss(animated: true, completion: nil)
     }
     
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
+    
     
     // Show/Hide the Password field
     @IBAction func viewIconClicked(_ sender: Any) {
         passwordTextfield.isSecureTextEntry.toggle()
     }
+    
     
     // Respond to user pressing register button.
     @IBAction func registerPressed(_ sender: AnyObject) {
@@ -144,11 +199,13 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
        
     }
     
+    
     // If user starts editing the location field, send them to Location Search Controller
     @IBAction func locatonFieldDidBeginEditing(_ sender: Any) {
         performSegue(withIdentifier: "goToLocationSearch", sender: self)
         
     }
+    
     
     // Method to show a popup alert to the user if they are unable to register
     func showAlert(alertMessage: String) {
@@ -158,26 +215,19 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         SVProgressHUD.dismiss()
     }
     
+    
     // Let's Handle some tasks before we perform the segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        // If the user tried to log in....
-        if segue.identifier == "goToHomeFromRegister" {
-            let tabBarViewController = segue.destination as? UITabBarController
-            if let destinationVC = tabBarViewController?.viewControllers![0] as? ProfileViewController {
-                destinationVC.username = self.username
-                destinationVC.modelController = modelController
-            }
-        }
         // If the user wants to enter a locations...
-        else if segue.identifier == "goToLocationSearch" {
+        if segue.identifier == "goToLocationSearch" {
             // Let LocationSearchBarController know that this class will handle any responses it has
             if let destinationVC = segue.destination as? LocationSearchBarController {
                 destinationVC.locationDelegate = self
             }
         }
-        
     }
+    
     
     // This function registers a user with Firebase Authentication
     // If sucessful we then log them in/authenticate them
@@ -229,14 +279,16 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                                             var person = Person(id: Auth.auth().currentUser!.providerID, name: name, email: email, location: location, birthday: birthday, profilePictureURL: "self.profilePictureImageView.image!")
                                             person.profilePicture = self.profilePictureImageView.image!
                                             self.modelController.person = person
+                                            Switcher.setUserDefaultsModelController(modelController: self.modelController)
+                                            Switcher.setUserDefaultsIsSignIn(true)
                                             SVProgressHUD.dismiss()
-                                            self.performSegue(withIdentifier: "goToHomeFromRegister", sender: self)
+                                            
+                                            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                            appDelegate.window?.rootViewController = BudsTabBarController()
+                                            appDelegate.window?.makeKeyAndVisible()
                                         }
                                     }
-                                    
-                                    
                                 }
-                                
                             }
                         })
                     } else {
@@ -250,6 +302,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         }
     }
     
+    
     // Regex to validate an email
     func isValidEmail(emailID:String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
@@ -257,17 +310,37 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         return emailTest.evaluate(with: emailID)
     }
     
-    
 }
+
 
 extension RegisterViewController: LocationSearchDelegate {
     
-    // Will Set the Location Field to the response from
-    // LocationSearchController
+    // Will Set the Location Field to the response from LocationSearchController
     func setSelectedLocation(location: String) {
         locationTextField.text = location
         birthdayTextfield.becomeFirstResponder()
     }
-    
-    
+
+}
+
+
+extension RegisterViewController : UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == nameTextfield {
+            locationTextField.becomeFirstResponder()
+        } else if textField == locationTextField {
+            birthdayTextfield.becomeFirstResponder()
+        } else if textField == birthdayTextfield {
+            usernameTextfield.becomeFirstResponder()
+        } else if textField == usernameTextfield {
+            emailTextfield.becomeFirstResponder()
+        } else if textField == emailTextfield {
+            passwordTextfield.becomeFirstResponder()
+        } else if textField == passwordTextfield {
+            textField.resignFirstResponder()
+        }
+        return true
+    }
 }

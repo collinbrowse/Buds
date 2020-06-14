@@ -26,10 +26,9 @@ class Switcher {
             let welcomeViewController = mainStoryBoard.instantiateViewController(withIdentifier: "welcomeNavigationController") as! UINavigationController
             rootViewController = welcomeViewController
         }
-
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = rootViewController
-
     }
 
     
