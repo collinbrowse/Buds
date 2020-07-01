@@ -12,26 +12,7 @@ import UIKit
 
 class Switcher {
     
-    static func updateRootViewController() {
 
-        let status = UserDefaults.standard.bool(forKey: "isSignIn")
-        var rootViewController : UIViewController?
-
-        if (status) {
-            let mainStoryBoard = UIStoryboard(name: "TabBar", bundle: nil)
-            let mainTabBarController = mainStoryBoard.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
-            rootViewController = mainTabBarController
-        } else {
-            let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-            let welcomeViewController = mainStoryBoard.instantiateViewController(withIdentifier: "welcomeNavigationController") as! UINavigationController
-            rootViewController = welcomeViewController
-        }
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = rootViewController
-    }
-
-    
     // Function to add model controller information to user defaults once signed in
     // Function to remove model controller from user defaults
     // Function to gain access to user Defaults if already signed in
@@ -43,9 +24,7 @@ class Switcher {
         modelController.person = Person(id: dict?["id"] as! String,
                                         name: dict?["name"] as! String,
                                         email: dict?["email"] as! String,
-                                        location: dict?["location"] as! String,
-                                        birthday: dict?["birthday"] as! String,
-                                        profilePictureURL: dict?["profilePictureURL"] as! String)
+                                        birthday: dict?["birthday"] as! String)
 
         return modelController
         

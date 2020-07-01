@@ -21,4 +21,15 @@ extension UIViewController {
         }
     }
     
+    func showTabBarController(person: Person) {
+        let modelController = ModelController()
+        modelController.person = person
+        Switcher.setUserDefaultsIsSignIn(true)
+        Switcher.setUserDefaultsModelController(modelController: modelController)
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = BudsTabBarController()
+        appDelegate.window?.makeKeyAndVisible()
+    }
+    
 }

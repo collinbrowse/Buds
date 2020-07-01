@@ -10,6 +10,7 @@ import UIKit
 
 class FavoritesVC: BudsDataLoadingVC {
     
+    
     var tableView = UITableView()
     var strains: [Strain] = []
     var highestRatedStrains = [Strain]()
@@ -19,6 +20,7 @@ class FavoritesVC: BudsDataLoadingVC {
     var sections: [String] = ["Highest Rated", "Most Activity"]
     var modelController : ModelController!
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

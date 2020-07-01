@@ -15,19 +15,19 @@ struct Person {
     var id: String 
     var name: String
     var email: String
-    var location: String
+    var location: String?
     var birthday: String
     var profilePicture: UIImage?
-    var profilePictureURL: String
+    var profilePictureURL: String?
     
-    init(id: String, name: String, email: String, location: String, birthday: String, profilePictureURL: String) {
+    init(id: String, name: String, email: String, birthday: String) {
         self.id = id
         self.name = name
         self.email = email
-        self.location = location
         self.birthday = birthday 
-        self.profilePictureURL = profilePictureURL
     }
+    
+    
     init(id: String, name: String, email: String, location: String, birthday: String, profilePictureURL: String, profilePicture: UIImage) {
         self.id = id
         self.name = name
@@ -37,6 +37,7 @@ struct Person {
         self.profilePictureURL = profilePictureURL
         self.profilePicture = profilePicture
     }
+    
     
     mutating func setProfilePicture(_ picture: UIImage) {
         self.profilePicture = picture

@@ -40,30 +40,53 @@ class Network {
     }
     
     
-    // Log In a User with Firebase Auth
-    static func logInUser(email: String, password: String, complete: @escaping (Person?) -> ()) {
+    static func logInUser(email: String, password: String, complete: @escaping (Result<Person, Error>) -> ()) {
 
         Auth.auth().signIn(withEmail: email, password: password) { user, error in
             
-            if let error = error {
-                // Indicates log in was not successful
-                print("There was an error signing in the user: \(error.localizedDescription)")
-                complete(nil)
-                return
-            }
-            else if user != nil {
-                
+            if error == nil {
                 guard let userID = Auth.auth().currentUser?.uid else {
-                    fatalError("Unable To get the Current User's ID")
+                    complete(.failure(BudsError.unableToLogInUser))
+                    return
                 }
                 
-                // Able to sign the user in, grab the rest of the info from Realtime Database
                 Network.getUserInfo(userID: userID, complete: { userInfo in
 
-                    let loggedInUser = Person(id: userID, name: userInfo["name"]!, email: userInfo["email"]!, location: userInfo["location"]!, birthday: userInfo["birthday"]!, profilePictureURL: userInfo["profilePictureURL"]!)
-                    
-                    complete(loggedInUser)
+                    let loggedInUser = Person(id: userID, name: userInfo["name"]!, email: userInfo["email"]!, birthday: userInfo["birthday"]!)
+                    complete(.success(loggedInUser))
                 })
+            } else {
+                complete(.failure(error!))
+            }
+        }
+    }
+    
+    
+    static func registerUser(name: String, birthday: String, email: String, password: String, complete: @escaping (Result<Person, Error>) -> ()) {
+        
+        Auth.auth().createUser(withEmail: email, password: password) { (createUserAuthResult, createUserError) in
+            
+            if createUserError == nil {
+                Auth.auth().signIn(withEmail: email, password: password, completion: { (signedInAuthResult, signedInError) in
+                    
+                    if signedInError == nil {
+                        guard let userID = Auth.auth().currentUser?.uid else {
+                            complete(.failure(BudsError.unableToLogInUser))
+                            return
+                        }
+                        
+                        let userData = ["name": name, "birthday": birthday, "email": email]
+                        
+                        Network.ref.child("users").child(userID).setValue(userData) { (error, ref) in
+                            let person = Person(id: userID, name: name, email: email, birthday: birthday)
+                            complete(.success(person))
+                        }
+                    } else {
+                        complete(.failure(BudsError(rawValue: signedInError!.localizedDescription)!))
+                    }
+                })
+            } else {
+                complete(.failure(createUserError!))
             }
         }
     }
@@ -79,10 +102,8 @@ class Network {
             try firebaseAuth.signOut()
             Network.ref.child(FirebaseKeys.activity).removeAllObservers()
             Network.ref.child(FirebaseKeys.users).removeAllObservers()
-            let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-            let welcomeViewController = mainStoryBoard.instantiateViewController(withIdentifier: "welcomeNavigationController") as! UINavigationController
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.window?.rootViewController = welcomeViewController
+            appDelegate.window?.rootViewController = WelcomeNavigationController()
             appDelegate.window?.makeKeyAndVisible()
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
@@ -100,54 +121,13 @@ class Network {
             information["name"] = value?["name"] as? String ?? ""
             information["email"] = value?["email"] as? String ?? ""
             information["birthday"] = value?["birthday"] as? String ?? ""
-            information["location"] = value?["location"] as? String ?? ""
-            information["username"] = value?["username"] as? String ?? ""
-            information["profilePictureURL"] = value?["profilePictureURL"] as? String ?? ""
             complete(information)
         }
         
     }
     
     
-    // Retrieves the User's profile picture with id: userID from FirebaseStorage
-    // If none is available, then a default image is used
-    static func getProfilePicture(userID: String, complete: @escaping (UIImage) -> ()) {
-
-        var profilePicture = Images.avatarProfilePicture
-        
-        // Step 1: Get access to the user in RealtimeDatabase
-        ref.child(FirebaseKeys.users).child(userID).observeSingleEvent(of: .value) { (snapshot) in
-            
-            // Step 2: Get that users Profile Picture URL
-            let value = snapshot.value as? NSDictionary
-            if let profilePictureURL = value?["profilePicture"] as? String {
-                
-                // Step 3: Get the picture from storage using that URL
-                let storageRef = Storage.storage().reference(forURL: profilePictureURL)
-                storageRef.getData(maxSize: 4*1024*1024, completion: { (data, error) in
-                    
-                    if let error = error {
-                        print("There was an error getting the profile picture: \(error.localizedDescription)")
-                        return
-                    }
-                    if let data = data {
-                        // Step 4: Convert the Firebase Storage Data to an Image
-                        profilePicture = UIImage(data: data)
-                        //Step 5: Use the completion handler to return the Profile Picture
-                        complete(profilePicture!)
-                    }
-                })
-            } else { // We didn't find that user
-                complete(profilePicture!)
-            }
-        }
-        complete(profilePicture!)
-    }
-    
-    
-    ///displayActivityFeed
     static func displayActivityFeed(userID: String, complete: @escaping(Swift.Result<[Activity], BudsError>) -> ()) {
-        
         
         ref.child(FirebaseKeys.activity).queryOrdered(byChild: FirebaseKeys.user).queryEqual(toValue: userID).observe(.value, with: { (snapshot) in
             

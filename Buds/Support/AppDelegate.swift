@@ -25,10 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = BudsTabBarController()
             window?.makeKeyAndVisible()
         } else {
-            let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-            let welcomeViewController = mainStoryBoard.instantiateViewController(withIdentifier: "welcomeNavigationController") as! UINavigationController
             window = UIWindow()
-            window?.rootViewController = welcomeViewController
+            window?.rootViewController = WelcomeNavigationController()
             window?.makeKeyAndVisible()
         }
         

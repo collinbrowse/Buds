@@ -17,4 +17,5 @@ enum BudsError: String, Error {
     case unableToGetAllStrains = "There was an error getting strain information. Please try again"
     case networkError = "There was a network error. Pleasure ensure a proper network connection and try again"
     case noActivities = "You haven't logged any activity yet.\nAdd an activity by first searching for a strain"
+    case unableToLogInUser = "Unable to Log In. Please try again"
 }

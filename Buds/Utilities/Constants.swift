@@ -21,6 +21,7 @@ enum Images {
     static let emptyStateBackgroundImageView = UIImage(named: "cannabis_color_icon")
     static let avatarImageView = UIImage(named: "cadets_generic_avatar")
     static let avatarProfilePicture = UIImage(named: "person-icon")
+    static let fullscreenBackgroundImage = UIImage(named: "weed_background")
 }
 
 enum Icons {
@@ -42,6 +43,13 @@ enum SFSymbols {
     static let starIcon = UIImage(systemName: "star.fill")
     static let rightTriangle = UIImage(systemName: "arrowtriangle.right.fill")
     static let location = UIImage(systemName: "location")
+}
+
+
+enum LegalInfo {
+    static let attributedString = NSMutableAttributedString(string: "By registering, you agree to our privacy policy. Icons by Icons8")
+    static let privacyPolicyURL = URL(string: "https://collin-browse.com/budsprivacypolicy.html")!
+    static let icons8URL = URL(string: "https://icons8.com")!
 }
 
 
