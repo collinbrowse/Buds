@@ -275,4 +275,6 @@ extension FavoritesVC: StrainCollectionViewDelegate {
         destVC.modelController = modelController
         navigationController?.pushViewController(destVC, animated: true)
     }
+    
+    func startLoadingView() {}
 }

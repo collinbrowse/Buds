@@ -21,6 +21,7 @@ extension UIViewController {
         }
     }
     
+    
     func showTabBarController(person: Person) {
         let modelController = ModelController()
         modelController.person = person
@@ -30,6 +31,18 @@ extension UIViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = BudsTabBarController()
         appDelegate.window?.makeKeyAndVisible()
+    }
+    
+    
+    func moveToTabBarController(index: Int) {
+        DispatchQueue.main.async {
+            let navC = self.tabBarController?.viewControllers![index] as! UINavigationController
+            let destVC = navC.viewControllers.first as! ActivityFeedVC
+            destVC.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            destVC.tableView.reloadData()
+            self.tabBarController?.selectedViewController = navC
+            self.navigationController?.popToRootViewController(animated: true)
+        }
     }
     
 }
