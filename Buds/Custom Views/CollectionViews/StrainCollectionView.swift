@@ -23,10 +23,12 @@ class StrainCollectionView: UICollectionView {
     weak var strainDelegate: StrainCollectionViewDelegate?
     var modelController: ModelController!
     
+    
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         configureCollectionView()
         configureDataSource()
+        
     }
     
     
@@ -57,6 +59,7 @@ class StrainCollectionView: UICollectionView {
     
     
     func updateData(on data: [Strain]) {
+        
         var snapshot = NSDiffableDataSourceSnapshot<Section, Strain>()
         snapshot.appendSections([.main])
         snapshot.appendItems(data)
