@@ -57,6 +57,7 @@ class StrainCollectionView: UICollectionView {
     
     
     func updateData(on data: [Strain]) {
+        
         var snapshot = NSDiffableDataSourceSnapshot<Section, Strain>()
         snapshot.appendSections([.main])
         snapshot.appendItems(data)

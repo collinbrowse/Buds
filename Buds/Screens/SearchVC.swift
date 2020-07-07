@@ -12,14 +12,12 @@ import SwiftyJSON
 
 class SearchVC: BudsDataLoadingVC {
 
-    enum Section { case main }
-    var collectionView : UICollectionView!
-    var dataSource : UICollectionViewDiffableDataSource<Section, Strain>!
+    var modelController : ModelController!
+    var strainCollectionView : StrainCollectionView!
     var strains : [Strain] = []
     var filteredStrains : [Strain] = []
     var isSearching = false
     
-    var modelController : ModelController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +25,6 @@ class SearchVC: BudsDataLoadingVC {
         configureViewController()
         configureSearchController()
         configureCollectionView()
-        configureDataSource()
     }
     
     
@@ -39,56 +36,6 @@ class SearchVC: BudsDataLoadingVC {
         getAllStrains()
     }
     
-    
-    func configureNavigationBar() {
-        
-        navigationController?.navigationBar.tintColor = .label
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController!.navigationBar.setBackgroundImage(nil, for: .default)
-        navigationController!.navigationBar.shadowImage = nil
-        navigationController!.navigationBar.tintColor = nil
-        
-    }
-    
-    
-    func configureViewController() {
-        
-        view.backgroundColor = .systemBackground
-    }
-    
-    
-    func configureSearchController() {
-        
-        let searchController = UISearchController()
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.placeholder = "Search for a strain"
-        searchController.obscuresBackgroundDuringPresentation = false
-        navigationItem.searchController = searchController
-    }
-    
-    
-    func configureCollectionView() {
-        
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
-        view.addSubview(collectionView)
-        
-        collectionView.backgroundColor = .systemBackground
-        
-        collectionView.register(StrainCell.self, forCellWithReuseIdentifier: StrainCell.reuseID)
-        collectionView.delegate = self
-    }
-    
-    
-    func configureDataSource() {
-        
-        dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { (collectionView, indexPath, strain) -> UICollectionViewCell? in
-            
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StrainCell.reuseID, for: indexPath) as! StrainCell
-            cell.set(strain: strain)
-            
-            return cell
-        })
-    }
     
     func getAllStrains() {
         
@@ -109,6 +56,7 @@ class SearchVC: BudsDataLoadingVC {
     
     
     func setStrainData(json: JSON) {
+        
         let result = try! JSONDecoder().decode(StrainJSON.self, from: json.rawData())
         
         for item in result.strain {
@@ -119,38 +67,54 @@ class SearchVC: BudsDataLoadingVC {
             strainModel.effects?.positive = item.value.effects?.positive
             strainModel.effects?.negative = item.value.effects?.negative
             strainModel.effects?.medical = item.value.effects?.medical
-            self.strains.append(strainModel)
+            strains.append(strainModel)
         }
-        self.updateData(on: self.strains)
+        strainCollectionView.set(data: strains)
     }
     
     
-    func updateData(on strains: [Strain]) {
-        
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Strain>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(strains)
-        DispatchQueue.main.async {
-            self.view.layoutIfNeeded()
-            self.dataSource.apply(snapshot, animatingDifferences: true, completion: nil)
-        }
+    private func configureNavigationBar() {
+        navigationController?.navigationBar.tintColor = .label
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController!.navigationBar.setBackgroundImage(nil, for: .default)
+        navigationController!.navigationBar.shadowImage = nil
+        navigationController!.navigationBar.tintColor = nil
     }
-
+    
+    
+    private func configureViewController() {
+        view.backgroundColor = .systemBackground
+    }
+    
+    
+    private func configureSearchController() {
+        let searchController = UISearchController()
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = "Search for a strain"
+        searchController.obscuresBackgroundDuringPresentation = false
+        navigationItem.searchController = searchController
+    }
+    
+    
+    private func configureCollectionView() {
+        strainCollectionView = StrainCollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
+        strainCollectionView.set(delegate: self)
+        view.addSubview(strainCollectionView)
+    }
+    
 }
 
 
-extension SearchVC : UICollectionViewDelegate {
+extension SearchVC : StrainCollectionViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let activeArray = isSearching ? filteredStrains : strains
-        let strain = activeArray[indexPath.row]
+    func didTapStrain(for strain: Strain) {
         
         let destVC = StrainInfoVC()
         destVC.strain = strain
         destVC.modelController = self.modelController
         navigationController?.pushViewController(destVC, animated: true)
     }
+
 }
 
 
@@ -161,13 +125,13 @@ extension SearchVC : UISearchResultsUpdating {
         guard let searchText = searchController.searchBar.text, !searchText.isEmpty else {
             filteredStrains.removeAll()
             isSearching = false
-            updateData(on: strains)
+            strainCollectionView.set(data: strains)
             return
         }
         
         isSearching = true
         filteredStrains = strains.filter { $0.name.lowercased().contains(searchText.lowercased()) }
-        updateData(on: filteredStrains)
+        strainCollectionView.set(data: filteredStrains)
     }
 
 }
