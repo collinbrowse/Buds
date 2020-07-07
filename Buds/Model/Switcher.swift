@@ -27,8 +27,8 @@ class Switcher {
                                         birthday: dict?["birthday"] as! String)
 
         return modelController
-        
     }
+    
     
     static func setUserDefaultsModelController(modelController: ModelController) {
         
@@ -44,17 +44,24 @@ class Switcher {
         UserDefaults.standard.set(dict, forKey: "modelController")
     }
     
+    
     static func removeUserDefaultsModelController() {
         UserDefaults.standard.set(nil, forKey: "modelController")
     }
+    
     
     static func setUserDefaultsIsSignIn(_ state: Bool) {
         UserDefaults.standard.set(state, forKey: "isSignIn")
         UserDefaults.standard.synchronize()
     }
     
+    
     static func getUserDefaultsIsSignIn() -> Bool {
         return UserDefaults.standard.bool(forKey: "isSignIn")
     }
     
+    
+    static func setUserDefaultsDidSignOut(_ state: Bool) {
+        UserDefaults.standard.set(state, forKey: "didSignOut")
+    }
 }

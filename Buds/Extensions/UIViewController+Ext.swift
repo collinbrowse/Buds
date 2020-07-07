@@ -25,6 +25,7 @@ extension UIViewController {
         let modelController = ModelController()
         modelController.person = person
         Switcher.setUserDefaultsIsSignIn(true)
+        Switcher.setUserDefaultsDidSignOut(true)
         Switcher.setUserDefaultsModelController(modelController: modelController)
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

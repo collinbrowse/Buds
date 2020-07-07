@@ -89,7 +89,6 @@ class RegisterVC : BudsDataLoadingVC {
     
     private func configureBackgroundImageView() {
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
-        //backgroundImageView.contentMode = .scaleAspectFill
     }
     
     
