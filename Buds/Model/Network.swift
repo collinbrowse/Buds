@@ -151,8 +151,11 @@ class Network {
                 if let dictionary = snapshot.value as? [String: [String: Any]] {
                     
                     var activities = [Activity]()
+                    let dispatchGroup = DispatchGroup()
                     
                     for firActivity in dictionary.values {
+                        dispatchGroup.enter()
+                        
                         let activity = Activity()
                         activity.user = firActivity["user"] as? String
                         activity.strain = firActivity["strain"] as? String
@@ -163,12 +166,33 @@ class Network {
                         activity.location = firActivity["location"] as? String
                         activity.date = TimeHelper.getDateFromString(dateString: firActivity["time"] as! String)
                         activity.consumptionMethod = self.parseConsumptionMethod(method: firActivity["smoking_style"] as! String)
-                        activities.insert(activity, at: 0)
+                        
+                        if firActivity["race"] as? String == nil {
+                            Network.getStrain(name: activity.strain) { result in
+                                
+                                switch result {
+                                case .success(let resultJSON):
+                                    activity.race = resultJSON[0]["race"].stringValue
+                                case .failure:
+                                    break
+                                }
+                                activities.insert(activity, at: 0)
+                                dispatchGroup.leave()
+                            }
+                        } else {
+                            activity.race = firActivity["race"] as? String
+                            activities.insert(activity, at: 0)
+                            dispatchGroup.leave()
+                        }
+                        
                     }
-                    activities = activities.sorted(by: {
-                        $0.date!.compare($1.date!) == .orderedDescending
-                    })
-                    complete(.success(activities))
+                    dispatchGroup.notify(queue: .main) {
+                        
+                        activities = activities.sorted(by: {
+                            $0.date!.compare($1.date!) == .orderedDescending
+                        })
+                        complete(.success(activities))
+                    }
                 }
             } else {
                 complete(.failure(BudsError.noActivities))

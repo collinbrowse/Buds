@@ -52,6 +52,12 @@ enum LegalInfo {
     static let icons8URL = URL(string: "https://icons8.com")!
 }
 
+enum RaceColors {
+    static let hybrid = UIColor.systemGreen
+    static let indica = UIColor.systemPurple
+    static let sativa = UIColor.systemRed
+}
+
 
 enum TagTypes : CaseIterable {
     case rating, method, effect, location

@@ -58,6 +58,7 @@ class NewActivityVC: BudsDataLoadingVC {
         activityDetailsDict["time"]             = TimeHelper.getTodayString()
         activityDetailsDict["strain"]           = strainLabel.text
         activityDetailsDict["note"]             = noteTextField.text
+        activityDetailsDict["race"]             = raceLabel.text?.lowercased()
         
         for collectionView in collectionViews {
             guard !collectionView.selectedData.isEmpty else {

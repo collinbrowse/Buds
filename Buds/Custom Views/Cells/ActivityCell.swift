@@ -13,7 +13,8 @@ class ActivityCell: UITableViewCell {
     static let reuseID = String(describing: ActivityCell.self)
     weak var strainDelegate: StrainCollectionViewDelegate?
     
-    var strainIcon = UIImageView(frame: .zero)
+    var strainIcon = BudsStrainImageView(frame: .zero)
+    var strainAcronym = BudsStrainTitleLabel(textAlignment: .center, fontSize: 16)
     var strainLabel = BudsTitleLabel(textAlignment: .left, fontSize: 18)
     var locationLabel = BudsSecondaryLabel(fontSize: 14, weight: .medium)
     var timeLabel = BudsSecondaryLabel(fontSize: 14, weight: .medium)
@@ -27,6 +28,7 @@ class ActivityCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        configureStrainIcon()
         configureStrainLabel()
         configureStackView()
         configureDetailsLabel()
@@ -40,9 +42,10 @@ class ActivityCell: UITableViewCell {
     
     
     func set(activity: Activity) {
-        strainIcon.image = Icons.defaultStrainIcon
+        setRaceColor(race: activity.race!)
+        setStrainAcronym(strain: activity.strain)
         strainLabel.text = activity.strain
-        locationLabel.text = activity.location + ""
+        locationLabel.text = activity.location
         timeLabel.text = activity.date?.timeAgoString()
         detailsLabel.text = activity.note
         setIcons(activity: activity)
@@ -61,6 +64,18 @@ class ActivityCell: UITableViewCell {
     }
     
     
+    private func setRaceColor(race: String) {
+        if      race.lowercased() == "hybrid" { self.strainIcon.setBackgroundColor(with: RaceColors.hybrid) }
+        else if race.lowercased() == "indica" { self.strainIcon.setBackgroundColor(with: RaceColors.indica) }
+        else if race.lowercased() == "sativa" { self.strainIcon.setBackgroundColor(with: RaceColors.sativa) }
+    }
+    
+    
+    private func setStrainAcronym(strain: String) {
+        strainAcronym.text = strain.getAcronymForStrain()
+    }
+    
+    
     @objc func strainLabelTapped() {
         
         strainDelegate?.startLoadingView()
@@ -75,6 +90,12 @@ class ActivityCell: UITableViewCell {
                 print(error.localizedDescription) // Don't display strain if there was an error
             }
         }
+    }
+    
+    
+    private func configureStrainIcon() {
+        strainIcon.backgroundColor = .red
+        strainIcon.layer.cornerRadius = 10
     }
     
     
@@ -101,7 +122,7 @@ class ActivityCell: UITableViewCell {
     
     private func layoutUI() {
         
-        addSubviews(strainIcon, timeLabel, strainLabel, locationLabel, detailsLabel, iconsStackView)
+        addSubviews(strainIcon, strainAcronym, timeLabel, strainLabel, locationLabel, detailsLabel, iconsStackView)
         strainIcon.translatesAutoresizingMaskIntoConstraints = false
         iconsStackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -113,6 +134,11 @@ class ActivityCell: UITableViewCell {
             strainIcon.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
             strainIcon.heightAnchor.constraint(equalToConstant: 50),
             strainIcon.widthAnchor.constraint(equalToConstant: 50),
+            
+            strainAcronym.topAnchor.constraint(equalTo: strainIcon.topAnchor),
+            strainAcronym.leadingAnchor.constraint(equalTo: strainIcon.leadingAnchor),
+            strainAcronym.trailingAnchor.constraint(equalTo: strainIcon.trailingAnchor),
+            strainAcronym.bottomAnchor.constraint(equalTo: strainIcon.bottomAnchor),
 
             timeLabel.topAnchor.constraint(equalTo: strainIcon.topAnchor),
             timeLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
