@@ -114,6 +114,11 @@ extension SearchVC : StrainCollectionViewDelegate {
         destVC.modelController = self.modelController
         navigationController?.pushViewController(destVC, animated: true)
     }
+    
+    
+    func startLoadingView() {
+        
+    }
 
 }
 
