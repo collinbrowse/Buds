@@ -23,7 +23,7 @@ class FavoritesVC: BudsDataLoadingVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        showLoadingView()
         configureViewController()
         configureTableView()
         layoutUI()
@@ -62,6 +62,7 @@ class FavoritesVC: BudsDataLoadingVC {
         tableView.backgroundColor = .systemBackground
         tableView.separatorStyle = .none
         tableView.register(FavoriteCell.self, forCellReuseIdentifier: FavoriteCell.reuseID)
+        tableView.reloadData() // force loading indicators to show
     }
     
     
@@ -208,8 +209,6 @@ class FavoritesVC: BudsDataLoadingVC {
 }
 
 
-    
-
 
 extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
     
@@ -247,8 +246,18 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
         cell.selectionStyle = .none
         
         if indexPath.section == 0 {
+            if highestRatedStrains.count == 0 {
+                cell.startLoadingIndicator()
+            } else {
+                cell.stopLoadingIndicator()
+            }
             cell.set(strains: highestRatedStrains)
         } else if indexPath.section == 1 {
+            if mostUsedStrains.count == 0 {
+                cell.startLoadingIndicator()
+            } else {
+                cell.stopLoadingIndicator()
+            }
             cell.set(strains: mostUsedStrains)
         }
 
