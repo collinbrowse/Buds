@@ -11,6 +11,7 @@ import UIKit
 class ActivityCell: UITableViewCell {
 
     static let reuseID = String(describing: ActivityCell.self)
+    weak var strainDelegate: StrainCollectionViewDelegate?
     
     var strainIcon = UIImageView(frame: .zero)
     var strainLabel = BudsTitleLabel(textAlignment: .left, fontSize: 18)
@@ -25,9 +26,11 @@ class ActivityCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        configure()
+        
+        configureStrainLabel()
         configureStackView()
         configureDetailsLabel()
+        layoutUI()
     }
     
     
@@ -36,6 +39,52 @@ class ActivityCell: UITableViewCell {
     }
     
     
+    func set(activity: Activity) {
+        strainIcon.image = Icons.defaultStrainIcon
+        strainLabel.text = activity.strain
+        locationLabel.text = activity.location + ""
+        timeLabel.text = activity.date?.timeAgoString()
+        detailsLabel.text = activity.note
+        setIcons(activity: activity)
+    }
+    
+    
+    func set(delegate: StrainCollectionViewDelegate) {
+        self.strainDelegate = delegate
+    }
+    
+    
+    private func setIcons(activity: Activity) {
+        iconsViewOne.setRating(withRating: String(activity.rating))
+        iconsViewTwo.setConsumptionIcon(withConsumptionMethod: activity.consumptionMethod!)
+        iconsViewThree.setEffects(withEffects: activity.effects ?? [])
+    }
+    
+    
+    @objc func strainLabelTapped() {
+        
+        strainDelegate?.startLoadingView()
+        Network.getStrain(name: strainLabel.text!) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let resultJSON):
+                let strain = Strain(name: self.strainLabel.text!, id: resultJSON[0]["id"].int, race: resultJSON[0]["race"].stringValue, flavors: nil, effects: nil)
+                self.strainDelegate?.didTapStrain(for: strain)
+            case .failure(let error):
+                print(error.localizedDescription) // Don't display strain if there was an error
+            }
+        }
+    }
+    
+    
+    private func configureStrainLabel() {
+        strainLabel.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(strainLabelTapped))
+        strainLabel.addGestureRecognizer(tap)
+    }
+    
+
     private func configureStackView() {
         iconsStackView.axis = .horizontal
         iconsStackView.distribution = .fillProportionally
@@ -50,7 +99,7 @@ class ActivityCell: UITableViewCell {
     }
     
     
-    func configure() {
+    private func layoutUI() {
         
         addSubviews(strainIcon, timeLabel, strainLabel, locationLabel, detailsLabel, iconsStackView)
         strainIcon.translatesAutoresizingMaskIntoConstraints = false
@@ -92,21 +141,5 @@ class ActivityCell: UITableViewCell {
             detailsLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: labelHeight),
             detailsLabel.bottomAnchor.constraint(equalTo: iconsStackView.topAnchor, constant: -6)
         ])
-    }
-    
-    func set(activity: Activity) {
-                   
-        strainIcon.image = Icons.defaultStrainIcon
-        strainLabel.text = activity.strain
-        locationLabel.text = activity.location + ""
-        timeLabel.text = activity.date?.timeAgoString()
-        detailsLabel.text = activity.note
-        setIcons(activity: activity)
-    }
-    
-    private func setIcons(activity: Activity) {
-        iconsViewOne.setRating(withRating: String(activity.rating))
-        iconsViewTwo.setConsumptionIcon(withConsumptionMethod: activity.consumptionMethod!)
-        iconsViewThree.setEffects(withEffects: activity.effects ?? [])
     }
 }

@@ -11,6 +11,7 @@ import UIKit
 
 protocol StrainCollectionViewDelegate: class {
     func didTapStrain(for strain: Strain)
+    func startLoadingView()
 }
 
 

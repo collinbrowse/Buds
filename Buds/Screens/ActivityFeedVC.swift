@@ -90,11 +90,11 @@ class ActivityFeedVC: BudsDataLoadingVC {
             self.view.bringSubviewToFront(self.tableView)
         }
     }
+    
 }
 
 
 extension ActivityFeedVC : UITableViewDataSource, UITableViewDelegate {
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return activities.count
@@ -104,7 +104,24 @@ extension ActivityFeedVC : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ActivityCell.reuseID) as! ActivityCell
         cell.set(activity: activities[indexPath.row])
+        cell.set(delegate: self)
         return cell
     }
     
+}
+
+
+extension ActivityFeedVC : StrainCollectionViewDelegate {
+    
+    func didTapStrain(for strain: Strain) {
+        dismissLoadingView()
+        let destVC = StrainInfoVC()
+        destVC.strain = strain
+        destVC.modelController = modelController
+        navigationController?.pushViewController(destVC, animated: true)
+    }
+    
+    func startLoadingView() {
+        showLoadingView()
+    }
 }
