@@ -48,7 +48,7 @@ enum SFSymbols {
 
 enum LegalInfo {
     static let attributedString = NSMutableAttributedString(string: "By registering, you agree to our privacy policy. Icons by Icons8")
-    static let privacyPolicyURL = URL(string: "https://collin-browse.com/budsprivacypolicy.html")!
+    static let privacyPolicyURL = URL(string: "https://www.collinbrowse.com/budsprivacypolicy.html")!
     static let icons8URL = URL(string: "https://icons8.com")!
 }
 
