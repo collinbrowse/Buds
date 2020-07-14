@@ -35,10 +35,11 @@ extension UIViewController {
     }
     
     
-    func moveToTabBarController(index: Int) {
+    func moveToActivityFeedVC(index: Int) {
         DispatchQueue.main.async {
             let navC = self.tabBarController?.viewControllers![index] as! UINavigationController
             let destVC = navC.viewControllers.first as! ActivityFeedVC
+            destVC.showLoadingView()
             destVC.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             destVC.tableView.reloadData()
             self.tabBarController?.selectedViewController = navC

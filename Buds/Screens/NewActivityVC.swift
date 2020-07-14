@@ -89,10 +89,12 @@ class NewActivityVC: BudsDataLoadingVC {
         showLoadingView()
         Network.addNewActivity(userID: modelController.person.id, activityDetails: activityDetails) { [weak self] (error) in
             guard let self = self else { return }
-            self.dismissLoadingView()
+            if self.containerView != nil {
+                self.dismissLoadingView()
+            }
             
             if error == nil {
-                self.moveToTabBarController(index: TabBarIndices.ActivityFeedVC)
+                self.moveToActivityFeedVC(index: TabBarIndices.ActivityFeedVC)
             } else {
                 self.presentBudsAlertOnMainThread(title: "Unable to add Activity", message: error!.rawValue, buttonTitle: "OK")
             }

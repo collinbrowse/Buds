@@ -123,7 +123,10 @@ class StrainInfoVC: BudsDataLoadingVC {
         
         Network.getStrainDescription(strainID: strain.id!) { [weak self] (resultJSON) in
             guard let self = self else { return }
-            self.dismissLoadingView()
+            
+            if self.containerView != nil {
+                self.dismissLoadingView()
+            }
             
             guard let description = resultJSON?["desc"].string else {
                 let message = "Sorry, we couldn't find any details for " + self.headerTitle.text!
