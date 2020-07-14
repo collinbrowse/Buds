@@ -64,8 +64,13 @@ class ActivityFeedVC: BudsDataLoadingVC {
     
     func getActivities() {
         
+        startLoadingView()
         Network.displayActivityFeed(userID: modelController.person.id) { [weak self] (result) in
             guard let self = self else { return }
+            
+            if self.containerView != nil {
+                self.dismissLoadingView()
+            }
             
             switch result {
             case .success(let activities):
@@ -114,7 +119,9 @@ extension ActivityFeedVC : UITableViewDataSource, UITableViewDelegate {
 extension ActivityFeedVC : StrainCollectionViewDelegate {
     
     func didTapStrain(for strain: Strain) {
-        dismissLoadingView()
+        if self.containerView != nil {
+            dismissLoadingView()
+        }
         let destVC = StrainInfoVC()
         destVC.strain = strain
         destVC.modelController = modelController

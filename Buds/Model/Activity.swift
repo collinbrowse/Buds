@@ -17,6 +17,7 @@ enum ConsumptionMethod {
 class Activity: NSObject {
     
     var strain: String!
+    var race: String?
     var note: String?
     var rating: Int!
     var consumptionMethod: ConsumptionMethod?
