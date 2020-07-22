@@ -24,6 +24,7 @@ class Activity: NSObject {
     var smoking_style: String!
     var effects: [String]!
     var location: String!
+    var brand: String?
     
     var time: String!
     var date: Date?

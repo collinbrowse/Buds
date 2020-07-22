@@ -12,6 +12,7 @@ class ActivityCell: UITableViewCell {
     
     static let reuseID = String(describing: ActivityCell.self)
     weak var strainDelegate: StrainCollectionViewDelegate?
+    var stackViewSpacing : CGFloat = 8.0
     
     let cardView = UIView()
     var strainIcon = BudsStrainImageView(frame: .zero)
@@ -24,13 +25,13 @@ class ActivityCell: UITableViewCell {
     var ratingCategoryLabel = BudsSecondaryLabel(fontSize: 14, weight: .medium)
     var effectsCategoryLabel = BudsSecondaryLabel(fontSize: 14, weight: .medium)
     var typeCategoryLabel = BudsSecondaryLabel(fontSize: 14, weight: .medium)
+    var brandCategoryLabel = BudsSecondaryLabel(fontSize: 14, weight: .medium)
     var ratingLabel = BudsSecondaryLabel(fontSize: 14, weight: .medium)
     var effectsLabel = BudsSecondaryLabel(fontSize: 14, weight: .medium)
     var typeLabel = BudsSecondaryLabel(fontSize: 14, weight: .medium)
+    var brandLabel = BudsSecondaryLabel(fontSize: 14, weight: .medium)
     var line = UIView()
     
-    var effectsScrollView = UIScrollView()
-    let effectsContentView = UIView()
     var categoriesStackView = UIStackView()
     var descriptorsStackView = UIStackView()
     
@@ -65,6 +66,7 @@ class ActivityCell: UITableViewCell {
         setStrainAcronym(strain: activity.strain)
         setType(activity: activity)
         setEffects(activity: activity)
+        setBrand(activity: activity)
     }
     
     
@@ -129,6 +131,22 @@ class ActivityCell: UITableViewCell {
             effectsLabel.text = allEffects[2...]
         } else {
             effectsLabel.text = ""
+        }
+    }
+    
+    
+    private func setBrand(activity: Activity) {
+        
+        if activity.brand != nil {
+            brandLabel.text = activity.brand
+            brandCategoryLabel.text = "Brand"
+            categoriesStackView.addArrangedSubview(brandCategoryLabel)
+            descriptorsStackView.addArrangedSubview(brandLabel)
+        } else {
+            brandLabel.text = ""
+            brandCategoryLabel.text = ""
+            categoriesStackView.removeArrangedSubview(brandCategoryLabel)
+            descriptorsStackView.removeArrangedSubview(brandLabel)
         }
     }
     
@@ -225,6 +243,7 @@ class ActivityCell: UITableViewCell {
         typeCategoryLabel.text = "Type"
         categoriesStackView.axis = .vertical
         categoriesStackView.distribution = .fillProportionally
+        categoriesStackView.spacing = stackViewSpacing
         categoriesStackView.addArrangedSubview(ratingCategoryLabel)
         categoriesStackView.addArrangedSubview(effectsCategoryLabel)
         categoriesStackView.addArrangedSubview(typeCategoryLabel)
@@ -235,8 +254,7 @@ class ActivityCell: UITableViewCell {
         descriptorsStackView.translatesAutoresizingMaskIntoConstraints = false
         descriptorsStackView.axis = .vertical
         descriptorsStackView.distribution = .fillProportionally
-        effectsScrollView.translatesAutoresizingMaskIntoConstraints = false
-        effectsContentView.translatesAutoresizingMaskIntoConstraints = false
+        descriptorsStackView.spacing = stackViewSpacing
         descriptorsStackView.addArrangedSubview(ratingLabel)
         descriptorsStackView.addArrangedSubview(effectsLabel)
         descriptorsStackView.addArrangedSubview(typeLabel)
@@ -300,7 +318,6 @@ class ActivityCell: UITableViewCell {
             categoriesStackView.topAnchor.constraint(equalTo: line.bottomAnchor, constant: padding),
             categoriesStackView.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding*3),
             categoriesStackView.widthAnchor.constraint(equalToConstant: 70),
-            categoriesStackView.heightAnchor.constraint(equalToConstant: 70),
             categoriesStackView.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -padding),
             
             descriptorsStackView.topAnchor.constraint(equalTo: line.bottomAnchor, constant: padding),

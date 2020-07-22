@@ -161,6 +161,7 @@ class Network {
                         activity.strain = firActivity["strain"] as? String
                         activity.smoking_style = firActivity["smoking_style"] as? String
                         activity.rating = firActivity["rating"] as? Int
+                        activity.brand = firActivity["brand"] as? String 
                         activity.note = firActivity["note"] as? String
                         activity.effects = firActivity["effects"] as? [String]
                         activity.location = firActivity["location"] as? String
