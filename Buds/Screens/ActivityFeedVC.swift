@@ -90,7 +90,6 @@ class ActivityFeedVC: BudsDataLoadingVC {
         
         self.activities = activities
         DispatchQueue.main.async {
-            self.tableView.separatorStyle = .singleLine
             self.tableView.reloadData()
             self.view.bringSubviewToFront(self.tableView)
         }
@@ -112,7 +111,6 @@ extension ActivityFeedVC : UITableViewDataSource, UITableViewDelegate {
         cell.set(delegate: self)
         return cell
     }
-    
 }
 
 

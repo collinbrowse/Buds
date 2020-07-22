@@ -79,7 +79,6 @@
 		BEA25004244A77A200086B55 /* BudsStrainTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA25003244A77A200086B55 /* BudsStrainTitleLabel.swift */; };
 		BEA25007244A79E000086B55 /* BudsHeaderImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA25006244A79E000086B55 /* BudsHeaderImageView.swift */; };
 		BEACFF172462149300F705EB /* BudsTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEACFF162462149300F705EB /* BudsTitleLabel.swift */; };
-		BEACFF192462F7EC00F705EB /* BudsIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEACFF182462F7EC00F705EB /* BudsIconView.swift */; };
 		BEACFF1B24645ED800F705EB /* NewActivityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEACFF1A24645ED800F705EB /* NewActivityVC.swift */; };
 		BEACFF1D246463A100F705EB /* NavigationBar+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEACFF1C246463A100F705EB /* NavigationBar+Ext.swift */; };
 		BEACFF1F2464641100F705EB /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEACFF1E2464641100F705EB /* String+Ext.swift */; };
@@ -190,7 +189,6 @@
 		BEA25003244A77A200086B55 /* BudsStrainTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudsStrainTitleLabel.swift; sourceTree = "<group>"; };
 		BEA25006244A79E000086B55 /* BudsHeaderImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudsHeaderImageView.swift; sourceTree = "<group>"; };
 		BEACFF162462149300F705EB /* BudsTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudsTitleLabel.swift; sourceTree = "<group>"; };
-		BEACFF182462F7EC00F705EB /* BudsIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudsIconView.swift; sourceTree = "<group>"; };
 		BEACFF1A24645ED800F705EB /* NewActivityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityVC.swift; sourceTree = "<group>"; };
 		BEACFF1C246463A100F705EB /* NavigationBar+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationBar+Ext.swift"; sourceTree = "<group>"; };
 		BEACFF1E2464641100F705EB /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
@@ -314,7 +312,6 @@
 			isa = PBXGroup;
 			children = (
 				BE2D4C12245CD16D0008D7C6 /* BudsEmptySateView.swift */,
-				BEACFF182462F7EC00F705EB /* BudsIconView.swift */,
 				BE314E9024746EE800EC20B7 /* BudsAlertContainerView.swift */,
 			);
 			path = Views;
@@ -809,7 +806,6 @@
 				BE58DEBD24537275003A4239 /* SearchVC.swift in Sources */,
 				BE2D4C222461B97C0008D7C6 /* BudsSecondaryLabel.swift in Sources */,
 				BE81C34024AD21C500C67684 /* WelcomeNavigationController.swift in Sources */,
-				BEACFF192462F7EC00F705EB /* BudsIconView.swift in Sources */,
 				BE53E7B3246DAB6700226A2C /* BudsError.swift in Sources */,
 				BEACFF1D246463A100F705EB /* NavigationBar+Ext.swift in Sources */,
 				BEB8D75324A3F2EB00C8C4CF /* BudsTextField.swift in Sources */,
