@@ -23,11 +23,15 @@ class NewActivityVC: BudsDataLoadingVC {
     var noteTextField = UITextField(frame: .zero)
     var labelsView = UIView()
     var collectionViews : [TagCollectionView] = []
-    var ratingLabel = BudsTitleLabel(textAlignment: .left, fontSize: 20)
-    var consumptionMethodLabel = BudsTitleLabel(textAlignment: .left, fontSize: 20)
-    var effectsLabel = BudsTitleLabel(textAlignment: .left, fontSize: 20)
-    var locationLabel = BudsTitleLabel(textAlignment: .left, fontSize: 20)
+    var ratingLabel = BudsTitleLabel(textAlignment: .left, fontSize: 18)
+    var consumptionMethodLabel = BudsTitleLabel(textAlignment: .left, fontSize: 18)
+    var effectsLabel = BudsTitleLabel(textAlignment: .left, fontSize: 18)
+    var locationLabel = BudsTitleLabel(textAlignment: .left, fontSize: 18)
+    let brandLabel = BudsTitleLabel(textAlignment: .left, fontSize: 20)
+    let brandTextField = UITextField(frame: .zero)
+    let brandWrapperView = UIView()
     
+    var distanceToMoveKeyboard : CGFloat = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,6 +85,29 @@ class NewActivityVC: BudsDataLoadingVC {
         }
         
         addActivity(activityDetails: activityDetailsDict)
+    }
+    
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        
+        if brandTextField.isFirstResponder {
+            guard let userInfo = notification.userInfo else {return}
+            guard let keyboard = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+            let keyboardFrame = keyboard.cgRectValue
+            let brandWrapperViewInFrame = view.convert(brandWrapperView.frame, from: labelsView)
+            distanceToMoveKeyboard = ((brandWrapperViewInFrame.origin.y + brandWrapperView.frame.height) - keyboardFrame.origin.y)
+            if self.view.frame.origin.y == 0 && distanceToMoveKeyboard > 0 {
+                self.view.frame.origin.y -= distanceToMoveKeyboard
+            }
+        }
+    }
+    
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+
+        if self.view.frame.origin.y != 0 && distanceToMoveKeyboard > 0 {
+            self.view.frame.origin.y += distanceToMoveKeyboard
+        }
     }
     
     
@@ -141,6 +168,8 @@ class NewActivityVC: BudsDataLoadingVC {
     
     private func configureViewController() {
         view.backgroundColor = .systemBackground
+        NotificationCenter.default.addObserver(self, selector: #selector(NewActivityVC.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(NewActivityVC.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     
@@ -162,11 +191,9 @@ class NewActivityVC: BudsDataLoadingVC {
     
     private func configureNoteTextField() {
         noteTextField.translatesAutoresizingMaskIntoConstraints = false
-        noteTextField.placeholder = "How was it? Leave a note for later"
         noteTextField.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         noteTextField.textColor = .label
         noteTextField.attributedPlaceholder = NSAttributedString(string: "How was it? Leave a note for later", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
-        noteTextField.becomeFirstResponder()
         noteTextField.returnKeyType = .done
         noteTextField.delegate = self
     }
@@ -178,6 +205,7 @@ class NewActivityVC: BudsDataLoadingVC {
         consumptionMethodLabel.text = "Method"
         effectsLabel.text = "Effects"
         locationLabel.text = "Location"
+        brandLabel.text = "Brand"
     }
     
     
@@ -187,6 +215,7 @@ class NewActivityVC: BudsDataLoadingVC {
         view.addSubviews(strainIcon, strainLabel, raceLabel, noteTextField, labelsView)
         
         let padding : CGFloat = 12
+        let labelsWidth : CGFloat = 75
         
         NSLayoutConstraint.activate([
     
@@ -225,8 +254,7 @@ class NewActivityVC: BudsDataLoadingVC {
             let collectionView = TagCollectionView(frame: wrapperViews[i].frame, tag: tagTypes[i], delegate: self)
             collectionViews.append(collectionView)
             labelsView.addSubview(wrapperViews[i])
-            wrapperViews[i].addSubview(labels[i])
-            wrapperViews[i].addSubview(collectionView)
+            wrapperViews[i].addSubviews(labels[i], collectionView)
             wrapperViews[i].translatesAutoresizingMaskIntoConstraints = false
             collectionView.translatesAutoresizingMaskIntoConstraints = false
             
@@ -244,14 +272,48 @@ class NewActivityVC: BudsDataLoadingVC {
                 labels[i].centerYAnchor.constraint(equalTo: wrapperViews[i].centerYAnchor),
                 labels[i].heightAnchor.constraint(equalTo: wrapperViews[i].heightAnchor),
                 labels[i].leadingAnchor.constraint(equalTo: wrapperViews[i].leadingAnchor),
-                labels[i].widthAnchor.constraint(equalToConstant: labels[i].intrinsicContentSize.width + 6),
+                labels[i].widthAnchor.constraint(equalToConstant: labelsWidth),
                 
                 collectionView.topAnchor.constraint(equalTo: wrapperViews[i].topAnchor),
-                collectionView.leadingAnchor.constraint(equalTo: labels[i].trailingAnchor, constant: padding),
+                collectionView.leadingAnchor.constraint(equalTo: labels[i].trailingAnchor),
                 collectionView.bottomAnchor.constraint(equalTo: wrapperViews[i].bottomAnchor),
                 collectionView.trailingAnchor.constraint(equalTo: wrapperViews[i].trailingAnchor)
             ])
         }
+        
+        
+        
+        
+       
+        brandTextField.translatesAutoresizingMaskIntoConstraints = false
+        brandTextField.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        brandTextField.textColor = .label
+        brandTextField.attributedPlaceholder = NSAttributedString(string: "Who grew this strain?", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
+        brandTextField.returnKeyType = .done
+        brandTextField.delegate = self
+        
+        
+        
+        brandWrapperView.translatesAutoresizingMaskIntoConstraints = false
+        brandWrapperView.addSubviews(brandLabel, brandTextField)
+        labelsView.addSubview(brandWrapperView)
+        
+        NSLayoutConstraint.activate([
+            brandWrapperView.leadingAnchor.constraint(equalTo: labelsView.leadingAnchor),
+            brandWrapperView.topAnchor.constraint(equalTo: wrapperViews[3].bottomAnchor),
+            brandWrapperView.trailingAnchor.constraint(equalTo: labelsView.trailingAnchor),
+            brandWrapperView.heightAnchor.constraint(equalToConstant: 50),
+            
+            brandLabel.centerYAnchor.constraint(equalTo:    brandWrapperView.centerYAnchor),
+            brandLabel.heightAnchor.constraint(equalTo:     brandWrapperView.heightAnchor),
+            brandLabel.leadingAnchor.constraint(equalTo:    brandWrapperView.leadingAnchor),
+            brandLabel.widthAnchor.constraint(equalToConstant: labelsWidth),
+            
+            brandTextField.topAnchor.constraint(equalTo:        brandWrapperView.topAnchor),
+            brandTextField.leadingAnchor.constraint(equalTo:    brandLabel.trailingAnchor, constant: padding),
+            brandTextField.bottomAnchor.constraint(equalTo:     brandWrapperView.bottomAnchor),
+            brandTextField.trailingAnchor.constraint(equalTo:   brandWrapperView.trailingAnchor)
+        ])
     }
     
 }
