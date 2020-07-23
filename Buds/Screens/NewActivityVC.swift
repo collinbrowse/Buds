@@ -35,12 +35,14 @@ class NewActivityVC: BudsDataLoadingVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureViewController()
         configureStrainIcon()
         configureStrainLabel()
         configureRaceLabel()
         configureNoteTextField()
         configureLabels()
+        configureBrandTextField()
         layoutUI()
     }
     
@@ -63,6 +65,7 @@ class NewActivityVC: BudsDataLoadingVC {
         activityDetailsDict["strain"]           = strainLabel.text
         activityDetailsDict["note"]             = noteTextField.text
         activityDetailsDict["race"]             = raceLabel.text?.lowercased()
+        activityDetailsDict["brand"]            = brandTextField.text ?? nil
         
         for collectionView in collectionViews {
             guard !collectionView.selectedData.isEmpty else {
@@ -189,6 +192,17 @@ class NewActivityVC: BudsDataLoadingVC {
     }
     
     
+    private func configureBrandTextField() {
+        brandTextField.translatesAutoresizingMaskIntoConstraints = false
+        brandTextField.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        brandTextField.textColor = .label
+        brandTextField.attributedPlaceholder = NSAttributedString(string: "Who grew this strain?", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
+        brandTextField.returnKeyType = .done
+        brandTextField.delegate = self
+        brandTextField.autocorrectionType = .no
+    }
+    
+    
     private func configureNoteTextField() {
         noteTextField.translatesAutoresizingMaskIntoConstraints = false
         noteTextField.font = UIFont.systemFont(ofSize: 17, weight: .regular)
@@ -280,19 +294,6 @@ class NewActivityVC: BudsDataLoadingVC {
                 collectionView.trailingAnchor.constraint(equalTo: wrapperViews[i].trailingAnchor)
             ])
         }
-        
-        
-        
-        
-       
-        brandTextField.translatesAutoresizingMaskIntoConstraints = false
-        brandTextField.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        brandTextField.textColor = .label
-        brandTextField.attributedPlaceholder = NSAttributedString(string: "Who grew this strain?", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
-        brandTextField.returnKeyType = .done
-        brandTextField.delegate = self
-        
-        
         
         brandWrapperView.translatesAutoresizingMaskIntoConstraints = false
         brandWrapperView.addSubviews(brandLabel, brandTextField)
