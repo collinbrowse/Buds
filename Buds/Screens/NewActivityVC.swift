@@ -148,8 +148,6 @@ class NewActivityVC: BudsDataLoadingVC {
     }
     
     
-    
-    
     private func configureNavigationBar() {
         
         let appearance = GreenNavigationBarAppearance()
@@ -221,7 +219,6 @@ class NewActivityVC: BudsDataLoadingVC {
         locationLabel.text = "Location"
         brandLabel.text = "Brand"
     }
-    
     
     
     private func layoutUI() {

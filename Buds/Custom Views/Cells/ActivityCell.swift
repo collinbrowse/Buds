@@ -168,7 +168,6 @@ class ActivityCell: UITableViewCell {
     }
     
     
-    
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         setCardViewStyling()
@@ -259,6 +258,7 @@ class ActivityCell: UITableViewCell {
         descriptorsStackView.addArrangedSubview(effectsLabel)
         descriptorsStackView.addArrangedSubview(typeLabel)
     }
+    
     
     private func layoutUI() {
         
