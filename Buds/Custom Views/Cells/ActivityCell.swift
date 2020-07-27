@@ -137,16 +137,16 @@ class ActivityCell: UITableViewCell {
     
     private func setBrand(activity: Activity) {
         
-        if activity.brand != nil {
-            brandLabel.text = activity.brand
-            brandCategoryLabel.text = "Brand"
-            categoriesStackView.addArrangedSubview(brandCategoryLabel)
-            descriptorsStackView.addArrangedSubview(brandLabel)
-        } else {
+        if activity.brand == "" || activity.brand == nil {
             brandLabel.text = ""
             brandCategoryLabel.text = ""
             categoriesStackView.removeArrangedSubview(brandCategoryLabel)
             descriptorsStackView.removeArrangedSubview(brandLabel)
+        } else {
+            brandLabel.text = activity.brand
+            brandCategoryLabel.text = "Brand"
+            categoriesStackView.addArrangedSubview(brandCategoryLabel)
+            descriptorsStackView.addArrangedSubview(brandLabel)
         }
     }
     
@@ -264,7 +264,7 @@ class ActivityCell: UITableViewCell {
         
         addSubviews(timeLabel, raceLabel, strainIcon, strainAcronymLabel,  strainLabel, locationLabel, detailsLabel, categoriesStackView, descriptorsStackView, line)
         strainIcon.translatesAutoresizingMaskIntoConstraints = false
-
+        
         let padding: CGFloat = 12
         let labelHeight : CGFloat = 20
         

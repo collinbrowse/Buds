@@ -57,6 +57,29 @@ class NewActivityVC: BudsDataLoadingVC {
     }
     
     
+    @objc func keyboardWillShow(notification: NSNotification) {
+        
+        if brandTextField.isFirstResponder {
+            guard let userInfo = notification.userInfo else {return}
+            guard let keyboard = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+            let keyboardFrame = keyboard.cgRectValue
+            let brandWrapperViewInFrame = view.convert(brandWrapperView.frame, from: labelsView)
+            distanceToMoveKeyboard = ((brandWrapperViewInFrame.origin.y + brandWrapperView.frame.height) - keyboardFrame.origin.y)
+            if self.view.frame.origin.y == 0 && distanceToMoveKeyboard > 0 {
+                self.view.frame.origin.y -= distanceToMoveKeyboard
+            }
+        }
+    }
+    
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+
+        if self.view.frame.origin.y != 0 && distanceToMoveKeyboard > 0 {
+            self.view.frame.origin.y += distanceToMoveKeyboard
+        }
+    }
+    
+    
     @objc func addButtonTapped() {
         
         var activityDetailsDict                 = [String : Any]()
@@ -65,7 +88,7 @@ class NewActivityVC: BudsDataLoadingVC {
         activityDetailsDict["strain"]           = strainLabel.text
         activityDetailsDict["note"]             = noteTextField.text
         activityDetailsDict["race"]             = raceLabel.text?.lowercased()
-        activityDetailsDict["brand"]            = brandTextField.text ?? nil
+        activityDetailsDict["brand"]            = brandTextField.text ?? ""
         
         for collectionView in collectionViews {
             guard !collectionView.selectedData.isEmpty else {
@@ -88,29 +111,6 @@ class NewActivityVC: BudsDataLoadingVC {
         }
         
         addActivity(activityDetails: activityDetailsDict)
-    }
-    
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
-        
-        if brandTextField.isFirstResponder {
-            guard let userInfo = notification.userInfo else {return}
-            guard let keyboard = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
-            let keyboardFrame = keyboard.cgRectValue
-            let brandWrapperViewInFrame = view.convert(brandWrapperView.frame, from: labelsView)
-            distanceToMoveKeyboard = ((brandWrapperViewInFrame.origin.y + brandWrapperView.frame.height) - keyboardFrame.origin.y)
-            if self.view.frame.origin.y == 0 && distanceToMoveKeyboard > 0 {
-                self.view.frame.origin.y -= distanceToMoveKeyboard
-            }
-        }
-    }
-    
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-
-        if self.view.frame.origin.y != 0 && distanceToMoveKeyboard > 0 {
-            self.view.frame.origin.y += distanceToMoveKeyboard
-        }
     }
     
     
@@ -194,7 +194,7 @@ class NewActivityVC: BudsDataLoadingVC {
     
     private func configureBrandTextField() {
         brandTextField.translatesAutoresizingMaskIntoConstraints = false
-        brandTextField.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        brandTextField.font = UIFont.systemFont(ofSize: 17, weight: .light)
         brandTextField.textColor = .label
         brandTextField.attributedPlaceholder = NSAttributedString(string: "Who grew this strain?", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
         brandTextField.returnKeyType = .done
@@ -205,7 +205,7 @@ class NewActivityVC: BudsDataLoadingVC {
     
     private func configureNoteTextField() {
         noteTextField.translatesAutoresizingMaskIntoConstraints = false
-        noteTextField.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        noteTextField.font = UIFont.systemFont(ofSize: 17, weight: .light)
         noteTextField.textColor = .label
         noteTextField.attributedPlaceholder = NSAttributedString(string: "How was it? Leave a note for later", attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
         noteTextField.returnKeyType = .done
