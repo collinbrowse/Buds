@@ -9,28 +9,34 @@
 import UIKit
 
 
-enum ConsumptionMethod {
-    case joint, blunt, bowl, bong, edible, concentrate, vape
+enum ConsumptionMethod: String, Decodable {
+    
+    case joint = "Joint",
+        blunt = "Blunt",
+        bowl = "Bowl",
+        bong = "Bong",
+        edible = "Edible",
+        concentrate = "Concentrate",
+        vape = "Vape"
 }
 
 @objcMembers
-class Activity: NSObject {
+class Activity: NSObject, Decodable {
     
+    var user: String?
     var strain: String!
     var race: String?
     var note: String?
     var rating: Int!
     var consumptionMethod: ConsumptionMethod?
-    var smoking_style: String!
     var effects: [String]!
     var location: String!
     var brand: String?
-    
     var time: String!
     var date: Date?
-    var user: String?
-    var name: String?
-    var profilePictureURL: String?
     
+    enum CodingKeys: String, CodingKey {
+        case user, strain, race, note, rating, effects, location, brand, time, consumptionMethod = "smoking_style"
+    }
     
 }

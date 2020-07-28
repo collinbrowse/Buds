@@ -155,37 +155,30 @@ class Network {
                     
                     for firActivity in dictionary.values {
                         dispatchGroup.enter()
-                        
-                        let activity = Activity()
-                        activity.user = firActivity["user"] as? String
-                        activity.strain = firActivity["strain"] as? String
-                        activity.smoking_style = firActivity["smoking_style"] as? String
-                        activity.rating = firActivity["rating"] as? Int
-                        activity.brand = firActivity["brand"] as? String 
-                        activity.note = firActivity["note"] as? String
-                        activity.effects = firActivity["effects"] as? [String]
-                        activity.location = firActivity["location"] as? String
-                        activity.date = TimeHelper.getDateFromString(dateString: firActivity["time"] as! String)
-                        activity.consumptionMethod = self.parseConsumptionMethod(method: firActivity["smoking_style"] as! String)
-                        
-                        if firActivity["race"] as? String == nil {
-                            Network.getStrain(name: activity.strain) { result in
-                                
-                                switch result {
-                                case .success(let resultJSON):
-                                    activity.race = resultJSON[0]["race"].stringValue
-                                case .failure:
-                                    break
+                        do {
+                            let jsonData = try JSONSerialization.data(withJSONObject: firActivity, options: [])
+                            let activity = try JSONDecoder().decode(Activity.self, from: jsonData)
+                            activity.date = TimeHelper.getDateFromString(dateString: activity.time)
+                            
+                            if firActivity["race"] as? String == nil {
+                                Network.getStrain(name: activity.strain) { result in
+                                    
+                                    switch result {
+                                    case .success(let resultJSON):
+                                        activity.race = resultJSON[0]["race"].stringValue
+                                    case .failure:
+                                        break
+                                    }
+                                    activities.insert(activity, at: 0)
+                                    dispatchGroup.leave()
                                 }
+                            } else {
                                 activities.insert(activity, at: 0)
                                 dispatchGroup.leave()
                             }
-                        } else {
-                            activity.race = firActivity["race"] as? String
-                            activities.insert(activity, at: 0)
-                            dispatchGroup.leave()
+                        } catch let error {
+                            print(error)
                         }
-                        
                     }
                     dispatchGroup.notify(queue: .main) {
                         
